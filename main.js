@@ -69,9 +69,17 @@ document.body.style.overflow = 'hidden';
   }, { passive: true });
 })();
 
-/* ---------- THREE.JS GLOBE ---------- */
+/* ---------- THREE.JS GLOBE — INTERACTIVE NETWORK ---------- */
 (function threeScene() {
   const canvas = document.getElementById('globeCanvas');
+  const stageEl = canvas && canvas.parentElement;
+  const tooltipEl = document.getElementById('globeTooltip');
+  const tooltipCode = tooltipEl && tooltipEl.querySelector('.globe-tooltip__code');
+  const tooltipName = tooltipEl && tooltipEl.querySelector('.globe-tooltip__name');
+  const tooltipCountry = tooltipEl && tooltipEl.querySelector('.globe-tooltip__country');
+  const routeListEl = document.getElementById('routeList');
+  const routesCountEl = document.getElementById('routesCount');
+  const hintEl = document.getElementById('networkHint');
   if (!canvas || typeof THREE === 'undefined') return;
 
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
@@ -105,22 +113,22 @@ document.body.style.overflow = 'hidden';
   /* ===== 1. SOLID CORE — dark navy sphere so wireframe reads on top ===== */
   const coreGeo = new THREE.SphereGeometry(radius * 0.995, 64, 48);
   const coreMat = new THREE.MeshBasicMaterial({
-    color: 0x070D1F,
+    color: 0x05132b,
     transparent: true,
-    opacity: 0.96,
+    opacity: 0.98,
   });
   globeGroup.add(new THREE.Mesh(coreGeo, coreMat));
 
-  /* ===== 2. LATITUDE / LONGITUDE GRID ===== */
+  /* ===== 2. LATITUDE / LONGITUDE GRID — soft white, not techy aqua ===== */
   const gridMat = new THREE.LineBasicMaterial({
-    color: 0x4FD2FF,
+    color: 0xffffff,
     transparent: true,
-    opacity: 0.22,
+    opacity: 0.10,
   });
   const equatorMat = new THREE.LineBasicMaterial({
     color: RED,
     transparent: true,
-    opacity: 0.55,
+    opacity: 0.40,
   });
 
   function makeCircle(latDeg, mat) {
@@ -164,168 +172,119 @@ document.body.style.overflow = 'hidden';
     globeGroup.add(makeMeridian(lon, gridMat));
   }
 
-  /* ===== 3. CITY NETWORK — ~85 real cities so the globe reads as a global network ===== */
-  const cities = [
-    /* Asia / SE Asia (clustered — our hub region) */
-    [101.7, 3.1, 'KL', true],     /* HUB */
-    [103.8, 1.3, 'SIN', true],
-    [100.5, 13.7, 'BKK'],
-    [106.6, 10.8, 'SGN'],
-    [105.9, 21.0, 'HAN'],
-    [121.0, 14.6, 'MNL'],
-    [114.1, 22.3, 'HKG', true],
-    [121.5, 31.2, 'SHA'],
-    [116.4, 39.9, 'PEK'],
-    [113.3, 23.1, 'CAN'],
-    [120.6, 27.0, 'WNZ'],
-    [127.0, 37.5, 'ICN', true],
-    [139.7, 35.7, 'TYO', true],
-    [135.5, 34.7, 'OSA'],
-    [125.3, 35.2, 'PUS'],
-    [106.8, -6.2, 'CGK'],
-    [115.2, -8.7, 'DPS'],
-    [80.9, 7.3, 'CMB'],
-    [77.2, 28.6, 'DEL', true],
-    [72.9, 19.1, 'BOM'],
-    [88.4, 22.6, 'CCU'],
-    [80.3, 13.1, 'MAA'],
-    [90.4, 23.8, 'DAC'],
-    [67.0, 24.9, 'KHI'],
-    [69.3, 41.3, 'TAS'],
-    [85.3, 27.7, 'KTM'],
-    /* Middle East (major freight gateways) */
-    [55.3, 25.3, 'DXB', true],
-    [54.4, 24.5, 'AUH'],
-    [51.5, 25.3, 'DOH', true],
-    [50.6, 26.2, 'BAH'],
-    [46.8, 24.7, 'RUH'],
-    [39.2, 21.5, 'JED'],
-    [35.2, 31.9, 'AMM'],
-    [31.2, 30.0, 'CAI'],
-    [44.4, 33.3, 'BGW'],
-    [51.4, 35.7, 'IKA'],
-    /* Europe */
-    [-0.1, 51.5, 'LHR', true],
-    [2.3, 48.9, 'CDG', true],
-    [4.9, 52.4, 'AMS'],
-    [13.4, 52.5, 'BER'],
-    [8.7, 50.1, 'FRA', true],
-    [9.2, 45.5, 'MXP'],
-    [12.5, 41.9, 'FCO'],
-    [-3.7, 40.4, 'MAD'],
-    [-9.1, 38.7, 'LIS'],
-    [4.4, 50.8, 'BRU'],
-    [16.4, 48.2, 'VIE'],
-    [14.4, 50.1, 'PRG'],
-    [21.0, 52.2, 'WAW'],
-    [37.6, 55.7, 'SVO'],
-    [28.9, 41.0, 'IST', true],
-    [23.7, 37.9, 'ATH'],
-    [18.1, 59.3, 'ARN'],
-    [10.7, 59.9, 'OSL'],
-    [12.6, 55.7, 'CPH'],
-    /* Africa */
-    [3.4, 6.5, 'LOS'],
-    [-13.6, 9.5, 'CKY'],
-    [36.8, -1.3, 'NBO'],
-    [32.6, 15.5, 'KRT'],
-    [18.4, -33.9, 'CPT'],
-    [28.0, -26.2, 'JNB', true],
-    [-17.5, 14.7, 'DKR'],
-    [-7.6, 33.6, 'CMN'],
-    [9.2, 32.9, 'TUN'],
-    /* Americas */
-    [-74.0, 40.7, 'JFK', true],
-    [-87.6, 41.9, 'ORD'],
-    [-77.0, 38.9, 'IAD'],
-    [-71.1, 42.4, 'BOS'],
-    [-80.2, 25.8, 'MIA'],
-    [-95.4, 29.8, 'IAH'],
-    [-118.2, 34.1, 'LAX', true],
-    [-122.4, 37.8, 'SFO'],
-    [-122.3, 47.6, 'SEA'],
-    [-79.4, 43.7, 'YYZ'],
-    [-73.6, 45.5, 'YUL'],
-    [-99.1, 19.4, 'MEX'],
-    [-77.0, 8.0, 'PTY'],
-    [-58.4, -34.6, 'EZE'],
-    [-46.6, -23.6, 'GRU'],
-    [-43.2, -22.9, 'GIG'],
-    [-70.7, -33.5, 'SCL'],
-    [-78.5, -0.2, 'UIO'],
-    [-77.0, 12.0, 'BOG'],
-    /* Oceania */
-    [151.2, -33.8, 'SYD', true],
-    [144.9, -37.8, 'MEL'],
-    [174.7, -36.8, 'AKL'],
-    [115.8, -32.0, 'PER'],
+  /* ===== 3. ROUTES — full data: lon, lat, IATA code, city, country, isHub ===== */
+  const HUB_DATA = { lon: 101.7, lat: 3.1, code: 'KUL', city: 'Kuala Lumpur', country: 'Malaysia', hub: true };
+
+  const routes = [
+    { lon: 103.8, lat: 1.3,   code: 'SIN', city: 'Singapore',     country: 'Singapore',     hub: true },
+    { lon: 100.5, lat: 13.7,  code: 'BKK', city: 'Bangkok',       country: 'Thailand' },
+    { lon: 121.0, lat: 14.6,  code: 'MNL', city: 'Manila',        country: 'Philippines' },
+    { lon: 114.1, lat: 22.3,  code: 'HKG', city: 'Hong Kong',     country: 'China',         hub: true },
+    { lon: 121.5, lat: 31.2,  code: 'PVG', city: 'Shanghai',      country: 'China' },
+    { lon: 116.4, lat: 39.9,  code: 'PEK', city: 'Beijing',       country: 'China' },
+    { lon: 127.0, lat: 37.5,  code: 'ICN', city: 'Seoul',         country: 'South Korea',   hub: true },
+    { lon: 139.7, lat: 35.7,  code: 'NRT', city: 'Tokyo',         country: 'Japan',         hub: true },
+    { lon: 106.8, lat: -6.2,  code: 'CGK', city: 'Jakarta',       country: 'Indonesia' },
+    { lon: 77.2,  lat: 28.6,  code: 'DEL', city: 'Delhi',         country: 'India',         hub: true },
+    { lon: 72.9,  lat: 19.1,  code: 'BOM', city: 'Mumbai',        country: 'India' },
+    { lon: 80.3,  lat: 13.1,  code: 'MAA', city: 'Chennai',       country: 'India' },
+    { lon: 90.4,  lat: 23.8,  code: 'DAC', city: 'Dhaka',         country: 'Bangladesh' },
+    { lon: 55.3,  lat: 25.3,  code: 'DXB', city: 'Dubai',         country: 'UAE',           hub: true },
+    { lon: 51.5,  lat: 25.3,  code: 'DOH', city: 'Doha',          country: 'Qatar',         hub: true },
+    { lon: 46.8,  lat: 24.7,  code: 'RUH', city: 'Riyadh',        country: 'Saudi Arabia' },
+    { lon: 39.2,  lat: 21.5,  code: 'JED', city: 'Jeddah',        country: 'Saudi Arabia' },
+    { lon: 28.9,  lat: 41.0,  code: 'IST', city: 'Istanbul',      country: 'Türkiye',       hub: true },
+    { lon: 31.2,  lat: 30.0,  code: 'CAI', city: 'Cairo',         country: 'Egypt' },
+    { lon: -0.1,  lat: 51.5,  code: 'LHR', city: 'London',        country: 'UK',            hub: true },
+    { lon: 2.3,   lat: 48.9,  code: 'CDG', city: 'Paris',         country: 'France',        hub: true },
+    { lon: 8.7,   lat: 50.1,  code: 'FRA', city: 'Frankfurt',     country: 'Germany',       hub: true },
+    { lon: 4.9,   lat: 52.4,  code: 'AMS', city: 'Amsterdam',     country: 'Netherlands' },
+    { lon: 12.5,  lat: 41.9,  code: 'FCO', city: 'Rome',          country: 'Italy' },
+    { lon: -3.7,  lat: 40.4,  code: 'MAD', city: 'Madrid',        country: 'Spain' },
+    { lon: 36.8,  lat: -1.3,  code: 'NBO', city: 'Nairobi',       country: 'Kenya' },
+    { lon: 28.0,  lat: -26.2, code: 'JNB', city: 'Johannesburg',  country: 'South Africa',  hub: true },
+    { lon: -74.0, lat: 40.7,  code: 'JFK', city: 'New York',      country: 'USA',           hub: true },
+    { lon: -87.6, lat: 41.9,  code: 'ORD', city: 'Chicago',       country: 'USA' },
+    { lon: -118.2,lat: 34.1,  code: 'LAX', city: 'Los Angeles',   country: 'USA',           hub: true },
+    { lon: -80.2, lat: 25.8,  code: 'MIA', city: 'Miami',         country: 'USA' },
+    { lon: -99.1, lat: 19.4,  code: 'MEX', city: 'Mexico City',   country: 'Mexico' },
+    { lon: -46.6, lat: -23.6, code: 'GRU', city: 'São Paulo',     country: 'Brazil' },
+    { lon: 151.2, lat: -33.8, code: 'SYD', city: 'Sydney',        country: 'Australia',     hub: true },
+    { lon: 174.7, lat: -36.8, code: 'AKL', city: 'Auckland',      country: 'New Zealand' },
   ];
 
-  const HUB = cities[0]; /* Kuala Lumpur */
+  /* Ambient secondary cities — show as small dots, no arcs, no tooltips */
+  const ambient = [
+    [105.9, 21.0], [113.3, 23.1], [135.5, 34.7], [125.3, 35.2], [115.2, -8.7],
+    [80.9, 7.3], [88.4, 22.6], [67.0, 24.9], [54.4, 24.5], [50.6, 26.2],
+    [35.2, 31.9], [44.4, 33.3], [51.4, 35.7], [13.4, 52.5], [9.2, 45.5],
+    [-9.1, 38.7], [4.4, 50.8], [16.4, 48.2], [14.4, 50.1], [21.0, 52.2],
+    [37.6, 55.7], [23.7, 37.9], [18.1, 59.3], [10.7, 59.9], [12.6, 55.7],
+    [3.4, 6.5], [32.6, 15.5], [18.4, -33.9], [-7.6, 33.6], [-77.0, 38.9],
+    [-95.4, 29.8], [-122.4, 37.8], [-122.3, 47.6], [-79.4, 43.7], [-73.6, 45.5],
+    [-58.4, -34.6], [-70.7, -33.5], [-77.0, 12.0], [144.9, -37.8], [115.8, -32.0],
+  ];
 
-  /* All city dots */
-  const cityPositions = [];
-  const cityHubPositions = [];
-  cities.forEach((c) => {
-    const v = lonLatToVec3(c[0], c[1], radius * 1.012);
-    cityPositions.push(v.x, v.y, v.z);
-    if (c[3]) cityHubPositions.push(v.x, v.y, v.z);
+  const allRoutePoints = [HUB_DATA, ...routes];
+
+  /* — Pickable city points (with userData for raycaster) — */
+  const cityPickGroup = new THREE.Group();
+  globeGroup.add(cityPickGroup);
+  const cityPickMeshes = [];
+
+  allRoutePoints.forEach((r) => {
+    const v = lonLatToVec3(r.lon, r.lat, radius * 1.014);
+    const isHub = !!r.hub || r.code === 'KUL';
+    const dotSize = r.code === 'KUL' ? 0.10 : (isHub ? 0.07 : 0.05);
+    const dotColor = r.code === 'KUL' ? WHITE : (isHub ? WHITE : RED);
+    const mesh = new THREE.Mesh(
+      new THREE.SphereGeometry(dotSize, 14, 14),
+      new THREE.MeshBasicMaterial({ color: dotColor })
+    );
+    mesh.position.copy(v);
+    mesh.userData = { route: r, isHub, base: dotSize };
+    cityPickGroup.add(mesh);
+    cityPickMeshes.push(mesh);
   });
 
-  const cityGeo = new THREE.BufferGeometry();
-  cityGeo.setAttribute('position', new THREE.Float32BufferAttribute(cityPositions, 3));
-  const cityMat = new THREE.PointsMaterial({
-    color: RED,
-    size: 0.05,
-    transparent: true,
-    opacity: 0.95,
-    sizeAttenuation: true,
+  /* Ambient city dots (decorative only, smaller, no userData) */
+  const ambPositions = [];
+  ambient.forEach(([lon, lat]) => {
+    const v = lonLatToVec3(lon, lat, radius * 1.012);
+    ambPositions.push(v.x, v.y, v.z);
   });
-  globeGroup.add(new THREE.Points(cityGeo, cityMat));
-
-  /* Hub points — bigger, brighter */
-  const hubGeo = new THREE.BufferGeometry();
-  hubGeo.setAttribute('position', new THREE.Float32BufferAttribute(cityHubPositions, 3));
-  const hubMat = new THREE.PointsMaterial({
-    color: WHITE,
-    size: 0.11,
-    transparent: true,
-    opacity: 1,
-    sizeAttenuation: true,
-  });
-  globeGroup.add(new THREE.Points(hubGeo, hubMat));
+  const ambGeo = new THREE.BufferGeometry();
+  ambGeo.setAttribute('position', new THREE.Float32BufferAttribute(ambPositions, 3));
+  globeGroup.add(new THREE.Points(ambGeo, new THREE.PointsMaterial({
+    color: 0xff7785, size: 0.04, transparent: true, opacity: 0.6, sizeAttenuation: true,
+  })));
 
   /* Pulsing rings around hub cities */
   const hubRings = [];
-  cities.filter((c) => c[3]).forEach((c) => {
-    const pos = lonLatToVec3(c[0], c[1], radius * 1.018);
-    const ringGeo = new THREE.RingGeometry(0.07, 0.085, 32);
-    const ringMat = new THREE.MeshBasicMaterial({
-      color: RED, transparent: true, opacity: 0.7, side: THREE.DoubleSide,
-    });
-    const ring = new THREE.Mesh(ringGeo, ringMat);
+  allRoutePoints.filter((r) => r.hub).forEach((r) => {
+    const pos = lonLatToVec3(r.lon, r.lat, radius * 1.02);
+    const ring = new THREE.Mesh(
+      new THREE.RingGeometry(0.07, 0.085, 32),
+      new THREE.MeshBasicMaterial({ color: RED, transparent: true, opacity: 0.7, side: THREE.DoubleSide })
+    );
     ring.position.copy(pos);
-    /* orient ring tangent to sphere */
     ring.lookAt(pos.clone().multiplyScalar(2));
     ring.userData.phase = Math.random() * Math.PI * 2;
+    ring.userData.code = r.code;
     hubRings.push(ring);
     globeGroup.add(ring);
   });
 
-  /* ===== 4. FLIGHT ARCS — hub-and-spoke from KL to ~30 destinations ===== */
+  /* ===== 4. FLIGHT ARCS — one per route from KUL ===== */
   const arcGroup = new THREE.Group();
   globeGroup.add(arcGroup);
 
-  const arcDestinations = cities.slice(1).filter(() => Math.random() < 0.35);
-  /* Always include the major hubs */
-  cities.filter((c) => c[3] && c !== HUB).forEach((c) => {
-    if (!arcDestinations.includes(c)) arcDestinations.push(c);
-  });
-
+  const arcsByCode = new Map(); /* code → { tube, glow, plane, trail, mat, glowMat, defaultOpacity } */
   const travelers = [];
-  arcDestinations.forEach((tgt, idx) => {
-    const start = lonLatToVec3(HUB[0], HUB[1], radius * 1.01);
-    const end = lonLatToVec3(tgt[0], tgt[1], radius * 1.01);
+
+  routes.forEach((tgt, idx) => {
+    const start = lonLatToVec3(HUB_DATA.lon, HUB_DATA.lat, radius * 1.01);
+    const end = lonLatToVec3(tgt.lon, tgt.lat, radius * 1.01);
     const mid = start.clone().add(end).multiplyScalar(0.5);
     const dist = start.distanceTo(end);
     const lift = radius + dist * 0.55;
@@ -333,61 +292,54 @@ document.body.style.overflow = 'hidden';
 
     const curve = new THREE.QuadraticBezierCurve3(start, mid, end);
 
-    /* Arc tube — color by tier */
-    const isMajor = tgt[3];
-    const arcColor = isMajor ? RED : (idx % 2 === 0 ? GOLD : CYAN);
-    const tubeGeo = new THREE.TubeGeometry(curve, 64, isMajor ? 0.012 : 0.007, 8, false);
-    const arcMat = new THREE.MeshBasicMaterial({
-      color: arcColor,
-      transparent: true,
-      opacity: isMajor ? 0.85 : 0.5,
+    const isMajor = !!tgt.hub;
+    const arcColor = isMajor ? RED : (idx % 2 === 0 ? GOLD : 0xff8a5c);
+    const baseOpacity = isMajor ? 0.78 : 0.45;
+
+    const tubeMat = new THREE.MeshBasicMaterial({
+      color: arcColor, transparent: true, opacity: baseOpacity,
     });
-    const tube = new THREE.Mesh(tubeGeo, arcMat);
+    const tube = new THREE.Mesh(
+      new THREE.TubeGeometry(curve, 64, isMajor ? 0.011 : 0.007, 8, false),
+      tubeMat
+    );
     arcGroup.add(tube);
 
-    /* Outer glow tube */
-    if (isMajor) {
-      const glowGeo = new THREE.TubeGeometry(curve, 64, 0.022, 8, false);
-      const glowMat = new THREE.MeshBasicMaterial({
-        color: arcColor,
-        transparent: true,
-        opacity: 0.18,
-      });
-      arcGroup.add(new THREE.Mesh(glowGeo, glowMat));
-    }
+    const glowMat = new THREE.MeshBasicMaterial({
+      color: arcColor, transparent: true, opacity: isMajor ? 0.18 : 0.10,
+    });
+    const glow = new THREE.Mesh(
+      new THREE.TubeGeometry(curve, 64, isMajor ? 0.022 : 0.014, 8, false),
+      glowMat
+    );
+    arcGroup.add(glow);
 
-    /* Cargo plane — small triangular prism oriented along curve */
-    const planeMat = new THREE.MeshBasicMaterial({ color: WHITE });
-    const planeGeo = new THREE.ConeGeometry(0.025, 0.08, 4);
-    const plane = new THREE.Mesh(planeGeo, planeMat);
-    plane.userData = {
-      curve,
-      t: Math.random(),
-      speed: 0.0014 + Math.random() * 0.0022,
-    };
+    /* moving plane along arc */
+    const plane = new THREE.Mesh(
+      new THREE.ConeGeometry(0.025, 0.08, 4),
+      new THREE.MeshBasicMaterial({ color: WHITE })
+    );
+    plane.userData = { curve, t: Math.random(), speed: 0.0014 + Math.random() * 0.0022 };
     arcGroup.add(plane);
     travelers.push(plane);
 
-    /* Trail glow halo following plane */
-    const trailMat = new THREE.MeshBasicMaterial({
-      color: arcColor, transparent: true, opacity: 0.7,
-    });
-    const trailGeo = new THREE.SphereGeometry(0.03, 12, 12);
-    const trail = new THREE.Mesh(trailGeo, trailMat);
+    const trail = new THREE.Mesh(
+      new THREE.SphereGeometry(0.03, 12, 12),
+      new THREE.MeshBasicMaterial({ color: arcColor, transparent: true, opacity: 0.7 })
+    );
     trail.userData = { plane, offset: 0.04 };
     arcGroup.add(trail);
     travelers.push(trail);
+
+    arcsByCode.set(tgt.code, {
+      tube, glow, plane, trail, tubeMat, glowMat,
+      baseTubeOpacity: baseOpacity,
+      baseGlowOpacity: isMajor ? 0.18 : 0.10,
+    });
   });
 
-  /* KL hub — big white sphere with pulsing red ring */
-  const klPos = lonLatToVec3(HUB[0], HUB[1], radius * 1.02);
-  const klMarker = new THREE.Mesh(
-    new THREE.SphereGeometry(0.08, 20, 20),
-    new THREE.MeshBasicMaterial({ color: WHITE }),
-  );
-  klMarker.position.copy(klPos);
-  globeGroup.add(klMarker);
-
+  /* KL hub — pulsing red ring around its dot */
+  const klPos = lonLatToVec3(HUB_DATA.lon, HUB_DATA.lat, radius * 1.025);
   const klRing = new THREE.Mesh(
     new THREE.RingGeometry(0.11, 0.14, 48),
     new THREE.MeshBasicMaterial({ color: RED, transparent: true, opacity: 0.9, side: THREE.DoubleSide }),
@@ -396,14 +348,14 @@ document.body.style.overflow = 'hidden';
   klRing.lookAt(klPos.clone().multiplyScalar(2));
   globeGroup.add(klRing);
 
-  /* ===== 5. ATMOSPHERIC HALO ===== */
-  const haloGeo = new THREE.SphereGeometry(radius * 1.18, 64, 48);
-  const haloMat = new THREE.ShaderMaterial({
+  /* ===== 5. ATMOSPHERIC HALO — tight soft-white rim, then a wider warm red glow ===== */
+  /* Inner rim: soft white, hugs the sphere edge */
+  const rimGeo = new THREE.SphereGeometry(radius * 1.06, 64, 48);
+  const rimMat = new THREE.ShaderMaterial({
     transparent: true,
     side: THREE.BackSide,
-    uniforms: {
-      uColor: { value: new THREE.Color(0x4FD2FF) },
-    },
+    depthWrite: false,
+    uniforms: { uColor: { value: new THREE.Color(0xeaf1ff) } },
     vertexShader: `
       varying vec3 vNormal;
       void main() {
@@ -415,37 +367,14 @@ document.body.style.overflow = 'hidden';
       varying vec3 vNormal;
       uniform vec3 uColor;
       void main() {
-        float intensity = pow(0.65 - dot(vNormal, vec3(0,0,1.0)), 2.5);
-        gl_FragColor = vec4(uColor, 1.0) * intensity;
+        float i = pow(0.85 - dot(vNormal, vec3(0,0,1.0)), 5.0);
+        gl_FragColor = vec4(uColor, 1.0) * i * 0.55;
       }
     `,
   });
-  const halo = new THREE.Mesh(haloGeo, haloMat);
-  globeGroup.add(halo);
+  globeGroup.add(new THREE.Mesh(rimGeo, rimMat));
 
-  /* Outer red halo for brand emphasis */
-  const haloRedGeo = new THREE.SphereGeometry(radius * 1.32, 48, 32);
-  const haloRedMat = new THREE.ShaderMaterial({
-    transparent: true,
-    side: THREE.BackSide,
-    uniforms: { uColor: { value: new THREE.Color(RED) } },
-    vertexShader: `
-      varying vec3 vNormal;
-      void main() {
-        vNormal = normalize(normalMatrix * normal);
-        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-      }
-    `,
-    fragmentShader: `
-      varying vec3 vNormal;
-      uniform vec3 uColor;
-      void main() {
-        float intensity = pow(0.55 - dot(vNormal, vec3(0,0,1.0)), 4.0);
-        gl_FragColor = vec4(uColor, 1.0) * intensity * 0.8;
-      }
-    `,
-  });
-  globeGroup.add(new THREE.Mesh(haloRedGeo, haloRedMat));
+  /* Outer halo removed — the inner soft-white rim is enough; no colored backlight */
 
   /* ===== 6. STARFIELD ===== */
   const starGeo = new THREE.BufferGeometry();
@@ -466,34 +395,21 @@ document.body.style.overflow = 'hidden';
   }));
   scene.add(stars);
 
-  /* ===== 7. INITIAL ORIENTATION & INTERACTION ===== */
-  /* Tilt slightly so equator/arcs read as a horizon */
+  /* ===== 7. ORIENTATION ===== */
   globeGroup.rotation.y = 0.6;
   globeGroup.rotation.x = 0.18;
 
-  let pointer = { x: 0, y: 0, tx: 0, ty: 0 };
-  window.addEventListener('mousemove', (e) => {
-    pointer.tx = (e.clientX / window.innerWidth - 0.5) * 0.4;
-    pointer.ty = (e.clientY / window.innerHeight - 0.5) * 0.2;
-  });
-
-  let scrollY = 0;
-  window.addEventListener('scroll', () => { scrollY = window.scrollY; }, { passive: true });
-
   function place() {
-    const w = window.innerWidth;
-    if (w < 768) {
-      globeGroup.scale.setScalar(0.85);
-      globeGroup.position.set(0, 0, 0);
-      camera.position.z = 9.5;
+    const w = canvas.clientWidth || 600;
+    if (w < 600) {
+      globeGroup.scale.setScalar(0.92);
+      camera.position.z = 11.5;
     } else {
       globeGroup.scale.setScalar(1);
-      globeGroup.position.set(0, 0, 0);
-      camera.position.z = 8.5;
+      camera.position.z = 10.8;
     }
   }
   place();
-
   function resize() {
     const w = canvas.clientWidth || window.innerWidth;
     const h = canvas.clientHeight || window.innerHeight;
@@ -505,24 +421,232 @@ document.body.style.overflow = 'hidden';
   resize();
   window.addEventListener('resize', resize);
 
-  /* ===== 8. ANIMATION LOOP ===== */
-  function tick() {
-    pointer.x += (pointer.tx - pointer.x) * 0.05;
-    pointer.y += (pointer.ty - pointer.y) * 0.05;
+  /* ===== 8. INTERACTION — drag-to-rotate ===== */
+  const drag = { active: false, lastX: 0, lastY: 0, vx: 0, vy: 0, idle: 0 };
+  let autoRotate = true;
+  let interacted = false;
 
-    const scrollNorm = Math.min(scrollY / window.innerHeight, 2);
-    const time = performance.now() * 0.001;
+  function dimHint() {
+    if (interacted || !hintEl) return;
+    interacted = true;
+    hintEl.classList.add('is-faded');
+  }
 
-    /* Continuous revolution + subtle pointer tilt */
-    globeGroup.rotation.y += 0.0028;
-    globeGroup.rotation.x = 0.18 + pointer.y * 0.3;
+  canvas.addEventListener('pointerdown', (e) => {
+    drag.active = true;
+    drag.lastX = e.clientX;
+    drag.lastY = e.clientY;
+    drag.vx = 0; drag.vy = 0;
+    autoRotate = false;
+    stageEl.classList.add('is-dragging');
+    canvas.setPointerCapture(e.pointerId);
+    dimHint();
+  });
+  canvas.addEventListener('pointermove', (e) => {
+    if (drag.active) {
+      const dx = (e.clientX - drag.lastX) / 220;
+      const dy = (e.clientY - drag.lastY) / 220;
+      drag.vx = dx;
+      drag.vy = dy;
+      globeGroup.rotation.y += dx;
+      globeGroup.rotation.x = Math.max(-1.1, Math.min(1.1, globeGroup.rotation.x + dy));
+      drag.lastX = e.clientX;
+      drag.lastY = e.clientY;
+      drag.idle = 0;
+    }
+    handleHover(e);
+  });
+  function endDrag(e) {
+    if (!drag.active) return;
+    drag.active = false;
+    stageEl.classList.remove('is-dragging');
+    if (e && e.pointerId !== undefined) {
+      try { canvas.releasePointerCapture(e.pointerId); } catch (_) {}
+    }
+  }
+  canvas.addEventListener('pointerup', endDrag);
+  canvas.addEventListener('pointercancel', endDrag);
+  canvas.addEventListener('pointerleave', () => {
+    hideTooltip();
+  });
 
-    /* Subtle camera parallax */
-    camera.position.x = pointer.x * 0.3;
-    camera.position.y = -pointer.y * 0.2;
-    camera.lookAt(0, 0, 0);
+  /* ===== 9. RAYCASTER for hover tooltip on route dots ===== */
+  const raycaster = new THREE.Raycaster();
+  raycaster.params.Points = { threshold: 0.06 };
+  const ndc = new THREE.Vector2();
+  let hoveredCode = null;
 
-    /* Travelers — planes orient along curve tangent, trails sit slightly behind */
+  function handleHover(e) {
+    if (!cityPickMeshes.length) return;
+    const rect = canvas.getBoundingClientRect();
+    ndc.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+    ndc.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+    raycaster.setFromCamera(ndc, camera);
+    const hits = raycaster.intersectObjects(cityPickMeshes, false);
+    if (hits.length) {
+      const hit = hits[0].object;
+      const r = hit.userData.route;
+      showTooltip(r, e.clientX - rect.left, e.clientY - rect.top);
+      if (hoveredCode !== r.code) {
+        hoveredCode = r.code;
+        if (r.code !== 'KUL') highlightArc(r.code);
+        updateActiveListItem(r.code);
+      }
+      canvas.style.cursor = drag.active ? 'grabbing' : 'pointer';
+    } else {
+      hideTooltip();
+      if (hoveredCode) {
+        hoveredCode = null;
+        clearArcHighlight();
+        updateActiveListItem(null);
+      }
+      canvas.style.cursor = drag.active ? 'grabbing' : 'grab';
+    }
+  }
+
+  function showTooltip(r, x, y) {
+    if (!tooltipEl) return;
+    tooltipCode.textContent = r.code;
+    tooltipName.textContent = r.city;
+    tooltipCountry.textContent = r.country + (r.code === 'KUL' ? ' · Home base' : '');
+    tooltipEl.style.transform = `translate(calc(${x}px - 50%), calc(${y}px - 120%))`;
+    tooltipEl.classList.add('is-visible');
+  }
+  function hideTooltip() {
+    if (tooltipEl) tooltipEl.classList.remove('is-visible');
+  }
+
+  /* ===== 10. ARC HIGHLIGHTING ===== */
+  function highlightArc(code) {
+    arcsByCode.forEach((arc, c) => {
+      if (c === code) {
+        arc.tubeMat.opacity = 1;
+        arc.tubeMat.color.setHex(RED);
+        arc.glowMat.opacity = 0.4;
+        arc.glowMat.color.setHex(RED);
+      } else {
+        arc.tubeMat.opacity = arc.baseTubeOpacity * 0.18;
+        arc.glowMat.opacity = arc.baseGlowOpacity * 0.18;
+      }
+    });
+  }
+  function clearArcHighlight() {
+    arcsByCode.forEach((arc) => {
+      arc.tubeMat.opacity = arc.baseTubeOpacity;
+      arc.glowMat.opacity = arc.baseGlowOpacity;
+      /* restore color from route data */
+      const code = [...arcsByCode.entries()].find(([, v]) => v === arc)[0];
+      const route = routes.find((r) => r.code === code);
+      const original = route.hub ? RED : (routes.indexOf(route) % 2 === 0 ? GOLD : 0xff8a5c);
+      arc.tubeMat.color.setHex(original);
+      arc.glowMat.color.setHex(original);
+    });
+  }
+
+  /* ===== 11. ROUTE LIST UI ===== */
+  if (routeListEl) {
+    /* Sort: hubs first, then alphabetical */
+    const ordered = [...routes].sort((a, b) => {
+      if (!!a.hub !== !!b.hub) return a.hub ? -1 : 1;
+      return a.city.localeCompare(b.city);
+    });
+    const frag = document.createDocumentFragment();
+    ordered.forEach((r) => {
+      const li = document.createElement('li');
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'route-item' + (r.hub ? ' route-item--hub' : '');
+      btn.dataset.code = r.code;
+      btn.innerHTML =
+        '<span class="route-item__code">KUL → ' + r.code + '</span>' +
+        '<span class="route-item__city">' + r.city + '<span class="route-item__country">' + r.country + '</span></span>' +
+        '<svg class="route-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">' +
+          '<path d="M7 17L17 7M9 7h8v8"/>' +
+        '</svg>';
+      btn.addEventListener('mouseenter', () => {
+        highlightArc(r.code);
+        updateActiveListItem(r.code);
+        dimHint();
+      });
+      btn.addEventListener('mouseleave', () => {
+        clearArcHighlight();
+        updateActiveListItem(null);
+      });
+      btn.addEventListener('click', () => {
+        spinTo(r);
+      });
+      li.appendChild(btn);
+      frag.appendChild(li);
+    });
+    routeListEl.appendChild(frag);
+    if (routesCountEl) routesCountEl.textContent = routes.length + ' active routes';
+  }
+
+  function updateActiveListItem(code) {
+    if (!routeListEl) return;
+    routeListEl.querySelectorAll('.route-item').forEach((el) => {
+      el.classList.toggle('is-active', el.dataset.code === code);
+    });
+  }
+
+  /* Smoothly rotate the globe so the destination faces the camera */
+  let spin = null;
+  function spinTo(route) {
+    autoRotate = false;
+    /* Target Y rotation: align route lon with camera (camera at +Z, looking -Z).
+       Our lonLat→world maps east at +X, so to face camera we want lon ≈ -90°.
+       Compensate by rotating globe by (-lon - 90)° plus initial 0 — derived empirically. */
+    const targetY = THREE.MathUtils.degToRad(-route.lon - 90);
+    const targetX = THREE.MathUtils.degToRad(route.lat * 0.6 - 10);
+    spin = {
+      fromY: globeGroup.rotation.y,
+      toY: nearestAngle(globeGroup.rotation.y, targetY),
+      fromX: globeGroup.rotation.x,
+      toX: targetX,
+      t: 0,
+      dur: 1.4,
+    };
+    highlightArc(route.code);
+    updateActiveListItem(route.code);
+  }
+  function nearestAngle(from, to) {
+    /* Pick the equivalent angle within ±π of `from` so we take the shortest path */
+    const TAU = Math.PI * 2;
+    let d = ((to - from) % TAU + TAU) % TAU;
+    if (d > Math.PI) d -= TAU;
+    return from + d;
+  }
+
+  /* ===== 12. ANIMATION LOOP ===== */
+  let last = performance.now();
+  function tick(now) {
+    const dt = Math.min(0.05, (now - last) / 1000);
+    last = now;
+    const time = now * 0.001;
+
+    if (!drag.active) {
+      drag.idle += dt;
+      /* gentle inertia after a drag release */
+      if (Math.abs(drag.vx) > 0.0001 || Math.abs(drag.vy) > 0.0001) {
+        globeGroup.rotation.y += drag.vx;
+        globeGroup.rotation.x = Math.max(-1.1, Math.min(1.1, globeGroup.rotation.x + drag.vy));
+        drag.vx *= 0.92;
+        drag.vy *= 0.92;
+      } else if (autoRotate && drag.idle > 0.4 && !hoveredCode && !spin) {
+        globeGroup.rotation.y += 0.0018;
+      }
+    }
+
+    /* Spin-to animation */
+    if (spin) {
+      spin.t += dt / spin.dur;
+      const e = 1 - Math.pow(1 - Math.min(spin.t, 1), 3); /* easeOutCubic */
+      globeGroup.rotation.y = spin.fromY + (spin.toY - spin.fromY) * e;
+      globeGroup.rotation.x = spin.fromX + (spin.toX - spin.fromX) * e;
+      if (spin.t >= 1) spin = null;
+    }
+
+    /* Travelers */
     travelers.forEach((obj) => {
       if (obj.userData.curve) {
         obj.userData.t += obj.userData.speed;
@@ -541,24 +665,30 @@ document.body.style.overflow = 'hidden';
       }
     });
 
-    /* Pulse hub rings */
-    hubRings.forEach((ring, i) => {
+    /* Hub ring pulse */
+    hubRings.forEach((ring) => {
       const pulse = (Math.sin(time * 1.6 + ring.userData.phase) + 1) * 0.5;
       ring.scale.setScalar(1 + pulse * 0.6);
       ring.material.opacity = 0.7 - pulse * 0.6;
     });
-
-    /* KL ring stronger pulse */
     const klPulse = (Math.sin(time * 2) + 1) * 0.5;
     klRing.scale.setScalar(1 + klPulse * 0.9);
     klRing.material.opacity = 0.9 - klPulse * 0.85;
+
+    /* Hovered city dot — gentle scale up */
+    cityPickMeshes.forEach((m) => {
+      const target = (hoveredCode && m.userData.route.code === hoveredCode) ? 1.6 : 1.0;
+      m.scale.x += (target - m.scale.x) * 0.18;
+      m.scale.y = m.scale.x;
+      m.scale.z = m.scale.x;
+    });
 
     stars.rotation.y += 0.0002;
 
     renderer.render(scene, camera);
     requestAnimationFrame(tick);
   }
-  tick();
+  requestAnimationFrame(tick);
 })();
 
 /* ---------- HERO INTRO (called after loader) ---------- */
@@ -584,7 +714,7 @@ function playHeroIntro() {
 /* ---------- SECTION REVEALS ---------- */
 (function reveals() {
   /* Heading fade/slide reveal — keep inline tags intact (no word-splitting) */
-  document.querySelectorAll('.split-text h2, .about__heading h2, .services__head h2, .horizon__head h2, .contact__title').forEach((h) => {
+  document.querySelectorAll('.split-text h2, .about__heading h2, .services__title, .flightplan__title, .contact__title').forEach((h) => {
     gsap.from(h, {
       y: 80, opacity: 0, duration: 1.2, ease: 'expo.out',
       scrollTrigger: { trigger: h, start: 'top 88%' },
@@ -597,16 +727,16 @@ function playHeroIntro() {
     scrollTrigger: { trigger: '.about__body', start: 'top 80%' },
   });
 
-  /* Service cards rise in */
-  gsap.from('.service', {
-    y: 80, opacity: 0, duration: 1.1, ease: 'expo.out', stagger: 0.12,
-    scrollTrigger: { trigger: '.services__list', start: 'top 80%' },
+  /* Service cells rise in */
+  gsap.from('.svc', {
+    y: 32, opacity: 0, duration: 0.9, ease: 'power3.out', stagger: 0.05,
+    scrollTrigger: { trigger: '.services__grid', start: 'top 85%' },
   });
 
   /* Quote cards reveal staggered */
-  gsap.from('.quote-card', {
-    y: 60, opacity: 0, duration: 1, ease: 'expo.out', stagger: 0.12,
-    scrollTrigger: { trigger: '.quote-stack', start: 'top 80%' },
+  gsap.from('.qcard', {
+    y: 32, opacity: 0, duration: 0.9, ease: 'power3.out', stagger: 0.10,
+    scrollTrigger: { trigger: '.quote-grid', start: 'top 85%' },
   });
 
   /* Contact card reveal */
@@ -624,67 +754,53 @@ function playHeroIntro() {
 
 /* ---------- STATS COUNT-UP ---------- */
 (function counters() {
-  document.querySelectorAll('.stat').forEach((stat) => {
-    const target = parseInt(stat.dataset.count, 10);
-    const suffix = stat.dataset.suffix || '';
-    const numEl = stat.querySelector('.stat__num');
-    const obj = { v: 0 };
+  const stats = gsap.utils.toArray('.stat');
+  if (!stats.length) return;
 
-    ScrollTrigger.create({
-      trigger: stat,
-      start: 'top 85%',
-      once: true,
-      onEnter: () => {
+  /* Cards start hidden + offset so they can lift into place when the grid enters view */
+  gsap.set(stats, { opacity: 0, y: 32 });
+
+  ScrollTrigger.create({
+    trigger: '.stats__grid',
+    start: 'top 80%',
+    once: true,
+    onEnter: () => {
+      stats.forEach((stat, i) => {
+        const target = parseInt(stat.dataset.count, 10);
+        const suffix = stat.dataset.suffix || '';
+        const numEl = stat.querySelector('.stat__num');
+        const obj = { v: 0 };
+        const stagger = i * 0.13;
+
+        /* Card lift-in */
+        gsap.to(stat, {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          ease: 'power3.out',
+          delay: stagger,
+        });
+
+        /* Smooth count-up — gentler easing + longer ride than expo.out */
         gsap.to(obj, {
           v: target,
-          duration: 2.2,
-          ease: 'expo.out',
+          duration: 2.6,
+          ease: 'power2.out',
+          delay: stagger,
           onUpdate: () => {
             numEl.textContent = Math.round(obj.v).toLocaleString() + suffix;
           },
+          onComplete: () => {
+            /* Lock to exact target string in case of rounding drift */
+            numEl.textContent = target.toLocaleString() + suffix;
+          },
         });
-      },
-    });
-  });
-})();
-
-/* ---------- HORIZONTAL SCROLL (VISION/MISSION) ---------- */
-(function horizon() {
-  const section = document.querySelector('.horizon');
-  const track = document.querySelector('.horizon__track');
-  if (!section || !track || window.innerWidth < 900) return;
-
-  const updateAmount = () => {
-    return track.scrollWidth - window.innerWidth + 96;
-  };
-
-  gsap.to(track, {
-    x: () => -updateAmount(),
-    ease: 'none',
-    scrollTrigger: {
-      trigger: section,
-      start: 'top top',
-      end: () => '+=' + updateAmount(),
-      scrub: 0.6,
-      pin: true,
-      anticipatePin: 1,
-      invalidateOnRefresh: true,
+      });
     },
   });
 })();
 
-/* ---------- SERVICE CARD POINTER GLOW ---------- */
-(function serviceGlow() {
-  document.querySelectorAll('.service').forEach((card) => {
-    card.addEventListener('mousemove', (e) => {
-      const r = card.getBoundingClientRect();
-      const x = ((e.clientX - r.left) / r.width) * 100;
-      const y = ((e.clientY - r.top) / r.height) * 100;
-      card.style.setProperty('--mx', x + '%');
-      card.style.setProperty('--my', y + '%');
-    });
-  });
-})();
+
 
 /* ---------- 3D PLANE TILT (about) ---------- */
 (function planeTilt() {
@@ -919,3 +1035,49 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
     window.scrollTo({ top: tgt.offsetTop - 60, behavior: 'smooth' });
   });
 });
+
+/* ---------- FOOTER: shifting brand wordmark + back-to-top ---------- */
+(function () {
+  const foot = document.getElementById('foot');
+  if (!foot) return;
+  const rows = foot.querySelectorAll('.foot__big-row');
+  if (rows.length && window.gsap && window.ScrollTrigger) {
+    rows.forEach((row) => {
+      const dir = parseFloat(row.dataset.shift || '1');
+      gsap.fromTo(
+        row,
+        { xPercent: dir * 12 },
+        {
+          xPercent: dir * -12,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: foot,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 0.6,
+          },
+        }
+      );
+    });
+
+    /* Subtle scroll-driven y-only nudge; never sets opacity:0 so content
+       stays visible even if ScrollTrigger fails to refresh. */
+    gsap.from('.foot__cols .foot__col', {
+      y: 24,
+      stagger: 0.08,
+      duration: 0.8,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.foot__cols',
+        start: 'top 92%',
+      },
+    });
+  }
+
+  const topBtn = document.getElementById('footTopBtn');
+  if (topBtn) {
+    topBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+})();

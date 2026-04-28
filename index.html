@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=53" />
+  <link rel="stylesheet" href="styles.css?v=80" />
 </head>
 <body>
 
@@ -210,153 +210,287 @@
   </section>
 
   <!-- STATS -->
-  <section class="stats">
+  <section class="stats" id="stats">
+    <div class="stats__head">
+      <span class="section-label">— By the numbers</span>
+      <h2 class="stats__title">
+        Operating at scale,<br/><em>every single day.</em>
+      </h2>
+      <p class="stats__lede">Nineteen years on the apron. A network that quietly moves freight through the world&rsquo;s busiest cargo gateways.</p>
+    </div>
+
     <div class="stats__grid">
       <article class="stat" data-count="200" data-suffix="+">
+        <span class="stat__index">01</span>
         <span class="stat__num">0</span>
-        <span class="stat__label">Business Partners</span>
+        <span class="stat__label">Business partners</span>
+        <span class="stat__sub">Carriers, forwarders &amp; ground handlers across the globe.</span>
       </article>
       <article class="stat" data-count="150" data-suffix="M+">
+        <span class="stat__index">02</span>
         <span class="stat__num">0</span>
-        <span class="stat__label">Tonnes Per Annum</span>
+        <span class="stat__label">Tonnes per annum</span>
+        <span class="stat__sub">Air freight handled through KL and our partner hubs.</span>
       </article>
       <article class="stat" data-count="50" data-suffix="+">
+        <span class="stat__index">03</span>
         <span class="stat__num">0</span>
-        <span class="stat__label">Charter Flights / Annum</span>
+        <span class="stat__label">Charter flights / yr</span>
+        <span class="stat__sub">Bespoke routings for time-critical and oversized cargo.</span>
       </article>
       <article class="stat" data-count="19" data-suffix="+">
+        <span class="stat__index">04</span>
         <span class="stat__num">0</span>
-        <span class="stat__label">Years of Experience</span>
+        <span class="stat__label">Years in operation</span>
+        <span class="stat__sub">Two decades navigating skies, customs lanes and weather.</span>
       </article>
       <article class="stat" data-count="1680" data-suffix="+">
+        <span class="stat__index">05</span>
         <span class="stat__num">0</span>
-        <span class="stat__label">Scheduled Flights</span>
+        <span class="stat__label">Scheduled flights / yr</span>
+        <span class="stat__sub">Connecting 15 major cargo gateways and 30+ destinations.</span>
       </article>
     </div>
   </section>
 
-  <!-- GLOBAL NETWORK -->
-  <section class="network">
-    <div class="network__head">
-      <span class="section-label">— Global Network</span>
-      <h2 class="split-text">
-        From <em>Kuala Lumpur</em><br/>
-        to every continent.
-      </h2>
-      <p class="network__lede">Hub-and-spoke air freight across 15 major cargo gateways and a network of 30+ secondary destinations. Live aircraft, real routes, real partners.</p>
-    </div>
-    <div class="network__stage">
-      <canvas id="globeCanvas" class="network__canvas"></canvas>
-      <div class="network__overlay">
-        <ul class="network__legend">
-          <li><span class="legend-dot legend-dot--hub"></span> Major hub</li>
-          <li><span class="legend-dot legend-dot--city"></span> Destination</li>
-          <li><span class="legend-dot legend-dot--route"></span> Active route</li>
-        </ul>
-        <div class="network__hub-card">
-          <span>Home base</span>
-          <strong>Kuala Lumpur · KUL</strong>
-          <em>Sepadu Cargo Terminal · 24/7 ops</em>
-        </div>
+  <!-- FLIGHT PLAN -->
+  <section class="flightplan" id="vision">
+    <div class="flightplan__inner">
+      <div class="flightplan__head">
+        <span class="section-label">— Flight plan</span>
+        <h2 class="flightplan__title">
+          Four checkpoints<br/><em>between origin &amp; arrival.</em>
+        </h2>
+        <p class="flightplan__lede">A briefing for everyone we fly with — what we&rsquo;re building, how we operate, and how to come along.</p>
+      </div>
+
+      <div class="flightplan__grid">
+        <article class="fcard">
+          <header class="fcard__head">
+            <span class="fcard__index">01 / 04</span>
+            <span class="fcard__tag">Vision</span>
+          </header>
+          <h3 class="fcard__title">A leading airline, recognized for excellence in cargo &amp; customer service.</h3>
+          <p>A category-defining freight operator — known not just for what we move, but how we move it.</p>
+          <div class="fcard__rule"></div>
+        </article>
+
+        <article class="fcard">
+          <header class="fcard__head">
+            <span class="fcard__index">02 / 04</span>
+            <span class="fcard__tag">Mission</span>
+          </header>
+          <h3 class="fcard__title">Efficient, flexible air cargo through charter and scheduled flights.</h3>
+          <p>Prioritizing customer satisfaction, operational reliability, and continuous innovation — every shipment, every day.</p>
+          <div class="fcard__rule"></div>
+        </article>
+
+        <article class="fcard">
+          <header class="fcard__head">
+            <span class="fcard__index">03 / 04</span>
+            <span class="fcard__tag">Standards</span>
+          </header>
+          <h3 class="fcard__title">Reliability. Innovation. Care.</h3>
+          <p>From perishables that race the clock to hazardous goods that demand precision — our operating standard scales to your cargo.</p>
+          <div class="fcard__rule"></div>
+        </article>
+
+        <article class="fcard fcard--cta">
+          <header class="fcard__head">
+            <span class="fcard__index">04 / 04</span>
+            <span class="fcard__tag">Next</span>
+          </header>
+          <h3 class="fcard__title">Ready when you are.</h3>
+          <p>Send us your cargo plan. We&rsquo;ll come back with capacity, routing and a quote within 24 hours.</p>
+          <a href="#contact" class="fcard__cta" data-cursor="hover">
+            <span>Get a quote</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <div class="fcard__rule"></div>
+        </article>
       </div>
     </div>
   </section>
 
   <!-- SERVICES -->
   <section class="services" id="services">
-    <div class="services__head">
-      <span class="section-label">02 — Services</span>
-      <h2 class="split-text">
-        Three specialties.<br/>
-        <em>One promise:</em> it arrives.
-      </h2>
-    </div>
+    <div class="services__inner">
+      <div class="services__head">
+        <span class="section-label">— Our services</span>
+        <h2 class="services__title">
+          Ten specialties.<br/><em>One operating standard.</em>
+        </h2>
+        <p class="services__lede">From general freight to live animals and oilwell hardware — built for the loads other carriers won&rsquo;t take.</p>
+      </div>
 
-    <div class="services__list">
-      <article class="service" data-cursor="hover">
-        <div class="service__index">01</div>
-        <div class="service__visual">
-          <div class="service__icon">
-            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M12 24h40v28a4 4 0 0 1-4 4H16a4 4 0 0 1-4-4V24z"/>
-              <path d="M22 24V14a4 4 0 0 1 4-4h12a4 4 0 0 1 4 4v10"/>
-              <path d="M22 36h20M22 44h12"/>
-              <circle cx="48" cy="14" r="3"/>
-            </svg>
-          </div>
-        </div>
-        <h3>Perishable Cargo</h3>
-        <p>Temperature-controlled handling for fresh produce, pharmaceuticals and high-value perishables — chain-of-custody intact, gate to gate.</p>
-        <span class="service__arrow" aria-hidden="true">↗</span>
-      </article>
+      <div class="services__grid">
+        <a class="svc" href="services.html#general-cargo" data-cursor="hover">
+          <span class="svc__index">01</span>
+          <svg class="svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v10l9 4 9-4V7"/><path d="M12 11v10"/>
+          </svg>
+          <h3 class="svc__name">General Cargo</h3>
+          <p class="svc__sub">Standard freight, every load type.</p>
+          <svg class="svc__cta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M7 17L17 7M9 7h8v8"/>
+          </svg>
+        </a>
 
-      <article class="service" data-cursor="hover">
-        <div class="service__index">02</div>
-        <div class="service__visual">
-          <div class="service__icon">
-            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M32 6l24 14v24L32 58 8 44V20z"/>
-              <path d="M32 24v18M32 16v.01"/>
-            </svg>
-          </div>
-        </div>
-        <h3>Hazardous Goods</h3>
-        <p>IATA-DGR-compliant handling of dangerous goods — every UN class, every regulation, briefed and documented for every route.</p>
-        <span class="service__arrow" aria-hidden="true">↗</span>
-      </article>
+        <a class="svc" href="services.html#perishable-goods" data-cursor="hover">
+          <span class="svc__index">02</span>
+          <svg class="svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/>
+          </svg>
+          <h3 class="svc__name">Perishable Goods</h3>
+          <p class="svc__sub">Cold-chain produce &amp; pharma.</p>
+          <svg class="svc__cta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M7 17L17 7M9 7h8v8"/>
+          </svg>
+        </a>
 
-      <article class="service" data-cursor="hover">
-        <div class="service__index">03</div>
-        <div class="service__visual">
-          <div class="service__icon">
-            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M32 6l22 12v18c0 13-10 22-22 22S10 49 10 36V18z"/>
-              <path d="M22 32l8 8 14-16"/>
-            </svg>
-          </div>
-        </div>
-        <h3>Vulnerable Goods</h3>
-        <p>Bespoke protection for fragile, high-value or sensitive shipments — escorts, custom packaging and discreet routing on request.</p>
-        <span class="service__arrow" aria-hidden="true">↗</span>
-      </article>
+        <a class="svc" href="services.html#dangerous-goods" data-cursor="hover">
+          <span class="svc__index">03</span>
+          <svg class="svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 3l10 18H2L12 3z"/><path d="M12 10v5"/><circle cx="12" cy="18" r="0.6" fill="currentColor"/>
+          </svg>
+          <h3 class="svc__name">Dangerous Goods</h3>
+          <p class="svc__sub">IATA-DGR compliant, every class.</p>
+          <svg class="svc__cta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M7 17L17 7M9 7h8v8"/>
+          </svg>
+        </a>
+
+        <a class="svc" href="services.html#valuable-goods" data-cursor="hover">
+          <span class="svc__index">04</span>
+          <svg class="svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="4" y="10" width="16" height="11" rx="1.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.5" r="1.5"/>
+          </svg>
+          <h3 class="svc__name">Valuable Goods</h3>
+          <p class="svc__sub">Escorted, discreet, secure routing.</p>
+          <svg class="svc__cta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M7 17L17 7M9 7h8v8"/>
+          </svg>
+        </a>
+
+        <a class="svc" href="services.html#medical-equipment" data-cursor="hover">
+          <span class="svc__index">05</span>
+          <svg class="svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 4v16M4 12h16"/><circle cx="12" cy="12" r="9"/>
+          </svg>
+          <h3 class="svc__name">Medical Equipment</h3>
+          <p class="svc__sub">Critical health-sector logistics.</p>
+          <svg class="svc__cta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M7 17L17 7M9 7h8v8"/>
+          </svg>
+        </a>
+
+        <a class="svc" href="services.html#vulnerable-cargo" data-cursor="hover">
+          <span class="svc__index">06</span>
+          <svg class="svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 2l9 4v6c0 5-4 9-9 10-5-1-9-5-9-10V6l9-4z"/><path d="M9 12l2 2 4-4"/>
+          </svg>
+          <h3 class="svc__name">Vulnerable Cargo</h3>
+          <p class="svc__sub">Fragile shipments, careful routing.</p>
+          <svg class="svc__cta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M7 17L17 7M9 7h8v8"/>
+          </svg>
+        </a>
+
+        <a class="svc" href="services.html#oilwell-equipment" data-cursor="hover">
+          <span class="svc__index">07</span>
+          <svg class="svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M5 21V8l5-4 5 4 4-2v15"/><path d="M5 21h14M10 21v-7h5v7"/>
+          </svg>
+          <h3 class="svc__name">Oilwell Equipment</h3>
+          <p class="svc__sub">Heavy oil-and-gas hardware.</p>
+          <svg class="svc__cta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M7 17L17 7M9 7h8v8"/>
+          </svg>
+        </a>
+
+        <a class="svc" href="services.html#project-cargo" data-cursor="hover">
+          <span class="svc__index">08</span>
+          <svg class="svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="6" width="20" height="14" rx="1.5"/><path d="M2 10h20M8 6V4M16 6V4M8 14h4"/>
+          </svg>
+          <h3 class="svc__name">Project Cargo</h3>
+          <p class="svc__sub">Oversized, multi-piece coordinated moves.</p>
+          <svg class="svc__cta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M7 17L17 7M9 7h8v8"/>
+          </svg>
+        </a>
+
+        <a class="svc" href="services.html#live-animals" data-cursor="hover">
+          <span class="svc__index">09</span>
+          <svg class="svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="6" cy="9" r="2"/><circle cx="10" cy="6" r="1.6"/><circle cx="14" cy="6" r="1.6"/><circle cx="18" cy="9" r="2"/><path d="M5 16c0-3 3-5 7-5s7 2 7 5-3 4-7 4-7-1-7-4z"/>
+          </svg>
+          <h3 class="svc__name">Live Animals</h3>
+          <p class="svc__sub">IATA-LAR compliant transport.</p>
+          <svg class="svc__cta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M7 17L17 7M9 7h8v8"/>
+          </svg>
+        </a>
+
+        <a class="svc" href="services.html#temperature-control" data-cursor="hover">
+          <span class="svc__index">10</span>
+          <svg class="svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M14 14V5a2 2 0 1 0-4 0v9a4 4 0 1 0 4 0z"/><path d="M12 7v8"/>
+          </svg>
+          <h3 class="svc__name">Temperature Control</h3>
+          <p class="svc__sub">Active &amp; passive cold-chain.</p>
+          <svg class="svc__cta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M7 17L17 7M9 7h8v8"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="services__foot">
+        <a class="services__all" href="services.html" data-cursor="hover">
+          <span>View all services in detail</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+            <path d="M5 12h14M13 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
     </div>
   </section>
 
-  <!-- VISION / MISSION (HORIZONTAL SCROLL) -->
-  <section class="horizon" id="vision">
-    <div class="horizon__pin">
-      <div class="horizon__head">
-        <span class="section-label">03 — Vision &amp; Mission</span>
-        <h2>The flight plan.</h2>
+  <!-- GLOBAL NETWORK -->
+  <section class="network" id="network">
+    <div class="network__inner">
+      <div class="network__head">
+        <span class="section-label">— Global Network</span>
+        <h2 class="network__title">
+          From <em>Kuala Lumpur</em><br/>
+          to every continent.
+        </h2>
+        <p class="network__lede">Drag the globe, hover any dot, or pick a destination from the route list — every arc is a live freight lane out of KUL.</p>
       </div>
 
-      <div class="horizon__track">
-        <article class="hcard hcard--vision">
-          <span class="hcard__tag">Vision</span>
-          <h3>To become a leading airline recognized for excellence in cargo operations and customer service.</h3>
-          <p>A category-defining freight operator — known not just for what we move, but how we move it.</p>
-        </article>
+      <div class="network__board">
+        <div class="network__stage">
+          <canvas id="globeCanvas" class="network__canvas"></canvas>
+          <div class="network__hint" id="networkHint">⤺ &nbsp;Drag to rotate</div>
+          <ul class="network__legend">
+            <li><span class="legend-dot legend-dot--hub"></span> Hub</li>
+            <li><span class="legend-dot legend-dot--city"></span> Destination</li>
+            <li><span class="legend-dot legend-dot--route"></span> Active route</li>
+          </ul>
+          <div class="globe-tooltip" id="globeTooltip" aria-hidden="true">
+            <span class="globe-tooltip__code"></span>
+            <span class="globe-tooltip__name"></span>
+            <span class="globe-tooltip__country"></span>
+          </div>
+        </div>
 
-        <article class="hcard hcard--mission">
-          <span class="hcard__tag">Mission</span>
-          <h3>To provide efficient and flexible air cargo solutions through charter and scheduled flights.</h3>
-          <p>Prioritizing customer satisfaction, operational reliability, and continuous innovation — every shipment, every day.</p>
-        </article>
-
-        <article class="hcard hcard--values">
-          <span class="hcard__tag">Standards</span>
-          <h3>Reliability. Innovation. Care.</h3>
-          <p>From perishables that race the clock to hazardous goods that demand precision — our operating standard scales to your cargo.</p>
-        </article>
-
-        <article class="hcard hcard--cta">
-          <span class="hcard__tag">Next</span>
-          <h3>Ready when you are.</h3>
-          <a href="#contact" class="btn btn--primary" data-cursor="hover">
-            <span>Get a Quote</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </a>
-        </article>
+        <aside class="network__routes" aria-label="Route list">
+          <div class="network__routes-head">
+            <span class="network__routes-eyebrow">— Direct lanes from KUL</span>
+            <span class="network__routes-count" id="routesCount">0 routes</span>
+          </div>
+          <ul class="route-list" id="routeList"></ul>
+        </aside>
       </div>
     </div>
   </section>
@@ -394,43 +528,73 @@
   </section>
 
   <!-- TESTIMONIALS -->
-  <section class="quotes">
-    <div class="quotes__head">
-      <span class="section-label">05 — Word of mouth</span>
-    </div>
+  <section class="quotes" id="testimonials">
+    <div class="quotes__inner">
+      <div class="quotes__head">
+        <span class="section-label">— Word of mouth</span>
+        <h2 class="quotes__title">
+          Quiet trust from the people<br/><em>who put cargo on our planes.</em>
+        </h2>
+        <p class="quotes__lede">A few of the partners and operators we&rsquo;ve flown alongside — anonymized, but real shipments, real lanes.</p>
+      </div>
 
-    <div class="quote-stack">
-      <article class="quote-card">
-        <svg class="quote-card__mark" viewBox="0 0 64 64" fill="currentColor"><path d="M16 40c0-8 4-14 12-18l4 6c-5 3-7 7-7 12h7v14H16V40zm24 0c0-8 4-14 12-18l4 6c-5 3-7 7-7 12h7v14H40V40z"/></svg>
-        <p>"Working with Menteiz Aviation has been a game-changer for our business. Their expertise in global forwarding has streamlined our supply chain processes."</p>
-        <footer><strong>Logistics Director</strong><span>Long-haul partner</span></footer>
-      </article>
+      <div class="quote-grid">
+        <article class="qcard">
+          <span class="qcard__mark">&ldquo;</span>
+          <blockquote class="qcard__quote">
+            Working with Menteiz Aviation has been a game-changer. Their expertise in global forwarding has streamlined our supply chain end to end.
+          </blockquote>
+          <footer class="qcard__author">
+            <strong>A. Tan</strong>
+            <span>Logistics Director</span>
+            <span class="qcard__company">Long-haul forwarding partner</span>
+          </footer>
+          <span class="qcard__rule"></span>
+        </article>
 
-      <article class="quote-card">
-        <svg class="quote-card__mark" viewBox="0 0 64 64" fill="currentColor"><path d="M16 40c0-8 4-14 12-18l4 6c-5 3-7 7-7 12h7v14H16V40zm24 0c0-8 4-14 12-18l4 6c-5 3-7 7-7 12h7v14H40V40z"/></svg>
-        <p>"I can't recommend Menteiz Aviation enough. Their attention to detail and commitment to customer satisfaction are unparalleled."</p>
-        <footer><strong>Operations Lead</strong><span>Perishables client</span></footer>
-      </article>
+        <article class="qcard">
+          <span class="qcard__mark">&ldquo;</span>
+          <blockquote class="qcard__quote">
+            I can&rsquo;t recommend them enough. The attention to detail and commitment to customer satisfaction are unparalleled in this lane.
+          </blockquote>
+          <footer class="qcard__author">
+            <strong>R. Gupta</strong>
+            <span>Operations Lead</span>
+            <span class="qcard__company">Perishables programme</span>
+          </footer>
+          <span class="qcard__rule"></span>
+        </article>
 
-      <article class="quote-card">
-        <svg class="quote-card__mark" viewBox="0 0 64 64" fill="currentColor"><path d="M16 40c0-8 4-14 12-18l4 6c-5 3-7 7-7 12h7v14H16V40zm24 0c0-8 4-14 12-18l4 6c-5 3-7 7-7 12h7v14H40V40z"/></svg>
-        <p>"Reliable, responsive, and rigorous. Nineteen years on the runway shows in the way they handle every shipment."</p>
-        <footer><strong>Supply Chain Manager</strong><span>Charter program</span></footer>
-      </article>
+        <article class="qcard">
+          <span class="qcard__mark">&ldquo;</span>
+          <blockquote class="qcard__quote">
+            Reliable, responsive, rigorous. Nineteen years on the runway shows in the way they handle every shipment we hand them.
+          </blockquote>
+          <footer class="qcard__author">
+            <strong>H. Lim</strong>
+            <span>Supply Chain Manager</span>
+            <span class="qcard__company">Charter programme</span>
+          </footer>
+          <span class="qcard__rule"></span>
+        </article>
+      </div>
     </div>
   </section>
 
   <!-- CONTACT -->
   <section class="contact" id="contact">
+    <div class="contact__bg" aria-hidden="true"></div>
+    <div class="contact__overlay" aria-hidden="true"></div>
+
     <div class="contact__inner">
-      <span class="section-label">06 — Take off</span>
+      <span class="section-label">— Take off</span>
 
       <h2 class="contact__title">
-        <span>Let's move</span><br/>
+        <span>Let&rsquo;s move</span><br/>
         <em>what matters.</em>
       </h2>
 
-      <p class="contact__lede">Tell us about your cargo, your route and your timeline. We'll come back with a plan.</p>
+      <p class="contact__lede">Tell us about your cargo, your route, and your timeline. We&rsquo;ll come back with capacity, routing and a quote within 24 hours.</p>
 
       <div class="contact__grid">
         <a class="contact__card" href="mailto:enquiry@mtz-aviat.com" data-cursor="hover">
@@ -443,63 +607,99 @@
           <strong>+603 5525 9555 / 9554</strong>
           <span class="contact__card-arrow">↗</span>
         </a>
-        <div class="contact__card contact__card--static">
+        <a class="contact__card" href="https://maps.google.com/?q=32+Jalan+Sepadu+25/123A+Seksyen+25+Selangor+Malaysia" target="_blank" rel="noopener" data-cursor="hover">
           <span class="contact__card-label">HQ</span>
           <strong>32, Jalan Sepadu 25/123A,<br/>Seksyen 25, Selangor, Malaysia</strong>
-        </div>
+          <span class="contact__card-arrow">↗</span>
+        </a>
       </div>
 
       <a href="mailto:enquiry@mtz-aviat.com" class="contact__big" data-cursor="hover">
-        <span>Get a Quote</span>
+        <span>Get a quote</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
       </a>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="foot">
-    <div class="foot__top">
-      <h3 class="foot__big">
-        <span>Menteiz</span>
-        <em>Aviation</em>
+  <footer class="foot" id="foot">
+    <div class="foot__grain" aria-hidden="true"></div>
+
+    <!-- Marquee -->
+    <div class="foot__marquee" aria-hidden="true">
+      <div class="foot__marquee-track">
+        <span>One Trusted Solution</span><span class="foot__marquee-dot"></span>
+        <span>For All Your Cargo</span><span class="foot__marquee-dot"></span>
+        <span>Menteiz Aviation</span><span class="foot__marquee-dot"></span>
+        <span>Navigating The Skies</span><span class="foot__marquee-dot"></span>
+        <span>Delivering Excellence</span><span class="foot__marquee-dot"></span>
+        <span>One Trusted Solution</span><span class="foot__marquee-dot"></span>
+        <span>For All Your Cargo</span><span class="foot__marquee-dot"></span>
+        <span>Menteiz Aviation</span><span class="foot__marquee-dot"></span>
+        <span>Navigating The Skies</span><span class="foot__marquee-dot"></span>
+        <span>Delivering Excellence</span><span class="foot__marquee-dot"></span>
+      </div>
+    </div>
+
+    <!-- CTA stripe -->
+    <div class="foot__cta-stripe">
+      <p class="foot__cta-line">Ready when you are.</p>
+      <a class="foot__cta-link" href="mailto:enquiry@mtz-aviat.com" data-cursor="hover">
+        <span>Start a conversation</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <!-- Big shifting brand -->
+    <div class="foot__brand-strip">
+      <h3 class="foot__big" id="footBig">
+        <span class="foot__big-row" data-shift="-1">Menteiz</span>
+        <em class="foot__big-row" data-shift="1">Aviation</em>
       </h3>
     </div>
 
+    <!-- Info grid -->
     <div class="foot__cols">
-      <div>
+      <div class="foot__col">
         <span class="foot__label">Visit</span>
         <p>Menteiz Aviation Services Sdn. Bhd<br/>32, Jalan Sepadu 25/123A,<br/>Seksyen 25, Selangor, Malaysia</p>
       </div>
-      <div>
+      <div class="foot__col">
         <span class="foot__label">Reach</span>
-        <p><a href="tel:+60355259555" data-cursor="hover">+603 5525 9555</a><br/>
-        <a href="tel:+60355259554" data-cursor="hover">+603 5525 9554</a><br/>
-        <a href="mailto:enquiry@mtz-aviat.com" data-cursor="hover">enquiry@mtz-aviat.com</a></p>
-      </div>
-      <div>
-        <span class="foot__label">Sitemap</span>
-        <ul>
-          <li><a href="#home" data-cursor="hover">Home</a></li>
-          <li><a href="#about" data-cursor="hover">About</a></li>
-          <li><a href="#services" data-cursor="hover">Services</a></li>
-          <li><a href="#routes" data-cursor="hover">Routes</a></li>
-          <li><a href="#contact" data-cursor="hover">Contact</a></li>
-          <li><a href="https://rewards.mtz-aviat.com" data-cursor="hover">Rewards</a></li>
+        <ul class="foot__list">
+          <li><a href="tel:+60355259555" data-cursor="hover"><span>+603 5525 9555</span></a></li>
+          <li><a href="tel:+60355259554" data-cursor="hover"><span>+603 5525 9554</span></a></li>
+          <li><a href="mailto:enquiry@mtz-aviat.com" data-cursor="hover"><span>enquiry@mtz-aviat.com</span></a></li>
         </ul>
       </div>
-      <div>
+      <div class="foot__col">
+        <span class="foot__label">Sitemap</span>
+        <ul class="foot__list">
+          <li><a href="#home" data-cursor="hover"><span>Home</span></a></li>
+          <li><a href="#about" data-cursor="hover"><span>About</span></a></li>
+          <li><a href="#services" data-cursor="hover"><span>Services</span></a></li>
+          <li><a href="#routes" data-cursor="hover"><span>Routes</span></a></li>
+          <li><a href="#contact" data-cursor="hover"><span>Contact</span></a></li>
+          <li><a href="https://rewards.mtz-aviat.com" data-cursor="hover"><span>Rewards</span></a></li>
+        </ul>
+      </div>
+      <div class="foot__col">
         <span class="foot__label">Follow</span>
-        <ul>
-          <li><a href="#" data-cursor="hover">LinkedIn ↗</a></li>
-          <li><a href="#" data-cursor="hover">Facebook ↗</a></li>
-          <li><a href="#" data-cursor="hover">Instagram ↗</a></li>
+        <ul class="foot__list">
+          <li><a href="#" data-cursor="hover"><span>LinkedIn</span><i>↗</i></a></li>
+          <li><a href="#" data-cursor="hover"><span>Facebook</span><i>↗</i></a></li>
+          <li><a href="#" data-cursor="hover"><span>Instagram</span><i>↗</i></a></li>
         </ul>
       </div>
     </div>
 
+    <!-- Bottom band -->
     <div class="foot__bot">
-      <span>© 2025 Menteiz Aviation Services Sdn. Bhd · All rights reserved.</span>
-      <span>One Trusted Solution For All Your Cargo.</span>
+      <span class="foot__copy">© 2025 Menteiz Aviation Services Sdn. Bhd · All rights reserved.</span>
+      <button class="foot__top-btn" id="footTopBtn" data-cursor="hover" aria-label="Back to top">
+        <span>Back to top</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+      </button>
     </div>
   </footer>
 
@@ -507,6 +707,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="main.js?v=53"></script>
+  <script src="main.js?v=80"></script>
 </body>
 </html>
