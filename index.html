@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menteiz Aviation Services — Navigating The Skies, Delivering Excellence Worldwide</title>
+  <meta name="description" content="One trusted solution for all your cargo. Air freight forwarding, charter flights and scheduled flight coordination across the globe." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=53" />
+</head>
+<body>
+
+  <!-- LOADER -->
+  <div class="loader" id="loader">
+    <div class="loader__inner">
+      <svg class="loader__plane" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z" />
+      </svg>
+      <div class="loader__text">
+        <span data-text="M">M</span>
+        <span data-text="A">A</span>
+        <span data-text="V">V</span>
+        <span data-text="i">i</span>
+        <span data-text="S">S</span>
+      </div>
+      <div class="loader__bar"><span></span></div>
+    </div>
+  </div>
+
+  <!-- CUSTOM CURSOR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- PROGRESS BAR -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="#home" class="nav__logo" data-cursor="hover">
+      <span class="nav__logo-text">MENTEIZ <em>AVIATION</em></span>
+    </a>
+    <ul class="nav__links">
+      <li><a href="#home" data-cursor="hover">Home</a></li>
+      <li><a href="#about" data-cursor="hover">About</a></li>
+      <li><a href="#services" data-cursor="hover">Services</a></li>
+      <li><a href="#routes" data-cursor="hover">Routes</a></li>
+      <li><a href="#contact" data-cursor="hover">Contact</a></li>
+      <li><a href="https://rewards.mtz-aviat.com" data-cursor="hover">Rewards</a></li>
+    </ul>
+    <a href="#contact" class="nav__cta" data-cursor="hover">
+      <span>Get a Quote</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+    <button class="nav__burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero__stage">
+      <!-- ambient cargo plane (plays naturally at landing) -->
+      <video class="hero__video hero__video--ambient" id="heroVideoAmbient" muted playsinline preload="auto" loop autoplay disablepictureinpicture poster="hero-cargo.jpg">
+        <source src="hero-ambient.mp4" type="video/mp4" />
+      </video>
+      <!-- push-in shot (currentTime is scrubbed by scroll position) -->
+      <video class="hero__video hero__video--pushin" id="heroVideoPushin" muted playsinline preload="auto" disablepictureinpicture>
+        <source src="hero-pushin.mp4" type="video/mp4" />
+      </video>
+
+      <!-- gradient overlays (blend ends into navy, keep text readable) -->
+      <div class="hero__grade hero__grade--top"></div>
+      <div class="hero__grade hero__grade--bottom"></div>
+      <div class="hero__vignette"></div>
+
+      <!-- progress meter on the right edge -->
+      <div class="hero__progress">
+        <span class="hero__progress-label">01 / 04</span>
+        <div class="hero__progress-track"><div class="hero__progress-bar" id="heroProgressBar"></div></div>
+        <span class="hero__progress-meta">Hero Sequence</span>
+      </div>
+
+      <!-- BEAT 1: arrival — appears at start of scroll -->
+      <div class="hero__beat hero__beat--1" data-beat="1">
+        <span class="hero__beat-tag"><span class="dot"></span> Air Cargo · Worldwide</span>
+        <h1 class="hero__beat-title">
+          We have reinvented<br/><span class="nowrap">the future of <em>air cargo.</em></span>
+        </h1>
+        <p class="hero__beat-sub">Through every continent. Charter and scheduled freight that turns complex logistics into connected missions.</p>
+        <div class="hero__beat-meta">
+          <span>Scroll to explore</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </div>
+      </div>
+
+      <!-- BEAT 2: scale -->
+      <div class="hero__beat hero__beat--2" data-beat="2">
+        <span class="hero__beat-tag"><span class="dot"></span> One network</span>
+        <h2 class="hero__beat-title hero__beat-title--lg">
+          200+ partners. <em>One trusted network.</em>
+        </h2>
+        <p class="hero__beat-sub">Twenty-plus partner airlines. 1,680+ scheduled flights every year. 150 million tonnes moved.</p>
+      </div>
+
+      <!-- BEAT 3: cargo specialties -->
+      <div class="hero__beat hero__beat--3" data-beat="3">
+        <span class="hero__beat-tag"><span class="dot"></span> Specialty cargo</span>
+        <h2 class="hero__beat-title hero__beat-title--lg">
+          Perishable. Hazardous. <em>Vulnerable.</em>
+        </h2>
+        <p class="hero__beat-sub">Three specialties, one operating standard. Built for the cargo the rest of the industry won't carry.</p>
+      </div>
+
+      <!-- BEAT 4: arrival / CTA -->
+      <div class="hero__beat hero__beat--4" data-beat="4">
+        <span class="hero__beat-tag"><span class="dot"></span> Take charge of your cargo</span>
+        <h2 class="hero__beat-title hero__beat-title--lg">
+          Your cargo is ready when <em>you are.</em>
+        </h2>
+        <div class="hero__beat-actions">
+          <a class="btn btn--primary" href="#contact" data-cursor="hover">
+            <span>Request a quote</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="#services" data-cursor="hover">
+            <span>Our services</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- corner UI: coords -->
+      <div class="hero__corner hero__corner--bl">
+        <span>N 03°08'20"</span>
+        <span>·</span>
+        <span>E 101°41'50"</span>
+      </div>
+      <div class="hero__corner hero__corner--br">
+        <span>MAViS · 2026</span>
+      </div>
+    </div>
+
+    <!-- service ticker -->
+    <div class="hero__ticker">
+      <div class="ticker__track">
+        <span>Perishable Cargo</span><span>·</span>
+        <span>Hazardous Goods</span><span>·</span>
+        <span>Vulnerable Goods</span><span>·</span>
+        <span>Charter Flights</span><span>·</span>
+        <span>Scheduled Flights</span><span>·</span>
+        <span>Global Forwarding</span><span>·</span>
+        <span>Perishable Cargo</span><span>·</span>
+        <span>Hazardous Goods</span><span>·</span>
+        <span>Vulnerable Goods</span><span>·</span>
+        <span>Charter Flights</span><span>·</span>
+        <span>Scheduled Flights</span><span>·</span>
+        <span>Global Forwarding</span><span>·</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about__sticky">
+      <span class="section-label">01 — About</span>
+    </div>
+
+    <div class="about__container">
+      <div class="about__heading split-text">
+        <h2>
+          A service that is <em>not just distinctive</em> — but tailored to go above &amp; beyond.
+        </h2>
+        <p class="about__sub">At Menteiz Aviation Services, our unwavering dedication is to establish a service that is not just distinctive but also tailored to go above and beyond our customers&rsquo; expectations. We are committed to setting new standards and providing unparalleled experiences in the aviation industry. Join us on this journey towards excellence in air transport services.</p>
+      </div>
+
+      <div class="about__values">
+        <div class="about__values-text">
+          <article class="value">
+            <div class="value__rule"></div>
+            <div class="value__head">
+              <span class="value__num">01 / 02</span>
+              <svg class="value__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                <path d="M7 17L17 7M9 7h8v8"/>
+              </svg>
+            </div>
+            <h3 class="value__title">Innovation<span class="value__title-dot">.</span></h3>
+            <p>Introducing fresh services that offer increased choices and open new avenues for the growth of the company and its business partners. Exploring innovative solutions to enhance our offerings and foster mutually beneficial relationships in the industry.</p>
+          </article>
+          <article class="value">
+            <div class="value__rule"></div>
+            <div class="value__head">
+              <span class="value__num">02 / 02</span>
+              <svg class="value__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                <path d="M7 17L17 7M9 7h8v8"/>
+              </svg>
+            </div>
+            <h3 class="value__title">Exploration<span class="value__title-dot">.</span></h3>
+            <p>A potential market that can provide accurate and valuable information in advance to business partners for mutual interest and strengthens connection. Together, we can navigate the dynamic market landscape with confidence and seize new opportunities for growth and innovation.</p>
+          </article>
+        </div>
+
+        <div class="about__values-media">
+          <div class="value-media-stage">
+            <video src="about-innovation.mp4" autoplay muted loop playsinline preload="auto"></video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="stats__grid">
+      <article class="stat" data-count="200" data-suffix="+">
+        <span class="stat__num">0</span>
+        <span class="stat__label">Business Partners</span>
+      </article>
+      <article class="stat" data-count="150" data-suffix="M+">
+        <span class="stat__num">0</span>
+        <span class="stat__label">Tonnes Per Annum</span>
+      </article>
+      <article class="stat" data-count="50" data-suffix="+">
+        <span class="stat__num">0</span>
+        <span class="stat__label">Charter Flights / Annum</span>
+      </article>
+      <article class="stat" data-count="19" data-suffix="+">
+        <span class="stat__num">0</span>
+        <span class="stat__label">Years of Experience</span>
+      </article>
+      <article class="stat" data-count="1680" data-suffix="+">
+        <span class="stat__num">0</span>
+        <span class="stat__label">Scheduled Flights</span>
+      </article>
+    </div>
+  </section>
+
+  <!-- GLOBAL NETWORK -->
+  <section class="network">
+    <div class="network__head">
+      <span class="section-label">— Global Network</span>
+      <h2 class="split-text">
+        From <em>Kuala Lumpur</em><br/>
+        to every continent.
+      </h2>
+      <p class="network__lede">Hub-and-spoke air freight across 15 major cargo gateways and a network of 30+ secondary destinations. Live aircraft, real routes, real partners.</p>
+    </div>
+    <div class="network__stage">
+      <canvas id="globeCanvas" class="network__canvas"></canvas>
+      <div class="network__overlay">
+        <ul class="network__legend">
+          <li><span class="legend-dot legend-dot--hub"></span> Major hub</li>
+          <li><span class="legend-dot legend-dot--city"></span> Destination</li>
+          <li><span class="legend-dot legend-dot--route"></span> Active route</li>
+        </ul>
+        <div class="network__hub-card">
+          <span>Home base</span>
+          <strong>Kuala Lumpur · KUL</strong>
+          <em>Sepadu Cargo Terminal · 24/7 ops</em>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="services__head">
+      <span class="section-label">02 — Services</span>
+      <h2 class="split-text">
+        Three specialties.<br/>
+        <em>One promise:</em> it arrives.
+      </h2>
+    </div>
+
+    <div class="services__list">
+      <article class="service" data-cursor="hover">
+        <div class="service__index">01</div>
+        <div class="service__visual">
+          <div class="service__icon">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 24h40v28a4 4 0 0 1-4 4H16a4 4 0 0 1-4-4V24z"/>
+              <path d="M22 24V14a4 4 0 0 1 4-4h12a4 4 0 0 1 4 4v10"/>
+              <path d="M22 36h20M22 44h12"/>
+              <circle cx="48" cy="14" r="3"/>
+            </svg>
+          </div>
+        </div>
+        <h3>Perishable Cargo</h3>
+        <p>Temperature-controlled handling for fresh produce, pharmaceuticals and high-value perishables — chain-of-custody intact, gate to gate.</p>
+        <span class="service__arrow" aria-hidden="true">↗</span>
+      </article>
+
+      <article class="service" data-cursor="hover">
+        <div class="service__index">02</div>
+        <div class="service__visual">
+          <div class="service__icon">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M32 6l24 14v24L32 58 8 44V20z"/>
+              <path d="M32 24v18M32 16v.01"/>
+            </svg>
+          </div>
+        </div>
+        <h3>Hazardous Goods</h3>
+        <p>IATA-DGR-compliant handling of dangerous goods — every UN class, every regulation, briefed and documented for every route.</p>
+        <span class="service__arrow" aria-hidden="true">↗</span>
+      </article>
+
+      <article class="service" data-cursor="hover">
+        <div class="service__index">03</div>
+        <div class="service__visual">
+          <div class="service__icon">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M32 6l22 12v18c0 13-10 22-22 22S10 49 10 36V18z"/>
+              <path d="M22 32l8 8 14-16"/>
+            </svg>
+          </div>
+        </div>
+        <h3>Vulnerable Goods</h3>
+        <p>Bespoke protection for fragile, high-value or sensitive shipments — escorts, custom packaging and discreet routing on request.</p>
+        <span class="service__arrow" aria-hidden="true">↗</span>
+      </article>
+    </div>
+  </section>
+
+  <!-- VISION / MISSION (HORIZONTAL SCROLL) -->
+  <section class="horizon" id="vision">
+    <div class="horizon__pin">
+      <div class="horizon__head">
+        <span class="section-label">03 — Vision &amp; Mission</span>
+        <h2>The flight plan.</h2>
+      </div>
+
+      <div class="horizon__track">
+        <article class="hcard hcard--vision">
+          <span class="hcard__tag">Vision</span>
+          <h3>To become a leading airline recognized for excellence in cargo operations and customer service.</h3>
+          <p>A category-defining freight operator — known not just for what we move, but how we move it.</p>
+        </article>
+
+        <article class="hcard hcard--mission">
+          <span class="hcard__tag">Mission</span>
+          <h3>To provide efficient and flexible air cargo solutions through charter and scheduled flights.</h3>
+          <p>Prioritizing customer satisfaction, operational reliability, and continuous innovation — every shipment, every day.</p>
+        </article>
+
+        <article class="hcard hcard--values">
+          <span class="hcard__tag">Standards</span>
+          <h3>Reliability. Innovation. Care.</h3>
+          <p>From perishables that race the clock to hazardous goods that demand precision — our operating standard scales to your cargo.</p>
+        </article>
+
+        <article class="hcard hcard--cta">
+          <span class="hcard__tag">Next</span>
+          <h3>Ready when you are.</h3>
+          <a href="#contact" class="btn btn--primary" data-cursor="hover">
+            <span>Get a Quote</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERS / ROUTES -->
+  <section class="partners" id="routes">
+    <div class="partners__head">
+      <span class="partners__eyebrow">— Trusted by carriers worldwide</span>
+      <h2 class="partners__title">
+        Twenty-plus carriers.<br/>
+        <em>One trusted network.</em>
+      </h2>
+    </div>
+
+    <div class="logo-board">
+      <div class="logo-board__grid"></div>
+
+      <!-- the 5 brand wordmarks centered across the grid -->
+      <div class="logo-board__row">
+        <span class="brand">Emirates</span>
+        <span class="brand">Qatar Airways</span>
+        <span class="brand brand--featured">Singapore Airlines</span>
+        <span class="brand">Cathay Pacific</span>
+        <span class="brand">Lufthansa Cargo</span>
+      </div>
+
+      <!-- crosshair plus marks at major intersections -->
+      <span class="cross cross--tl"></span>
+      <span class="cross cross--tr"></span>
+      <span class="cross cross--bl"></span>
+      <span class="cross cross--br"></span>
+    </div>
+
+    <p class="partners__lede">From perishable runways to hazardous diversions — we route through the carriers that say yes.</p>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="quotes">
+    <div class="quotes__head">
+      <span class="section-label">05 — Word of mouth</span>
+    </div>
+
+    <div class="quote-stack">
+      <article class="quote-card">
+        <svg class="quote-card__mark" viewBox="0 0 64 64" fill="currentColor"><path d="M16 40c0-8 4-14 12-18l4 6c-5 3-7 7-7 12h7v14H16V40zm24 0c0-8 4-14 12-18l4 6c-5 3-7 7-7 12h7v14H40V40z"/></svg>
+        <p>"Working with Menteiz Aviation has been a game-changer for our business. Their expertise in global forwarding has streamlined our supply chain processes."</p>
+        <footer><strong>Logistics Director</strong><span>Long-haul partner</span></footer>
+      </article>
+
+      <article class="quote-card">
+        <svg class="quote-card__mark" viewBox="0 0 64 64" fill="currentColor"><path d="M16 40c0-8 4-14 12-18l4 6c-5 3-7 7-7 12h7v14H16V40zm24 0c0-8 4-14 12-18l4 6c-5 3-7 7-7 12h7v14H40V40z"/></svg>
+        <p>"I can't recommend Menteiz Aviation enough. Their attention to detail and commitment to customer satisfaction are unparalleled."</p>
+        <footer><strong>Operations Lead</strong><span>Perishables client</span></footer>
+      </article>
+
+      <article class="quote-card">
+        <svg class="quote-card__mark" viewBox="0 0 64 64" fill="currentColor"><path d="M16 40c0-8 4-14 12-18l4 6c-5 3-7 7-7 12h7v14H16V40zm24 0c0-8 4-14 12-18l4 6c-5 3-7 7-7 12h7v14H40V40z"/></svg>
+        <p>"Reliable, responsive, and rigorous. Nineteen years on the runway shows in the way they handle every shipment."</p>
+        <footer><strong>Supply Chain Manager</strong><span>Charter program</span></footer>
+      </article>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="contact__inner">
+      <span class="section-label">06 — Take off</span>
+
+      <h2 class="contact__title">
+        <span>Let's move</span><br/>
+        <em>what matters.</em>
+      </h2>
+
+      <p class="contact__lede">Tell us about your cargo, your route and your timeline. We'll come back with a plan.</p>
+
+      <div class="contact__grid">
+        <a class="contact__card" href="mailto:enquiry@mtz-aviat.com" data-cursor="hover">
+          <span class="contact__card-label">Email</span>
+          <strong>enquiry@mtz-aviat.com</strong>
+          <span class="contact__card-arrow">↗</span>
+        </a>
+        <a class="contact__card" href="tel:+60355259555" data-cursor="hover">
+          <span class="contact__card-label">Phone</span>
+          <strong>+603 5525 9555 / 9554</strong>
+          <span class="contact__card-arrow">↗</span>
+        </a>
+        <div class="contact__card contact__card--static">
+          <span class="contact__card-label">HQ</span>
+          <strong>32, Jalan Sepadu 25/123A,<br/>Seksyen 25, Selangor, Malaysia</strong>
+        </div>
+      </div>
+
+      <a href="mailto:enquiry@mtz-aviat.com" class="contact__big" data-cursor="hover">
+        <span>Get a Quote</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="foot">
+    <div class="foot__top">
+      <h3 class="foot__big">
+        <span>Menteiz</span>
+        <em>Aviation</em>
+      </h3>
+    </div>
+
+    <div class="foot__cols">
+      <div>
+        <span class="foot__label">Visit</span>
+        <p>Menteiz Aviation Services Sdn. Bhd<br/>32, Jalan Sepadu 25/123A,<br/>Seksyen 25, Selangor, Malaysia</p>
+      </div>
+      <div>
+        <span class="foot__label">Reach</span>
+        <p><a href="tel:+60355259555" data-cursor="hover">+603 5525 9555</a><br/>
+        <a href="tel:+60355259554" data-cursor="hover">+603 5525 9554</a><br/>
+        <a href="mailto:enquiry@mtz-aviat.com" data-cursor="hover">enquiry@mtz-aviat.com</a></p>
+      </div>
+      <div>
+        <span class="foot__label">Sitemap</span>
+        <ul>
+          <li><a href="#home" data-cursor="hover">Home</a></li>
+          <li><a href="#about" data-cursor="hover">About</a></li>
+          <li><a href="#services" data-cursor="hover">Services</a></li>
+          <li><a href="#routes" data-cursor="hover">Routes</a></li>
+          <li><a href="#contact" data-cursor="hover">Contact</a></li>
+          <li><a href="https://rewards.mtz-aviat.com" data-cursor="hover">Rewards</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="foot__label">Follow</span>
+        <ul>
+          <li><a href="#" data-cursor="hover">LinkedIn ↗</a></li>
+          <li><a href="#" data-cursor="hover">Facebook ↗</a></li>
+          <li><a href="#" data-cursor="hover">Instagram ↗</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot__bot">
+      <span>© 2025 Menteiz Aviation Services Sdn. Bhd · All rights reserved.</span>
+      <span>One Trusted Solution For All Your Cargo.</span>
+    </div>
+  </footer>
+
+  <!-- LIBRARIES -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="main.js?v=53"></script>
+</body>
+</html>
