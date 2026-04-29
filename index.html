@@ -8,24 +8,51 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=80" />
+  <link rel="stylesheet" href="styles.css?v=95" />
 </head>
 <body>
 
   <!-- LOADER -->
   <div class="loader" id="loader">
-    <div class="loader__inner">
-      <svg class="loader__plane" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z" />
-      </svg>
-      <div class="loader__text">
-        <span data-text="M">M</span>
-        <span data-text="A">A</span>
-        <span data-text="V">V</span>
-        <span data-text="i">i</span>
-        <span data-text="S">S</span>
-      </div>
+    <div class="loader__panel loader__panel--top" aria-hidden="true"></div>
+    <div class="loader__panel loader__panel--bot" aria-hidden="true"></div>
+    <div class="loader__grid" aria-hidden="true"></div>
+    <div class="loader__glow" aria-hidden="true"></div>
+
+    <div class="loader__corner loader__corner--tl">
+      <span class="loader__dot" aria-hidden="true"></span>
+      <span>MTZ&#8209;AVIAT</span>
+      <span class="loader__sep">/</span>
+      <span>KUL</span>
+    </div>
+    <div class="loader__corner loader__corner--tr">
+      <span>Status</span>
+      <span class="loader__sep">/</span>
+      <span class="loader__status">Boarding</span>
+    </div>
+
+    <div class="loader__center">
+      <span class="loader__eyebrow">Menteiz Aviation Services</span>
+      <h1 class="loader__title" aria-label="Menteiz Aviation">
+        <span class="loader__row" style="--d:0.15s">
+          <span class="loader__row-text">Menteiz</span>
+        </span>
+        <span class="loader__row loader__row--em" style="--d:0.32s">
+          <span class="loader__row-text">Aviation</span>
+        </span>
+      </h1>
+      <p class="loader__caption">One Trusted Solution For All Your Cargo</p>
+    </div>
+
+    <div class="loader__foot">
       <div class="loader__bar"><span></span></div>
+      <div class="loader__meta">
+        <span class="loader__meta-left">Preparing your cargo experience</span>
+        <span class="loader__meta-right">
+          <span class="loader__pct" id="loaderPct">00</span>
+          <span class="loader__pct-sym">%</span>
+        </span>
+      </div>
     </div>
   </div>
 
@@ -160,10 +187,138 @@
     </div>
   </section>
 
+  <!-- HERO LOOKUP WIDGET — floating card bridging hero into about -->
+  <section class="lookup" aria-label="Quick lookup">
+    <div class="lookup__card">
+      <!-- Tabs -->
+      <div class="lookup__tabs" role="tablist">
+        <button class="lookup__tab is-active" role="tab" aria-selected="true" data-tab="schedule" data-cursor="hover">
+          <svg class="lookup__tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/>
+          </svg>
+          <span>Flight Schedule</span>
+        </button>
+        <button class="lookup__tab" role="tab" aria-selected="false" data-tab="track" data-cursor="hover">
+          <svg class="lookup__tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 7h11v8H3zM14 10h4l3 3v2h-7zM6.5 18a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM17.5 18a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+          </svg>
+          <span>Track your Shipment</span>
+        </button>
+        <button class="lookup__tab" role="tab" aria-selected="false" data-tab="pincode" data-cursor="hover">
+          <svg class="lookup__tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zM12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+          </svg>
+          <span>Pincode Serviceability</span>
+        </button>
+        <button class="lookup__tab" role="tab" aria-selected="false" data-tab="quote" data-cursor="hover">
+          <svg class="lookup__tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <path d="M14 2v6h6M8 13h8M8 17h5"/>
+          </svg>
+          <span>Quick Quote</span>
+        </button>
+      </div>
+
+      <!-- Forms -->
+      <form class="lookup__form lookup__form--schedule is-active" data-form="schedule" onsubmit="return false">
+        <div class="lookup__field">
+          <label>From<i>*</i></label>
+          <input type="text" placeholder="Origin" />
+        </div>
+        <button type="button" class="lookup__swap" aria-label="Swap origin and destination" data-cursor="hover">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 7h12l-3-3M17 17H5l3 3"/>
+          </svg>
+        </button>
+        <div class="lookup__field">
+          <label>To<i>*</i></label>
+          <input type="text" placeholder="Destination" />
+        </div>
+        <div class="lookup__field">
+          <label>From Date<i>*</i></label>
+          <div class="lookup__date">
+            <input type="text" placeholder="07 Nov 2024" />
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="5" width="18" height="16" rx="2"/>
+              <path d="M16 3v4M8 3v4M3 10h18"/>
+            </svg>
+          </div>
+        </div>
+        <div class="lookup__field">
+          <label>To Date<i>*</i></label>
+          <div class="lookup__date">
+            <input type="text" placeholder="10 Nov 2024" />
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="5" width="18" height="16" rx="2"/>
+              <path d="M16 3v4M8 3v4M3 10h18"/>
+            </svg>
+          </div>
+        </div>
+        <button type="submit" class="lookup__cta" data-cursor="hover">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/>
+          </svg>
+          <span>Show Flights</span>
+        </button>
+      </form>
+
+      <form class="lookup__form lookup__form--track" data-form="track" onsubmit="return false">
+        <div class="lookup__field lookup__field--wide">
+          <label>AWB Number<i>*</i></label>
+          <input type="text" placeholder="e.g. 232-12345678" />
+        </div>
+        <button type="submit" class="lookup__cta" data-cursor="hover">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>
+          </svg>
+          <span>Track Shipment</span>
+        </button>
+      </form>
+
+      <form class="lookup__form lookup__form--pincode" data-form="pincode" onsubmit="return false">
+        <div class="lookup__field">
+          <label>From Pincode<i>*</i></label>
+          <input type="text" placeholder="e.g. 110001" />
+        </div>
+        <div class="lookup__field">
+          <label>To Pincode<i>*</i></label>
+          <input type="text" placeholder="e.g. 560001" />
+        </div>
+        <button type="submit" class="lookup__cta" data-cursor="hover">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 12l2 2 4-4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/>
+          </svg>
+          <span>Check Serviceability</span>
+        </button>
+      </form>
+
+      <form class="lookup__form lookup__form--quote" data-form="quote" onsubmit="return false">
+        <div class="lookup__field">
+          <label>From<i>*</i></label>
+          <input type="text" placeholder="Origin" />
+        </div>
+        <div class="lookup__field">
+          <label>To<i>*</i></label>
+          <input type="text" placeholder="Destination" />
+        </div>
+        <div class="lookup__field">
+          <label>Weight (kg)<i>*</i></label>
+          <input type="text" placeholder="e.g. 250" />
+        </div>
+        <button type="submit" class="lookup__cta" data-cursor="hover">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/>
+          </svg>
+          <span>Get Quote</span>
+        </button>
+      </form>
+    </div>
+  </section>
+
   <!-- ABOUT -->
   <section class="about" id="about">
     <div class="about__sticky">
-      <span class="section-label">01 — About</span>
+      <span class="section-label">01 About</span>
     </div>
 
     <div class="about__container">
@@ -212,7 +367,7 @@
   <!-- STATS -->
   <section class="stats" id="stats">
     <div class="stats__head">
-      <span class="section-label">— By the numbers</span>
+      <span class="section-label">By the numbers</span>
       <h2 class="stats__title">
         Operating at scale,<br/><em>every single day.</em>
       </h2>
@@ -257,7 +412,7 @@
   <section class="flightplan" id="vision">
     <div class="flightplan__inner">
       <div class="flightplan__head">
-        <span class="section-label">— Flight plan</span>
+        <span class="section-label">Flight plan</span>
         <h2 class="flightplan__title">
           Four checkpoints<br/><em>between origin &amp; arrival.</em>
         </h2>
@@ -316,7 +471,7 @@
   <section class="services" id="services">
     <div class="services__inner">
       <div class="services__head">
-        <span class="section-label">— Our services</span>
+        <span class="section-label">Our services</span>
         <h2 class="services__title">
           Ten specialties.<br/><em>One operating standard.</em>
         </h2>
@@ -460,7 +615,7 @@
   <section class="network" id="network">
     <div class="network__inner">
       <div class="network__head">
-        <span class="section-label">— Global Network</span>
+        <span class="section-label">Global Network</span>
         <h2 class="network__title">
           From <em>Kuala Lumpur</em><br/>
           to every continent.
@@ -486,7 +641,7 @@
 
         <aside class="network__routes" aria-label="Route list">
           <div class="network__routes-head">
-            <span class="network__routes-eyebrow">— Direct lanes from KUL</span>
+            <span class="network__routes-eyebrow">Direct lanes from KUL</span>
             <span class="network__routes-count" id="routesCount">0 routes</span>
           </div>
           <ul class="route-list" id="routeList"></ul>
@@ -498,7 +653,7 @@
   <!-- PARTNERS / ROUTES -->
   <section class="partners" id="routes">
     <div class="partners__head">
-      <span class="partners__eyebrow">— Trusted by carriers worldwide</span>
+      <span class="partners__eyebrow">Trusted by carriers worldwide</span>
       <h2 class="partners__title">
         Twenty-plus carriers.<br/>
         <em>One trusted network.</em>
@@ -512,7 +667,7 @@
       <div class="logo-board__row">
         <span class="brand">Emirates</span>
         <span class="brand">Qatar Airways</span>
-        <span class="brand brand--featured">Singapore Airlines</span>
+        <span class="brand">Singapore Airlines</span>
         <span class="brand">Cathay Pacific</span>
         <span class="brand">Lufthansa Cargo</span>
       </div>
@@ -531,7 +686,7 @@
   <section class="quotes" id="testimonials">
     <div class="quotes__inner">
       <div class="quotes__head">
-        <span class="section-label">— Word of mouth</span>
+        <span class="section-label">Word of mouth</span>
         <h2 class="quotes__title">
           Quiet trust from the people<br/><em>who put cargo on our planes.</em>
         </h2>
@@ -587,7 +742,7 @@
     <div class="contact__overlay" aria-hidden="true"></div>
 
     <div class="contact__inner">
-      <span class="section-label">— Take off</span>
+      <span class="section-label">Take off</span>
 
       <h2 class="contact__title">
         <span>Let&rsquo;s move</span><br/>
@@ -707,6 +862,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="main.js?v=80"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
+  <script src="main.js?v=95"></script>
 </body>
 </html>

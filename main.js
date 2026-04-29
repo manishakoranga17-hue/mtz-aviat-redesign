@@ -11,16 +11,42 @@ function dismissLoader() {
   if (heroIntroDone) return;
   heroIntroDone = true;
   const loader = document.getElementById('loader');
-  if (loader) loader.classList.add('is-done');
+  if (loader) {
+    loader.classList.add('is-done');
+    setTimeout(() => {
+      loader.style.display = 'none';
+      if (window.ScrollTrigger) ScrollTrigger.refresh();
+    }, 1200);
+  }
   document.body.style.overflow = '';
   playHeroIntro();
 }
 window.addEventListener('load', () => {
-  setTimeout(dismissLoader, 1500);
+  setTimeout(dismissLoader, 1800);
 });
 /* Safety net: dismiss after max 3.5s no matter what */
 setTimeout(dismissLoader, 3500);
 document.body.style.overflow = 'hidden';
+
+/* Drive the percentage counter from 0 to 100 over the load window */
+(function loaderCounter() {
+  const pct = document.getElementById('loaderPct');
+  if (!pct) return;
+  const start = performance.now();
+  const duration = 2100;
+  function tick(now) {
+    if (heroIntroDone) {
+      pct.textContent = '100';
+      return;
+    }
+    const t = Math.min((now - start) / duration, 0.99);
+    const eased = 1 - Math.pow(1 - t, 2);
+    const v = Math.floor(eased * 100);
+    pct.textContent = String(v).padStart(2, '0');
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
 
 /* ---------- CUSTOM CURSOR ---------- */
 (function cursor() {
@@ -125,11 +151,6 @@ document.body.style.overflow = 'hidden';
     transparent: true,
     opacity: 0.10,
   });
-  const equatorMat = new THREE.LineBasicMaterial({
-    color: RED,
-    transparent: true,
-    opacity: 0.40,
-  });
 
   function makeCircle(latDeg, mat) {
     const pts = [];
@@ -147,9 +168,9 @@ document.body.style.overflow = 'hidden';
     return new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), mat);
   }
 
-  /* parallels every 15° */
+  /* parallels every 15° (no special equator highlight) */
   for (let lat = -75; lat <= 75; lat += 15) {
-    globeGroup.add(makeCircle(lat, lat === 0 ? equatorMat : gridMat));
+    globeGroup.add(makeCircle(lat, gridMat));
   }
 
   /* meridians every 15° */
@@ -170,6 +191,76 @@ document.body.style.overflow = 'hidden';
   }
   for (let lon = 0; lon < 360; lon += 15) {
     globeGroup.add(makeMeridian(lon, gridMat));
+  }
+
+  /* ===== 2b. COUNTRY BOUNDARIES (via world-atlas TopoJSON) ===== */
+  const countryMat = new THREE.LineBasicMaterial({
+    color: 0xffffff,
+    transparent: true,
+    opacity: 0.25,
+  });
+  const countriesGroup = new THREE.Group();
+  globeGroup.add(countriesGroup);
+
+  function addRing(ring) {
+    /* ring: array of [lon, lat]; render slightly above the sphere so the
+       lines aren't z-fought by the core. Subdivide long segments to keep
+       the line hugging the sphere. Break the line into multiple
+       LineSegments where a step crosses the antimeridian (|dLon| > 180)
+       so we don't draw a chord across the back of the globe. */
+    const r = radius * 1.002;
+    const segments = [];
+    let current = [];
+    for (let i = 0; i < ring.length - 1; i++) {
+      const a = ring[i], b = ring[i + 1];
+      const dLon = b[0] - a[0];
+      const dLat = b[1] - a[1];
+      if (Math.abs(dLon) > 180) {
+        /* antimeridian crossing — close current run, start a new one */
+        if (current.length) {
+          current.push(lonLatToVec3(a[0], a[1], r));
+          segments.push(current);
+        }
+        current = [];
+        continue;
+      }
+      const steps = Math.max(1, Math.ceil(Math.max(Math.abs(dLon), Math.abs(dLat)) / 2));
+      for (let s = 0; s < steps; s++) {
+        const t = s / steps;
+        const lon = a[0] + dLon * t;
+        const lat = a[1] + dLat * t;
+        current.push(lonLatToVec3(lon, lat, r));
+      }
+    }
+    if (ring.length) {
+      const last = ring[ring.length - 1];
+      current.push(lonLatToVec3(last[0], last[1], r));
+    }
+    if (current.length) segments.push(current);
+    segments.forEach((pts) => {
+      if (pts.length < 2) return;
+      const geo = new THREE.BufferGeometry().setFromPoints(pts);
+      countriesGroup.add(new THREE.Line(geo, countryMat));
+    });
+  }
+
+  function drawCountries(features) {
+    features.forEach((f) => {
+      const g = f.geometry;
+      if (!g) return;
+      const polys = g.type === 'Polygon' ? [g.coordinates] : g.coordinates;
+      polys.forEach((rings) => rings.forEach(addRing));
+    });
+  }
+
+  if (window.topojson) {
+    fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
+      .then((r) => r.json())
+      .then((world) => {
+        const fc = topojson.feature(world, world.objects.countries);
+        drawCountries(fc.features);
+      })
+      .catch(() => {});
   }
 
   /* ===== 3. ROUTES — full data: lon, lat, IATA code, city, country, isHub ===== */
@@ -1036,6 +1127,40 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
   });
 });
 
+/* ---------- LOOKUP WIDGET: tab switching ---------- */
+(function () {
+  const tabs = document.querySelectorAll('.lookup__tab');
+  const forms = document.querySelectorAll('.lookup__form');
+  if (!tabs.length || !forms.length) return;
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+      tabs.forEach((t) => {
+        const active = t === tab;
+        t.classList.toggle('is-active', active);
+        t.setAttribute('aria-selected', String(active));
+      });
+      forms.forEach((f) => {
+        f.classList.toggle('is-active', f.dataset.form === target);
+      });
+    });
+  });
+  /* From/To swap on the schedule form */
+  const swap = document.querySelector('.lookup__swap');
+  if (swap) {
+    swap.addEventListener('click', () => {
+      const form = swap.closest('.lookup__form');
+      if (!form) return;
+      const inputs = form.querySelectorAll('.lookup__field input');
+      if (inputs.length >= 2) {
+        const a = inputs[0].value;
+        inputs[0].value = inputs[1].value;
+        inputs[1].value = a;
+      }
+    });
+  }
+})();
+
 /* ---------- FOOTER: shifting brand wordmark + back-to-top ---------- */
 (function () {
   const foot = document.getElementById('foot');
@@ -1044,11 +1169,15 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
   if (rows.length && window.gsap && window.ScrollTrigger) {
     rows.forEach((row) => {
       const dir = parseFloat(row.dataset.shift || '1');
+      /* x in px keeps the shift bounded regardless of how wide the
+         wordmark gets at large viewports. xPercent of a 1500px+ block
+         pushes the (right-aligned) "Aviation" past the overflow:hidden
+         edge and looks invisible at rest. */
       gsap.fromTo(
         row,
-        { xPercent: dir * 12 },
+        { x: dir * 60 },
         {
-          xPercent: dir * -12,
+          x: dir * -60,
           ease: 'none',
           scrollTrigger: {
             trigger: foot,
