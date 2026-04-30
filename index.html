@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=95" />
+  <link rel="stylesheet" href="styles.css?v=118" />
 </head>
 <body>
 
@@ -45,7 +45,11 @@
     </div>
 
     <div class="loader__foot">
-      <div class="loader__bar"><span></span></div>
+      <div class="loader__track" id="loaderTrack" aria-hidden="true">
+        <span class="loader__track-line"></span>
+        <span class="loader__track-fill" id="loaderTrackFill"></span>
+        <img class="loader__plane-img" id="loaderPlane" src="loader-plane.svg" alt="" />
+      </div>
       <div class="loader__meta">
         <span class="loader__meta-left">Preparing your cargo experience</span>
         <span class="loader__meta-right">
@@ -70,15 +74,14 @@
     </a>
     <ul class="nav__links">
       <li><a href="#home" data-cursor="hover">Home</a></li>
-      <li><a href="#about" data-cursor="hover">About</a></li>
+      <li><a href="about.html" data-cursor="hover">About</a></li>
       <li><a href="#services" data-cursor="hover">Services</a></li>
       <li><a href="#routes" data-cursor="hover">Routes</a></li>
       <li><a href="#contact" data-cursor="hover">Contact</a></li>
       <li><a href="https://rewards.mtz-aviat.com" data-cursor="hover">Rewards</a></li>
     </ul>
-    <a href="#contact" class="nav__cta" data-cursor="hover">
-      <span>Get a Quote</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    <a href="#login" class="nav__cta" data-cursor="hover">
+      <span>Login</span>
     </a>
     <button class="nav__burger" id="burger" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -471,133 +474,60 @@
   <section class="services" id="services">
     <div class="services__inner">
       <div class="services__head">
-        <span class="section-label">Our services</span>
+        <span class="section-label">Why Menteiz Aviation Services?</span>
         <h2 class="services__title">
-          Ten specialties.<br/><em>One operating standard.</em>
+          <span class="services__title-row">Specialized Cargo Expertise.</span>
+          <em class="services__title-row">Powered by Intelligent Technology.</em>
         </h2>
-        <p class="services__lede">From general freight to live animals and oilwell hardware — built for the loads other carriers won&rsquo;t take.</p>
+        <p class="services__lede">We combine deep cargo expertise with a fully integrated digital platform to ensure seamless execution across every stage of the shipment lifecycle. From booking to delivery, every movement is connected, automated, and optimized.</p>
       </div>
 
-      <div class="services__grid">
-        <a class="svc" href="services.html#general-cargo" data-cursor="hover">
-          <span class="svc__index">01</span>
-          <svg class="svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v10l9 4 9-4V7"/><path d="M12 11v10"/>
-          </svg>
-          <h3 class="svc__name">General Cargo</h3>
-          <p class="svc__sub">Standard freight, every load type.</p>
-          <svg class="svc__cta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
-            <path d="M7 17L17 7M9 7h8v8"/>
-          </svg>
-        </a>
+      <!-- Cluster: Cargo Capabilities -->
+      <div class="services__cluster">
+        <header class="services__cluster-head">
+          <span class="services__cluster-num">01</span>
+          <div class="services__cluster-title">
+            <h3>Cargo Capabilities</h3>
+            <span class="services__cluster-sub">What We Handle</span>
+          </div>
+        </header>
 
-        <a class="svc" href="services.html#perishable-goods" data-cursor="hover">
-          <span class="svc__index">02</span>
-          <svg class="svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/>
-          </svg>
-          <h3 class="svc__name">Perishable Goods</h3>
-          <p class="svc__sub">Cold-chain produce &amp; pharma.</p>
-          <svg class="svc__cta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
-            <path d="M7 17L17 7M9 7h8v8"/>
-          </svg>
-        </a>
+      <div class="cargo-stage" id="cargoStage">
+        <div class="cargo-stage__media">
+          <div class="cargo-stage__frame">
+            <img class="cargo-stage__img is-active" data-idx="0" src="https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&amp;w=1600" alt="General Cargo" />
+            <img class="cargo-stage__img" data-idx="1" src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&amp;w=1600" alt="Perishable Goods" loading="lazy" />
+            <img class="cargo-stage__img" data-idx="2" src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&amp;w=1600" alt="Dangerous Goods" loading="lazy" />
+            <img class="cargo-stage__img" data-idx="3" src="https://images.unsplash.com/photo-1578574577315-3fbeb0cecdc2?q=80&amp;w=1600" alt="Valuable Goods" loading="lazy" />
+            <img class="cargo-stage__img" data-idx="4" src="https://images.unsplash.com/photo-1583912267550-d6e11c00a9d2?q=80&amp;w=1600" alt="Medical Equipment" loading="lazy" />
+            <img class="cargo-stage__img" data-idx="5" src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&amp;w=1600" alt="Vulnerable Cargo" loading="lazy" />
+            <img class="cargo-stage__img" data-idx="6" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&amp;w=1600" alt="Oilwell Equipment" loading="lazy" />
+            <img class="cargo-stage__img" data-idx="7" src="https://images.unsplash.com/photo-1551288049-bbda38a10ad5?q=80&amp;w=1600" alt="Project Cargo" loading="lazy" />
+            <img class="cargo-stage__img" data-idx="8" src="https://images.unsplash.com/photo-1553284966-19b8815c7817?q=80&amp;w=1600" alt="Live Animals" loading="lazy" />
+            <img class="cargo-stage__img" data-idx="9" src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&amp;w=1600" alt="Temperature Control" loading="lazy" />
+            <span class="cargo-stage__veil"></span>
+            <div class="cargo-stage__caption">
+              <span class="cargo-stage__num" id="cargoStageNum">01 / 10</span>
+              <h4 class="cargo-stage__name" id="cargoStageName">General Cargo</h4>
+            </div>
+          </div>
+          <div class="cargo-stage__progress" aria-hidden="true">
+            <span class="cargo-stage__progress-bar" id="cargoStageProgress"></span>
+          </div>
+        </div>
 
-        <a class="svc" href="services.html#dangerous-goods" data-cursor="hover">
-          <span class="svc__index">03</span>
-          <svg class="svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M12 3l10 18H2L12 3z"/><path d="M12 10v5"/><circle cx="12" cy="18" r="0.6" fill="currentColor"/>
-          </svg>
-          <h3 class="svc__name">Dangerous Goods</h3>
-          <p class="svc__sub">IATA-DGR compliant, every class.</p>
-          <svg class="svc__cta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
-            <path d="M7 17L17 7M9 7h8v8"/>
-          </svg>
-        </a>
-
-        <a class="svc" href="services.html#valuable-goods" data-cursor="hover">
-          <span class="svc__index">04</span>
-          <svg class="svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <rect x="4" y="10" width="16" height="11" rx="1.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.5" r="1.5"/>
-          </svg>
-          <h3 class="svc__name">Valuable Goods</h3>
-          <p class="svc__sub">Escorted, discreet, secure routing.</p>
-          <svg class="svc__cta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
-            <path d="M7 17L17 7M9 7h8v8"/>
-          </svg>
-        </a>
-
-        <a class="svc" href="services.html#medical-equipment" data-cursor="hover">
-          <span class="svc__index">05</span>
-          <svg class="svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M12 4v16M4 12h16"/><circle cx="12" cy="12" r="9"/>
-          </svg>
-          <h3 class="svc__name">Medical Equipment</h3>
-          <p class="svc__sub">Critical health-sector logistics.</p>
-          <svg class="svc__cta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
-            <path d="M7 17L17 7M9 7h8v8"/>
-          </svg>
-        </a>
-
-        <a class="svc" href="services.html#vulnerable-cargo" data-cursor="hover">
-          <span class="svc__index">06</span>
-          <svg class="svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M12 2l9 4v6c0 5-4 9-9 10-5-1-9-5-9-10V6l9-4z"/><path d="M9 12l2 2 4-4"/>
-          </svg>
-          <h3 class="svc__name">Vulnerable Cargo</h3>
-          <p class="svc__sub">Fragile shipments, careful routing.</p>
-          <svg class="svc__cta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
-            <path d="M7 17L17 7M9 7h8v8"/>
-          </svg>
-        </a>
-
-        <a class="svc" href="services.html#oilwell-equipment" data-cursor="hover">
-          <span class="svc__index">07</span>
-          <svg class="svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M5 21V8l5-4 5 4 4-2v15"/><path d="M5 21h14M10 21v-7h5v7"/>
-          </svg>
-          <h3 class="svc__name">Oilwell Equipment</h3>
-          <p class="svc__sub">Heavy oil-and-gas hardware.</p>
-          <svg class="svc__cta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
-            <path d="M7 17L17 7M9 7h8v8"/>
-          </svg>
-        </a>
-
-        <a class="svc" href="services.html#project-cargo" data-cursor="hover">
-          <span class="svc__index">08</span>
-          <svg class="svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <rect x="2" y="6" width="20" height="14" rx="1.5"/><path d="M2 10h20M8 6V4M16 6V4M8 14h4"/>
-          </svg>
-          <h3 class="svc__name">Project Cargo</h3>
-          <p class="svc__sub">Oversized, multi-piece coordinated moves.</p>
-          <svg class="svc__cta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
-            <path d="M7 17L17 7M9 7h8v8"/>
-          </svg>
-        </a>
-
-        <a class="svc" href="services.html#live-animals" data-cursor="hover">
-          <span class="svc__index">09</span>
-          <svg class="svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <circle cx="6" cy="9" r="2"/><circle cx="10" cy="6" r="1.6"/><circle cx="14" cy="6" r="1.6"/><circle cx="18" cy="9" r="2"/><path d="M5 16c0-3 3-5 7-5s7 2 7 5-3 4-7 4-7-1-7-4z"/>
-          </svg>
-          <h3 class="svc__name">Live Animals</h3>
-          <p class="svc__sub">IATA-LAR compliant transport.</p>
-          <svg class="svc__cta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
-            <path d="M7 17L17 7M9 7h8v8"/>
-          </svg>
-        </a>
-
-        <a class="svc" href="services.html#temperature-control" data-cursor="hover">
-          <span class="svc__index">10</span>
-          <svg class="svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M14 14V5a2 2 0 1 0-4 0v9a4 4 0 1 0 4 0z"/><path d="M12 7v8"/>
-          </svg>
-          <h3 class="svc__name">Temperature Control</h3>
-          <p class="svc__sub">Active &amp; passive cold-chain.</p>
-          <svg class="svc__cta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
-            <path d="M7 17L17 7M9 7h8v8"/>
-          </svg>
-        </a>
+        <ol class="cargo-stage__index" id="cargoStageIndex">
+          <li><button class="cs-item is-active" data-idx="0" data-name="General Cargo" data-tagline="Standard freight, every load type."><span class="cs-item__num">01</span><span class="cs-item__name">General Cargo</span><span class="cs-item__bar"></span></button></li>
+          <li><button class="cs-item" data-idx="1" data-name="Perishable Goods" data-tagline="Cold-chain produce &amp; pharma, moved without compromise."><span class="cs-item__num">02</span><span class="cs-item__name">Perishable Goods</span><span class="cs-item__bar"></span></button></li>
+          <li><button class="cs-item" data-idx="2" data-name="Dangerous Goods" data-tagline="IATA-DGR compliant handling for every class."><span class="cs-item__num">03</span><span class="cs-item__name">Dangerous Goods</span><span class="cs-item__bar"></span></button></li>
+          <li><button class="cs-item" data-idx="3" data-name="Valuable Goods" data-tagline="Escorted, discreet, end-to-end secure routing."><span class="cs-item__num">04</span><span class="cs-item__name">Valuable Goods</span><span class="cs-item__bar"></span></button></li>
+          <li><button class="cs-item" data-idx="4" data-name="Medical Equipment" data-tagline="Critical health-sector logistics, time-bound."><span class="cs-item__num">05</span><span class="cs-item__name">Medical Equipment</span><span class="cs-item__bar"></span></button></li>
+          <li><button class="cs-item" data-idx="5" data-name="Vulnerable Cargo" data-tagline="Fragile shipments routed with deliberate care."><span class="cs-item__num">06</span><span class="cs-item__name">Vulnerable Cargo</span><span class="cs-item__bar"></span></button></li>
+          <li><button class="cs-item" data-idx="6" data-name="Oilwell Equipment" data-tagline="Heavy oil-and-gas hardware on dedicated lanes."><span class="cs-item__num">07</span><span class="cs-item__name">Oilwell Equipment</span><span class="cs-item__bar"></span></button></li>
+          <li><button class="cs-item" data-idx="7" data-name="Project Cargo" data-tagline="Oversized, multi-piece coordinated moves."><span class="cs-item__num">08</span><span class="cs-item__name">Project Cargo</span><span class="cs-item__bar"></span></button></li>
+          <li><button class="cs-item" data-idx="8" data-name="Live Animals" data-tagline="IATA-LAR compliant, kept calm in flight."><span class="cs-item__num">09</span><span class="cs-item__name">Live Animals</span><span class="cs-item__bar"></span></button></li>
+          <li><button class="cs-item" data-idx="9" data-name="Temperature Control" data-tagline="Active &amp; passive cold-chain end-to-end."><span class="cs-item__num">10</span><span class="cs-item__name">Temperature Control</span><span class="cs-item__bar"></span></button></li>
+        </ol>
       </div>
 
       <div class="services__foot">
@@ -608,6 +538,134 @@
           </svg>
         </a>
       </div>
+      </div><!-- /cluster: Cargo Capabilities -->
+
+      <!-- Bridge: a single hairline + traveling pulse drops from cargo into "Powered by" → CPU -->
+      <div class="services__bridge" aria-hidden="true">
+        <span class="services__bridge-line"></span>
+        <div class="services__bridge-label">
+          <span class="services__bridge-dot"></span>
+          <span>Powered by</span>
+        </div>
+      </div>
+
+      <!-- Cluster: Technology Capabilities (dark platform panel) -->
+      <div class="services__cluster services__cluster--tech">
+        <header class="services__cluster-head">
+          <span class="services__cluster-num">02</span>
+          <div class="services__cluster-title">
+            <h3>Technology Capabilities</h3>
+            <span class="services__cluster-sub">How We Deliver</span>
+          </div>
+        </header>
+
+        <div class="techgrid" aria-label="Technology capabilities">
+          <article class="techcard">
+            <div class="techcard__ico"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="ic ic--booking" aria-hidden="true">
+              <rect x="5" y="7" width="22" height="20" rx="2.5"/>
+              <line x1="5" y1="12" x2="27" y2="12"/>
+              <line x1="10" y1="4" x2="10" y2="9"/>
+              <line x1="22" y1="4" x2="22" y2="9"/>
+              <path class="ic-booking__check" d="M 11 19 L 14 22 L 21 16"/>
+              <circle class="ic-booking__dot" cx="10" cy="16" r="0.9" fill="currentColor" stroke="none"/>
+            </svg></div>
+            <h4 class="techcard__name">Smart Booking</h4>
+            <p class="techcard__sub">Quote, book and confirm shipments in a single flow.</p>
+          </article>
+
+          <article class="techcard">
+            <div class="techcard__ico"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="ic ic--track" aria-hidden="true">
+              <circle cx="6"  cy="23" r="1.8" fill="currentColor" stroke="none"/>
+              <circle cx="26" cy="9"  r="1.8" fill="currentColor" stroke="none"/>
+              <path class="ic-track__route" d="M 6 23 Q 16 8 26 9" stroke-dasharray="2 2.5"/>
+              <g class="ic-track__plane">
+                <path d="M -2 0 L 2 0 M 2 0 L 1 -1 M 2 0 L 1 1" stroke-width="1.4"/>
+              </g>
+            </svg></div>
+            <h4 class="techcard__name">Real-time Tracking</h4>
+            <p class="techcard__sub">GPS-precise visibility from pickup to delivery.</p>
+          </article>
+
+          <article class="techcard">
+            <div class="techcard__ico"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="ic ic--report" aria-hidden="true">
+              <line x1="5" y1="27" x2="28" y2="27"/>
+              <rect class="ic-report__bar ic-report__bar--1" x="7"  y="0" width="3" height="14" fill="currentColor" stroke="none"/>
+              <rect class="ic-report__bar ic-report__bar--2" x="13" y="0" width="3" height="20" fill="currentColor" stroke="none"/>
+              <rect class="ic-report__bar ic-report__bar--3" x="19" y="0" width="3" height="10" fill="currentColor" stroke="none"/>
+              <rect class="ic-report__bar ic-report__bar--4" x="25" y="0" width="3" height="17" fill="currentColor" stroke="none"/>
+            </svg></div>
+            <h4 class="techcard__name">Automated Reporting</h4>
+            <p class="techcard__sub">Self-generated dashboards on every shipment.</p>
+          </article>
+
+          <article class="techcard">
+            <div class="techcard__ico"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="ic ic--pay" aria-hidden="true">
+              <rect x="4" y="9"  width="24" height="14" rx="2"/>
+              <rect x="7" y="13" width="5"  height="4"  rx="0.6"/>
+              <line x1="14" y1="20" x2="25" y2="20"/>
+              <g class="ic-pay__flow">
+                <path d="M 14 16 L 23 16 M 20.5 13.5 L 23 16 L 20.5 18.5"/>
+              </g>
+            </svg></div>
+            <h4 class="techcard__name">Digital Payments</h4>
+            <p class="techcard__sub">Pay invoices and settle freight without paperwork.</p>
+          </article>
+
+          <article class="techcard">
+            <div class="techcard__ico"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="ic ic--pod" aria-hidden="true">
+              <path d="M 8 4 L 22 4 L 26 8 L 26 28 L 8 28 Z"/>
+              <path d="M 22 4 L 22 8 L 26 8"/>
+              <line x1="12" y1="13" x2="22" y2="13"/>
+              <line x1="12" y1="17" x2="20" y2="17"/>
+              <circle class="ic-pod__stamp" cx="20" cy="22" r="0" fill="rgba(34,197,94,0.18)" stroke="none"/>
+              <path class="ic-pod__check" d="M 16 22 L 19 25 L 24 19" stroke-width="1.7"/>
+            </svg></div>
+            <h4 class="techcard__name">Digital POD</h4>
+            <p class="techcard__sub">Photo and signed proofs the moment cargo lands.</p>
+          </article>
+
+          <article class="techcard">
+            <div class="techcard__ico"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="ic ic--acct" aria-hidden="true">
+              <rect x="4" y="6" width="24" height="20" rx="2"/>
+              <line x1="4" y1="11" x2="28" y2="11"/>
+              <line x1="20" y1="11" x2="20" y2="26"/>
+              <line class="ic-acct__row ic-acct__row--1" x1="8" y1="15" x2="18" y2="15"/>
+              <line class="ic-acct__row ic-acct__row--2" x1="8" y1="19" x2="18" y2="19"/>
+              <line class="ic-acct__row ic-acct__row--3" x1="8" y1="23" x2="18" y2="23"/>
+              <line class="ic-acct__row ic-acct__row--4" x1="22" y1="15" x2="26" y2="15"/>
+              <line class="ic-acct__row ic-acct__row--5" x1="22" y1="19" x2="26" y2="19"/>
+              <line class="ic-acct__row ic-acct__row--6" x1="22" y1="23" x2="26" y2="23"/>
+            </svg></div>
+            <h4 class="techcard__name">Integrated Accounting</h4>
+            <p class="techcard__sub">Reconcile freight bills straight into your ledger.</p>
+          </article>
+
+          <article class="techcard">
+            <div class="techcard__ico"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="ic ic--partner" aria-hidden="true">
+              <circle cx="8"  cy="16" r="4" fill="rgba(222,29,42,0.06)"/>
+              <circle cx="24" cy="16" r="4" fill="rgba(222,29,42,0.06)"/>
+              <path d="M 6 16 L 5 16 M 26 16 L 27 16"/>
+              <line class="ic-partner__line" x1="12" y1="16" x2="20" y2="16" stroke-dasharray="1.6 2.2"/>
+              <circle class="ic-partner__pulse" cx="0" cy="0" r="1.4" fill="currentColor" stroke="none"/>
+            </svg></div>
+            <h4 class="techcard__name">Partner Connect</h4>
+            <p class="techcard__sub">Carriers, agents and ground handlers on one channel.</p>
+          </article>
+
+          <article class="techcard">
+            <div class="techcard__ico"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="ic ic--cust" aria-hidden="true">
+              <path d="M 4 7 L 19 7 Q 21 7 21 9 L 21 16 Q 21 18 19 18 L 12 18 L 8 22 L 8 18 L 6 18 Q 4 18 4 16 Z"/>
+              <path d="M 28 14 L 14 14" opacity="0"/>
+              <path opacity="0.55" d="M 28 14 L 13 14 Q 11 14 11 16 L 11 23 Q 11 25 13 25 L 19 25 L 23 29 L 23 25 L 26 25 Q 28 25 28 23 Z"/>
+              <circle class="ic-cust__dot ic-cust__dot--1" cx="9"  cy="12.5" r="1" fill="currentColor" stroke="none"/>
+              <circle class="ic-cust__dot ic-cust__dot--2" cx="12.5" cy="12.5" r="1" fill="currentColor" stroke="none"/>
+              <circle class="ic-cust__dot ic-cust__dot--3" cx="16" cy="12.5" r="1" fill="currentColor" stroke="none"/>
+            </svg></div>
+            <h4 class="techcard__name">Customer Connect</h4>
+            <p class="techcard__sub">Customers track their cargo without picking up the phone.</p>
+          </article>
+        </div><!-- /techgrid -->
+      </div><!-- /cluster: Technology Capabilities -->
     </div>
   </section>
 
@@ -688,7 +746,7 @@
       <div class="quotes__head">
         <span class="section-label">Word of mouth</span>
         <h2 class="quotes__title">
-          Quiet trust from the people<br/><em>who put cargo on our planes.</em>
+          Quiet trust from the people <em>who put cargo on our planes.</em>
         </h2>
         <p class="quotes__lede">A few of the partners and operators we&rsquo;ve flown alongside — anonymized, but real shipments, real lanes.</p>
       </div>
@@ -733,6 +791,123 @@
           <span class="qcard__rule"></span>
         </article>
       </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="faq__inner">
+      <div class="faq__head">
+        <span class="section-label">Frequently asked</span>
+        <h2 class="faq__title">Things shippers ask us <em>before booking.</em></h2>
+        <p class="faq__lede">Quick answers on cargo types, routes, integrations and getting started — anything more specific, just send us a note.</p>
+      </div>
+
+      <ul class="faq__list">
+        <li class="faq__item">
+          <button class="faq__q" aria-expanded="false">
+            <span class="faq__q-num">01</span>
+            <span class="faq__q-text">What types of cargo do you handle?</span>
+            <span class="faq__q-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </button>
+          <div class="faq__a-wrap"><div class="faq__a-inner">
+            <p class="faq__a">General freight, perishables, dangerous goods, valuables, medical equipment, vulnerable cargo, oilwell hardware, project freight, live animals and active cold-chain shipments — all moved to IATA standards.</p>
+          </div></div>
+        </li>
+
+        <li class="faq__item">
+          <button class="faq__q" aria-expanded="false">
+            <span class="faq__q-num">02</span>
+            <span class="faq__q-text">Which routes are available out of Kuala Lumpur?</span>
+            <span class="faq__q-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </button>
+          <div class="faq__a-wrap"><div class="faq__a-inner">
+            <p class="faq__a">Scheduled and charter freight lanes from KUL to every continent through 200+ partner carriers. The Global Network section above shows the live route list — drag the globe or pick a destination to see direct lanes.</p>
+          </div></div>
+        </li>
+
+        <li class="faq__item">
+          <button class="faq__q" aria-expanded="false">
+            <span class="faq__q-num">03</span>
+            <span class="faq__q-text">How quickly can you confirm a booking?</span>
+            <span class="faq__q-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </button>
+          <div class="faq__a-wrap"><div class="faq__a-inner">
+            <p class="faq__a">Smart Booking returns a rate quote and carrier confirmation in a single flow — usually within minutes for scheduled lanes and inside 24 hours for charter inquiries.</p>
+          </div></div>
+        </li>
+
+        <li class="faq__item">
+          <button class="faq__q" aria-expanded="false">
+            <span class="faq__q-num">04</span>
+            <span class="faq__q-text">Can I track shipments in real time?</span>
+            <span class="faq__q-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </button>
+          <div class="faq__a-wrap"><div class="faq__a-inner">
+            <p class="faq__a">Yes — every shipment streams GPS-precise position into your dashboard from pickup through delivery, with milestone alerts and digital proof of delivery on landing.</p>
+          </div></div>
+        </li>
+
+        <li class="faq__item">
+          <button class="faq__q" aria-expanded="false">
+            <span class="faq__q-num">05</span>
+            <span class="faq__q-text">Do you handle hazardous and dangerous goods?</span>
+            <span class="faq__q-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </button>
+          <div class="faq__a-wrap"><div class="faq__a-inner">
+            <p class="faq__a">Fully IATA-DGR compliant across every class — corrosives, flammables, oxidizers, toxics. Documentation, packaging review and carrier acceptance is automated through the platform.</p>
+          </div></div>
+        </li>
+
+        <li class="faq__item">
+          <button class="faq__q" aria-expanded="false">
+            <span class="faq__q-num">06</span>
+            <span class="faq__q-text">How does invoicing and payments work?</span>
+            <span class="faq__q-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </button>
+          <div class="faq__a-wrap"><div class="faq__a-inner">
+            <p class="faq__a">Digital Payments settles freight invoices directly inside the platform. Integrated Accounting pushes every entry into your ledger automatically — no spreadsheets, no manual reconciliation.</p>
+          </div></div>
+        </li>
+
+        <li class="faq__item">
+          <button class="faq__q" aria-expanded="false">
+            <span class="faq__q-num">07</span>
+            <span class="faq__q-text">Can I integrate Menteiz with my own systems?</span>
+            <span class="faq__q-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </button>
+          <div class="faq__a-wrap"><div class="faq__a-inner">
+            <p class="faq__a">Yes. We expose REST APIs and EDI connectors for TMS, ERP, and WMS platforms. Most integrations take a day or two of work — our team helps with the mapping.</p>
+          </div></div>
+        </li>
+
+        <li class="faq__item">
+          <button class="faq__q" aria-expanded="false">
+            <span class="faq__q-num">08</span>
+            <span class="faq__q-text">How do I get started?</span>
+            <span class="faq__q-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </button>
+          <div class="faq__a-wrap"><div class="faq__a-inner">
+            <p class="faq__a">Use the Login button in the top right to register, or send a request through the contact form below — we typically have an account live and the first booking quoted inside 48 hours.</p>
+          </div></div>
+        </li>
+      </ul>
     </div>
   </section>
 
@@ -831,7 +1006,7 @@
         <span class="foot__label">Sitemap</span>
         <ul class="foot__list">
           <li><a href="#home" data-cursor="hover"><span>Home</span></a></li>
-          <li><a href="#about" data-cursor="hover"><span>About</span></a></li>
+          <li><a href="about.html" data-cursor="hover"><span>About</span></a></li>
           <li><a href="#services" data-cursor="hover"><span>Services</span></a></li>
           <li><a href="#routes" data-cursor="hover"><span>Routes</span></a></li>
           <li><a href="#contact" data-cursor="hover"><span>Contact</span></a></li>
@@ -863,6 +1038,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
-  <script src="main.js?v=95"></script>
+  <script src="main.js?v=118"></script>
 </body>
 </html>

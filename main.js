@@ -28,21 +28,35 @@ window.addEventListener('load', () => {
 setTimeout(dismissLoader, 3500);
 document.body.style.overflow = 'hidden';
 
-/* Drive the percentage counter from 0 to 100 over the load window */
+/* Drive the percentage counter, the plane's flight across the track,
+   and the gradient trail behind it — all from a single rAF loop. */
 (function loaderCounter() {
   const pct = document.getElementById('loaderPct');
+  const plane = document.getElementById('loaderPlane');
+  const fill = document.getElementById('loaderTrackFill');
   if (!pct) return;
+
+  function setProgress(p) {
+    /* p in [0,1]. */
+    pct.textContent = String(Math.floor(p * 100)).padStart(2, '0');
+    if (plane) {
+      plane.style.left = (p * 100) + '%';
+    }
+    if (fill) {
+      fill.style.width = (p * 100) + '%';
+    }
+  }
+
   const start = performance.now();
   const duration = 2100;
   function tick(now) {
     if (heroIntroDone) {
-      pct.textContent = '100';
+      setProgress(1);
       return;
     }
     const t = Math.min((now - start) / duration, 0.99);
     const eased = 1 - Math.pow(1 - t, 2);
-    const v = Math.floor(eased * 100);
-    pct.textContent = String(v).padStart(2, '0');
+    setProgress(eased);
     requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);
@@ -1126,6 +1140,102 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
     window.scrollTo({ top: tgt.offsetTop - 60, behavior: 'smooth' });
   });
 });
+
+/* (Tech grid uses only CSS-driven SVG animations — no JS needed.) */
+
+/* ---------- FAQ: accordion (one panel open at a time) ---------- */
+(function faq() {
+  const items = Array.from(document.querySelectorAll('.faq__item'));
+  if (!items.length) return;
+
+  items.forEach(item => {
+    const btn = item.querySelector('.faq__q');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      const willOpen = !item.classList.contains('is-open');
+      items.forEach(other => {
+        other.classList.remove('is-open');
+        const ob = other.querySelector('.faq__q');
+        if (ob) ob.setAttribute('aria-expanded', 'false');
+      });
+      if (willOpen) {
+        item.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+})();
+
+/* ---------- CARGO STAGE: image crossfade + numbered index ---------- */
+(function cargoStage() {
+  const stage = document.getElementById('cargoStage');
+  if (!stage) return;
+  const items = Array.from(stage.querySelectorAll('.cs-item'));
+  const imgs  = Array.from(stage.querySelectorAll('.cargo-stage__img'));
+  const numEl  = document.getElementById('cargoStageNum');
+  const nameEl = document.getElementById('cargoStageName');
+  const progress = document.getElementById('cargoStageProgress');
+  if (!items.length || !imgs.length) return;
+
+  const TOTAL = items.length;
+  const HOLD_MS = 4000;
+  let current = 0;
+  let paused = false;
+  let progressStart = performance.now();
+  let progressRaf;
+
+  function setActive(idx, { fromUser = false } = {}) {
+    if (idx === current && !fromUser) return;
+    current = idx;
+    items.forEach((it, i) => it.classList.toggle('is-active', i === idx));
+    imgs.forEach((im, i) => im.classList.toggle('is-active', i === idx));
+
+    /* Smooth text crossfade: fade out → swap → fade in */
+    const item = items[idx];
+    numEl.classList.add('is-changing');
+    nameEl.classList.add('is-changing');
+    setTimeout(() => {
+      numEl.textContent  = String(idx + 1).padStart(2, '0') + ' / ' + String(TOTAL).padStart(2, '0');
+      nameEl.textContent = item.dataset.name;
+      numEl.classList.remove('is-changing');
+      nameEl.classList.remove('is-changing');
+    }, 220);
+
+    progressStart = performance.now();
+  }
+
+  function tickProgress(now) {
+    if (!paused) {
+      const elapsed = now - progressStart;
+      const pct = Math.min(100, (elapsed / HOLD_MS) * 100);
+      progress.style.width = pct + '%';
+      if (elapsed >= HOLD_MS) {
+        setActive((current + 1) % TOTAL);
+      }
+    } else {
+      progressStart = now - (parseFloat(progress.style.width || '0') / 100) * HOLD_MS;
+    }
+    progressRaf = requestAnimationFrame(tickProgress);
+  }
+
+  items.forEach((it, i) => {
+    it.addEventListener('click', () => setActive(i, { fromUser: true }));
+    it.addEventListener('mouseenter', () => { paused = true; });
+    it.addEventListener('mouseleave', () => { paused = false; });
+  });
+  stage.addEventListener('mouseenter', () => { paused = true; });
+  stage.addEventListener('mouseleave', () => { paused = false; });
+
+  /* Pause autoplay when off-screen so it doesn't burn cycles */
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { paused = paused || !e.isIntersecting; if (e.isIntersecting && !stage.matches(':hover')) paused = false; });
+    }, { threshold: 0.15 });
+    io.observe(stage);
+  }
+
+  progressRaf = requestAnimationFrame(tickProgress);
+})();
 
 /* ---------- LOOKUP WIDGET: tab switching ---------- */
 (function () {
