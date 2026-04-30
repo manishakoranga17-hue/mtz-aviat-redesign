@@ -818,6 +818,8 @@ function playHeroIntro() {
 
 /* ---------- SECTION REVEALS ---------- */
 (function reveals() {
+  const has = (selector) => document.querySelector(selector);
+
   /* Heading fade/slide reveal — keep inline tags intact (no word-splitting) */
   document.querySelectorAll('.split-text h2, .about__heading h2, .services__title, .flightplan__title, .contact__title').forEach((h) => {
     gsap.from(h, {
@@ -827,16 +829,20 @@ function playHeroIntro() {
   });
 
   /* About body parallax */
-  gsap.from('.about__body p, .value', {
-    y: 40, opacity: 0, duration: 1, ease: 'expo.out', stagger: 0.1,
-    scrollTrigger: { trigger: '.about__body', start: 'top 80%' },
-  });
+  if (has('.about__body')) {
+    gsap.from('.about__body p, .value', {
+      y: 40, opacity: 0, duration: 1, ease: 'expo.out', stagger: 0.1,
+      scrollTrigger: { trigger: '.about__body', start: 'top 80%' },
+    });
+  }
 
   /* Service cells rise in */
-  gsap.from('.svc', {
-    y: 32, opacity: 0, duration: 0.9, ease: 'power3.out', stagger: 0.05,
-    scrollTrigger: { trigger: '.services__grid', start: 'top 85%' },
-  });
+  if (has('.svc') && has('.services__grid')) {
+    gsap.from('.svc', {
+      y: 32, opacity: 0, duration: 0.9, ease: 'power3.out', stagger: 0.05,
+      scrollTrigger: { trigger: '.services__grid', start: 'top 85%' },
+    });
+  }
 
   /* Quote cards reveal staggered */
   gsap.from('.qcard', {
@@ -1235,6 +1241,302 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
   }
 
   progressRaf = requestAnimationFrame(tickProgress);
+})();
+
+/* ---------- TECHNOLOGY STACK: interactive isometric hero ---------- */
+(function technologyStack() {
+  const mount = document.getElementById('techStack');
+  if (!mount) return;
+
+  const svgNS = 'http://www.w3.org/2000/svg';
+  const layers = [
+    { id: 0, yBase: 490, side: 'left', title: 'Smart Booking', icon: 'calendar', color: '#DE1D2A', topGrad: ['#F06A72', '#DE1D2A'], sideGrad: ['#B81824', '#7F111A'] },
+    { id: 1, yBase: 450, side: 'right', title: 'Real-time Tracking', icon: 'pin', centerIcon: 'locate', color: '#0A1F3D', topGrad: ['#2A4B72', '#0A1F3D'], sideGrad: ['#16345F', '#07162D'] },
+    { id: 2, yBase: 410, side: 'left', title: 'Automated Reporting', icon: 'chart', centerIcon: 'lineChart', color: '#EC5360', topGrad: ['#F18A91', '#EC5360'], sideGrad: ['#DE1D2A', '#A81724'] },
+    { id: 3, yBase: 370, side: 'right', title: 'Digital Payments', icon: 'card', color: '#26528A', topGrad: ['#5F7EA5', '#26528A'], sideGrad: ['#1D4274', '#102849'] },
+    { id: 4, yBase: 330, side: 'left', title: 'Digital POD', icon: 'file', color: '#A81724', topGrad: ['#E44954', '#A81724'], sideGrad: ['#8B1420', '#5E0C15'] },
+    { id: 5, yBase: 290, side: 'right', title: 'Integrated Accounting', icon: 'calculator', color: '#16345F', topGrad: ['#496B98', '#16345F'], sideGrad: ['#102849', '#07162D'] },
+    { id: 6, yBase: 250, side: 'left', title: 'Partner Connect', icon: 'network', color: '#C7333F', topGrad: ['#EF737C', '#C7333F'], sideGrad: ['#B81824', '#7F111A'] },
+    { id: 7, yBase: 210, side: 'right', title: 'Customer Connect', icon: 'users', color: '#454742', topGrad: ['#8D9089', '#454742'], sideGrad: ['#5F625B', '#2D302C'] },
+  ];
+
+  const iconMarkup = {
+    calendar: '<rect x="5" y="7" width="22" height="20" rx="2.5"/><line x1="5" y1="12" x2="27" y2="12"/><line x1="10" y1="4" x2="10" y2="9"/><line x1="22" y1="4" x2="22" y2="9"/><path d="M11 19l3 3 7-6"/>',
+    pin: '<path d="M16 28s8-7.6 8-15a8 8 0 1 0-16 0c0 7.4 8 15 8 15z"/><circle cx="16" cy="13" r="3"/>',
+    locate: '<circle cx="16" cy="16" r="6"/><path d="M16 2v4M16 26v4M2 16h4M26 16h4"/>',
+    chart: '<line x1="5" y1="27" x2="28" y2="27"/><rect x="7" y="13" width="3" height="14"/><rect x="13" y="7" width="3" height="20"/><rect x="19" y="17" width="3" height="10"/><rect x="25" y="10" width="3" height="17"/>',
+    lineChart: '<path d="M5 25h22"/><path d="M7 22l5-6 5 3 7-10"/><path d="M21 9h3v3"/>',
+    card: '<rect x="4" y="9" width="24" height="14" rx="2"/><line x1="4" y1="14" x2="28" y2="14"/><line x1="8" y1="20" x2="15" y2="20"/>',
+    file: '<path d="M8 4h14l4 4v20H8z"/><path d="M22 4v4h4"/><line x1="12" y1="14" x2="22" y2="14"/><line x1="12" y1="18" x2="20" y2="18"/><path d="M15 23l3 3 6-7"/>',
+    calculator: '<rect x="5" y="4" width="22" height="24" rx="2"/><line x1="9" y1="10" x2="23" y2="10"/><circle cx="11" cy="16" r="1"/><circle cx="16" cy="16" r="1"/><circle cx="21" cy="16" r="1"/><circle cx="11" cy="22" r="1"/><circle cx="16" cy="22" r="1"/><circle cx="21" cy="22" r="1"/>',
+    network: '<circle cx="8" cy="16" r="4"/><circle cx="24" cy="8" r="4"/><circle cx="24" cy="24" r="4"/><path d="M11.5 14l9-4.5M11.5 18l9 4.5"/>',
+    users: '<circle cx="12" cy="11" r="4"/><path d="M5 27c1.4-5 4-8 7-8s5.6 3 7 8"/><circle cx="22" cy="13" r="3"/><path d="M19 20c2.6.6 4.8 2.9 6 7"/>',
+  };
+
+  const svg = createSvg('svg', { viewBox: '0 0 1000 650', class: 'tech-stack__svg', role: 'img', 'aria-labelledby': 'techStackTitle' });
+  svg.appendChild(createSvg('title', { id: 'techStackTitle' }, 'Interactive layered stack of technology capabilities'));
+  const defs = createSvg('defs');
+  defs.appendChild(createSvg('filter', { id: 'tech-glow-blur', x: '-50%', y: '-50%', width: '200%', height: '200%' }, [
+    createSvg('feGaussianBlur', { stdDeviation: '40' }),
+  ]));
+  defs.appendChild(createSvg('filter', { id: 'tech-icon-glow', x: '-20%', y: '-20%', width: '140%', height: '140%' }, [
+    createSvg('feGaussianBlur', { stdDeviation: '6', result: 'blur' }),
+    createSvg('feComposite', { in: 'SourceGraphic', in2: 'blur', operator: 'over' }),
+  ]));
+  defs.appendChild(createSvg('filter', { id: 'tech-side-texture', x: '-20%', y: '-20%', width: '140%', height: '140%' }, [
+    createSvg('feTurbulence', { type: 'fractalNoise', baseFrequency: '0.05 0.005', numOctaves: '3', result: 'noise' }),
+    createSvg('feColorMatrix', { type: 'matrix', values: '0.33 0.33 0.33 0 0  0.33 0.33 0.33 0 0  0.33 0.33 0.33 0 0  0 0 0 0.4 0', in: 'noise', result: 'monoNoise' }),
+    createSvg('feBlend', { mode: 'overlay', in: 'monoNoise', in2: 'SourceGraphic', result: 'blend' }),
+    createSvg('feComposite', { operator: 'in', in: 'blend', in2: 'SourceGraphic' }),
+  ]));
+  defs.appendChild(createSvg('clipPath', { id: 'tech-front-half-clip' }, [
+    createSvg('polygon', { points: '-300,-300 -300,300 300,300' }),
+  ]));
+  layers.forEach((layer) => {
+    defs.appendChild(gradient(`tech-top-grad-${layer.id}`, layer.topGrad));
+    defs.appendChild(gradient(`tech-side-grad-${layer.id}`, layer.sideGrad));
+  });
+  svg.appendChild(defs);
+
+  const floatGroup = createSvg('g', { class: 'tech-stack__float' });
+  svg.appendChild(floatGroup);
+
+  const refs = layers.map((layer) => {
+    const glow = createSvg('g', { class: 'tech-stack__glow' }, [
+      createSvg('ellipse', { cx: '500', cy: String(layer.yBase), rx: '200', ry: '80', fill: `url(#tech-top-grad-${layer.id})`, filter: 'url(#tech-glow-blur)' }),
+    ]);
+    floatGroup.appendChild(glow);
+
+    const isLeft = layer.side === 'left';
+    const xStart = isLeft ? 302 : 698;
+    const xEnd = isLeft ? 240 : 760;
+    const yLine = layer.yBase + 10;
+    const connector = createSvg('g', { class: 'tech-stack__connector', style: `animation-delay:${layer.id * 0.05}s;animation-fill-mode:both` }, [
+      createSvg('line', { class: 'tech-stack__line-muted', x1: xStart, y1: yLine, x2: xEnd, y2: yLine }),
+      createSvg('line', { class: 'tech-stack__line-active', x1: xStart, y1: yLine, x2: xEnd, y2: yLine, stroke: layer.color, pathLength: '100' }),
+      createSvg('line', { class: 'tech-stack__line-shine', x1: xStart, y1: yLine, x2: xEnd, y2: yLine, filter: 'url(#tech-icon-glow)', pathLength: '100' }),
+    ]);
+    floatGroup.appendChild(connector);
+
+    return { layer, glow, connector };
+  });
+
+  const cube = createSvg('g', { class: 'tech-stack__cube' });
+  floatGroup.appendChild(cube);
+
+  refs.forEach((ref) => {
+    const { layer } = ref;
+    const slab = createSvg('g', { class: 'tech-stack__layer' });
+    slab.style.setProperty('--active-layer-color', layer.color);
+    const positioned = createSvg('g', { class: 'tech-stack__layer-position' });
+    slab.appendChild(positioned);
+    slab.addEventListener('mouseenter', () => {
+      if (introState === 2) setActive(layer.id);
+    });
+
+    ref.active = buildActiveLayer(layer);
+    ref.solid = buildSolidLayer();
+    ref.wire = buildWireLayer();
+    positioned.append(ref.active, ref.solid, ref.wire);
+    ref.slab = slab;
+    ref.positioned = positioned;
+    cube.appendChild(slab);
+  });
+
+  refs.forEach((ref) => {
+    const { layer } = ref;
+    const isLeft = layer.side === 'left';
+    const foreignObject = createSvg('foreignObject', {
+      class: 'tech-stack__label',
+      x: isLeft ? '20' : '760',
+      y: String(layer.yBase - 5),
+      width: '220',
+      height: '34',
+      style: `--layer-color:${layer.color};animation-delay:${layer.id * 0.05 + 0.2}s;animation-fill-mode:both`,
+    });
+    const shell = document.createElement('div');
+    shell.className = `tech-stack__label-shell tech-stack__label-shell--${layer.side}`;
+    shell.innerHTML = `
+      <div class="tech-stack__pill">
+        ${isLeft ? `<span>${layer.title}</span>${htmlIcon(layer.icon)}` : `${htmlIcon(layer.icon)}<span>${layer.title}</span>`}
+        <svg class="tech-stack__label-border" aria-hidden="true"><rect x="0.75" y="0.75" width="98.5%" height="98.5%" rx="14" ry="14" pathLength="100"></rect></svg>
+      </div>
+    `;
+    shell.addEventListener('mouseenter', () => setActive(layer.id));
+    foreignObject.appendChild(shell);
+    ref.label = foreignObject;
+    floatGroup.appendChild(foreignObject);
+  });
+
+  mount.appendChild(svg);
+  const srList = document.createElement('ul');
+  srList.className = 'tech-stack__sr-list';
+  srList.innerHTML = layers.map((layer) => `<li>${layer.title}</li>`).join('');
+  mount.appendChild(srList);
+
+  let introState = 0;
+  let activeIndex = 7;
+  let isHovering = false;
+  let idleTimer;
+  let introTimerExpand;
+  let introTimerReady;
+
+  svg.addEventListener('mouseenter', () => {
+    isHovering = true;
+  });
+  svg.addEventListener('mouseleave', () => {
+    isHovering = false;
+  });
+
+  function setActive(index) {
+    activeIndex = index;
+    render();
+  }
+
+  function render() {
+    mount.classList.toggle('is-ready', introState === 2);
+    refs.forEach((ref) => {
+      const { layer } = ref;
+      const isActive = introState === 2 && activeIndex === layer.id;
+      const isBelow = introState < 2 || layer.id < activeIndex;
+      const yPos = introState === 0 ? 430 - layer.id * 20 : layer.yBase;
+
+      ref.positioned.style.transform = `translate(500px, ${yPos}px)`;
+      ref.active.style.display = isActive ? '' : 'none';
+      ref.solid.style.display = !isActive && isBelow ? '' : 'none';
+      ref.wire.style.display = !isActive && !isBelow ? '' : 'none';
+      ref.slab.classList.toggle('is-active', isActive);
+      ref.glow.classList.toggle('is-active', isActive);
+      ref.connector.classList.toggle('is-active', isActive);
+      ref.label.classList.toggle('is-active', isActive);
+    });
+  }
+
+  introTimerExpand = setTimeout(() => {
+    introState = 1;
+    render();
+  }, 1000);
+  introTimerReady = setTimeout(() => {
+    introState = 2;
+    render();
+    idleTimer = setInterval(() => {
+      if (!isHovering) {
+        setActive(activeIndex - 1 < 0 ? layers.length - 1 : activeIndex - 1);
+      }
+    }, 3000);
+  }, 2200);
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      clearInterval(idleTimer);
+      idleTimer = null;
+    } else if (introState === 2 && !idleTimer) {
+      idleTimer = setInterval(() => {
+        if (!isHovering) setActive(activeIndex - 1 < 0 ? layers.length - 1 : activeIndex - 1);
+      }, 3000);
+    }
+  });
+
+  render();
+
+  function buildActiveLayer(layer) {
+    const group = createSvg('g');
+    const sides = createSvg('g', {
+      class: 'tech-stack__active-sides',
+      fill: `url(#tech-side-grad-${layer.id})`,
+    });
+    for (let i = 0; i < 20; i += 1) {
+      sides.appendChild(isometricRect({ y: i, rx: 32, fill: `url(#tech-side-grad-${layer.id})` }));
+    }
+    const top = createSvg('g', { transform: 'scale(1, 0.5) rotate(-45)' }, [
+      createSvg('rect', { class: 'tech-stack__top', x: '-140', y: '-140', width: '280', height: '280', rx: '32', stroke: `url(#tech-top-grad-${layer.id})` }),
+    ]);
+    const centerIcon = svgIcon(layer.centerIcon || layer.icon, layer.sideGrad[1]);
+    centerIcon.setAttribute('transform', 'translate(-40 -40) scale(2.5)');
+    top.appendChild(centerIcon);
+    group.append(sides, top);
+    return group;
+  }
+
+  function buildSolidLayer() {
+    const group = createSvg('g');
+    const fill = createSvg('g', { class: 'tech-stack__solid-fill' });
+    for (let i = 0; i < 20; i += 1) {
+      fill.appendChild(isometricRect({ y: i, rx: 32 }));
+    }
+    const outline = createSvg('g', { class: 'tech-stack__outline' }, [
+      createSvg('g', { transform: 'translate(0, 20) scale(1, 0.5) rotate(-45)' }, [
+        createSvg('rect', { x: '-140', y: '-140', width: '280', height: '280', rx: '32', 'clip-path': 'url(#tech-front-half-clip)' }),
+      ]),
+      createSvg('g', { transform: 'scale(1, 0.5) rotate(-45)' }, [
+        createSvg('rect', { x: '-140', y: '-140', width: '280', height: '280', rx: '32', fill: '#dfe5ec' }),
+      ]),
+      createSvg('line', { x1: '-184.7', y1: '0', x2: '-184.7', y2: '20' }),
+      createSvg('line', { x1: '184.7', y1: '0', x2: '184.7', y2: '20' }),
+    ]);
+    group.append(fill, outline);
+    return group;
+  }
+
+  function buildWireLayer() {
+    return createSvg('g', { class: 'tech-stack__wire' }, [
+      createSvg('g', { transform: 'scale(1, 0.5) rotate(-45)' }, [
+        createSvg('rect', { x: '-140', y: '-140', width: '280', height: '280', rx: '32' }),
+      ]),
+      createSvg('g', { transform: 'translate(0, 20) scale(1, 0.5) rotate(-45)' }, [
+        createSvg('rect', { x: '-140', y: '-140', width: '280', height: '280', rx: '32', 'clip-path': 'url(#tech-front-half-clip)' }),
+      ]),
+      createSvg('line', { x1: '-184.7', y1: '0', x2: '-184.7', y2: '20' }),
+      createSvg('line', { x1: '184.7', y1: '0', x2: '184.7', y2: '20' }),
+    ]);
+  }
+
+  function isometricRect({ y, rx, fill }) {
+    const attrs = { x: '-140', y: '-140', width: '280', height: '280', rx: String(rx) };
+    if (fill) attrs.fill = fill;
+    return createSvg('g', { transform: `translate(0, ${y}) scale(1, 0.5) rotate(-45)` }, [
+      createSvg('rect', attrs),
+    ]);
+  }
+
+  function svgIcon(name, stroke) {
+    const icon = createSvg('g', {
+      class: 'tech-stack__active-icon',
+      stroke,
+      'stroke-width': '1.8',
+      viewBox: '0 0 32 32',
+    });
+    icon.innerHTML = iconMarkup[name] || iconMarkup.calendar;
+    return icon;
+  }
+
+  function htmlIcon(name) {
+    return `<svg viewBox="0 0 32 32" aria-hidden="true">${iconMarkup[name] || iconMarkup.calendar}</svg>`;
+  }
+
+  function gradient(id, stops) {
+    return createSvg('linearGradient', { id, x1: '0%', y1: '0%', x2: '100%', y2: '100%' }, [
+      createSvg('stop', { offset: '0%', 'stop-color': stops[0] }),
+      createSvg('stop', { offset: '100%', 'stop-color': stops[1] }),
+    ]);
+  }
+
+  function createSvg(tag, attrs = {}, children) {
+    const el = document.createElementNS(svgNS, tag);
+    Object.entries(attrs).forEach(([key, value]) => el.setAttribute(key, value));
+    if (typeof children === 'string') {
+      el.textContent = children;
+    } else if (Array.isArray(children)) {
+      children.forEach((child) => el.appendChild(child));
+    }
+    return el;
+  }
+
+  window.addEventListener('beforeunload', () => {
+    clearTimeout(introTimerExpand);
+    clearTimeout(introTimerReady);
+    clearInterval(idleTimer);
+  });
 })();
 
 /* ---------- LOOKUP WIDGET: tab switching ---------- */
