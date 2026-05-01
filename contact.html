@@ -1,0 +1,391 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us — Menteiz Aviation Services</title>
+  <meta name="description" content="Get in touch with our cargo desk. Five offices across Malaysia and India, +603 5525 9555, and a 24-hour response window on business days." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=126" />
+</head>
+<body class="page-contact">
+
+  <!-- CUSTOM CURSOR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- PROGRESS BAR -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html" class="nav__logo" data-cursor="hover">
+      <img class="nav__logo-img" src="logo-mtz.png" alt="Menteiz Aviation" />
+    </a>
+    <ul class="nav__links">
+      <li><a href="index.html" data-cursor="hover">Home</a></li>
+      <li><a href="about.html" data-cursor="hover">About</a></li>
+      <li><a href="services.html" data-cursor="hover">Services</a></li>
+      <li><a href="routes.html" data-cursor="hover">Routes</a></li>
+      <li><a href="contact.html" class="is-current" data-cursor="hover">Contact</a></li>
+    </ul>
+    <a href="#login" class="nav__cta" data-cursor="hover">
+      <span>Login</span>
+    </a>
+    <button class="nav__burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main class="contact-page">
+
+    <!-- HERO -->
+    <section class="cp-hero">
+      <div class="cp-hero__inner">
+        <span class="section-label">Contact</span>
+        <h1 class="cp-hero__title">
+          Give us a call. <em>We&rsquo;re listening.</em>
+        </h1>
+        <p class="cp-hero__lede">
+          We value our customers and the communities we call home. Drop us a line, give us a call, or stop by &mdash; we endeavour to answer every inquiry within 24 hours on business days.
+        </p>
+
+        <ul class="cp-hero__meta">
+          <li><span class="cp-hero__meta-num">5</span><span class="cp-hero__meta-lbl">Offices</span></li>
+          <li><span class="cp-hero__meta-num">2</span><span class="cp-hero__meta-lbl">Countries</span></li>
+          <li><span class="cp-hero__meta-num">24<span class="cp-hero__meta-sep">/</span>h</span><span class="cp-hero__meta-lbl">Response window</span></li>
+          <li><span class="cp-hero__meta-num">2</span><span class="cp-hero__meta-lbl">Direct lines</span></li>
+        </ul>
+      </div>
+
+      <!-- Decorative ring + dotgrid on the right -->
+      <div class="cp-hero__viz" aria-hidden="true">
+        <svg viewBox="0 0 360 420" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <pattern id="cp-dotgrid" width="20" height="20" patternUnits="userSpaceOnUse">
+              <circle cx="1" cy="1" r="1" fill="rgba(10,31,61,0.18)"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#cp-dotgrid)"/>
+          <g transform="translate(180, 210)">
+            <circle r="120" fill="none" stroke="rgba(10,31,61,0.10)"/>
+            <circle r="80"  fill="none" stroke="rgba(222,29,42,0.20)" class="cp-hero__ring"/>
+            <circle r="40"  fill="none" stroke="rgba(222,29,42,0.40)"/>
+            <circle r="14"  fill="rgba(222,29,42,0.20)"/>
+            <circle r="6"   fill="#DE1D2A"/>
+            <circle r="14"  fill="none" stroke="rgba(222,29,42,0.6)" class="cp-hero__halo"/>
+          </g>
+          <text x="180" y="380" font-family="JetBrains Mono, monospace" font-size="9" fill="rgba(10,31,61,0.55)" letter-spacing="2" text-anchor="middle">CARGO DESK</text>
+        </svg>
+      </div>
+    </section>
+
+    <!-- 1. SEND US A BRIEF (form + sidebar) -->
+    <section class="cp-form">
+      <div class="cp-form__inner">
+        <header class="cp-form__head">
+          <span class="section-label">Send us a brief</span>
+          <h2 class="cp-form__title">Tell us what you&rsquo;re moving. <em>We&rsquo;ll come back fast.</em></h2>
+          <p class="cp-form__lede">A rate quote, a charter inquiry, a Class 1 DG question or a project cargo brief &mdash; one form reaches the right desk.</p>
+        </header>
+
+        <div class="cp-form__split">
+          <!-- FORM -->
+          <form class="cp-form__panel" action="mailto:enquiry@mtz-aviat.com" method="post" enctype="text/plain" novalidate>
+            <div class="cp-field cp-field--row">
+              <div class="cp-field">
+                <label for="cp-name">Full name <i>*</i></label>
+                <input id="cp-name" name="name" type="text" placeholder="Your name" required />
+              </div>
+              <div class="cp-field">
+                <label for="cp-company">Company</label>
+                <input id="cp-company" name="company" type="text" placeholder="Optional" />
+              </div>
+            </div>
+
+            <div class="cp-field cp-field--row">
+              <div class="cp-field">
+                <label for="cp-email">Email <i>*</i></label>
+                <input id="cp-email" name="email" type="email" placeholder="you@company.com" required />
+              </div>
+              <div class="cp-field">
+                <label for="cp-phone">Phone</label>
+                <input id="cp-phone" name="phone" type="tel" placeholder="+60&hellip;" />
+              </div>
+            </div>
+
+            <div class="cp-field">
+              <label for="cp-topic">What&rsquo;s this about?</label>
+              <select id="cp-topic" name="topic">
+                <option value="">Select a topic</option>
+                <option>Air Freight</option>
+                <option>Ocean Freight</option>
+                <option>Door to Door</option>
+                <option>Domestic / International Courier</option>
+                <option>E-WTP Warehouse</option>
+                <option>E-commerce Solutions</option>
+                <option>Charter / Ad-hoc</option>
+                <option>Project / DGR cargo</option>
+                <option>Partnership / Other</option>
+              </select>
+              <span class="cp-field__chev" aria-hidden="true">&#9662;</span>
+            </div>
+
+            <div class="cp-field">
+              <label for="cp-msg">Brief <i>*</i></label>
+              <textarea id="cp-msg" name="message" rows="6" placeholder="Origin, destination, weight, dimensions, cargo type, target window&hellip;" required></textarea>
+            </div>
+
+            <div class="cp-form__actions">
+              <button type="submit" class="cp-submit" data-cursor="hover">
+                <span>Submit</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </button>
+              <p class="cp-form__note">We reply within <strong>24 hours</strong> on business days. Urgent? Call us.</p>
+            </div>
+          </form>
+
+          <!-- SIDEBAR -->
+          <aside class="cp-side">
+            <div class="cp-side__block">
+              <span class="cp-side__label">Cargo desk</span>
+              <a class="cp-side__big" href="tel:+60355259555" data-cursor="hover">+603 5525 9555</a>
+              <a class="cp-side__big cp-side__big--alt" href="tel:+60355259554" data-cursor="hover">+603 5525 9554</a>
+            </div>
+
+            <div class="cp-side__block">
+              <span class="cp-side__label">Email</span>
+              <a class="cp-side__email" href="mailto:enquiry@mtz-aviat.com" data-cursor="hover">enquiry@mtz-aviat.com</a>
+            </div>
+
+            <div class="cp-side__block">
+              <span class="cp-side__label">Hours</span>
+              <p class="cp-side__hours">
+                <span>Mon &ndash; Fri</span>
+                <span class="cp-side__hours-time">9:00 &mdash; 18:00 MYT</span>
+              </p>
+              <p class="cp-side__hours">
+                <span>Sat</span>
+                <span class="cp-side__hours-time">9:00 &mdash; 13:00 MYT</span>
+              </p>
+              <p class="cp-side__hours">
+                <span>Charter desk</span>
+                <span class="cp-side__hours-time">24 / 7 on call</span>
+              </p>
+            </div>
+
+            <div class="cp-side__block">
+              <span class="cp-side__label">Follow</span>
+              <ul class="cp-side__social">
+                <li><a href="#" data-cursor="hover">LinkedIn <i>&rarr;</i></a></li>
+                <li><a href="#" data-cursor="hover">Facebook <i>&rarr;</i></a></li>
+                <li><a href="#" data-cursor="hover">Instagram <i>&rarr;</i></a></li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. OUR OFFICES (5 locations) -->
+    <section class="cp-offices">
+      <div class="cp-offices__inner">
+        <header class="cp-offices__head">
+          <span class="section-label">Our offices</span>
+          <h2 class="cp-offices__title">Five offices. <em>Two countries.</em></h2>
+          <p class="cp-offices__lede">A headquarters in Shah Alam, the cargo village at KLIA, two East Malaysia outposts, and a Mumbai office anchoring our India desk.</p>
+        </header>
+
+        <div class="cp-offices__grid">
+          <!-- HQ -->
+          <article class="cp-office cp-office--hq">
+            <div class="cp-office__head">
+              <span class="cp-office__num">01</span>
+              <span class="cp-office__badge">HQ</span>
+            </div>
+            <h3 class="cp-office__city">Shah Alam</h3>
+            <span class="cp-office__country">Selangor, Malaysia</span>
+            <p class="cp-office__addr">
+              No. 32, Jalan Sepadu 25/123A, Seksyen 25,<br/>
+              40400 Shah Alam, Selangor Darul Ehsan, Malaysia.
+            </p>
+            <ul class="cp-office__contact">
+              <li><span>Tel</span><a href="tel:+60355259555" data-cursor="hover">+603-5525 9555 / 9554</a></li>
+              <li><span>Fax</span><a data-cursor="hover">+603-5525 9550</a></li>
+            </ul>
+            <a class="cp-office__map" href="https://maps.google.com/?q=32+Jalan+Sepadu+25%2F123A+Seksyen+25+Shah+Alam+Selangor" target="_blank" rel="noopener" data-cursor="hover">
+              <span>Open in maps</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+          </article>
+
+          <!-- KLIA -->
+          <article class="cp-office">
+            <div class="cp-office__head">
+              <span class="cp-office__num">02</span>
+              <span class="cp-office__badge cp-office__badge--alt">Cargo village</span>
+            </div>
+            <h3 class="cp-office__city">KLIA</h3>
+            <span class="cp-office__country">Sepang, Malaysia</span>
+            <p class="cp-office__addr">
+              MAS Freight Forwarder Complex, Lot B7A, Block B, Free Commercial Zone, KLIA Cargo Village, Kuala Lumpur International Airport, 64000 Sepang, Selangor Darul Ehsan.
+            </p>
+            <ul class="cp-office__contact">
+              <li><span>Tel</span><a href="tel:+60387871136" data-cursor="hover">+603-8787 1136 / 1175</a></li>
+              <li><span>Fax</span><a data-cursor="hover">+603-8787 1323</a></li>
+            </ul>
+            <a class="cp-office__map" href="https://maps.google.com/?q=KLIA+Cargo+Village+Sepang+Selangor" target="_blank" rel="noopener" data-cursor="hover">
+              <span>Open in maps</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+          </article>
+
+          <!-- KOTA KINABALU -->
+          <article class="cp-office">
+            <div class="cp-office__head">
+              <span class="cp-office__num">03</span>
+              <span class="cp-office__badge cp-office__badge--alt">East Malaysia</span>
+            </div>
+            <h3 class="cp-office__city">Kota Kinabalu</h3>
+            <span class="cp-office__country">Sabah, Malaysia</span>
+            <p class="cp-office__addr">
+              Lot 4 Ground Floor &amp; Mezzanine Floor, Petagas Light Industrial Centre, Off Jalan Petagas Putatan, 88200 Kota Kinabalu, Sabah.
+            </p>
+            <ul class="cp-office__contact">
+              <li><span>Tel</span><a href="tel:+60887719888" data-cursor="hover">+608-8771 988</a></li>
+            </ul>
+            <a class="cp-office__map" href="https://maps.google.com/?q=Petagas+Light+Industrial+Centre+Kota+Kinabalu+Sabah" target="_blank" rel="noopener" data-cursor="hover">
+              <span>Open in maps</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+          </article>
+
+          <!-- KUCHING -->
+          <article class="cp-office">
+            <div class="cp-office__head">
+              <span class="cp-office__num">04</span>
+              <span class="cp-office__badge cp-office__badge--alt">East Malaysia</span>
+            </div>
+            <h3 class="cp-office__city">Kuching</h3>
+            <span class="cp-office__country">Sarawak, Malaysia</span>
+            <p class="cp-office__addr">
+              Lot 1525, Block 17, FL1 SL7 L222 &amp; 224, Jalan Lapangan Terbang, 93250 Kuching, Sarawak, Malaysia.
+            </p>
+            <ul class="cp-office__contact">
+              <li><span>Tel</span><a href="tel:+60355259555" data-cursor="hover">via HQ &mdash; +603-5525 9555</a></li>
+            </ul>
+            <a class="cp-office__map" href="https://maps.google.com/?q=Jalan+Lapangan+Terbang+Kuching+Sarawak" target="_blank" rel="noopener" data-cursor="hover">
+              <span>Open in maps</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+          </article>
+
+          <!-- INDIA -->
+          <article class="cp-office">
+            <div class="cp-office__head">
+              <span class="cp-office__num">05</span>
+              <span class="cp-office__badge cp-office__badge--intl">International</span>
+            </div>
+            <h3 class="cp-office__city">Mumbai</h3>
+            <span class="cp-office__country">Maharashtra, India</span>
+            <p class="cp-office__addr">
+              502, Building No. 5, Solitaire Corporate Park, 167 Guru Hargovindji Marg, Andheri-Ghatkopar Link Road, Chakala, Andheri (E), Mumbai 400 093, India.
+            </p>
+            <ul class="cp-office__contact">
+              <li><span>Email</span><a href="mailto:enquiry@mtz-aviat.com" data-cursor="hover">enquiry@mtz-aviat.com</a></li>
+            </ul>
+            <a class="cp-office__map" href="https://maps.google.com/?q=Solitaire+Corporate+Park+Andheri+East+Mumbai" target="_blank" rel="noopener" data-cursor="hover">
+              <span>Open in maps</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="foot" id="foot">
+    <div class="foot__grain" aria-hidden="true"></div>
+
+    <div class="foot__marquee" aria-hidden="true">
+      <div class="foot__marquee-track">
+        <span>One Trusted Solution</span><span class="foot__marquee-dot"></span>
+        <span>For All Your Cargo</span><span class="foot__marquee-dot"></span>
+        <span>Menteiz Aviation</span><span class="foot__marquee-dot"></span>
+        <span>Navigating The Skies</span><span class="foot__marquee-dot"></span>
+        <span>Delivering Excellence</span><span class="foot__marquee-dot"></span>
+        <span>One Trusted Solution</span><span class="foot__marquee-dot"></span>
+        <span>For All Your Cargo</span><span class="foot__marquee-dot"></span>
+        <span>Menteiz Aviation</span><span class="foot__marquee-dot"></span>
+        <span>Navigating The Skies</span><span class="foot__marquee-dot"></span>
+        <span>Delivering Excellence</span><span class="foot__marquee-dot"></span>
+      </div>
+    </div>
+
+    <div class="foot__cta-stripe">
+      <p class="foot__cta-line">Ready when you are.</p>
+      <a class="foot__cta-link" href="mailto:enquiry@mtz-aviat.com" data-cursor="hover">
+        <span>Start a conversation</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="foot__brand-strip">
+      <h3 class="foot__big" id="footBig">
+        <span class="foot__big-row" data-shift="-1">Menteiz</span>
+        <em class="foot__big-row" data-shift="1">Aviation</em>
+      </h3>
+    </div>
+
+    <div class="foot__cols">
+      <div class="foot__col">
+        <span class="foot__label">Visit</span>
+        <p>Menteiz Aviation Services Sdn. Bhd<br/>32, Jalan Sepadu 25/123A,<br/>Seksyen 25, Selangor, Malaysia</p>
+      </div>
+      <div class="foot__col">
+        <span class="foot__label">Reach</span>
+        <ul class="foot__list">
+          <li><a href="tel:+60355259555" data-cursor="hover"><span>+603 5525 9555</span></a></li>
+          <li><a href="tel:+60355259554" data-cursor="hover"><span>+603 5525 9554</span></a></li>
+          <li><a href="mailto:enquiry@mtz-aviat.com" data-cursor="hover"><span>enquiry@mtz-aviat.com</span></a></li>
+        </ul>
+      </div>
+      <div class="foot__col">
+        <span class="foot__label">Sitemap</span>
+        <ul class="foot__list">
+          <li><a href="index.html" data-cursor="hover"><span>Home</span></a></li>
+          <li><a href="about.html" data-cursor="hover"><span>About</span></a></li>
+          <li><a href="services.html" data-cursor="hover"><span>Services</span></a></li>
+          <li><a href="routes.html" data-cursor="hover"><span>Routes</span></a></li>
+          <li><a href="contact.html" data-cursor="hover"><span>Contact</span></a></li>
+        </ul>
+      </div>
+      <div class="foot__col">
+        <span class="foot__label">Follow</span>
+        <ul class="foot__list">
+          <li><a href="#" data-cursor="hover"><span>LinkedIn</span><i>&uarr;</i></a></li>
+          <li><a href="#" data-cursor="hover"><span>Facebook</span><i>&uarr;</i></a></li>
+          <li><a href="#" data-cursor="hover"><span>Instagram</span><i>&uarr;</i></a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot__bot">
+      <span class="foot__copy">&copy; 2025 Menteiz Aviation Services Sdn. Bhd &middot; All rights reserved.</span>
+      <button class="foot__top-btn" id="footTopBtn" data-cursor="hover" aria-label="Back to top">
+        <span>Back to top</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+      </button>
+    </div>
+  </footer>
+
+  <!-- LIBRARIES -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="main.js?v=126"></script>
+</body>
+</html>

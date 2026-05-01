@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -12,7 +12,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=118" />
+  <link rel="stylesheet" href="styles.css?v=126" />
 </head>
 
 <body>
@@ -75,15 +75,14 @@
   <!-- NAV -->
   <nav class="nav">
     <a href="#home" class="nav__logo" data-cursor="hover">
-      <span class="nav__logo-text">MENTEIZ <em>AVIATION</em></span>
+      <img class="nav__logo-img" src="logo-mtz.png" alt="Menteiz Aviation" />
     </a>
     <ul class="nav__links">
       <li><a href="#home" data-cursor="hover">Home</a></li>
       <li><a href="about.html" data-cursor="hover">About</a></li>
-      <li><a href="#services" data-cursor="hover">Services</a></li>
-      <li><a href="#routes" data-cursor="hover">Routes</a></li>
-      <li><a href="#contact" data-cursor="hover">Contact</a></li>
-      <li><a href="https://rewards.mtz-aviat.com" data-cursor="hover">Rewards</a></li>
+      <li><a href="services.html" data-cursor="hover">Services</a></li>
+      <li><a href="routes.html" data-cursor="hover">Routes</a></li>
+      <li><a href="contact.html" data-cursor="hover">Contact</a></li>
     </ul>
     <a href="#login" class="nav__cta" data-cursor="hover">
       <span>Login</span>
@@ -170,7 +169,7 @@
               <path d="M5 12h14M13 5l7 7-7 7" />
             </svg>
           </a>
-          <a class="btn btn--ghost" href="#services" data-cursor="hover">
+          <a class="btn btn--ghost" href="services.html" data-cursor="hover">
             <span>Our services</span>
           </a>
         </div>
@@ -225,14 +224,6 @@
               d="M3 7h11v8H3zM14 10h4l3 3v2h-7zM6.5 18a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM17.5 18a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
           </svg>
           <span>Track your Shipment</span>
-        </button>
-        <button class="lookup__tab" role="tab" aria-selected="false" data-tab="pincode" data-cursor="hover">
-          <svg class="lookup__tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path
-              d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zM12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
-          </svg>
-          <span>Pincode Serviceability</span>
         </button>
         <button class="lookup__tab" role="tab" aria-selected="false" data-tab="quote" data-cursor="hover">
           <svg class="lookup__tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
@@ -303,24 +294,6 @@
             <path d="M21 21l-4.3-4.3" />
           </svg>
           <span>Track Shipment</span>
-        </button>
-      </form>
-
-      <form class="lookup__form lookup__form--pincode" data-form="pincode" onsubmit="return false">
-        <div class="lookup__field">
-          <label>From Pincode<i>*</i></label>
-          <input type="text" placeholder="e.g. 110001" />
-        </div>
-        <div class="lookup__field">
-          <label>To Pincode<i>*</i></label>
-          <input type="text" placeholder="e.g. 560001" />
-        </div>
-        <button type="submit" class="lookup__cta" data-cursor="hover">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-            stroke-linejoin="round">
-            <path d="M9 12l2 2 4-4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" />
-          </svg>
-          <span>Check Serviceability</span>
         </button>
       </form>
 
@@ -543,34 +516,25 @@
           <div class="cargo-stage__media">
             <div class="cargo-stage__frame">
               <img class="cargo-stage__img is-active" data-idx="0"
-                src="https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&amp;w=1600" alt="General Cargo" />
+                src="cargo-general.jpg" alt="General Cargo" />
               <img class="cargo-stage__img" data-idx="1"
-                src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&amp;w=1600"
-                alt="Perishable Goods" loading="lazy" />
+                src="cargo-perishable.png" alt="Perishable Goods" loading="lazy" />
               <img class="cargo-stage__img" data-idx="2"
-                src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&amp;w=1600" alt="Dangerous Goods"
-                loading="lazy" />
+                src="cargo-dangerous.png" alt="Dangerous Goods" loading="lazy" />
               <img class="cargo-stage__img" data-idx="3"
-                src="https://images.unsplash.com/photo-1578574577315-3fbeb0cecdc2?q=80&amp;w=1600" alt="Valuable Goods"
-                loading="lazy" />
+                src="cargo-valuable.png" alt="Valuable Goods" loading="lazy" />
               <img class="cargo-stage__img" data-idx="4"
-                src="https://images.unsplash.com/photo-1583912267550-d6e11c00a9d2?q=80&amp;w=1600"
-                alt="Medical Equipment" loading="lazy" />
+                src="cargo-medical.png" alt="Medical Equipment" loading="lazy" />
               <img class="cargo-stage__img" data-idx="5"
-                src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&amp;w=1600"
-                alt="Vulnerable Cargo" loading="lazy" />
+                src="cargo-vulnerable.png" alt="Vulnerable Cargo" loading="lazy" />
               <img class="cargo-stage__img" data-idx="6"
-                src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&amp;w=1600"
-                alt="Oilwell Equipment" loading="lazy" />
+                src="cargo-oilwell.jpg" alt="Oilwell Equipment" loading="lazy" />
               <img class="cargo-stage__img" data-idx="7"
-                src="https://images.unsplash.com/photo-1551288049-bbda38a10ad5?q=80&amp;w=1600" alt="Project Cargo"
-                loading="lazy" />
+                src="cargo-project.jpg" alt="Project Cargo" loading="lazy" />
               <img class="cargo-stage__img" data-idx="8"
-                src="https://images.unsplash.com/photo-1553284966-19b8815c7817?q=80&amp;w=1600" alt="Live Animals"
-                loading="lazy" />
+                src="cargo-live-animals.jpg" alt="Live Animals" loading="lazy" />
               <img class="cargo-stage__img" data-idx="9"
-                src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&amp;w=1600"
-                alt="Temperature Control" loading="lazy" />
+                src="cargo-temperature.png" alt="Temperature Control" loading="lazy" />
               <span class="cargo-stage__veil"></span>
               <div class="cargo-stage__caption">
                 <span class="cargo-stage__num" id="cargoStageNum">01 / 10</span>
@@ -1047,10 +1011,9 @@
         <ul class="foot__list">
           <li><a href="#home" data-cursor="hover"><span>Home</span></a></li>
           <li><a href="about.html" data-cursor="hover"><span>About</span></a></li>
-          <li><a href="#services" data-cursor="hover"><span>Services</span></a></li>
-          <li><a href="#routes" data-cursor="hover"><span>Routes</span></a></li>
-          <li><a href="#contact" data-cursor="hover"><span>Contact</span></a></li>
-          <li><a href="https://rewards.mtz-aviat.com" data-cursor="hover"><span>Rewards</span></a></li>
+          <li><a href="services.html" data-cursor="hover"><span>Services</span></a></li>
+          <li><a href="routes.html" data-cursor="hover"><span>Routes</span></a></li>
+          <li><a href="contact.html" data-cursor="hover"><span>Contact</span></a></li>
         </ul>
       </div>
       <div class="foot__col">
@@ -1080,7 +1043,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
-  <script src="main.js?v=118"></script>
+  <script src="main.js?v=126"></script>
 </body>
 
 </html>

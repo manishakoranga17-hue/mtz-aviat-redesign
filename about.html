@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -8,57 +8,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=118" />
+  <link rel="stylesheet" href="styles.css?v=126" />
 </head>
 <body class="page-about">
-
-  <!-- LOADER -->
-  <div class="loader" id="loader">
-    <div class="loader__panel loader__panel--top" aria-hidden="true"></div>
-    <div class="loader__panel loader__panel--bot" aria-hidden="true"></div>
-    <div class="loader__grid" aria-hidden="true"></div>
-    <div class="loader__glow" aria-hidden="true"></div>
-
-    <div class="loader__corner loader__corner--tl">
-      <span class="loader__dot" aria-hidden="true"></span>
-      <span>MTZ&#8209;AVIAT</span>
-      <span class="loader__sep">/</span>
-      <span>KUL</span>
-    </div>
-    <div class="loader__corner loader__corner--tr">
-      <span>Status</span>
-      <span class="loader__sep">/</span>
-      <span class="loader__status">Boarding</span>
-    </div>
-
-    <div class="loader__center">
-      <span class="loader__eyebrow">Menteiz Aviation Services</span>
-      <h1 class="loader__title" aria-label="Menteiz Aviation">
-        <span class="loader__row" style="--d:0.15s">
-          <span class="loader__row-text">Menteiz</span>
-        </span>
-        <span class="loader__row loader__row--em" style="--d:0.32s">
-          <span class="loader__row-text">Aviation</span>
-        </span>
-      </h1>
-      <p class="loader__caption">One Trusted Solution For All Your Cargo</p>
-    </div>
-
-    <div class="loader__foot">
-      <div class="loader__track" id="loaderTrack" aria-hidden="true">
-        <span class="loader__track-line"></span>
-        <span class="loader__track-fill" id="loaderTrackFill"></span>
-        <img class="loader__plane-img" id="loaderPlane" src="loader-plane.svg" alt="" />
-      </div>
-      <div class="loader__meta">
-        <span class="loader__meta-left">Loading our story</span>
-        <span class="loader__meta-right">
-          <span class="loader__pct" id="loaderPct">00</span>
-          <span class="loader__pct-sym">%</span>
-        </span>
-      </div>
-    </div>
-  </div>
 
   <!-- CUSTOM CURSOR -->
   <div class="cursor" id="cursor"></div>
@@ -70,15 +22,14 @@
   <!-- NAV -->
   <nav class="nav">
     <a href="index.html" class="nav__logo" data-cursor="hover">
-      <span class="nav__logo-text">MENTEIZ <em>AVIATION</em></span>
+      <img class="nav__logo-img" src="logo-mtz.png" alt="Menteiz Aviation" />
     </a>
     <ul class="nav__links">
       <li><a href="index.html" data-cursor="hover">Home</a></li>
       <li><a href="about.html" class="is-current" data-cursor="hover">About</a></li>
-      <li><a href="index.html#services" data-cursor="hover">Services</a></li>
-      <li><a href="index.html#routes" data-cursor="hover">Routes</a></li>
-      <li><a href="index.html#contact" data-cursor="hover">Contact</a></li>
-      <li><a href="https://rewards.mtz-aviat.com" data-cursor="hover">Rewards</a></li>
+      <li><a href="services.html" data-cursor="hover">Services</a></li>
+      <li><a href="routes.html" data-cursor="hover">Routes</a></li>
+      <li><a href="contact.html" data-cursor="hover">Contact</a></li>
     </ul>
     <a href="#login" class="nav__cta" data-cursor="hover">
       <span>Login</span>
@@ -306,11 +257,11 @@
         </h2>
         <p class="ap-cta__sub">Send a request, ask for a rate, or just say hello. We answer fast, and we always answer first.</p>
         <div class="ap-cta__actions">
-          <a class="btn btn--primary" href="index.html#contact" data-cursor="hover">
+          <a class="btn btn--primary" href="contact.html" data-cursor="hover">
             <span>Talk to our team</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
           </a>
-          <a class="btn btn--ghost" href="index.html#services" data-cursor="hover">
+          <a class="btn btn--ghost" href="services.html" data-cursor="hover">
             <span>Explore services</span>
           </a>
         </div>
@@ -371,10 +322,9 @@
         <ul class="foot__list">
           <li><a href="index.html" data-cursor="hover"><span>Home</span></a></li>
           <li><a href="about.html" data-cursor="hover"><span>About</span></a></li>
-          <li><a href="index.html#services" data-cursor="hover"><span>Services</span></a></li>
-          <li><a href="index.html#routes" data-cursor="hover"><span>Routes</span></a></li>
-          <li><a href="index.html#contact" data-cursor="hover"><span>Contact</span></a></li>
-          <li><a href="https://rewards.mtz-aviat.com" data-cursor="hover"><span>Rewards</span></a></li>
+          <li><a href="services.html" data-cursor="hover"><span>Services</span></a></li>
+          <li><a href="routes.html" data-cursor="hover"><span>Routes</span></a></li>
+          <li><a href="contact.html" data-cursor="hover"><span>Contact</span></a></li>
         </ul>
       </div>
       <div class="foot__col">
@@ -399,6 +349,6 @@
   <!-- LIBRARIES -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="main.js?v=118"></script>
+  <script src="main.js?v=126"></script>
 </body>
 </html>

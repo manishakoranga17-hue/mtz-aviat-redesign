@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bookings — Menteiz Aviation Services</title>
+  <meta name="description" content="Create a new AWB booking — Menteiz Aviation customer dashboard." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=126" />
+</head>
+<body class="page-dashboard">
+
+  <div class="dash">
+    <!-- ═════════════════════ SIDEBAR ═════════════════════ -->
+    <aside class="dash__side">
+      <a class="dash__logo" href="index.html">
+        <img class="dash__logo-img" src="logo-mtz.png" alt="Menteiz Aviation" />
+      </a>
+
+      <ul class="dash__menu">
+        <li>
+          <a href="dashboard.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 11l9-7 9 7v9a2 2 0 0 1-2 2h-3v-7H10v7H6a2 2 0 0 1-2-2v-9z"/>
+            </svg>
+            <span>Dashboard</span>
+          </a>
+        </li>
+      </ul>
+
+      <span class="dash__section">Bookings</span>
+      <ul class="dash__menu">
+        <li>
+          <a href="bookings.html" class="is-active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 8l9-5 9 5v8l-9 5-9-5V8z"/>
+              <path d="M3 8l9 5 9-5"/>
+              <line x1="12" y1="13" x2="12" y2="21"/>
+            </svg>
+            <span>Bookings</span>
+            <i>15</i>
+          </a>
+        </li>
+        <li>
+          <a href="my-bookings.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="5" width="18" height="16" rx="2"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+              <line x1="8" y1="3" x2="8" y2="7"/>
+              <line x1="16" y1="3" x2="16" y2="7"/>
+              <path d="M8 15l3 3 5-5"/>
+            </svg>
+            <span>My Bookings</span>
+          </a>
+        </li>
+        <li>
+          <a href="bulk-bookings.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="8" height="9" rx="1"/>
+              <rect x="13" y="11" width="8" height="9" rx="1"/>
+              <rect x="8" y="3" width="8" height="8" rx="1"/>
+            </svg>
+            <span>Bulk Bookings</span>
+          </a>
+        </li>
+      </ul>
+
+      <span class="dash__section">Wallet &amp; Invoices</span>
+      <ul class="dash__menu">
+        <li>
+          <a href="managing-partners.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="9" cy="8" r="3.5"/>
+              <path d="M2 21c0-3.5 3.13-6 7-6s7 2.5 7 6"/>
+              <circle cx="17" cy="9" r="2.5"/>
+              <path d="M16 14.5c2.7 0 5 1.6 5 4.5"/>
+            </svg>
+            <span>Managing Partners</span>
+          </a>
+        </li>
+        <li>
+          <a href="my-wallet.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="6" width="20" height="13" rx="2"/>
+              <path d="M16 12.5h2"/>
+              <path d="M2 9h20"/>
+            </svg>
+            <span>My Wallet</span>
+          </a>
+        </li>
+        <li>
+          <a href="my-invoices.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 3h9l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/>
+              <path d="M14 3v5h5"/>
+              <line x1="9" y1="13" x2="15" y2="13"/>
+              <line x1="9" y1="17" x2="13" y2="17"/>
+            </svg>
+            <span>My Invoices</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="dash__side-bot">
+        <a href="#" class="dash__menu-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
+          </svg>
+          <span>Profile</span>
+        </a>
+        <a href="index.html" class="dash__menu-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <path d="M16 17l5-5-5-5"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+          <span>Logout</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- ═════════════════════ MAIN ═════════════════════ -->
+    <main class="dash__main">
+
+      <!-- Top bar (shared) -->
+      <header class="dash__topbar">
+        <div class="dash__brand">
+          <svg class="dash__brand-mark" viewBox="0 0 48 32" aria-hidden="true">
+            <g fill="#DE1D2A">
+              <path d="M14 16 L24 6 L34 16 L24 26 Z"/>
+              <path d="M0 16 Q10 12 14 16 Q10 20 0 16 Z" opacity="0.85"/>
+              <path d="M48 16 Q38 12 34 16 Q38 20 48 16 Z" opacity="0.85"/>
+            </g>
+            <rect x="20" y="12" width="8" height="8" rx="1" fill="#fff" stroke="#0a1f3d" stroke-width="0.6"/>
+          </svg>
+          <span class="dash__brand-name">MTZ <em>Track</em></span>
+        </div>
+
+        <div class="dash__search">
+          <span class="dash__search-prefix">232-</span>
+          <input type="text" placeholder="Enter AWBs (e.g. 232-12345678, 23456789)" />
+          <button class="dash__search-btn" aria-label="Track">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="7"/>
+              <line x1="21" y1="21" x2="16.5" y2="16.5"/>
+            </svg>
+          </button>
+        </div>
+
+        <button class="dash__user" type="button">
+          <span class="dash__user-avatar">A</span>
+          <span class="dash__user-name">Akshay Sharma</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+      </header>
+
+      <h1 class="dash__page-title">Bookings</h1>
+
+      <section class="dash__panel">
+        <form class="dash__form" id="bookingForm" onsubmit="event.preventDefault();">
+
+          <div class="dash__form-grid dash__form-grid--single">
+            <div class="dash__field">
+              <label for="customerCode">Customer Code<span class="req">*</span></label>
+              <div class="dash__control">
+                <select id="customerCode" class="dash__select">
+                  <option value="">Select Customer Code</option>
+                  <option>ANIDELDO</option>
+                  <option>PETRO·MYY</option>
+                  <option>AGRI·KCH</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="dash__form-grid">
+            <div class="dash__field">
+              <label for="origin">Origin<span class="req">*</span></label>
+              <div class="dash__control">
+                <input id="origin" class="dash__input" type="text" placeholder="Origin" />
+              </div>
+            </div>
+            <div class="dash__field">
+              <label for="destination">Destination<span class="req">*</span></label>
+              <div class="dash__control">
+                <input id="destination" class="dash__input dash__input--search" type="text" placeholder="Select Destination" />
+              </div>
+            </div>
+          </div>
+
+          <div class="dash__form-grid">
+            <div class="dash__field">
+              <label for="shipper">Shipper<span class="req">*</span></label>
+              <div class="dash__control">
+                <select id="shipper" class="dash__select">
+                  <option value="">Select Shipper</option>
+                  <option>Shipper A</option>
+                  <option>Shipper B</option>
+                </select>
+                <button type="button" class="dash__list-btn" aria-label="Browse shippers">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/>
+                    <circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="dash__field">
+              <label for="consignee">Consignee<span class="req">*</span></label>
+              <div class="dash__control">
+                <select id="consignee" class="dash__select">
+                  <option value="">Select Consignee</option>
+                  <option>Consignee A</option>
+                  <option>Consignee B</option>
+                </select>
+                <button type="button" class="dash__list-btn" aria-label="Browse consignees">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/>
+                    <circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="dash__form-grid">
+            <div class="dash__field">
+              <label for="commodityCode">Commodity Code<span class="req">*</span></label>
+              <div class="dash__control">
+                <input id="commodityCode" class="dash__input dash__input--search" type="text" placeholder="Select Commodity Code" />
+              </div>
+            </div>
+            <div class="dash__field">
+              <label for="commodityDesc">Commodity Description<span class="req">*</span></label>
+              <div class="dash__control">
+                <input id="commodityDesc" class="dash__input" type="text" placeholder="Enter Commodity Description" />
+              </div>
+            </div>
+          </div>
+
+          <div class="dash__form-grid">
+            <div class="dash__field">
+              <label for="pieces">Pieces<span class="req">*</span></label>
+              <div class="dash__control">
+                <input id="pieces" class="dash__input" type="number" placeholder="Enter Pieces" min="1" />
+              </div>
+            </div>
+            <div class="dash__field">
+              <label for="grossWeight">Gross Weight<span class="req">*</span></label>
+              <div class="dash__control">
+                <input id="grossWeight" class="dash__input" type="number" placeholder="Enter Gross Weight" min="0" step="0.1" />
+                <button type="button" class="dash__list-btn" aria-label="Weight breakup">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/>
+                    <circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flight Route subsection -->
+          <div class="dash__form-subhead">
+            <h2>Flight Route</h2>
+            <button type="button" class="dash__add-link" id="addRouteBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+              <span>Add New Route</span>
+            </button>
+          </div>
+
+          <div id="routeRows">
+            <div class="dash__route-row">
+              <div class="dash__field">
+                <label>Origin<span class="req">*</span></label>
+                <div class="dash__control">
+                  <select class="dash__select"><option value="">Select Origin</option><option>KUL</option><option>DEL</option><option>BOM</option></select>
+                </div>
+              </div>
+              <div class="dash__field">
+                <label>Destination<span class="req">*</span></label>
+                <div class="dash__control">
+                  <select class="dash__select"><option value="">Select Destination</option><option>BOM</option><option>BKI</option><option>KCH</option></select>
+                </div>
+              </div>
+              <div class="dash__field">
+                <label>Flight Date<span class="req">*</span></label>
+                <div class="dash__control">
+                  <input type="text" class="dash__input dash__input--date" placeholder="dd-mm-yyyy" value="25-01-2026" />
+                </div>
+              </div>
+              <div class="dash__field">
+                <label>Flight Code<span class="req">*</span></label>
+                <div class="dash__control">
+                  <select class="dash__select"><option value="">Select Flight Code</option><option>MTZ-101</option><option>MTZ-202</option></select>
+                </div>
+              </div>
+              <button type="button" class="dash__trash-btn" aria-label="Remove route">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="3 6 5 6 21 6"/>
+                  <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+                  <path d="M10 11v6"/><path d="M14 11v6"/>
+                  <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" class="dash__btn-submit">Submit Booking</button>
+        </form>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="main.js?v=126"></script>
+</body>
+</html>

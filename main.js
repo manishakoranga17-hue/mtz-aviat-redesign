@@ -26,7 +26,10 @@ window.addEventListener('load', () => {
 });
 /* Safety net: dismiss after max 3.5s no matter what */
 setTimeout(dismissLoader, 3500);
-document.body.style.overflow = 'hidden';
+/* Only lock scrolling when a loader actually exists on the page */
+if (document.getElementById('loader')) {
+  document.body.style.overflow = 'hidden';
+}
 
 /* Drive the percentage counter, the plane's flight across the track,
    and the gradient trail behind it — all from a single rAF loop. */
@@ -1348,10 +1351,10 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
     const isLeft = layer.side === 'left';
     const foreignObject = createSvg('foreignObject', {
       class: 'tech-stack__label',
-      x: isLeft ? '20' : '760',
-      y: String(layer.yBase - 5),
-      width: '220',
-      height: '34',
+      x: isLeft ? '-60' : '760',
+      y: String(layer.yBase - 16),
+      width: '300',
+      height: '56',
       style: `--layer-color:${layer.color};animation-delay:${layer.id * 0.05 + 0.2}s;animation-fill-mode:both`,
     });
     const shell = document.createElement('div');
@@ -1621,4 +1624,417 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
+
+  /* ──────────────────────────────────────────────────────────────
+     LOGIN FLOW — multi-step modal injected on first click
+     ────────────────────────────────────────────────────────────── */
+  const loginTriggers = document.querySelectorAll('a[href="#login"], .nav__cta');
+  if (loginTriggers.length) {
+    let modal = null;
+
+    const modalHTML = `
+      <div class="lm" id="loginModal" aria-hidden="true">
+        <div class="lm__backdrop" data-lm-close></div>
+        <div class="lm__panel" role="dialog" aria-modal="true" aria-labelledby="lm-title">
+          <button class="lm__close" data-lm-close type="button" aria-label="Close">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          </button>
+
+          <aside class="lm__brand">
+            <span class="lm__logo">MENTEIZ <em>AVIATION</em></span>
+            <div class="lm__brand-mid">
+              <h2 id="lm-title" class="lm__brand-title">Welcome back. <em>Cargo desk awaits.</em></h2>
+              <p class="lm__brand-sub">One login for bookings, capacity, AWB tracking and accounts &mdash; the same console our team uses, available to you.</p>
+              <ul class="lm__brand-feats">
+                <li><i></i><span>Live capacity &amp; rates across 200+ partner carriers</span></li>
+                <li><i></i><span>Track every AWB end-to-end with milestone alerts</span></li>
+                <li><i></i><span>One-click charter quotes and DGR declarations</span></li>
+              </ul>
+            </div>
+            <div class="lm__brand-foot">
+              <span>New customer?</span><a href="contact.html">Request access &rarr;</a>
+            </div>
+            <div class="lm__brand-viz" aria-hidden="true">
+              <svg viewBox="0 0 200 200">
+                <circle cx="100" cy="100" r="90" fill="none" stroke="rgba(255,255,255,0.06)"/>
+                <circle cx="100" cy="100" r="60" fill="none" stroke="rgba(222,29,42,0.18)"/>
+                <circle cx="100" cy="100" r="30" fill="none" stroke="rgba(222,29,42,0.40)"/>
+                <circle cx="100" cy="100" r="6" fill="#DE1D2A"/>
+              </svg>
+            </div>
+          </aside>
+
+          <div class="lm__main">
+            <div class="lm__tabs" role="tablist">
+              <button class="lm__tab is-active" data-lm-tab="signin" type="button" role="tab">Sign in</button>
+              <button class="lm__tab" data-lm-tab="track" type="button" role="tab">Track shipment</button>
+            </div>
+
+            <!-- SIGN-IN VIEW -->
+            <div class="lm__view is-active" data-lm-view="signin">
+
+              <!-- Step 1: email -->
+              <div class="lm__step is-active" data-lm-step="email">
+                <h3 class="lm__step-title">Sign in to your cargo desk</h3>
+                <p class="lm__step-sub">Enter the email associated with your Menteiz account.</p>
+                <form class="lm__form" data-lm-form="email" novalidate>
+                  <div class="lm-field">
+                    <label for="lm-email">Email</label>
+                    <input id="lm-email" type="email" name="email" placeholder="you@company.com" autocomplete="username" required />
+                    <span class="lm-field__err" data-err="lm-email"></span>
+                  </div>
+                  <button type="submit" class="lm__submit">
+                    <span>Continue</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                  </button>
+                </form>
+                <div class="lm__alt"><a href="contact.html">Don&rsquo;t have an account? Request access &rarr;</a></div>
+              </div>
+
+              <!-- Step 2: password -->
+              <div class="lm__step" data-lm-step="password">
+                <button class="lm__back" data-lm-back type="button">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                  <span>Use another email</span>
+                </button>
+                <h3 class="lm__step-title">Welcome back</h3>
+                <p class="lm__step-sub">Signing in as <span class="lm__email-tag" id="lm-email-display">you@company.com</span></p>
+                <form class="lm__form" data-lm-form="password" novalidate>
+                  <div class="lm-field">
+                    <label for="lm-pass">Password <a href="#" class="lm-field__link">Forgot?</a></label>
+                    <input id="lm-pass" type="password" name="password" placeholder="Your password" autocomplete="current-password" required />
+                    <span class="lm-field__err" data-err="lm-pass"></span>
+                  </div>
+                  <label class="lm-check">
+                    <input type="checkbox" name="remember" />
+                    <span>Keep me signed in for 30 days</span>
+                  </label>
+                  <button type="submit" class="lm__submit">
+                    <span>Sign in</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                  </button>
+                </form>
+              </div>
+
+              <!-- Step 3: verifying -->
+              <div class="lm__step lm__step--center" data-lm-step="verify">
+                <div class="lm__spinner" aria-hidden="true"></div>
+                <h3 class="lm__step-title">Securing your session&hellip;</h3>
+                <p class="lm__step-sub">Verifying credentials and opening the cargo desk.</p>
+                <ul class="lm__progress" data-lm-progress>
+                  <li>Credentials verified</li>
+                  <li>Establishing session</li>
+                  <li>Loading dashboard</li>
+                </ul>
+              </div>
+
+              <!-- Step 4: success -->
+              <div class="lm__step lm__step--center" data-lm-step="success">
+                <div class="lm__check" aria-hidden="true">
+                  <svg viewBox="0 0 32 32">
+                    <circle cx="16" cy="16" r="14" class="lm__check-ring"/>
+                    <path d="M 9 16 L 14 21 L 23 12" class="lm__check-tick"/>
+                  </svg>
+                </div>
+                <h3 class="lm__step-title">You&rsquo;re in.</h3>
+                <p class="lm__step-sub" id="lm-success-greeting">Your cargo desk is ready.</p>
+                <a href="dashboard.html" class="lm__submit lm__submit--link">
+                  <span>Continue to dashboard</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+
+            </div>
+
+            <!-- TRACK VIEW -->
+            <div class="lm__view" data-lm-view="track">
+
+              <!-- Step 1: AWB input -->
+              <div class="lm__step is-active" data-lm-step="awb">
+                <h3 class="lm__step-title">Track a shipment</h3>
+                <p class="lm__step-sub">Enter the AWB or booking reference. No account needed.</p>
+                <form class="lm__form" data-lm-form="track" novalidate>
+                  <div class="lm-field">
+                    <label for="lm-awb">AWB / booking reference</label>
+                    <input id="lm-awb" type="text" placeholder="232-12345678" required />
+                    <span class="lm-field__err" data-err="lm-awb"></span>
+                  </div>
+                  <button type="submit" class="lm__submit">
+                    <span>Track shipment</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                  </button>
+                </form>
+                <div class="lm__alt"><a href="contact.html">Need help finding your AWB? Talk to our desk &rarr;</a></div>
+              </div>
+
+              <!-- Step 2: result -->
+              <div class="lm__step" data-lm-step="result">
+                <button class="lm__back" data-lm-back type="button">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                  <span>Track another</span>
+                </button>
+                <h3 class="lm__step-title">AWB <span id="lm-awb-display">232-12345678</span></h3>
+                <p class="lm__step-sub">KUL &rarr; BKI &middot; B737-800F &middot; ETA 16:42 MYT</p>
+                <ul class="lm__timeline">
+                  <li class="is-done"><span>Booked</span><small>Quote confirmed &middot; KUL</small></li>
+                  <li class="is-done"><span>Manifested</span><small>AWB issued &middot; cargo received</small></li>
+                  <li class="is-active"><span>In transit</span><small>Departed KUL &middot; ETA BKI 16:42</small></li>
+                  <li><span>Arrived</span><small>Awaiting</small></li>
+                  <li><span>Delivered</span><small>Awaiting POD</small></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>`;
+
+    function injectModal() {
+      if (modal) return modal;
+      const wrap = document.createElement('div');
+      wrap.innerHTML = modalHTML.trim();
+      modal = wrap.firstChild;
+      document.body.appendChild(modal);
+      bindModal();
+      return modal;
+    }
+
+    function bindModal() {
+      modal.querySelectorAll('[data-lm-close]').forEach((b) =>
+        b.addEventListener('click', closeModal)
+      );
+
+      modal.querySelectorAll('[data-lm-tab]').forEach((tab) => {
+        tab.addEventListener('click', () => {
+          const which = tab.dataset.lmTab;
+          modal.querySelectorAll('[data-lm-tab]').forEach((t) =>
+            t.classList.toggle('is-active', t === tab)
+          );
+          modal.querySelectorAll('[data-lm-view]').forEach((v) =>
+            v.classList.toggle('is-active', v.dataset.lmView === which)
+          );
+          resetView(which);
+        });
+      });
+
+      // EMAIL → PASSWORD
+      const emailForm = modal.querySelector('[data-lm-form="email"]');
+      emailForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const input = emailForm.querySelector('input');
+        const val = input.value.trim();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+          showErr(input, 'Enter a valid email address.');
+          return;
+        }
+        clearErr(input);
+        modal.querySelector('#lm-email-display').textContent = val;
+        goStep('signin', 'password');
+        setTimeout(() => modal.querySelector('#lm-pass')?.focus(), 320);
+      });
+
+      // PASSWORD → VERIFY → SUCCESS
+      const passForm = modal.querySelector('[data-lm-form="password"]');
+      passForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const input = passForm.querySelector('input[type="password"]');
+        if (!input.value || input.value.length < 4) {
+          showErr(input, 'Password must be at least 4 characters.');
+          return;
+        }
+        clearErr(input);
+        goStep('signin', 'verify');
+
+        const items = modal.querySelectorAll('[data-lm-progress] li');
+        items.forEach((li) => li.classList.remove('is-done', 'is-active'));
+        items[0].classList.add('is-active');
+
+        setTimeout(() => {
+          items[0].classList.remove('is-active');
+          items[0].classList.add('is-done');
+          items[1].classList.add('is-active');
+        }, 700);
+        setTimeout(() => {
+          items[1].classList.remove('is-active');
+          items[1].classList.add('is-done');
+          items[2].classList.add('is-active');
+        }, 1500);
+        setTimeout(() => {
+          const email = modal.querySelector('#lm-email-display').textContent;
+          const handle = email.split('@')[0].split(/[._-]/)[0] || 'there';
+          const display = handle.charAt(0).toUpperCase() + handle.slice(1);
+          modal.querySelector('#lm-success-greeting').textContent =
+            `Welcome back, ${display}. Your cargo desk is ready.`;
+          goStep('signin', 'success');
+        }, 2300);
+      });
+
+      // BACK BUTTONS
+      modal.querySelectorAll('[data-lm-back]').forEach((b) =>
+        b.addEventListener('click', () => {
+          const view = b.closest('[data-lm-view]').dataset.lmView;
+          goStep(view, view === 'signin' ? 'email' : 'awb');
+          setTimeout(() => {
+            const sel = view === 'signin' ? '#lm-email' : '#lm-awb';
+            modal.querySelector(sel)?.focus();
+          }, 320);
+        })
+      );
+
+      // TRACK FORM
+      const trackForm = modal.querySelector('[data-lm-form="track"]');
+      trackForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const input = trackForm.querySelector('input');
+        const val = input.value.trim();
+        if (!val || val.length < 4) {
+          showErr(input, 'Enter a valid AWB or booking reference.');
+          return;
+        }
+        clearErr(input);
+        modal.querySelector('#lm-awb-display').textContent = val;
+        goStep('track', 'result');
+      });
+
+      // BACKDROP / ESC
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+      });
+    }
+
+    function goStep(view, step) {
+      const v = modal.querySelector(`[data-lm-view="${view}"]`);
+      v.querySelectorAll('[data-lm-step]').forEach((s) =>
+        s.classList.toggle('is-active', s.dataset.lmStep === step)
+      );
+    }
+
+    function resetView(view) {
+      goStep(view, view === 'signin' ? 'email' : 'awb');
+    }
+
+    function showErr(input, msg) {
+      input.classList.add('is-err');
+      const slot = modal.querySelector(`[data-err="${input.id}"]`);
+      if (slot) slot.textContent = msg;
+    }
+
+    function clearErr(input) {
+      input.classList.remove('is-err');
+      const slot = modal.querySelector(`[data-err="${input.id}"]`);
+      if (slot) slot.textContent = '';
+    }
+
+    function openModal() {
+      injectModal();
+      requestAnimationFrame(() => {
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => modal.querySelector('#lm-email')?.focus(), 320);
+      });
+    }
+
+    function closeModal() {
+      if (!modal) return;
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      setTimeout(() => {
+        // Reset state for next open
+        modal.querySelectorAll('input').forEach((i) => {
+          if (i.type !== 'checkbox') i.value = '';
+          else i.checked = false;
+          i.classList.remove('is-err');
+        });
+        modal.querySelectorAll('.lm-field__err').forEach((s) => (s.textContent = ''));
+        modal.querySelectorAll('[data-lm-tab]').forEach((t) =>
+          t.classList.toggle('is-active', t.dataset.lmTab === 'signin')
+        );
+        modal.querySelectorAll('[data-lm-view]').forEach((v) =>
+          v.classList.toggle('is-active', v.dataset.lmView === 'signin')
+        );
+        resetView('signin');
+        resetView('track');
+      }, 400);
+    }
+
+    loginTriggers.forEach((t) => {
+      const isLogin =
+        t.getAttribute('href') === '#login' || t.classList.contains('nav__cta');
+      if (!isLogin) return;
+      t.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal();
+      });
+    });
+  }
+})();
+
+/* ---------- DASHBOARD: My Bookings list/grid view toggle ---------- */
+(function dashViewToggle() {
+  const toggle = document.querySelector('.dash__view-toggle');
+  if (!toggle) return;
+  const buttons = toggle.querySelectorAll('button[data-view]');
+  const panels = document.querySelectorAll('[data-view-panel]');
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.view;
+      buttons.forEach((b) => {
+        const active = b === btn;
+        b.classList.toggle('is-active', active);
+        b.setAttribute('aria-selected', String(active));
+      });
+      panels.forEach((p) => {
+        p.hidden = p.dataset.viewPanel !== target;
+      });
+    });
+  });
+})();
+
+/* ---------- DASHBOARD: Wallet — Recent Logs / Transactions tab toggle ---------- */
+(function dashWalletTabs() {
+  const tabs = document.querySelectorAll('.dash__tab[data-tab]');
+  if (!tabs.length) return;
+  const panels = document.querySelectorAll('[data-tab-panel]');
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+      tabs.forEach((t) => t.classList.toggle('is-active', t === tab));
+      panels.forEach((p) => {
+        p.hidden = p.dataset.tabPanel !== target;
+      });
+    });
+  });
+})();
+
+/* ---------- DASHBOARD: Bookings form — add / remove flight route rows ---------- */
+(function dashRouteRows() {
+  const addBtn = document.getElementById('addRouteBtn');
+  const list = document.getElementById('routeRows');
+  if (!addBtn || !list) return;
+
+  const cloneTemplate = () => {
+    const first = list.firstElementChild;
+    if (!first) return null;
+    const copy = first.cloneNode(true);
+    copy.querySelectorAll('select, input').forEach((el) => {
+      if (el.tagName === 'SELECT') el.selectedIndex = 0;
+      else if (el.classList.contains('dash__input--date')) {
+        /* leave the date as-is so users see the format */
+      } else el.value = '';
+    });
+    return copy;
+  };
+
+  addBtn.addEventListener('click', () => {
+    const copy = cloneTemplate();
+    if (copy) list.appendChild(copy);
+  });
+
+  list.addEventListener('click', (e) => {
+    const trash = e.target.closest('.dash__trash-btn');
+    if (!trash) return;
+    if (list.children.length <= 1) return;
+    trash.closest('.dash__route-row')?.remove();
+  });
 })();
