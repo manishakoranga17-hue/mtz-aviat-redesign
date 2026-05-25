@@ -1504,7 +1504,6 @@ body.cursor-hover .cursor-follower {
 .about .value p { color: rgba(10,31,61,0.65); }
 .about .value__num { color: var(--c-orange); }
 .about__sticky {
-  position: sticky; top: 100px;
   margin-bottom: -40px;
   z-index: 3;
 }
