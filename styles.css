@@ -1247,6 +1247,9 @@ body.cursor-hover .cursor-follower {
   width: 24px; height: 1px; background: currentColor;
   vertical-align: middle; margin-right: 12px;
 }
+.about__sticky .section-label {
+  line-height: 1.7;
+}
 
 .split-text h2,
 .about__heading h2,
