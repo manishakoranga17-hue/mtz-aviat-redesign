@@ -839,6 +839,14 @@ function playHeroIntro() {
     });
   }
 
+  /* About: service cards rise in with stagger */
+  if (has('.about__services')) {
+    gsap.from('.about__services .svc-card', {
+      y: 48, opacity: 0, duration: 1, ease: 'expo.out', stagger: 0.12,
+      scrollTrigger: { trigger: '.about__services', start: 'top 85%' },
+    });
+  }
+
   /* Service cells rise in */
   if (has('.svc') && has('.services__grid')) {
     gsap.from('.svc', {
