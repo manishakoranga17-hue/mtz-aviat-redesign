@@ -1618,12 +1618,13 @@ body.cursor-hover .cursor-follower {
   max-width: 56ch;
 }
 
-/* Right column: a single static media card */
+/* Right column: cell stretches to the 3-card height so the inner stage can stick */
 .about__values-media {
-  align-self: start;
+  position: relative;
 }
 .value-media-stage {
-  position: relative;
+  position: sticky;
+  top: 120px;
   width: 100%;
   aspect-ratio: 4 / 5;
   border: 1px solid var(--line);
@@ -1694,18 +1695,10 @@ body.cursor-hover .cursor-follower {
 .value:nth-of-type(2) .value__meta dd[data-emphasis],
 .value__meta dd strong { color: var(--c-dark-green); font-weight: 600; }
 
-/* Sticky media on the right while the three cards scroll */
-.about__values-media {
-  position: sticky;
-  top: 120px;
-  align-self: start;
-}
-
-/* Tighter mobile vertical rhythm — already handled at 900px above,
-   but extend to override the 3-card spacing */
+/* Mobile: unstick the video stage and tighten metadata grid */
 @media (max-width: 900px) {
-  .about__values-media {
-    position: static;
+  .value-media-stage {
+    position: relative;
     top: auto;
   }
   .value__meta > div {
