@@ -709,12 +709,21 @@ body.cursor-hover .cursor-follower {
   font-size: clamp(15px, 1.1vw, 18px);
   letter-spacing: 0;
   text-transform: none;
-  max-width: 820px;
+  max-width: none;
   color: rgba(240,240,240,0.78);
   line-height: 1.55;
   text-shadow: 0 4px 20px rgba(0,0,0,0.55);
   pointer-events: auto;
   text-align: center;
+}
+.hero__beat-sub-line {
+  display: block;
+  white-space: nowrap;
+}
+@media (max-width: 820px) {
+  .hero__beat-sub-line {
+    white-space: normal;
+  }
 }
 .hero__beat-meta {
   display: inline-flex; align-items: center; gap: 10px;
