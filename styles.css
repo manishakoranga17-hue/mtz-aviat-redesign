@@ -4113,8 +4113,9 @@ body.cursor-hover .cursor-follower {
 }
 
 /* ---- FAQ closing CTA (under the list, right column only) ---- */
-.faq__cta {
-  grid-column: 2;
+.faq__inner .faq__cta {
+  grid-column: 2 / 3;
+  grid-row: 2;
   margin-top: 48px;
   padding: 36px 40px;
   display: grid;
@@ -4192,9 +4193,10 @@ body.cursor-hover .cursor-follower {
 .faq__cta-link:hover svg {
   transform: translateX(4px);
 }
-@media (max-width: 720px) {
-  .faq__cta {
+@media (max-width: 960px) {
+  .faq__inner .faq__cta {
     grid-column: 1;
+    grid-row: auto;
     grid-template-columns: 1fr;
     gap: 24px;
     padding: 28px;
