@@ -3331,6 +3331,7 @@ body.cursor-hover .cursor-follower {
   color: var(--c-dirty-white);
 }
 .flightplan__title {
+  grid-column: 1 / -1;
   font-family: var(--display);
   font-size: clamp(40px, 5.6vw, 84px);
   font-weight: 700;
@@ -3343,8 +3344,10 @@ body.cursor-hover .cursor-follower {
   display: block;
   white-space: nowrap;
 }
+.flightplan__head .flightplan__lede { grid-column: 2; }
 @media (max-width: 900px) {
   .flightplan__title-line { white-space: normal; }
+  .flightplan__head .flightplan__lede { grid-column: 1; }
 }
 .flightplan__title em {
   font-style: italic;
