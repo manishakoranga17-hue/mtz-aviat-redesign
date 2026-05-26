@@ -2275,8 +2275,8 @@ body.cursor-hover .cursor-follower {
 .services__head {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 24px;
-  margin-bottom: 56px;
+  gap: 16px;
+  margin-bottom: 24px;
   max-width: 1100px;
 }
 .services__head .section-label {
