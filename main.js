@@ -847,15 +847,12 @@ function playHeroIntro() {
     });
   }
 
-  /* Tech outcomes: panel rises, cells stagger */
+  /* Tech outcomes: panel rises into view (cells stay visible by default) */
   if (has('.tech-outcomes')) {
-    const tl = gsap.timeline({
-      scrollTrigger: { trigger: '.tech-outcomes', start: 'top 92%' },
+    gsap.from('.tech-outcomes', {
+      y: 28, opacity: 0, duration: 0.85, ease: 'expo.out',
+      scrollTrigger: { trigger: '.tech-outcomes', start: 'top 95%' },
     });
-    tl.from('.tech-outcomes', { y: 28, opacity: 0, duration: 0.85, ease: 'expo.out' });
-    tl.from('.tech-outcomes__cell, .tech-outcomes__sep', {
-      y: 14, opacity: 0, duration: 0.5, ease: 'expo.out', stagger: 0.08,
-    }, '-=0.5');
   }
 
   /* Flight plan: trust band lifts in, then cells stagger */
