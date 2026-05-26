@@ -4112,10 +4112,10 @@ body.cursor-hover .cursor-follower {
   border-top: 1px solid rgba(10,31,61,0.14);
 }
 
-/* ---- FAQ closing CTA (under the list) ---- */
+/* ---- FAQ closing CTA (under the list, right column only) ---- */
 .faq__cta {
-  grid-column: 1 / -1;
-  margin-top: 56px;
+  grid-column: 2;
+  margin-top: 48px;
   padding: 36px 40px;
   display: grid;
   grid-template-columns: 1fr auto;
@@ -4194,6 +4194,7 @@ body.cursor-hover .cursor-follower {
 }
 @media (max-width: 720px) {
   .faq__cta {
+    grid-column: 1;
     grid-template-columns: 1fr;
     gap: 24px;
     padding: 28px;
