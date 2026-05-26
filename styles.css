@@ -4111,6 +4111,95 @@ body.cursor-hover .cursor-follower {
   padding: 0;
   border-top: 1px solid rgba(10,31,61,0.14);
 }
+
+/* ---- FAQ closing CTA (under the list) ---- */
+.faq__cta {
+  grid-column: 1 / -1;
+  margin-top: 56px;
+  padding: 36px 40px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: center;
+  background:
+    linear-gradient(180deg, rgba(10, 31, 61, 0.045), rgba(10, 31, 61, 0.015));
+  border: 1px solid rgba(10, 31, 61, 0.12);
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.faq__cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 40% 80% at 100% 50%, rgba(222, 29, 42, 0.07), transparent 60%);
+  pointer-events: none;
+  z-index: -1;
+}
+.faq__cta-tag {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--c-orange);
+  margin-bottom: 12px;
+}
+.faq__cta-tag::before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: currentColor;
+  vertical-align: middle;
+  margin-right: 12px;
+}
+.faq__cta-lede {
+  font-family: var(--display);
+  font-size: clamp(20px, 2vw, 28px);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--c-dark-green);
+  margin: 0;
+  max-width: 38ch;
+}
+.faq__cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 28px;
+  background: var(--c-dark-green);
+  color: var(--c-dirty-white);
+  border-radius: 999px;
+  font-family: var(--display);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  transition: background 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+}
+.faq__cta-link:hover {
+  background: var(--c-orange);
+  transform: translateX(4px);
+}
+.faq__cta-link svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.4s var(--ease-out);
+}
+.faq__cta-link:hover svg {
+  transform: translateX(4px);
+}
+@media (max-width: 720px) {
+  .faq__cta {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 28px;
+  }
+  .faq__cta-link { justify-content: center; }
+}
 .faq__item {
   border-bottom: 1px solid rgba(10,31,61,0.14);
 }
