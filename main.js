@@ -284,41 +284,57 @@ if (document.getElementById('loader')) {
   const HUB_DATA = { lon: 101.7, lat: 3.1, code: 'KUL', city: 'Kuala Lumpur', country: 'Malaysia', hub: true };
 
   const routes = [
-    { lon: 103.8, lat: 1.3,   code: 'SIN', city: 'Singapore',     country: 'Singapore',     hub: true },
-    { lon: 100.5, lat: 13.7,  code: 'BKK', city: 'Bangkok',       country: 'Thailand' },
-    { lon: 121.0, lat: 14.6,  code: 'MNL', city: 'Manila',        country: 'Philippines' },
-    { lon: 114.1, lat: 22.3,  code: 'HKG', city: 'Hong Kong',     country: 'China',         hub: true },
-    { lon: 121.5, lat: 31.2,  code: 'PVG', city: 'Shanghai',      country: 'China' },
-    { lon: 116.4, lat: 39.9,  code: 'PEK', city: 'Beijing',       country: 'China' },
-    { lon: 127.0, lat: 37.5,  code: 'ICN', city: 'Seoul',         country: 'South Korea',   hub: true },
-    { lon: 139.7, lat: 35.7,  code: 'NRT', city: 'Tokyo',         country: 'Japan',         hub: true },
-    { lon: 106.8, lat: -6.2,  code: 'CGK', city: 'Jakarta',       country: 'Indonesia' },
-    { lon: 77.2,  lat: 28.6,  code: 'DEL', city: 'Delhi',         country: 'India',         hub: true },
-    { lon: 72.9,  lat: 19.1,  code: 'BOM', city: 'Mumbai',        country: 'India' },
-    { lon: 80.3,  lat: 13.1,  code: 'MAA', city: 'Chennai',       country: 'India' },
-    { lon: 90.4,  lat: 23.8,  code: 'DAC', city: 'Dhaka',         country: 'Bangladesh' },
-    { lon: 55.3,  lat: 25.3,  code: 'DXB', city: 'Dubai',         country: 'UAE',           hub: true },
-    { lon: 51.5,  lat: 25.3,  code: 'DOH', city: 'Doha',          country: 'Qatar',         hub: true },
-    { lon: 46.8,  lat: 24.7,  code: 'RUH', city: 'Riyadh',        country: 'Saudi Arabia' },
-    { lon: 39.2,  lat: 21.5,  code: 'JED', city: 'Jeddah',        country: 'Saudi Arabia' },
-    { lon: 28.9,  lat: 41.0,  code: 'IST', city: 'Istanbul',      country: 'Türkiye',       hub: true },
-    { lon: 31.2,  lat: 30.0,  code: 'CAI', city: 'Cairo',         country: 'Egypt' },
-    { lon: -0.1,  lat: 51.5,  code: 'LHR', city: 'London',        country: 'UK',            hub: true },
-    { lon: 2.3,   lat: 48.9,  code: 'CDG', city: 'Paris',         country: 'France',        hub: true },
-    { lon: 8.7,   lat: 50.1,  code: 'FRA', city: 'Frankfurt',     country: 'Germany',       hub: true },
-    { lon: 4.9,   lat: 52.4,  code: 'AMS', city: 'Amsterdam',     country: 'Netherlands' },
-    { lon: 12.5,  lat: 41.9,  code: 'FCO', city: 'Rome',          country: 'Italy' },
-    { lon: -3.7,  lat: 40.4,  code: 'MAD', city: 'Madrid',        country: 'Spain' },
-    { lon: 36.8,  lat: -1.3,  code: 'NBO', city: 'Nairobi',       country: 'Kenya' },
-    { lon: 28.0,  lat: -26.2, code: 'JNB', city: 'Johannesburg',  country: 'South Africa',  hub: true },
-    { lon: -74.0, lat: 40.7,  code: 'JFK', city: 'New York',      country: 'USA',           hub: true },
-    { lon: -87.6, lat: 41.9,  code: 'ORD', city: 'Chicago',       country: 'USA' },
-    { lon: -118.2,lat: 34.1,  code: 'LAX', city: 'Los Angeles',   country: 'USA',           hub: true },
-    { lon: -80.2, lat: 25.8,  code: 'MIA', city: 'Miami',         country: 'USA' },
-    { lon: -99.1, lat: 19.4,  code: 'MEX', city: 'Mexico City',   country: 'Mexico' },
-    { lon: -46.6, lat: -23.6, code: 'GRU', city: 'São Paulo',     country: 'Brazil' },
-    { lon: 151.2, lat: -33.8, code: 'SYD', city: 'Sydney',        country: 'Australia',     hub: true },
-    { lon: 174.7, lat: -36.8, code: 'AKL', city: 'Auckland',      country: 'New Zealand' },
+    /* China — charter */
+    { lon: 113.30, lat: 23.39, code: 'CAN', city: 'Guangzhou',    country: 'China',         charter: true },
+    { lon: 113.92, lat: 22.31, code: 'HKG', city: 'Hong Kong',    country: 'China',         charter: true, hub: true },
+    { lon: 102.93, lat: 25.10, code: 'KMG', city: 'Kunming',      country: 'China',         charter: true },
+    { lon: 113.59, lat: 22.15, code: 'MFM', city: 'Macau',        country: 'China',         charter: true },
+    { lon: 108.17, lat: 22.61, code: 'NNG', city: 'Nanning',      country: 'China',         charter: true },
+    { lon: 113.81, lat: 22.64, code: 'SZX', city: 'Shenzhen',     country: 'China',         charter: true },
+    { lon: 113.22, lat: 28.19, code: 'CSX', city: 'Changsha',     country: 'China',         charter: true },
+
+    /* Vietnam — charter */
+    { lon: 106.65, lat: 10.82, code: 'SGN', city: 'Saigon',       country: 'Vietnam',       charter: true },
+
+    /* Australia — charter */
+    { lon: 105.69, lat: -10.45, code: 'XCH', city: 'Christmas Island', country: 'Australia', charter: true },
+
+    /* Sri Lanka — scheduled */
+    { lon: 79.88, lat: 7.18,  code: 'CMB', city: 'Colombo',       country: 'Sri Lanka' },
+
+    /* South Korea — scheduled */
+    { lon: 126.45, lat: 37.45, code: 'ICN', city: 'Incheon',      country: 'South Korea',   hub: true },
+
+    /* Singapore — scheduled */
+    { lon: 103.99, lat: 1.36, code: 'SIN', city: 'Changi',        country: 'Singapore',     hub: true },
+
+    /* India — scheduled */
+    { lon: 80.18, lat: 12.99, code: 'MAA', city: 'Chennai',       country: 'India' },
+    { lon: 72.87, lat: 19.09, code: 'BOM', city: 'Mumbai',        country: 'India',         hub: true },
+    { lon: 77.10, lat: 28.57, code: 'DEL', city: 'Delhi',         country: 'India',         hub: true },
+    { lon: 77.71, lat: 13.20, code: 'BLR', city: 'Bengaluru',     country: 'India' },
+    { lon: 78.43, lat: 17.24, code: 'HYD', city: 'Hyderabad',     country: 'India' },
+
+    /* Brunei — scheduled */
+    { lon: 114.93, lat: 4.94, code: 'BWN', city: 'Bandar Seri Begawan', country: 'Brunei' },
+
+    /* Indonesia — scheduled */
+    { lon: 106.66, lat: -6.13, code: 'CGK', city: 'Jakarta',      country: 'Indonesia' },
+    { lon: 116.28, lat: -8.76, code: 'LOP', city: 'Lombok',       country: 'Indonesia' },
+
+    /* Myanmar — scheduled */
+    { lon: 96.13, lat: 16.90, code: 'RGN', city: 'Yangon',        country: 'Myanmar' },
+
+    /* Japan — scheduled */
+    { lon: 135.24, lat: 34.43, code: 'KIX', city: 'Kansai',       country: 'Japan',         hub: true },
+    { lon: 140.39, lat: 35.77, code: 'NRT', city: 'Narita',       country: 'Japan',         hub: true },
+
+    /* Bangladesh — scheduled */
+    { lon: 90.40, lat: 23.84, code: 'DAC', city: 'Dhaka',         country: 'Bangladesh' },
+    { lon: 91.81, lat: 22.25, code: 'CGP', city: 'Chittagong',    country: 'Bangladesh' },
+
+    /* Thailand — scheduled */
+    { lon: 100.78, lat: 13.70, code: 'BKK', city: 'Bangkok',      country: 'Thailand' },
   ];
 
   /* Ambient secondary cities — show as small dots, no arcs, no tooltips */
@@ -343,8 +359,8 @@ if (document.getElementById('loader')) {
   allRoutePoints.forEach((r) => {
     const v = lonLatToVec3(r.lon, r.lat, radius * 1.014);
     const isHub = !!r.hub || r.code === 'KUL';
-    const dotSize = r.code === 'KUL' ? 0.10 : (isHub ? 0.07 : 0.05);
-    const dotColor = r.code === 'KUL' ? WHITE : (isHub ? WHITE : RED);
+    const dotSize = r.code === 'KUL' ? 0.10 : (isHub ? 0.07 : 0.055);
+    const dotColor = r.code === 'KUL' ? WHITE : (r.charter ? RED : CYAN);
     const mesh = new THREE.Mesh(
       new THREE.SphereGeometry(dotSize, 14, 14),
       new THREE.MeshBasicMaterial({ color: dotColor })
@@ -367,13 +383,14 @@ if (document.getElementById('loader')) {
     color: 0xff7785, size: 0.04, transparent: true, opacity: 0.6, sizeAttenuation: true,
   })));
 
-  /* Pulsing rings around hub cities */
+  /* Pulsing rings around hub cities (color matches route type) */
   const hubRings = [];
   allRoutePoints.filter((r) => r.hub).forEach((r) => {
     const pos = lonLatToVec3(r.lon, r.lat, radius * 1.02);
+    const ringColor = r.code === 'KUL' ? WHITE : (r.charter ? RED : CYAN);
     const ring = new THREE.Mesh(
       new THREE.RingGeometry(0.07, 0.085, 32),
-      new THREE.MeshBasicMaterial({ color: RED, transparent: true, opacity: 0.7, side: THREE.DoubleSide })
+      new THREE.MeshBasicMaterial({ color: ringColor, transparent: true, opacity: 0.7, side: THREE.DoubleSide })
     );
     ring.position.copy(pos);
     ring.lookAt(pos.clone().multiplyScalar(2));
@@ -401,8 +418,8 @@ if (document.getElementById('loader')) {
     const curve = new THREE.QuadraticBezierCurve3(start, mid, end);
 
     const isMajor = !!tgt.hub;
-    const arcColor = isMajor ? RED : (idx % 2 === 0 ? GOLD : 0xff8a5c);
-    const baseOpacity = isMajor ? 0.78 : 0.45;
+    const arcColor = tgt.charter ? RED : CYAN;
+    const baseOpacity = isMajor ? 0.78 : 0.5;
 
     const tubeMat = new THREE.MeshBasicMaterial({
       color: arcColor, transparent: true, opacity: baseOpacity,
