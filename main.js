@@ -847,6 +847,14 @@ function playHeroIntro() {
     });
   }
 
+  /* Flight plan: trust strip fades + slides in after the 2x2 cards */
+  if (has('.flightplan__trust')) {
+    gsap.from('.flightplan__trust .trust__item, .flightplan__trust .trust__sep', {
+      y: 18, opacity: 0, duration: 0.8, ease: 'expo.out', stagger: 0.08,
+      scrollTrigger: { trigger: '.flightplan__trust', start: 'top 92%' },
+    });
+  }
+
   /* Service cells rise in */
   if (has('.svc') && has('.services__grid')) {
     gsap.from('.svc', {

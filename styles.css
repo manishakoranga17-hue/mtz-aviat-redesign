@@ -3383,6 +3383,66 @@ body.cursor-hover .cursor-follower {
   border-left: 1px solid rgba(240,240,240,0.18);
 }
 
+/* ---- Flight-plan trust strip (under the 2x2 grid) ---- */
+.flightplan__trust {
+  margin-top: 56px;
+  padding: 28px 4px 0;
+  border-top: 1px solid rgba(240, 240, 240, 0.14);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 36px 40px;
+  color: var(--c-dirty-white);
+}
+.trust__item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 14px;
+}
+.trust__star {
+  width: 18px;
+  height: 18px;
+  color: var(--c-orange);
+  align-self: center;
+  filter: drop-shadow(0 0 10px rgba(222, 29, 42, 0.45));
+}
+.trust__value {
+  font-family: var(--display);
+  font-size: clamp(26px, 2.2vw, 36px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--c-dirty-white);
+  display: inline-flex;
+  align-items: baseline;
+}
+.trust__suffix {
+  font-size: 0.5em;
+  font-weight: 500;
+  color: rgba(240, 240, 240, 0.55);
+  margin-left: 6px;
+  letter-spacing: 0;
+}
+.trust__label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(240, 240, 240, 0.55);
+}
+.trust__sep {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--c-orange);
+  box-shadow: 0 0 14px rgba(222, 29, 42, 0.55);
+  flex-shrink: 0;
+}
+@media (max-width: 720px) {
+  .flightplan__trust { flex-direction: column; align-items: flex-start; gap: 18px; }
+  .trust__sep { display: none; }
+}
+
 .fcard {
   position: relative;
   padding: 48px 44px 44px;
