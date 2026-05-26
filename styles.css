@@ -3321,7 +3321,7 @@ body.cursor-hover .cursor-follower {
 
 .flightplan__head {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: auto 1fr;
   gap: 32px 80px;
   align-items: end;
   margin-bottom: 80px;
@@ -3331,7 +3331,6 @@ body.cursor-hover .cursor-follower {
   color: var(--c-dirty-white);
 }
 .flightplan__title {
-  grid-column: 1 / -1;
   font-family: var(--display);
   font-size: clamp(40px, 5.6vw, 84px);
   font-weight: 700;
@@ -3345,12 +3344,12 @@ body.cursor-hover .cursor-follower {
   white-space: nowrap;
 }
 .flightplan__head .flightplan__lede {
-  grid-column: 1 / -1;
-  max-width: 56ch;
-  margin-top: 24px;
+  max-width: 44ch;
 }
 @media (max-width: 900px) {
   .flightplan__title-line { white-space: normal; }
+  .flightplan__head { grid-template-columns: 1fr; }
+  .flightplan__head .flightplan__lede { max-width: none; }
 }
 .flightplan__title em {
   font-style: italic;
