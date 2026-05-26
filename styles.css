@@ -3322,15 +3322,20 @@ body.cursor-hover .cursor-follower {
 .flightplan__head {
   display: grid;
   grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
   gap: 32px 80px;
   align-items: end;
   margin-bottom: 80px;
 }
 .flightplan__head .section-label {
+  grid-row: 1;
   grid-column: 1 / -1;
   color: var(--c-dirty-white);
 }
 .flightplan__title {
+  grid-row: 2;
+  grid-column: 1;
+  align-self: end;
   font-family: var(--display);
   font-size: clamp(40px, 5.6vw, 84px);
   font-weight: 700;
@@ -3344,12 +3349,17 @@ body.cursor-hover .cursor-follower {
   white-space: nowrap;
 }
 .flightplan__head .flightplan__lede {
+  grid-row: 2;
+  grid-column: 2;
+  align-self: end;
   max-width: 44ch;
+  margin-bottom: 0.5em;
 }
 @media (max-width: 900px) {
   .flightplan__title-line { white-space: normal; }
-  .flightplan__head { grid-template-columns: 1fr; }
-  .flightplan__head .flightplan__lede { max-width: none; }
+  .flightplan__head { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .flightplan__head .flightplan__title { grid-row: auto; grid-column: 1; }
+  .flightplan__head .flightplan__lede { grid-row: auto; grid-column: 1; max-width: none; margin-bottom: 0; }
 }
 .flightplan__title em {
   font-style: italic;
