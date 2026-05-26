@@ -3383,64 +3383,101 @@ body.cursor-hover .cursor-follower {
   border-left: 1px solid rgba(240,240,240,0.18);
 }
 
-/* ---- Flight-plan trust strip (under the 2x2 grid) ---- */
+/* ---- Flight-plan trust band (elevated panel under the 2x2 grid) ---- */
 .flightplan__trust {
-  margin-top: 56px;
-  padding: 28px 4px 0;
-  border-top: 1px solid rgba(240, 240, 240, 0.14);
-  display: flex;
+  position: relative;
+  margin-top: 72px;
+  padding: 48px 56px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+  border: 1px solid rgba(240, 240, 240, 0.14);
+  border-radius: 14px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 36px 40px;
+  gap: 0;
   color: var(--c-dirty-white);
+  backdrop-filter: blur(6px);
+  overflow: hidden;
+  isolation: isolate;
 }
-.trust__item {
-  display: inline-flex;
-  align-items: baseline;
+.trust__glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 80% at 0% 50%, rgba(222, 29, 42, 0.16), transparent 60%),
+    radial-gradient(ellipse 60% 80% at 100% 50%, rgba(91, 192, 222, 0.07), transparent 65%);
+  pointer-events: none;
+  z-index: -1;
+}
+.trust__cell {
+  display: flex;
+  flex-direction: column;
   gap: 14px;
+  padding: 0 36px;
+  border-left: 1px solid rgba(240, 240, 240, 0.12);
 }
-.trust__star {
-  width: 18px;
-  height: 18px;
+.trust__cell:first-child {
+  border-left: none;
+  padding-left: 0;
+}
+.trust__cell--rating {
+  flex-direction: column;
+  align-items: flex-start;
+}
+.trust__stars {
+  display: inline-flex;
+  gap: 4px;
   color: var(--c-orange);
-  align-self: center;
-  filter: drop-shadow(0 0 10px rgba(222, 29, 42, 0.45));
+  filter: drop-shadow(0 0 14px rgba(222, 29, 42, 0.55));
+}
+.trust__stars svg {
+  width: 22px;
+  height: 22px;
+}
+.trust__main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .trust__value {
   font-family: var(--display);
-  font-size: clamp(26px, 2.2vw, 36px);
+  font-size: clamp(40px, 4vw, 64px);
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.035em;
   line-height: 1;
   color: var(--c-dirty-white);
   display: inline-flex;
   align-items: baseline;
 }
 .trust__suffix {
-  font-size: 0.5em;
+  font-size: 0.42em;
   font-weight: 500;
-  color: rgba(240, 240, 240, 0.55);
-  margin-left: 6px;
+  color: rgba(240, 240, 240, 0.5);
+  margin-left: 8px;
   letter-spacing: 0;
 }
 .trust__label {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: rgba(240, 240, 240, 0.55);
+  color: rgba(240, 240, 240, 0.6);
 }
-.trust__sep {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--c-orange);
-  box-shadow: 0 0 14px rgba(222, 29, 42, 0.55);
-  flex-shrink: 0;
-}
-@media (max-width: 720px) {
-  .flightplan__trust { flex-direction: column; align-items: flex-start; gap: 18px; }
-  .trust__sep { display: none; }
+
+@media (max-width: 900px) {
+  .flightplan__trust {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 36px 28px;
+  }
+  .trust__cell {
+    padding: 0;
+    border-left: none;
+    border-top: 1px solid rgba(240, 240, 240, 0.12);
+    padding-top: 28px;
+  }
+  .trust__cell:first-child { border-top: none; padding-top: 0; }
 }
 
 .fcard {

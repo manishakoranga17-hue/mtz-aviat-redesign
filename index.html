@@ -556,20 +556,28 @@
       </div>
 
       <aside class="flightplan__trust" aria-label="Partner trust rating">
-        <div class="trust__item">
-          <svg class="trust__star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M12 2 L14 9 L21 9.5 L15.5 14 L17.5 21.5 L12 17.5 L6.5 21.5 L8.5 14 L3 9.5 L10 9 Z" />
-          </svg>
-          <span class="trust__value">4.9<span class="trust__suffix">/ 5</span></span>
-          <span class="trust__label">Satisfaction rating</span>
+        <div class="trust__glow" aria-hidden="true"></div>
+
+        <div class="trust__cell trust__cell--rating">
+          <div class="trust__stars" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L14 9 L21 9.5 L15.5 14 L17.5 21.5 L12 17.5 L6.5 21.5 L8.5 14 L3 9.5 L10 9 Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L14 9 L21 9.5 L15.5 14 L17.5 21.5 L12 17.5 L6.5 21.5 L8.5 14 L3 9.5 L10 9 Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L14 9 L21 9.5 L15.5 14 L17.5 21.5 L12 17.5 L6.5 21.5 L8.5 14 L3 9.5 L10 9 Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L14 9 L21 9.5 L15.5 14 L17.5 21.5 L12 17.5 L6.5 21.5 L8.5 14 L3 9.5 L10 9 Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L14 9 L21 9.5 L15.5 14 L17.5 21.5 L12 17.5 L6.5 21.5 L8.5 14 L3 9.5 L10 9 Z"/></svg>
+          </div>
+          <div class="trust__main">
+            <span class="trust__value">4.9<span class="trust__suffix">/&nbsp;5</span></span>
+            <span class="trust__label">Satisfaction rating</span>
+          </div>
         </div>
-        <span class="trust__sep" aria-hidden="true"></span>
-        <div class="trust__item">
+
+        <div class="trust__cell">
           <span class="trust__value">3,200<span class="trust__suffix">+</span></span>
           <span class="trust__label">Customers rated</span>
         </div>
-        <span class="trust__sep" aria-hidden="true"></span>
-        <div class="trust__item">
+
+        <div class="trust__cell">
           <span class="trust__value">2026</span>
           <span class="trust__label">Based on partner survey</span>
         </div>
