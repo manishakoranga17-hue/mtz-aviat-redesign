@@ -172,15 +172,86 @@
 
   <footer class="foot" id="foot">
     <div class="foot__grain" aria-hidden="true"></div>
-    <div class="foot__cta-stripe"><p class="foot__cta-line">Ready when you are.</p><a class="foot__cta-link" href="mailto:enquiry@mtz-aviat.com" data-cursor="hover"><span>Start a conversation</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></div>
-    <div class="foot__brand-strip"><h3 class="foot__big"><span class="foot__big-row" data-shift="-1">Menteiz</span><em class="foot__big-row" data-shift="1">Aviation</em></h3></div>
-    <div class="foot__cols">
-      <div class="foot__col"><span class="foot__label">Visit</span><p>Menteiz Aviation Services Sdn. Bhd<br/>32, Jalan Sepadu 25/123A,<br/>Seksyen 25, Selangor, Malaysia</p></div>
-      <div class="foot__col"><span class="foot__label">Reach</span><ul class="foot__list"><li><a href="tel:+60355259555" data-cursor="hover"><span>+603 5525 9555</span></a></li><li><a href="mailto:enquiry@mtz-aviat.com" data-cursor="hover"><span>enquiry@mtz-aviat.com</span></a></li></ul></div>
-      <div class="foot__col"><span class="foot__label">Sitemap</span><ul class="foot__list"><li><a href="index.html" data-cursor="hover"><span>Home</span></a></li><li><a href="about.html" data-cursor="hover"><span>About</span></a></li><li><a href="routes.html" data-cursor="hover"><span>Routes</span></a></li><li><a href="contact.html" data-cursor="hover"><span>Contact</span></a></li></ul></div>
-      <div class="foot__col"><span class="foot__label">Follow</span><ul class="foot__list"><li><a href="#" data-cursor="hover"><span>LinkedIn</span><i>&uarr;</i></a></li><li><a href="#" data-cursor="hover"><span>Facebook</span><i>&uarr;</i></a></li><li><a href="#" data-cursor="hover"><span>Instagram</span><i>&uarr;</i></a></li></ul></div>
+
+    <!-- Marquee -->
+    <div class="foot__marquee" aria-hidden="true">
+      <div class="foot__marquee-track">
+        <span>One Trusted Solution</span><span class="foot__marquee-dot"></span>
+        <span>For All Your Cargo</span><span class="foot__marquee-dot"></span>
+        <span>Menteiz Aviation</span><span class="foot__marquee-dot"></span>
+        <span>Navigating The Skies</span><span class="foot__marquee-dot"></span>
+        <span>Delivering Excellence</span><span class="foot__marquee-dot"></span>
+        <span>One Trusted Solution</span><span class="foot__marquee-dot"></span>
+        <span>For All Your Cargo</span><span class="foot__marquee-dot"></span>
+        <span>Menteiz Aviation</span><span class="foot__marquee-dot"></span>
+        <span>Navigating The Skies</span><span class="foot__marquee-dot"></span>
+        <span>Delivering Excellence</span><span class="foot__marquee-dot"></span>
+      </div>
     </div>
-    <div class="foot__bot"><span class="foot__copy">&copy; 2025 Menteiz Aviation Services Sdn. Bhd &middot; All rights reserved.</span></div>
+
+    <!-- CTA stripe -->
+    <div class="foot__cta-stripe">
+      <p class="foot__cta-line">Ready when you are.</p>
+      <a class="foot__cta-link" href="mailto:enquiry@mtz-aviat.com" data-cursor="hover">
+        <span>Start a conversation</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M5 12h14M13 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+
+    <!-- Big shifting brand -->
+    <div class="foot__brand-strip">
+      <h3 class="foot__big" id="footBig">
+        <span class="foot__big-row" data-shift="-1">Menteiz</span>
+        <em class="foot__big-row" data-shift="1">Aviation</em>
+      </h3>
+    </div>
+
+    <!-- Info grid -->
+    <div class="foot__cols">
+      <div class="foot__col">
+        <span class="foot__label">Visit</span>
+        <p>Menteiz Aviation Services Sdn. Bhd<br />32, Jalan Sepadu 25/123A,<br />Seksyen 25, Selangor, Malaysia</p>
+      </div>
+      <div class="foot__col">
+        <span class="foot__label">Reach</span>
+        <ul class="foot__list">
+          <li><a href="tel:+60355259555" data-cursor="hover"><span>+603 5525 9555</span></a></li>
+          <li><a href="tel:+60355259554" data-cursor="hover"><span>+603 5525 9554</span></a></li>
+          <li><a href="mailto:enquiry@mtz-aviat.com" data-cursor="hover"><span>enquiry@mtz-aviat.com</span></a></li>
+        </ul>
+      </div>
+      <div class="foot__col">
+        <span class="foot__label">Sitemap</span>
+        <ul class="foot__list">
+          <li><a href="index.html" data-cursor="hover"><span>Home</span></a></li>
+          <li><a href="about.html" data-cursor="hover"><span>About</span></a></li>
+          
+          <li><a href="routes.html" data-cursor="hover"><span>Routes</span></a></li>
+          <li><a href="contact.html" data-cursor="hover"><span>Contact</span></a></li>
+        </ul>
+      </div>
+      <div class="foot__col">
+        <span class="foot__label">Follow</span>
+        <ul class="foot__list">
+          <li><a href="#" data-cursor="hover"><span>LinkedIn</span><i>↗</i></a></li>
+          <li><a href="#" data-cursor="hover"><span>Facebook</span><i>↗</i></a></li>
+          <li><a href="#" data-cursor="hover"><span>Instagram</span><i>↗</i></a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom band -->
+    <div class="foot__bot">
+      <span class="foot__copy">© 2025 Menteiz Aviation Services Sdn. Bhd · All rights reserved.</span>
+      <button class="foot__top-btn" id="footTopBtn" data-cursor="hover" aria-label="Back to top">
+        <span>Back to top</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M12 19V5M5 12l7-7 7 7" />
+        </svg>
+      </button>
+    </div>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
