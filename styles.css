@@ -3968,15 +3968,23 @@ body.cursor-hover .cursor-follower {
 }
 .partners__lede {
   margin: 80px auto 0;
-  max-width: 880px;
+  max-width: 1120px;
   font-family: var(--display);
-  font-size: clamp(20px, 1.9vw, 28px);
+  font-size: clamp(18px, 1.6vw, 24px);
   font-weight: 500;
-  line-height: 1.4;
+  line-height: 1.45;
   letter-spacing: -0.015em;
   color: rgba(10, 31, 61, 0.9);
   text-align: center;
   padding: 0 24px;
+}
+.partners__lede-line {
+  display: block;
+}
+.partners__lede-line + .partners__lede-line {
+  margin-top: 10px;
+  color: rgba(10, 31, 61, 0.65);
+  font-size: 0.86em;
 }
 
 /* ---- Blueprint logo board (Terminal Industries style) ---- */
