@@ -5163,10 +5163,12 @@ body.cursor-hover .cursor-follower {
 }
 .ap-hero__meta-lbl {
   font-family: var(--mono);
-  font-size: 10.5px;
+  font-size: 13.5px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(10,31,61,0.55);
+  color: rgba(10, 31, 61, 0.85);
+  font-weight: 500;
+  line-height: 1.5;
 }
 
 .ap-hero__media {
