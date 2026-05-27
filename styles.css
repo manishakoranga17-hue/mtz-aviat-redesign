@@ -2096,8 +2096,8 @@ body.cursor-hover .cursor-follower {
   flex-shrink: 0;
 }
 .legend-dot--hub { background: #fff; box-shadow: 0 0 0 2px rgba(222,29,42,0.5); }
-.legend-dot--charter { background: var(--c-orange); box-shadow: 0 0 10px rgba(222,29,42,0.55); }
-.legend-dot--scheduled { background: #4FD2FF; box-shadow: 0 0 10px rgba(79,210,255,0.55); }
+.legend-dot--scheduled { background: var(--c-orange); box-shadow: 0 0 10px rgba(222,29,42,0.55); }
+.legend-dot--charter { background: #4FD2FF; box-shadow: 0 0 10px rgba(79,210,255,0.55); }
 
 /* Hover tooltip that follows the cursor over the globe */
 .globe-tooltip {

@@ -360,7 +360,7 @@ if (document.getElementById('loader')) {
     const v = lonLatToVec3(r.lon, r.lat, radius * 1.014);
     const isHub = !!r.hub || r.code === 'KUL';
     const dotSize = r.code === 'KUL' ? 0.10 : (isHub ? 0.07 : 0.055);
-    const dotColor = r.code === 'KUL' ? WHITE : (r.charter ? RED : CYAN);
+    const dotColor = r.code === 'KUL' ? WHITE : (r.charter ? CYAN : RED);
     const mesh = new THREE.Mesh(
       new THREE.SphereGeometry(dotSize, 14, 14),
       new THREE.MeshBasicMaterial({ color: dotColor })
@@ -387,7 +387,7 @@ if (document.getElementById('loader')) {
   const hubRings = [];
   allRoutePoints.filter((r) => r.hub).forEach((r) => {
     const pos = lonLatToVec3(r.lon, r.lat, radius * 1.02);
-    const ringColor = r.code === 'KUL' ? WHITE : (r.charter ? RED : CYAN);
+    const ringColor = r.code === 'KUL' ? WHITE : (r.charter ? CYAN : RED);
     const ring = new THREE.Mesh(
       new THREE.RingGeometry(0.07, 0.085, 32),
       new THREE.MeshBasicMaterial({ color: ringColor, transparent: true, opacity: 0.7, side: THREE.DoubleSide })
@@ -418,7 +418,7 @@ if (document.getElementById('loader')) {
     const curve = new THREE.QuadraticBezierCurve3(start, mid, end);
 
     const isMajor = !!tgt.hub;
-    const arcColor = tgt.charter ? RED : CYAN;
+    const arcColor = tgt.charter ? CYAN : RED;
     const baseOpacity = isMajor ? 0.78 : 0.5;
 
     const tubeMat = new THREE.MeshBasicMaterial({
