@@ -1306,6 +1306,25 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
     progressRaf = requestAnimationFrame(tickProgress);
   }
 
+  /* Inject an arrow link inside each li so users can jump to the service page */
+  const CARGO_SLUGS = [
+    'general-cargo', 'perishable-cargo', 'dangerous-goods', 'valuable-goods',
+    'medical-equipment', 'vulnerable-cargo', 'oilwell-equipment', 'project-cargo',
+    'live-animals', 'temperature-control'
+  ];
+  items.forEach((btn, i) => {
+    const li = btn.parentElement;
+    if (!li || li.querySelector('.cs-item__go')) return;
+    const a = document.createElement('a');
+    a.className = 'cs-item__go';
+    a.href = CARGO_SLUGS[i] + '.html';
+    a.setAttribute('aria-label', 'View ' + btn.dataset.name + ' page');
+    a.setAttribute('data-cursor', 'hover');
+    a.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>';
+    a.addEventListener('click', (e) => e.stopPropagation());
+    li.appendChild(a);
+  });
+
   items.forEach((it, i) => {
     it.addEventListener('click', () => setActive(i, { fromUser: true }));
     it.addEventListener('mouseenter', () => { paused = true; });

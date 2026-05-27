@@ -2554,7 +2554,46 @@ body.cursor-hover .cursor-follower {
   align-self: center;
 }
 .cargo-stage__index li {
+  position: relative;
   border-top: 1px solid rgba(10,31,61,0.10);
+}
+
+/* Arrow link injected by JS — jumps to the dedicated service page */
+.cs-item__go {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(10, 31, 61, 0.18);
+  background: #fff;
+  color: rgba(10, 31, 61, 0.6);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  z-index: 3;
+  transition:
+    background 0.3s var(--ease-out),
+    border-color 0.3s var(--ease-out),
+    color 0.3s var(--ease-out),
+    transform 0.4s var(--ease-out),
+    box-shadow 0.3s var(--ease-out);
+  box-shadow: 0 1px 2px rgba(10, 31, 61, 0.06);
+}
+.cs-item__go svg { width: 14px; height: 14px; }
+.cs-item__go:hover {
+  background: var(--c-orange);
+  border-color: var(--c-orange);
+  color: #fff;
+  transform: translateY(-50%) translateX(4px);
+  box-shadow: 0 8px 20px -10px rgba(222, 29, 42, 0.55);
+}
+.cargo-stage__index li:has(.cs-item.is-active) .cs-item__go {
+  border-color: rgba(222, 29, 42, 0.45);
+  color: var(--c-orange);
 }
 .cargo-stage__index li:last-child {
   border-bottom: 1px solid rgba(10,31,61,0.10);
