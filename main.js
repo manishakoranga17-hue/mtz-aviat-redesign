@@ -5,6 +5,34 @@
 
 gsap.registerPlugin(ScrollTrigger);
 
+/* ---------- NAV DROPDOWN (Services) ----------
+   On desktop the dropdown opens on hover via CSS. On touch / keyboard
+   we toggle .is-open by intercepting the first tap on the trigger. */
+document.querySelectorAll('.nav__item--has-sub').forEach((item) => {
+  const trigger = item.querySelector('.nav__top');
+  if (!trigger) return;
+  trigger.addEventListener('click', (e) => {
+    const fineHover = window.matchMedia('(hover: hover)').matches;
+    if (!fineHover && !item.classList.contains('is-open')) {
+      e.preventDefault();
+      document.querySelectorAll('.nav__item--has-sub.is-open').forEach((el) => {
+        if (el !== item) el.classList.remove('is-open');
+      });
+      item.classList.add('is-open');
+    }
+  });
+});
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.nav__item--has-sub')) {
+    document.querySelectorAll('.nav__item--has-sub.is-open').forEach((el) => el.classList.remove('is-open'));
+  }
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.nav__item--has-sub.is-open').forEach((el) => el.classList.remove('is-open'));
+  }
+});
+
 /* ---------- LOADER ---------- */
 let heroIntroDone = false;
 function dismissLoader() {

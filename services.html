@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=126" />
+  <link rel="stylesheet" href="styles.css?v=156" />
 </head>
 <body class="page-services">
 
@@ -27,7 +27,29 @@
     <ul class="nav__links">
       <li><a href="index.html" data-cursor="hover">Home</a></li>
       <li><a href="about.html" data-cursor="hover">About</a></li>
-      <li><a href="services.html" class="is-current" data-cursor="hover">Services</a></li>
+      <li class="nav__item nav__item--has-sub">
+        <a href="services.html" class="is-current nav__top" data-cursor="hover">
+          Services
+          <svg class="nav__chev" viewBox="0 0 12 12" aria-hidden="true">
+            <path d="M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="nav__submenu" role="menu" aria-label="Service categories">
+          <span class="nav__submenu-eyebrow">Specialised Cargo</span>
+          <ul>
+            <li><a href="services.html#general-cargo" data-cursor="hover"><span class="nav__sub-num">01</span><span>General Cargo</span></a></li>
+            <li><a href="services.html#perishable-cargo" data-cursor="hover"><span class="nav__sub-num">02</span><span>Perishable Cargo</span></a></li>
+            <li><a href="services.html#dangerous-goods" data-cursor="hover"><span class="nav__sub-num">03</span><span>Dangerous Goods</span></a></li>
+            <li><a href="services.html#valuable-goods" data-cursor="hover"><span class="nav__sub-num">04</span><span>Valuable Goods</span></a></li>
+            <li><a href="services.html#medical-equipment" data-cursor="hover"><span class="nav__sub-num">05</span><span>Medical Equipment</span></a></li>
+            <li><a href="services.html#vulnerable-cargo" data-cursor="hover"><span class="nav__sub-num">06</span><span>Vulnerable Cargo</span></a></li>
+            <li><a href="services.html#oilwell-equipment" data-cursor="hover"><span class="nav__sub-num">07</span><span>Oilwell Equipment</span></a></li>
+            <li><a href="services.html#project-cargo" data-cursor="hover"><span class="nav__sub-num">08</span><span>Project Cargo</span></a></li>
+            <li><a href="services.html#live-animals" data-cursor="hover"><span class="nav__sub-num">09</span><span>Live Animals</span></a></li>
+            <li><a href="services.html#temperature-control" data-cursor="hover"><span class="nav__sub-num">10</span><span>Temperature Control</span></a></li>
+          </ul>
+        </div>
+      </li>
       <li><a href="routes.html" data-cursor="hover">Routes</a></li>
       <li><a href="contact.html" data-cursor="hover">Contact</a></li>
     </ul>
@@ -97,7 +119,7 @@
 
         <ul class="sp-overview__grid">
           <!-- 01 General Cargo -->
-          <li class="sp-svc6">
+          <li class="sp-svc6" id="general-cargo">
             <span class="sp-svc6__num">01</span>
             <svg class="sp-svc6__ico" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M 4 10 L 16 4 L 28 10 L 28 22 L 16 28 L 4 22 Z"/>
@@ -111,7 +133,7 @@
           </li>
 
           <!-- 02 Perishable Cargo -->
-          <li class="sp-svc6">
+          <li class="sp-svc6" id="perishable-cargo">
             <span class="sp-svc6__num">02</span>
             <svg class="sp-svc6__ico" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M 16 4 C 8 4 6 14 6 18 C 6 24 11 28 16 28 C 21 28 26 24 26 18 C 26 14 24 4 16 4 Z"/>
@@ -125,7 +147,7 @@
           </li>
 
           <!-- 03 Dangerous Goods -->
-          <li class="sp-svc6">
+          <li class="sp-svc6" id="dangerous-goods">
             <span class="sp-svc6__num">03</span>
             <svg class="sp-svc6__ico" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M 16 4 L 28 26 L 4 26 Z"/>
@@ -138,7 +160,7 @@
           </li>
 
           <!-- 04 Valuable Goods -->
-          <li class="sp-svc6">
+          <li class="sp-svc6" id="valuable-goods">
             <span class="sp-svc6__num">04</span>
             <svg class="sp-svc6__ico" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M 8 12 L 16 4 L 24 12 L 16 28 Z"/>
@@ -152,7 +174,7 @@
           </li>
 
           <!-- 05 Medical Equipment -->
-          <li class="sp-svc6">
+          <li class="sp-svc6" id="medical-equipment">
             <span class="sp-svc6__num">05</span>
             <svg class="sp-svc6__ico" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <rect x="6" y="6" width="20" height="20" rx="2"/>
@@ -165,7 +187,7 @@
           </li>
 
           <!-- 06 Vulnerable Cargo -->
-          <li class="sp-svc6">
+          <li class="sp-svc6" id="vulnerable-cargo">
             <span class="sp-svc6__num">06</span>
             <svg class="sp-svc6__ico" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M 16 4 L 26 8 L 26 17 C 26 23 21 27 16 28 C 11 27 6 23 6 17 L 6 8 Z"/>
@@ -177,7 +199,7 @@
           </li>
 
           <!-- 07 Oilwell Equipment -->
-          <li class="sp-svc6">
+          <li class="sp-svc6" id="oilwell-equipment">
             <span class="sp-svc6__num">07</span>
             <svg class="sp-svc6__ico" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M 4 26 L 28 26"/>
@@ -193,7 +215,7 @@
           </li>
 
           <!-- 08 Project Cargo -->
-          <li class="sp-svc6">
+          <li class="sp-svc6" id="project-cargo">
             <span class="sp-svc6__num">08</span>
             <svg class="sp-svc6__ico" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <line x1="6" y1="6" x2="26" y2="6"/>
@@ -208,7 +230,7 @@
           </li>
 
           <!-- 09 Live Animals Cargo -->
-          <li class="sp-svc6">
+          <li class="sp-svc6" id="live-animals">
             <span class="sp-svc6__num">09</span>
             <svg class="sp-svc6__ico" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="16" cy="20" r="5"/>
@@ -223,7 +245,7 @@
           </li>
 
           <!-- 10 Temperature Control Goods -->
-          <li class="sp-svc6">
+          <li class="sp-svc6" id="temperature-control">
             <span class="sp-svc6__num">10</span>
             <svg class="sp-svc6__ico" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M 13 6 C 13 4.9 13.9 4 15 4 L 17 4 C 18.1 4 19 4.9 19 6 L 19 19"/>

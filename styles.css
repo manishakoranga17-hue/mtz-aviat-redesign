@@ -497,6 +497,127 @@ body.cursor-hover .cursor-follower {
 .nav__links a:hover { opacity: 1; color: var(--c-dirty-white); }
 .nav__links a:hover::after { width: 100%; }
 
+/* ── NAV DROPDOWN (Services) ─────────────────────────────────────── */
+.nav__item--has-sub {
+  position: relative;
+}
+.nav__top { display: inline-flex; align-items: center; gap: 6px; }
+.nav__chev {
+  width: 10px; height: 10px;
+  transition: transform 0.35s var(--ease-out);
+  opacity: 0.7;
+}
+.nav__item--has-sub:hover .nav__chev,
+.nav__item--has-sub:focus-within .nav__chev { transform: rotate(180deg); }
+
+.nav__submenu {
+  position: absolute;
+  top: 100%;
+  left: -16px;
+  min-width: 320px;
+  margin-top: 14px;
+  padding: 20px 12px 14px;
+  background: rgba(10, 31, 61, 0.96);
+  border: 1px solid rgba(240, 240, 240, 0.10);
+  border-radius: 14px;
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(14px);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition:
+    opacity 0.35s var(--ease-out),
+    transform 0.4s var(--ease-out),
+    visibility 0s linear 0.4s;
+  z-index: 110;
+}
+.nav__item--has-sub:hover .nav__submenu,
+.nav__item--has-sub:focus-within .nav__submenu,
+.nav__item--has-sub.is-open .nav__submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition:
+    opacity 0.35s var(--ease-out),
+    transform 0.4s var(--ease-out),
+    visibility 0s;
+}
+/* invisible hover bridge so the cursor can travel from top link to submenu */
+.nav__submenu::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  top: -16px;
+  height: 16px;
+}
+.nav__submenu-eyebrow {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--c-orange);
+  padding: 0 16px 12px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(240, 240, 240, 0.08);
+}
+.nav__submenu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.nav__submenu li { margin: 0; }
+.nav__submenu li a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-family: var(--display);
+  font-size: 14.5px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  color: rgba(240, 240, 240, 0.85);
+  opacity: 1;
+  transition: background 0.25s, color 0.25s, transform 0.3s var(--ease-out);
+}
+.nav__submenu li a::after { display: none; }
+.nav__submenu li a:hover {
+  background: rgba(222, 29, 42, 0.14);
+  color: var(--c-dirty-white);
+  transform: translateX(3px);
+}
+.nav__sub-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--c-orange);
+  font-weight: 600;
+  min-width: 22px;
+}
+
+/* Mobile: collapse dropdown into a static expanded list inside the burger menu */
+@media (max-width: 900px) {
+  .nav__submenu {
+    position: static;
+    min-width: 0;
+    margin: 8px 0 0;
+    padding: 8px 0 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+  .nav__submenu::before { display: none; }
+  .nav__submenu-eyebrow { padding: 0 0 8px; }
+  .nav__submenu li a { padding: 8px 0 8px 14px; }
+}
+
 .nav__cta {
   display: inline-flex;
   align-items: center;
