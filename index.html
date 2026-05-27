@@ -12,7 +12,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=136" />
+  <link rel="stylesheet" href="styles.css?v=137" />
 </head>
 
 <body>
@@ -867,8 +867,26 @@
         </li>
       </ul>
 
-      <p class="certs__footnote">All certifications are maintained annually and available upon request. Contact our
-        compliance team at <a href="mailto:[compliance email]">[compliance email]</a> for documentation.</p>
+      <aside class="certs__footnote" aria-label="Compliance documentation">
+        <span class="certs__footnote-icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="8" y="6" width="16" height="22" rx="2"/>
+            <rect x="12" y="4" width="8" height="4" rx="1"/>
+            <path d="M12 14 H20 M12 18 H20 M12 22 H17"/>
+          </svg>
+        </span>
+        <div class="certs__footnote-text">
+          <span class="certs__footnote-tag">Compliance &amp; Documentation</span>
+          <p class="certs__footnote-body">All certifications are maintained annually and available upon request.
+            Reach our compliance team for audit-ready documentation.</p>
+        </div>
+        <a class="certs__footnote-link" href="mailto:[compliance email]" data-cursor="hover">
+          <span>[compliance email]</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M13 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </aside>
     </div>
   </section>
 
