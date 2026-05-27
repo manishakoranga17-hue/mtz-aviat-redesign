@@ -3746,11 +3746,12 @@ body.cursor-hover .cursor-follower {
   padding: 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 1fr 1fr;
+  grid-auto-rows: 1fr;
   grid-auto-flow: row;
   align-items: stretch;
   gap: 20px;
 }
+.cert { align-self: stretch; }
 .certs__grid > li:nth-child(1) { grid-area: 1 / 1; }
 .certs__grid > li:nth-child(2) { grid-area: 1 / 2; }
 .certs__grid > li:nth-child(3) { grid-area: 1 / 3; }

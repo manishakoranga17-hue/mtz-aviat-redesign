@@ -864,11 +864,12 @@ function playHeroIntro() {
     });
   }
 
-  /* Certifications: title fades, cards stagger up */
+  /* Certifications: cards stagger up, then GSAP clears transforms so layout is pristine */
   if (has('.certs__grid')) {
     gsap.from('.certs__grid .cert', {
       y: 32, opacity: 0, duration: 0.85, ease: 'expo.out', stagger: 0.07,
-      scrollTrigger: { trigger: '.certs__grid', start: 'top 88%' },
+      clearProps: 'transform,opacity',
+      scrollTrigger: { trigger: '.certs__grid', start: 'top 92%' },
     });
   }
 
