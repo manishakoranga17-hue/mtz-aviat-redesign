@@ -12,13 +12,16 @@ document.querySelectorAll('.nav__item--has-sub').forEach((item) => {
   const trigger = item.querySelector('.nav__top');
   if (!trigger) return;
   trigger.addEventListener('click', (e) => {
+    /* The Services nav trigger never navigates — it only opens the dropdown.
+       On touch/keyboard the first click toggles .is-open; on desktop the
+       dropdown opens via CSS :hover and we just swallow the click. */
+    e.preventDefault();
     const fineHover = window.matchMedia('(hover: hover)').matches;
-    if (!fineHover && !item.classList.contains('is-open')) {
-      e.preventDefault();
+    if (!fineHover) {
       document.querySelectorAll('.nav__item--has-sub.is-open').forEach((el) => {
         if (el !== item) el.classList.remove('is-open');
       });
-      item.classList.add('is-open');
+      item.classList.toggle('is-open');
     }
   });
 });
