@@ -8055,6 +8055,72 @@ body.cursor-hover .cursor-follower {
   z-index: -1;
 }
 .cp-side__block { display: flex; flex-direction: column; gap: 8px; }
+
+/* Contact-details variant — Email / Phone / WhatsApp / Address table */
+.cp-side--details {
+  padding: 28px 28px 24px;
+}
+.cp-side__heading {
+  font-family: var(--display);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #fff;
+  display: block;
+  padding-bottom: 14px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+.cp-side__details {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+.cp-side__row {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  align-items: baseline;
+  gap: 16px;
+  padding: 14px 14px;
+  border-radius: 6px;
+  margin: 0 -14px;
+}
+.cp-side__row:nth-child(odd) { background: rgba(255, 255, 255, 0.05); }
+.cp-side__row dt {
+  font-family: var(--display);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0;
+  color: var(--c-orange);
+  margin: 0;
+}
+.cp-side__row dd {
+  font-family: var(--display);
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.92);
+  margin: 0;
+}
+.cp-side__row dd a {
+  color: inherit;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  transition: border-color 0.3s, color 0.3s;
+}
+.cp-side__row dd a:hover {
+  color: var(--c-orange);
+  border-color: var(--c-orange);
+}
+.cp-side__sep {
+  display: inline-block;
+  margin: 0 6px;
+  color: rgba(255, 255, 255, 0.45);
+}
+.cp-side__hint {
+  display: block;
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.55);
+  margin-top: 2px;
+}
 .cp-side__label {
   font-family: var(--mono);
   font-size: 10.5px;
