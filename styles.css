@@ -4044,18 +4044,9 @@ body.cursor-hover .cursor-follower {
 @media (max-width: 480px) {
   .carrier-grid { grid-template-columns: repeat(2, 1fr); }
 }
-/* Inner horizontal dividers (kept solid; only outer top/bottom were removed) */
-.logo-board::before, .logo-board::after {
-  content: "";
-  position: absolute;
-  left: 0; right: 0;
-  height: 1px;
-  background: rgba(10,31,61,0.12);
-  z-index: 1;
-  pointer-events: none;
-}
-.logo-board::before { top: 33.333%; }
-.logo-board::after  { top: 66.666%; }
+/* Decorative blueprint lines from the old 5-wordmark layout — disabled
+   now that .carrier-grid renders its own cell borders. */
+.logo-board::before, .logo-board::after { content: none; }
 
 /* Vertical lines on a dedicated layer so we can mask them top/bottom
    without affecting the horizontal dividers or brand wordmarks. */
