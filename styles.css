@@ -3683,7 +3683,7 @@ body.cursor-hover .cursor-follower {
 
 /* ============== PARTNERS ============== */
 .partners {
-  padding: 140px 0 140px;
+  padding: 40px 0 140px;
   background: var(--c-dirty-white);
   color: var(--c-dark-green);
   overflow: hidden;
@@ -3692,7 +3692,7 @@ body.cursor-hover .cursor-follower {
 /* ============== CERTIFICATIONS ============== */
 .certs {
   position: relative;
-  padding: 130px 48px;
+  padding: 130px 48px 60px;
   background: var(--c-dirty-white);
   color: var(--c-dark-green);
   overflow: hidden;
