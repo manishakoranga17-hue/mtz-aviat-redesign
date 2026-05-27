@@ -2674,10 +2674,11 @@ body.cursor-hover .cursor-follower {
 }
 .tech-outcomes__label {
   font-family: var(--mono);
-  font-size: 11.5px;
-  letter-spacing: 0.24em;
+  font-size: 14px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(10, 31, 61, 0.62);
+  color: rgba(10, 31, 61, 0.9);
+  font-weight: 500;
   line-height: 1.5;
 }
 .tech-outcomes__sep {
