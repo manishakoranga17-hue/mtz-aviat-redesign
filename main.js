@@ -11,11 +11,8 @@ gsap.registerPlugin(ScrollTrigger);
 document.querySelectorAll('.nav__item--has-sub').forEach((item) => {
   const trigger = item.querySelector('.nav__top');
   if (!trigger) return;
-  trigger.addEventListener('click', (e) => {
-    /* The Services nav trigger never navigates — it only opens the dropdown.
-       On touch/keyboard the first click toggles .is-open; on desktop the
-       dropdown opens via CSS :hover and we just swallow the click. */
-    e.preventDefault();
+  const toggleSub = (e) => {
+    if (e) e.preventDefault();
     const fineHover = window.matchMedia('(hover: hover)').matches;
     if (!fineHover) {
       document.querySelectorAll('.nav__item--has-sub.is-open').forEach((el) => {
@@ -23,6 +20,10 @@ document.querySelectorAll('.nav__item--has-sub').forEach((item) => {
       });
       item.classList.toggle('is-open');
     }
+  };
+  trigger.addEventListener('click', toggleSub);
+  trigger.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') toggleSub(e);
   });
 });
 document.addEventListener('click', (e) => {
