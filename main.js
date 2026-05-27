@@ -284,19 +284,19 @@ if (document.getElementById('loader')) {
   const HUB_DATA = { lon: 101.7, lat: 3.1, code: 'KUL', city: 'Kuala Lumpur', country: 'Malaysia', hub: true };
 
   const routes = [
-    /* China — charter */
-    { lon: 113.30, lat: 23.39, code: 'CAN', city: 'Guangzhou',    country: 'China',         charter: true },
+    /* China — Guangzhou + Changsha scheduled; rest ad-hoc charter */
+    { lon: 113.30, lat: 23.39, code: 'CAN', city: 'Guangzhou',    country: 'China' },
     { lon: 113.92, lat: 22.31, code: 'HKG', city: 'Hong Kong',    country: 'China',         charter: true, hub: true },
     { lon: 102.93, lat: 25.10, code: 'KMG', city: 'Kunming',      country: 'China',         charter: true },
     { lon: 113.59, lat: 22.15, code: 'MFM', city: 'Macau',        country: 'China',         charter: true },
     { lon: 108.17, lat: 22.61, code: 'NNG', city: 'Nanning',      country: 'China',         charter: true },
     { lon: 113.81, lat: 22.64, code: 'SZX', city: 'Shenzhen',     country: 'China',         charter: true },
-    { lon: 113.22, lat: 28.19, code: 'CSX', city: 'Changsha',     country: 'China',         charter: true },
+    { lon: 113.22, lat: 28.19, code: 'CSX', city: 'Changsha',     country: 'China' },
 
-    /* Vietnam — charter */
+    /* Vietnam — ad-hoc charter */
     { lon: 106.65, lat: 10.82, code: 'SGN', city: 'Saigon',       country: 'Vietnam',       charter: true },
 
-    /* Australia — charter */
+    /* Australia — ad-hoc charter */
     { lon: 105.69, lat: -10.45, code: 'XCH', city: 'Christmas Island', country: 'Australia', charter: true },
 
     /* Sri Lanka — scheduled */
@@ -360,7 +360,7 @@ if (document.getElementById('loader')) {
     const v = lonLatToVec3(r.lon, r.lat, radius * 1.014);
     const isHub = !!r.hub || r.code === 'KUL';
     const dotSize = r.code === 'KUL' ? 0.10 : (isHub ? 0.07 : 0.055);
-    const dotColor = r.code === 'KUL' ? WHITE : (r.charter ? RED : CYAN);
+    const dotColor = r.code === 'KUL' ? WHITE : (r.charter ? CYAN : RED);
     const mesh = new THREE.Mesh(
       new THREE.SphereGeometry(dotSize, 14, 14),
       new THREE.MeshBasicMaterial({ color: dotColor })
@@ -387,7 +387,7 @@ if (document.getElementById('loader')) {
   const hubRings = [];
   allRoutePoints.filter((r) => r.hub).forEach((r) => {
     const pos = lonLatToVec3(r.lon, r.lat, radius * 1.02);
-    const ringColor = r.code === 'KUL' ? WHITE : (r.charter ? RED : CYAN);
+    const ringColor = r.code === 'KUL' ? WHITE : (r.charter ? CYAN : RED);
     const ring = new THREE.Mesh(
       new THREE.RingGeometry(0.07, 0.085, 32),
       new THREE.MeshBasicMaterial({ color: ringColor, transparent: true, opacity: 0.7, side: THREE.DoubleSide })
@@ -418,7 +418,7 @@ if (document.getElementById('loader')) {
     const curve = new THREE.QuadraticBezierCurve3(start, mid, end);
 
     const isMajor = !!tgt.hub;
-    const arcColor = tgt.charter ? RED : CYAN;
+    const arcColor = tgt.charter ? CYAN : RED;
     const baseOpacity = isMajor ? 0.78 : 0.5;
 
     const tubeMat = new THREE.MeshBasicMaterial({
