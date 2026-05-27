@@ -7771,6 +7771,12 @@ body.cursor-hover .cursor-follower {
   max-width: 1320px;
   margin: 0 auto;
 }
+.cp-hero--form {
+  display: block;
+  padding: 130px 48px 110px;
+  max-width: none;
+  margin: 0;
+}
 .cp-hero__inner { display: flex; flex-direction: column; gap: 22px; }
 .cp-hero__title {
   font-family: var(--display);
