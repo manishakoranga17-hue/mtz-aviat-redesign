@@ -3757,12 +3757,12 @@ body.cursor-hover .cursor-follower {
 
 .fcard {
   position: relative;
-  padding: 48px 44px 44px;
+  padding: 32px 36px 32px;
   border-right: 1px solid rgba(240,240,240,0.18);
   border-bottom: 1px solid rgba(240,240,240,0.18);
   display: flex; flex-direction: column;
-  gap: 24px;
-  min-height: 320px;
+  gap: 16px;
+  min-height: 200px;
   transition: background 0.5s var(--ease-out);
 }
 .fcard:hover { background: rgba(240,240,240,0.03); }
