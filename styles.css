@@ -3980,7 +3980,69 @@ body.cursor-hover .cursor-follower {
 .logo-board {
   position: relative;
   width: 100%;
-  height: clamp(280px, 38vw, 460px);
+  min-height: clamp(280px, 38vw, 460px);
+}
+
+/* Carrier logo grid (22 partner airlines) */
+.carrier-grid {
+  position: relative;
+  z-index: 2;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  border-top: 1px solid rgba(10, 31, 61, 0.10);
+  border-left: 1px solid rgba(10, 31, 61, 0.10);
+}
+.carrier {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 22px;
+  border-right: 1px solid rgba(10, 31, 61, 0.10);
+  border-bottom: 1px solid rgba(10, 31, 61, 0.10);
+  transition: background 0.4s var(--ease-out);
+}
+.carrier::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(222, 29, 42, 0.06), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-out);
+  pointer-events: none;
+}
+.carrier:hover { background: rgba(255, 255, 255, 0.5); }
+.carrier:hover::before { opacity: 1; }
+.carrier img {
+  max-width: 100%;
+  max-height: 70px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(1) brightness(0.85);
+  opacity: 0.72;
+  transition: filter 0.45s var(--ease-out), opacity 0.45s var(--ease-out), transform 0.45s var(--ease-out);
+}
+.carrier:hover img {
+  filter: none;
+  opacity: 1;
+  transform: scale(1.06);
+}
+
+@media (max-width: 1100px) {
+  .carrier-grid { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 720px) {
+  .carrier-grid { grid-template-columns: repeat(3, 1fr); }
+  .carrier { padding: 14px 16px; }
+  .carrier img { max-height: 48px; }
+}
+@media (max-width: 480px) {
+  .carrier-grid { grid-template-columns: repeat(2, 1fr); }
 }
 /* Inner horizontal dividers (kept solid; only outer top/bottom were removed) */
 .logo-board::before, .logo-board::after {
