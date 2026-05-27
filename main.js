@@ -864,6 +864,14 @@ function playHeroIntro() {
     });
   }
 
+  /* Certifications: title fades, cards stagger up */
+  if (has('.certs__grid')) {
+    gsap.from('.certs__grid .cert', {
+      y: 32, opacity: 0, duration: 0.85, ease: 'expo.out', stagger: 0.07,
+      scrollTrigger: { trigger: '.certs__grid', start: 'top 88%' },
+    });
+  }
+
   /* Tech outcomes: panel rises into view (cells stay visible by default) */
   if (has('.tech-outcomes')) {
     gsap.from('.tech-outcomes', {
