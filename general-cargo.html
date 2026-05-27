@@ -86,54 +86,113 @@
       </div>
     </section>
 
-<section class="sd-section sd-faq">
-      <div class="sd-section__inner">
-        <header class="sd-section__head">
+<section class="faq" id="faq">
+      <div class="faq__inner">
+        <div class="faq__head">
           <span class="section-label">Frequently asked</span>
-          <h2 class="sd-section__title">Common <em>general-cargo questions.</em></h2>
-        </header>
-        <ul class="sd-faq__list">
-          <li class="sd-faq__item">
-            <button class="sd-faq__q" aria-expanded="false">
-              <span class="sd-faq__q-num">01</span>
-              <span class="sd-faq__q-text">What counts as general cargo?</span>
-              <span class="sd-faq__q-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
-            </button>
-            <div class="sd-faq__a"><div class="sd-faq__a-inner"><p>Any non-specialised freight that doesn&rsquo;t require temperature control, hazardous classification, or animal-welfare handling. Textiles, electronics, spare parts, personal effects and commercial samples all qualify.</p></div></div>
-          </li>
-          <li class="sd-faq__item">
-            <button class="sd-faq__q" aria-expanded="false">
-              <span class="sd-faq__q-num">02</span>
-              <span class="sd-faq__q-text">Is there a minimum weight or volume?</span>
-              <span class="sd-faq__q-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
-            </button>
-            <div class="sd-faq__a"><div class="sd-faq__a-inner"><p>We handle consignments from 5 kg upward on scheduled flights. Below that, we&rsquo;ll route through a courier partner for cost-efficiency. No upper limit &mdash; full-aircraft charters available on request.</p></div></div>
-          </li>
-          <li class="sd-faq__item">
-            <button class="sd-faq__q" aria-expanded="false">
-              <span class="sd-faq__q-num">03</span>
-              <span class="sd-faq__q-text">How long does transit take from KUL?</span>
-              <span class="sd-faq__q-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
-            </button>
-            <div class="sd-faq__a"><div class="sd-faq__a-inner"><p>Most Asian destinations are 24&ndash;48 hours door-to-door. Middle East / Europe is typically 48&ndash;72 hours; North America 72&ndash;96 hours. We confirm an exact ETA at quote time.</p></div></div>
-          </li>
-          <li class="sd-faq__item">
-            <button class="sd-faq__q" aria-expanded="false">
-              <span class="sd-faq__q-num">04</span>
-              <span class="sd-faq__q-text">Do you handle customs clearance?</span>
-              <span class="sd-faq__q-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
-            </button>
-            <div class="sd-faq__a"><div class="sd-faq__a-inner"><p>Yes &mdash; export clearance from KUL is managed in-house under our AEO Malaysia status. At destination, we coordinate with vetted local brokers in 40+ countries on your behalf.</p></div></div>
-          </li>
-          <li class="sd-faq__item">
-            <button class="sd-faq__q" aria-expanded="false">
-              <span class="sd-faq__q-num">05</span>
-              <span class="sd-faq__q-text">How do I get started with a booking?</span>
-              <span class="sd-faq__q-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
-            </button>
-            <div class="sd-faq__a"><div class="sd-faq__a-inner"><p>Send shipment details &mdash; origin, destination, dimensions, weight, timeline &mdash; via the contact form or directly to enquiry@mtz-aviat.com. We respond with a quote within operating hours and reserve capacity on confirmation.</p></div></div>
-          </li>
+          <h2 class="faq__title">General cargo, <em>answered.</em></h2>
+          <p class="faq__lede">Quick answers on routing, transit times, customs, minimum weight, and how to book your first shipment.</p>
+        </div>
+
+        <ul class="faq__list">
+        <li class="faq__item">
+          <button class="faq__q" aria-expanded="false">
+            <span class="faq__q-num">01</span>
+            <span class="faq__q-text">What counts as general cargo?</span>
+            <span class="faq__q-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M12 5v14M5 12h14" />
+              </svg>
+            </span>
+          </button>
+          <div class="faq__a-wrap">
+            <div class="faq__a-inner">
+              <p class="faq__a">Any non-specialised freight that doesn&rsquo;t require temperature control, hazardous classification, or animal-welfare handling. Textiles, electronics, spare parts, personal effects and commercial samples all qualify.</p>
+            </div>
+          </div>
+        </li>
+
+        <li class="faq__item">
+          <button class="faq__q" aria-expanded="false">
+            <span class="faq__q-num">02</span>
+            <span class="faq__q-text">Is there a minimum weight or volume?</span>
+            <span class="faq__q-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M12 5v14M5 12h14" />
+              </svg>
+            </span>
+          </button>
+          <div class="faq__a-wrap">
+            <div class="faq__a-inner">
+              <p class="faq__a">We handle consignments from 5 kg upward on scheduled flights. Below that, we&rsquo;ll route through a courier partner for cost-efficiency. No upper limit &mdash; full-aircraft charters available on request.</p>
+            </div>
+          </div>
+        </li>
+
+        <li class="faq__item">
+          <button class="faq__q" aria-expanded="false">
+            <span class="faq__q-num">03</span>
+            <span class="faq__q-text">How long does transit take from KUL?</span>
+            <span class="faq__q-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M12 5v14M5 12h14" />
+              </svg>
+            </span>
+          </button>
+          <div class="faq__a-wrap">
+            <div class="faq__a-inner">
+              <p class="faq__a">Most Asian destinations are 24&ndash;48 hours door-to-door. Middle East / Europe is typically 48&ndash;72 hours; North America 72&ndash;96 hours. We confirm an exact ETA at quote time.</p>
+            </div>
+          </div>
+        </li>
+
+        <li class="faq__item">
+          <button class="faq__q" aria-expanded="false">
+            <span class="faq__q-num">04</span>
+            <span class="faq__q-text">Do you handle customs clearance?</span>
+            <span class="faq__q-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M12 5v14M5 12h14" />
+              </svg>
+            </span>
+          </button>
+          <div class="faq__a-wrap">
+            <div class="faq__a-inner">
+              <p class="faq__a">Yes &mdash; export clearance from KUL is managed in-house under our AEO Malaysia status. At destination, we coordinate with vetted local brokers in 40+ countries on your behalf.</p>
+            </div>
+          </div>
+        </li>
+
+        <li class="faq__item">
+          <button class="faq__q" aria-expanded="false">
+            <span class="faq__q-num">05</span>
+            <span class="faq__q-text">How do I get started with a booking?</span>
+            <span class="faq__q-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M12 5v14M5 12h14" />
+              </svg>
+            </span>
+          </button>
+          <div class="faq__a-wrap">
+            <div class="faq__a-inner">
+              <p class="faq__a">Send shipment details &mdash; origin, destination, dimensions, weight, timeline &mdash; via the contact form or directly to enquiry@mtz-aviat.com. We respond with a quote within operating hours and reserve capacity on confirmation.</p>
+            </div>
+          </div>
+        </li>
         </ul>
+
+        <aside class="faq__cta" aria-label="Still have questions">
+          <div class="faq__cta-text">
+            <span class="faq__cta-tag">Still have questions?</span>
+            <p class="faq__cta-lede">We&rsquo;re a quick message away &mdash; talk to the team that actually moves the cargo.</p>
+          </div>
+          <a href="contact.html" class="faq__cta-link" data-cursor="hover">
+            <span>Speak with our cargo team</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <path d="M5 12h14M13 5l7 7-7 7" />
+            </svg>
+          </a>
+        </aside>
       </div>
     </section>
 
@@ -207,15 +266,5 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="main.js?v=170"></script>
-  <script>
-    /* FAQ accordion */
-    document.querySelectorAll('.sd-faq__q').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const item = btn.closest('.sd-faq__item');
-        const open = item.classList.toggle('is-open');
-        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      });
-    });
-  </script>
 </body>
 </html>
