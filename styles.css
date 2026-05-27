@@ -3647,6 +3647,7 @@ body.cursor-hover .cursor-follower {
   align-items: center;
   gap: 64px;
   width: max-content;
+  will-change: transform;
   animation: trustMarqueeScroll 60s linear infinite;
 }
 .trust-marquee:hover .trust-marquee__track {
@@ -5227,6 +5228,9 @@ body.cursor-hover .cursor-follower {
   }
   .marquee__row--right .marquee__track {
     animation: marqueeRight 170s linear infinite !important;
+  }
+  .trust-marquee__track {
+    animation: trustMarqueeScroll 60s linear infinite !important;
   }
 }
 
