@@ -881,19 +881,13 @@ function playHeroIntro() {
     });
   }
 
-  /* Flight plan: trust band lifts in, then cells stagger */
+  /* Flight plan: trust band lifts in (cells & stars stay visible) */
   if (has('.flightplan__trust')) {
-    const tl = gsap.timeline({
-      scrollTrigger: { trigger: '.flightplan__trust', start: 'top 92%' },
+    gsap.from('.flightplan__trust', {
+      y: 32, opacity: 0, duration: 0.9, ease: 'expo.out',
+      clearProps: 'transform,opacity',
+      scrollTrigger: { trigger: '.flightplan__trust', start: 'top 95%' },
     });
-    tl.from('.flightplan__trust', { y: 32, opacity: 0, duration: 0.9, ease: 'expo.out' });
-    tl.from('.flightplan__trust .trust__cell', {
-      y: 18, opacity: 0, duration: 0.6, ease: 'expo.out', stagger: 0.1,
-    }, '-=0.5');
-    tl.from('.flightplan__trust .trust__stars svg', {
-      scale: 0, opacity: 0, duration: 0.4, ease: 'back.out(2)', stagger: 0.06,
-      transformOrigin: '50% 50%',
-    }, '-=0.4');
   }
 
   /* Service cells rise in */
