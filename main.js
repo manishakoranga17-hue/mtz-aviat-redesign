@@ -586,10 +586,10 @@ if (document.getElementById('loader')) {
     const w = canvas.clientWidth || 600;
     if (w < 600) {
       globeGroup.scale.setScalar(0.92);
-      camera.position.z = 11.5;
+      camera.position.z = activeMode === 'dom' ? 6.4 : 11.5;
     } else {
       globeGroup.scale.setScalar(1);
-      camera.position.z = 10.8;
+      camera.position.z = activeMode === 'dom' ? 5.6 : 10.8;
     }
   }
   place();
@@ -769,6 +769,11 @@ if (document.getElementById('loader')) {
   buildRouteList();
 
   /* ===== NETWORK TOGGLE (intl / domestic) ===== */
+  const INTL_CAMERA_Z = camera.position.z; /* default world view distance */
+  const DOM_CAMERA_Z = 5.6;                 /* close-up over Malaysia */
+  const INTL_ROT_Y = globeGroup.rotation.y;
+  const INTL_ROT_X = globeGroup.rotation.x;
+
   function setNetworkMode(mode) {
     if (mode === activeMode) return;
     activeMode = mode;
@@ -778,6 +783,32 @@ if (document.getElementById('loader')) {
       b.classList.toggle('is-active', b.dataset.mode === mode);
       b.setAttribute('aria-pressed', b.dataset.mode === mode ? 'true' : 'false');
     });
+
+    if (mode === 'dom') {
+      /* Spin globe to centre on Malaysia and zoom the camera in. */
+      autoRotate = false;
+      const targetY = THREE.MathUtils.degToRad(-HUB_DATA.lon - 90);
+      const targetX = THREE.MathUtils.degToRad(HUB_DATA.lat * 0.6 - 6);
+      spin = {
+        fromY: globeGroup.rotation.y,
+        toY: nearestAngle(globeGroup.rotation.y, targetY),
+        fromX: globeGroup.rotation.x,
+        toX: targetX,
+        t: 0, dur: 1.4,
+      };
+      zoomTo(DOM_CAMERA_Z, 1.4);
+    } else {
+      /* Restore world view + default orientation, then re-enable autorotate. */
+      spin = {
+        fromY: globeGroup.rotation.y,
+        toY: nearestAngle(globeGroup.rotation.y, INTL_ROT_Y),
+        fromX: globeGroup.rotation.x,
+        toX: INTL_ROT_X,
+        t: 0, dur: 1.4,
+      };
+      zoomTo(INTL_CAMERA_Z, 1.4);
+      setTimeout(() => { autoRotate = true; }, 1500);
+    }
   }
   document.querySelectorAll('.network__mode-btn').forEach((b) => {
     b.addEventListener('click', () => setNetworkMode(b.dataset.mode));
@@ -818,6 +849,12 @@ if (document.getElementById('loader')) {
     return from + d;
   }
 
+  /* Camera zoom tween (used by intl/domestic toggle) */
+  let zoom = null;
+  function zoomTo(targetZ, durSec) {
+    zoom = { fromZ: camera.position.z, toZ: targetZ, t: 0, dur: durSec || 1.2 };
+  }
+
   /* ===== 12. ANIMATION LOOP ===== */
   let last = performance.now();
   function tick(now) {
@@ -845,6 +882,14 @@ if (document.getElementById('loader')) {
       globeGroup.rotation.y = spin.fromY + (spin.toY - spin.fromY) * e;
       globeGroup.rotation.x = spin.fromX + (spin.toX - spin.fromX) * e;
       if (spin.t >= 1) spin = null;
+    }
+
+    /* Camera zoom tween */
+    if (zoom) {
+      zoom.t += dt / zoom.dur;
+      const e = 1 - Math.pow(1 - Math.min(zoom.t, 1), 3);
+      camera.position.z = zoom.fromZ + (zoom.toZ - zoom.fromZ) * e;
+      if (zoom.t >= 1) zoom = null;
     }
 
     /* Travelers */
