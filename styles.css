@@ -3623,6 +3623,7 @@ body.cursor-hover .cursor-follower {
 /* ---- Same band switched to a white logo-marquee surface ---- */
 .flightplan__trust.trust--logos {
   display: block;
+  margin-top: 69px;
   padding: 28px 0;
   background: #fff;
   border: 1px solid rgba(10, 31, 61, 0.08);
