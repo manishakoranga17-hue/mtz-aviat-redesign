@@ -3519,23 +3519,25 @@ body.cursor-hover .cursor-follower {
 .trust__cell {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: 14px;
   padding: 0 36px;
   border-left: 1px solid rgba(240, 240, 240, 0.12);
 }
 .trust__cell:first-child {
   border-left: none;
-  padding-left: 0;
 }
 .trust__cell--rating {
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
 }
 .trust__stars {
   display: inline-flex;
   gap: 4px;
   color: var(--c-orange);
   filter: drop-shadow(0 0 14px rgba(222, 29, 42, 0.55));
+  justify-content: center;
 }
 .trust__stars svg {
   width: 22px;
@@ -3544,6 +3546,7 @@ body.cursor-hover .cursor-follower {
 .trust__main {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 10px;
 }
 .trust__value {
@@ -3565,10 +3568,11 @@ body.cursor-hover .cursor-follower {
 }
 .trust__label {
   font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.28em;
+  font-size: 14.5px;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: rgba(240, 240, 240, 0.6);
+  color: rgba(240, 240, 240, 0.85);
+  font-weight: 500;
 }
 
 @media (max-width: 900px) {
