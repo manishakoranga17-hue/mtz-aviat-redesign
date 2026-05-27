@@ -2614,8 +2614,11 @@ body.cursor-hover .cursor-follower {
 }
 .services__cluster--tech .services__cluster-head {
   border-bottom: 1px solid rgba(10,31,61,0.10);
-  padding-bottom: 22px;
-  margin-bottom: 28px;
+  padding-bottom: 14px;
+  margin-bottom: 8px;
+}
+.services__cluster--tech .tech-hero {
+  padding-top: clamp(10px, 1.4vw, 18px);
 }
 
 /* ---- Tech outcomes strip (sits below the isometric stack) ---- */
