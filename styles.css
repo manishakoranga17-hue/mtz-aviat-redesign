@@ -3494,7 +3494,7 @@ body.cursor-hover .cursor-follower {
   border: 1px solid rgba(240, 240, 240, 0.14);
   border-radius: 14px;
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   align-items: center;
   gap: 0;
   color: var(--c-dirty-white);
