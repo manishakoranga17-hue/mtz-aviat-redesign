@@ -477,11 +477,17 @@ body.cursor-hover .cursor-follower {
 }
 
 .nav__links {
-  display: flex; gap: 32px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
   font-size: 14px; letter-spacing: 0; text-transform: none;
   font-weight: 500;
   color: var(--c-dirty-white);
 }
+.nav__links li { display: inline-flex; align-items: center; line-height: 1; }
 .nav__links a {
   position: relative;
   padding: 4px 0;
@@ -501,7 +507,7 @@ body.cursor-hover .cursor-follower {
 .nav__item--has-sub {
   position: relative;
 }
-.nav__top { display: inline-flex; align-items: center; gap: 6px; }
+.nav__top { display: inline-flex; align-items: center; gap: 6px; line-height: 1; }
 .nav__chev {
   width: 10px; height: 10px;
   transition: transform 0.35s var(--ease-out);
