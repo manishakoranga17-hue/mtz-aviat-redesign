@@ -10713,9 +10713,11 @@ body.cursor-hover .cursor-follower {
 .sd-cta {
   position: relative;
   padding: 100px 48px;
-  background: var(--c-dark-green);
+  background: linear-gradient(180deg, #0e2a4b 0%, #0c2542 100%);
   color: var(--c-dirty-white);
   text-align: center;
+  border-bottom: 1px solid rgba(240, 240, 240, 0.12);
+  box-shadow: 0 24px 60px -28px rgba(0, 0, 0, 0.55);
   overflow: hidden;
 }
 .sd-cta::before {
