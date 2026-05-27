@@ -12,7 +12,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=162" />
+  <link rel="stylesheet" href="styles.css?v=163" />
 </head>
 
 <body>
@@ -787,6 +787,10 @@
         <div class="network__stage">
           <canvas id="globeCanvas" class="network__canvas"></canvas>
           <div class="network__hint" id="networkHint">⤺ &nbsp;Drag to rotate</div>
+          <div class="network__modes" role="group" aria-label="Network coverage toggle">
+            <button type="button" class="network__mode-btn is-active" data-mode="intl" aria-pressed="true" data-cursor="hover">International</button>
+            <button type="button" class="network__mode-btn" data-mode="dom" aria-pressed="false" data-cursor="hover">Domestic</button>
+          </div>
           <ul class="network__legend">
             <li><span class="legend-dot legend-dot--hub"></span> Hub</li>
             <li><span class="legend-dot legend-dot--charter"></span> Charter</li>
@@ -1176,7 +1180,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
-  <script src="main.js?v=126"></script>
+  <script src="main.js?v=163"></script>
 </body>
 
 </html>

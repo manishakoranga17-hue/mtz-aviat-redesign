@@ -311,7 +311,20 @@ if (document.getElementById('loader')) {
   /* ===== 3. ROUTES — full data: lon, lat, IATA code, city, country, isHub ===== */
   const HUB_DATA = { lon: 101.7, lat: 3.1, code: 'KUL', city: 'Kuala Lumpur', country: 'Malaysia', hub: true };
 
-  const routes = [
+  /* Domestic destinations on a Kuala Lumpur hub-and-spoke */
+  const DOM_ROUTES = [
+    { lon: 100.27, lat: 5.30, code: 'PEN', city: 'Penang',         country: 'Malaysia' },
+    { lon: 103.67, lat: 1.64, code: 'JHB', city: 'Johor Bahru',    country: 'Malaysia' },
+    { lon: 116.05, lat: 5.94, code: 'BKI', city: 'Kota Kinabalu',  country: 'Malaysia', hub: true },
+    { lon: 115.25, lat: 5.30, code: 'LBU', city: 'Labuan',         country: 'Malaysia' },
+    { lon: 118.13, lat: 4.32, code: 'TWU', city: 'Tawau',          country: 'Malaysia' },
+    { lon: 110.34, lat: 1.48, code: 'KCH', city: 'Kuching',        country: 'Malaysia', hub: true },
+    { lon: 113.99, lat: 4.32, code: 'MYY', city: 'Miri',           country: 'Malaysia' },
+    { lon: 113.07, lat: 3.12, code: 'BTU', city: 'Bintulu',        country: 'Malaysia' },
+    { lon: 111.99, lat: 2.26, code: 'SBW', city: 'Sibu',           country: 'Malaysia' },
+  ];
+
+  const INTL_ROUTES = [
     /* China — charter */
     { lon: 113.30, lat: 23.39, code: 'CAN', city: 'Guangzhou',    country: 'China',         charter: true },
     { lon: 113.92, lat: 22.31, code: 'HKG', city: 'Hong Kong',    country: 'China',         charter: true, hub: true },
@@ -377,14 +390,34 @@ if (document.getElementById('loader')) {
     [-58.4, -34.6], [-70.7, -33.5], [-77.0, 12.0], [144.9, -37.8], [115.8, -32.0],
   ];
 
-  const allRoutePoints = [HUB_DATA, ...routes];
-
-  /* — Pickable city points (with userData for raycaster) — */
-  const cityPickGroup = new THREE.Group();
+  /* === Active network state — mutated by setNetwork() to swap intl <-> domestic === */
+  let routes = INTL_ROUTES;
+  let allRoutePoints = [HUB_DATA, ...routes];
+  let cityPickMeshes = [];
+  let hubRings = [];
+  let travelers = [];
+  let arcsByCode = new Map();
+  let cityPickGroup = new THREE.Group();
   globeGroup.add(cityPickGroup);
-  const cityPickMeshes = [];
+  let arcGroup = new THREE.Group();
+  globeGroup.add(arcGroup);
+  let activeMode = 'intl';
 
-  allRoutePoints.forEach((r) => {
+  function buildNetwork(routesData) {
+    /* Tear down the current layer's geometry */
+    cityPickGroup.clear();
+    arcGroup.clear();
+    hubRings.forEach((ring) => { globeGroup.remove(ring); ring.geometry.dispose(); ring.material.dispose(); });
+
+    routes = routesData;
+    allRoutePoints = [HUB_DATA, ...routes];
+    cityPickMeshes = [];
+    hubRings = [];
+    travelers = [];
+    arcsByCode = new Map();
+
+    /* — Pickable city points — */
+    allRoutePoints.forEach((r) => {
     const v = lonLatToVec3(r.lon, r.lat, radius * 1.014);
     const isHub = !!r.hub || r.code === 'KUL';
     const dotSize = r.code === 'KUL' ? 0.10 : (isHub ? 0.07 : 0.055);
@@ -399,20 +432,7 @@ if (document.getElementById('loader')) {
     cityPickMeshes.push(mesh);
   });
 
-  /* Ambient city dots (decorative only, smaller, no userData) */
-  const ambPositions = [];
-  ambient.forEach(([lon, lat]) => {
-    const v = lonLatToVec3(lon, lat, radius * 1.012);
-    ambPositions.push(v.x, v.y, v.z);
-  });
-  const ambGeo = new THREE.BufferGeometry();
-  ambGeo.setAttribute('position', new THREE.Float32BufferAttribute(ambPositions, 3));
-  globeGroup.add(new THREE.Points(ambGeo, new THREE.PointsMaterial({
-    color: 0xff7785, size: 0.04, transparent: true, opacity: 0.6, sizeAttenuation: true,
-  })));
-
   /* Pulsing rings around hub cities (color matches route type) */
-  const hubRings = [];
   allRoutePoints.filter((r) => r.hub).forEach((r) => {
     const pos = lonLatToVec3(r.lon, r.lat, radius * 1.02);
     const ringColor = r.code === 'KUL' ? WHITE : (r.charter ? RED : CYAN);
@@ -428,14 +448,8 @@ if (document.getElementById('loader')) {
     globeGroup.add(ring);
   });
 
-  /* ===== 4. FLIGHT ARCS — one per route from KUL ===== */
-  const arcGroup = new THREE.Group();
-  globeGroup.add(arcGroup);
-
-  const arcsByCode = new Map(); /* code → { tube, glow, plane, trail, mat, glowMat, defaultOpacity } */
-  const travelers = [];
-
-  routes.forEach((tgt, idx) => {
+    /* ===== 4. FLIGHT ARCS — one per route from KUL ===== */
+    routes.forEach((tgt, idx) => {
     const start = lonLatToVec3(HUB_DATA.lon, HUB_DATA.lat, radius * 1.01);
     const end = lonLatToVec3(tgt.lon, tgt.lat, radius * 1.01);
     const mid = start.clone().add(end).multiplyScalar(0.5);
@@ -489,7 +503,20 @@ if (document.getElementById('loader')) {
       baseTubeOpacity: baseOpacity,
       baseGlowOpacity: isMajor ? 0.18 : 0.10,
     });
+    });
+  }
+
+  /* Ambient city dots (decorative, built once — survives network toggle) */
+  const ambPositions = [];
+  ambient.forEach(([lon, lat]) => {
+    const v = lonLatToVec3(lon, lat, radius * 1.012);
+    ambPositions.push(v.x, v.y, v.z);
   });
+  const ambGeo = new THREE.BufferGeometry();
+  ambGeo.setAttribute('position', new THREE.Float32BufferAttribute(ambPositions, 3));
+  globeGroup.add(new THREE.Points(ambGeo, new THREE.PointsMaterial({
+    color: 0xff7785, size: 0.04, transparent: true, opacity: 0.6, sizeAttenuation: true,
+  })));
 
   /* KL hub — pulsing red ring around its dot */
   const klPos = lonLatToVec3(HUB_DATA.lon, HUB_DATA.lat, radius * 1.025);
@@ -500,6 +527,9 @@ if (document.getElementById('loader')) {
   klRing.position.copy(klPos);
   klRing.lookAt(klPos.clone().multiplyScalar(2));
   globeGroup.add(klRing);
+
+  /* Initial network: international */
+  buildNetwork(INTL_ROUTES);
 
   /* ===== 5. ATMOSPHERIC HALO — tight soft-white rim, then a wider warm red glow ===== */
   /* Inner rim: soft white, hugs the sphere edge */
@@ -697,7 +727,9 @@ if (document.getElementById('loader')) {
   }
 
   /* ===== 11. ROUTE LIST UI ===== */
-  if (routeListEl) {
+  function buildRouteList() {
+    if (!routeListEl) return;
+    routeListEl.innerHTML = '';
     /* Sort: hubs first, then alphabetical */
     const ordered = [...routes].sort((a, b) => {
       if (!!a.hub !== !!b.hub) return a.hub ? -1 : 1;
@@ -734,6 +766,22 @@ if (document.getElementById('loader')) {
     routeListEl.appendChild(frag);
     if (routesCountEl) routesCountEl.textContent = routes.length + ' active routes';
   }
+  buildRouteList();
+
+  /* ===== NETWORK TOGGLE (intl / domestic) ===== */
+  function setNetworkMode(mode) {
+    if (mode === activeMode) return;
+    activeMode = mode;
+    buildNetwork(mode === 'dom' ? DOM_ROUTES : INTL_ROUTES);
+    buildRouteList();
+    document.querySelectorAll('.network__mode-btn').forEach((b) => {
+      b.classList.toggle('is-active', b.dataset.mode === mode);
+      b.setAttribute('aria-pressed', b.dataset.mode === mode ? 'true' : 'false');
+    });
+  }
+  document.querySelectorAll('.network__mode-btn').forEach((b) => {
+    b.addEventListener('click', () => setNetworkMode(b.dataset.mode));
+  });
 
   function updateActiveListItem(code) {
     if (!routeListEl) return;

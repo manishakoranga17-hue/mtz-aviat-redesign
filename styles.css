@@ -2196,6 +2196,45 @@ body.cursor-hover .cursor-follower {
 }
 .network__hint.is-faded { opacity: 0; }
 
+/* International / Domestic toggle */
+.network__modes {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  background: rgba(6, 11, 26, 0.55);
+  border: 1px solid rgba(240, 240, 240, 0.10);
+  border-radius: 999px;
+  backdrop-filter: blur(10px);
+  z-index: 3;
+}
+.network__mode-btn {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  background: transparent;
+  color: rgba(240, 240, 240, 0.65);
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s var(--ease-out), color 0.3s var(--ease-out);
+}
+.network__mode-btn:hover {
+  color: var(--c-dirty-white);
+}
+.network__mode-btn.is-active {
+  background: var(--c-orange);
+  color: #fff;
+  box-shadow: 0 0 14px rgba(222, 29, 42, 0.45);
+}
+
 .network__legend {
   position: absolute; bottom: 18px; left: 18px;
   display: flex; gap: 16px;
