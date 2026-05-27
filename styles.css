@@ -3968,10 +3968,13 @@ body.cursor-hover .cursor-follower {
 }
 .partners__lede {
   margin: 80px auto 0;
-  max-width: 580px;
-  font-size: 16px;
-  line-height: 1.55;
-  color: rgba(10,31,61,0.6);
+  max-width: 880px;
+  font-family: var(--display);
+  font-size: clamp(20px, 1.9vw, 28px);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+  color: rgba(10, 31, 61, 0.9);
   text-align: center;
   padding: 0 24px;
 }
