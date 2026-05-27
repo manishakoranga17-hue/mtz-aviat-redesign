@@ -1377,6 +1377,10 @@ body.cursor-hover .cursor-follower {
 .about__sticky .section-label {
   line-height: 1.7;
 }
+.about__eyebrow {
+  display: inline-block;
+  margin-bottom: 18px;
+}
 
 .split-text h2,
 .about__heading h2,
