@@ -10626,25 +10626,6 @@ body.cursor-hover .cursor-follower {
     radial-gradient(ellipse 50% 80% at 0% 100%, rgba(222,29,42,0.25), transparent 60%);
   pointer-events: none;
 }
-
-/* Brightened hero variant — image on a ::before so we can boost it,
-   with a lighter overlay so the photo reads clearly. */
-.sd-hero--bright { background-image: none !important; }
-.sd-hero--bright::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url('dangerous-goods-hero.jpg') center / cover no-repeat;
-  filter: brightness(1.32) saturate(1.12) contrast(1.04);
-  z-index: 0;
-}
-.sd-hero--bright .sd-hero__overlay {
-  z-index: 1;
-  background:
-    linear-gradient(135deg, rgba(10,31,61,0.62), rgba(10,31,61,0.32) 60%, rgba(10,31,61,0.12)),
-    radial-gradient(ellipse 50% 80% at 0% 100%, rgba(222,29,42,0.2), transparent 60%);
-}
-.sd-hero--bright .sd-hero__inner { z-index: 2; }
 .sd-hero__inner {
   position: relative;
   z-index: 1;
