@@ -2019,21 +2019,18 @@ body.cursor-hover .cursor-follower {
   position: relative;
   max-width: 1400px; margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   border-top: 1px solid rgba(10,31,61,0.18);
   border-bottom: 1px solid rgba(10,31,61,0.18);
 }
 .stat {
   position: relative;
-  padding: 36px 28px 32px;
+  padding: 36px 20px 32px;
   display: flex; flex-direction: column;
   border-right: 1px solid rgba(10,31,61,0.12);
   transition: background 0.4s var(--ease-out);
 }
 .stat:last-child { border-right: 0; }
-/* 3-column / 2-row layout: drop right border on col 3, add a divider under row 1 */
-.stat:nth-child(3n) { border-right: 0; }
-.stat:nth-child(-n+3) { border-bottom: 1px solid rgba(10,31,61,0.12); }
 .stat:hover { background: rgba(222,29,42,0.04); }
 .stat::after {
   content: "";
@@ -2053,7 +2050,7 @@ body.cursor-hover .cursor-follower {
 }
 .stat__num {
   font-family: var(--display);
-  font-size: clamp(48px, 5.2vw, 76px);
+  font-size: clamp(40px, 3.4vw, 58px);
   font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 0.95;
@@ -2084,7 +2081,7 @@ body.cursor-hover .cursor-follower {
   .stats__grid { grid-template-columns: repeat(3, 1fr); }
   .stat { border-bottom: 1px solid rgba(10,31,61,0.12); }
   .stat:nth-child(3n) { border-right: 0; }
-  .stat:nth-last-child(-n+2) { border-bottom: 0; }
+  .stat:nth-last-child(-n+3) { border-bottom: 0; }
 }
 @media (max-width: 900px) {
   .stats { padding: 100px 24px; }
