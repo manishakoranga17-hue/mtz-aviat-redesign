@@ -10626,6 +10626,12 @@ body.cursor-hover .cursor-follower {
     radial-gradient(ellipse 50% 80% at 0% 100%, rgba(222,29,42,0.25), transparent 60%);
   pointer-events: none;
 }
+/* Darker overlay variant — for bright hero photos so white text stays legible */
+.sd-hero--dim .sd-hero__overlay {
+  background:
+    linear-gradient(135deg, rgba(10,31,61,0.92), rgba(10,31,61,0.78) 55%, rgba(10,31,61,0.6)),
+    radial-gradient(ellipse 50% 80% at 0% 100%, rgba(222,29,42,0.22), transparent 60%);
+}
 .sd-hero__inner {
   position: relative;
   z-index: 1;
