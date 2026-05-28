@@ -585,16 +585,20 @@ body.cursor-hover .cursor-follower {
   font-size: 14.5px;
   font-weight: 500;
   letter-spacing: -0.005em;
-  color: rgba(240, 240, 240, 0.85);
-  opacity: 1;
+  /* The dropdown panel is always dark, so labels must stay light regardless
+     of the per-page navy-nav overrides that target .nav__links a. */
+  color: rgba(240, 240, 240, 0.85) !important;
+  opacity: 1 !important;
   transition: background 0.25s, color 0.25s, transform 0.3s var(--ease-out);
 }
 .nav__submenu li a::after { display: none; }
 .nav__submenu li a:hover {
   background: rgba(222, 29, 42, 0.14);
-  color: var(--c-dirty-white);
+  color: var(--c-dirty-white) !important;
   transform: translateX(3px);
 }
+.nav__submenu li a span { color: inherit; }
+.nav__submenu li a .nav__sub-num { color: var(--c-orange) !important; }
 .nav__sub-num {
   font-family: var(--mono);
   font-size: 11px;
