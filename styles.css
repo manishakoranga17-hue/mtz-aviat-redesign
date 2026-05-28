@@ -938,6 +938,15 @@ body.cursor-hover .cursor-follower {
   background: transparent;
 }
 .btn--ghost:hover { background: rgba(10,31,61,0.05); }
+/* Hero sits on a dark video — force the ghost CTA to read white */
+.hero__beat-actions .btn--ghost {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.55);
+}
+.hero__beat-actions .btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #fff;
+}
 
 /* hero ticker (kept) */
 .hero__ticker {
