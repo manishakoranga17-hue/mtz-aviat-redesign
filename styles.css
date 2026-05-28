@@ -2019,7 +2019,7 @@ body.cursor-hover .cursor-follower {
   position: relative;
   max-width: 1400px; margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   border-top: 1px solid rgba(10,31,61,0.18);
   border-bottom: 1px solid rgba(10,31,61,0.18);
 }
@@ -2031,6 +2031,9 @@ body.cursor-hover .cursor-follower {
   transition: background 0.4s var(--ease-out);
 }
 .stat:last-child { border-right: 0; }
+/* 3-column / 2-row layout: drop right border on col 3, add a divider under row 1 */
+.stat:nth-child(3n) { border-right: 0; }
+.stat:nth-child(-n+3) { border-bottom: 1px solid rgba(10,31,61,0.12); }
 .stat:hover { background: rgba(222,29,42,0.04); }
 .stat::after {
   content: "";
