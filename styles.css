@@ -2839,7 +2839,7 @@ body.cursor-hover .cursor-follower {
 /* ---- Tech outcomes strip (sits below the isometric stack) ---- */
 .tech-outcomes {
   position: relative;
-  margin-top: 28px;
+  margin-top: -40px;
   padding: 32px 44px;
   background:
     linear-gradient(180deg, rgba(10, 31, 61, 0.04), rgba(10, 31, 61, 0.015));
