@@ -2833,7 +2833,7 @@ body.cursor-hover .cursor-follower {
 .services__cluster--tech .tech-hero {
   padding-top: 0;
   margin-top: -56px;
-  min-height: 320px;
+  min-height: 200px;
 }
 
 /* ---- Tech outcomes strip (sits below the isometric stack) ---- */
