@@ -420,11 +420,17 @@ if (document.getElementById('loader')) {
     travelers = [];
     arcsByCode = new Map();
 
+    /* Domestic view zooms the camera in (~half the distance), so identical
+       world-sized markers appear roughly twice as large and the tightly
+       clustered Malaysian cities overlap. Shrink the markers in domestic mode
+       so each dot stays small and clearly pinned to its own city. */
+    const mScale = activeMode === 'dom' ? 0.5 : 1;
+
     /* — Pickable city points — */
     allRoutePoints.forEach((r) => {
     const v = lonLatToVec3(r.lon, r.lat, radius * 1.014);
     const isHub = !!r.hub || r.code === 'KUL';
-    const dotSize = r.code === 'KUL' ? 0.10 : (isHub ? 0.07 : 0.055);
+    const dotSize = (r.code === 'KUL' ? 0.10 : (isHub ? 0.07 : 0.055)) * mScale;
     const dotColor = r.code === 'KUL' ? WHITE : (r.charter ? RED : CYAN);
     const mesh = new THREE.Mesh(
       new THREE.SphereGeometry(dotSize, 14, 14),
@@ -441,7 +447,7 @@ if (document.getElementById('loader')) {
     const pos = lonLatToVec3(r.lon, r.lat, radius * 1.02);
     const ringColor = r.code === 'KUL' ? WHITE : (r.charter ? RED : CYAN);
     const ring = new THREE.Mesh(
-      new THREE.RingGeometry(0.07, 0.085, 32),
+      new THREE.RingGeometry(0.07 * mScale, 0.085 * mScale, 32),
       new THREE.MeshBasicMaterial({ color: ringColor, transparent: true, opacity: 0.7, side: THREE.DoubleSide })
     );
     ring.position.copy(pos);
@@ -471,7 +477,7 @@ if (document.getElementById('loader')) {
       color: arcColor, transparent: true, opacity: baseOpacity,
     });
     const tube = new THREE.Mesh(
-      new THREE.TubeGeometry(curve, 64, isMajor ? 0.011 : 0.007, 8, false),
+      new THREE.TubeGeometry(curve, 64, (isMajor ? 0.011 : 0.007) * mScale, 8, false),
       tubeMat
     );
     arcGroup.add(tube);
@@ -480,14 +486,14 @@ if (document.getElementById('loader')) {
       color: arcColor, transparent: true, opacity: isMajor ? 0.18 : 0.10,
     });
     const glow = new THREE.Mesh(
-      new THREE.TubeGeometry(curve, 64, isMajor ? 0.022 : 0.014, 8, false),
+      new THREE.TubeGeometry(curve, 64, (isMajor ? 0.022 : 0.014) * mScale, 8, false),
       glowMat
     );
     arcGroup.add(glow);
 
     /* moving plane along arc */
     const plane = new THREE.Mesh(
-      new THREE.ConeGeometry(0.025, 0.08, 4),
+      new THREE.ConeGeometry(0.025 * mScale, 0.08 * mScale, 4),
       new THREE.MeshBasicMaterial({ color: WHITE })
     );
     plane.userData = { curve, t: Math.random(), speed: 0.0014 + Math.random() * 0.0022 };
@@ -495,7 +501,7 @@ if (document.getElementById('loader')) {
     travelers.push(plane);
 
     const trail = new THREE.Mesh(
-      new THREE.SphereGeometry(0.03, 12, 12),
+      new THREE.SphereGeometry(0.03 * mScale, 12, 12),
       new THREE.MeshBasicMaterial({ color: arcColor, transparent: true, opacity: 0.7 })
     );
     trail.userData = { plane, offset: 0.04 };
