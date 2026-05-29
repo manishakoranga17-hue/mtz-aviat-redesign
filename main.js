@@ -1035,10 +1035,15 @@ function playHeroIntro() {
     scrollTrigger: { trigger: '.contact__grid', start: 'top 85%' },
   });
 
-  /* Footer big text reveal */
+  /* Footer big text reveal.
+     immediateRender:false keeps the wordmark visible on load — a gsap.from()
+     otherwise pre-sets opacity:0, and if ScrollTrigger mis-computes the
+     footer's start (page height shifts after the globe/tech-stack render)
+     the trigger never fires and the text stays invisible until a reload. */
   gsap.from('.foot__big span, .foot__big em', {
     y: 100, opacity: 0, duration: 1.2, ease: 'expo.out', stagger: 0.1,
-    scrollTrigger: { trigger: '.foot', start: 'top 75%' },
+    immediateRender: false,
+    scrollTrigger: { trigger: '.foot', start: 'top 85%', once: true },
   });
 })();
 
