@@ -317,15 +317,20 @@ if (document.getElementById('loader')) {
 
   /* Domestic destinations on a Kuala Lumpur hub-and-spoke */
   const DOM_ROUTES = [
-    { lon: 100.27, lat: 5.30, code: 'PEN', city: 'Penang',         country: 'Malaysia' },
-    { lon: 103.67, lat: 1.64, code: 'JHB', city: 'Johor Bahru',    country: 'Malaysia' },
-    { lon: 116.05, lat: 5.94, code: 'BKI', city: 'Kota Kinabalu',  country: 'Malaysia', hub: true },
-    { lon: 115.25, lat: 5.30, code: 'LBU', city: 'Labuan',         country: 'Malaysia' },
-    { lon: 118.13, lat: 4.32, code: 'TWU', city: 'Tawau',          country: 'Malaysia' },
-    { lon: 110.34, lat: 1.48, code: 'KCH', city: 'Kuching',        country: 'Malaysia', hub: true },
-    { lon: 113.99, lat: 4.32, code: 'MYY', city: 'Miri',           country: 'Malaysia' },
-    { lon: 113.07, lat: 3.12, code: 'BTU', city: 'Bintulu',        country: 'Malaysia' },
-    { lon: 111.99, lat: 2.26, code: 'SBW', city: 'Sibu',           country: 'Malaysia' },
+    /* Peninsular Malaysia — scheduled (cyan) */
+    { lon: 103.67, lat: 1.64,  code: 'JHB', city: 'Johor Bahru',   country: 'Malaysia' },
+    { lon: 103.10, lat: 5.38,  code: 'TGG', city: 'Terengganu',    country: 'Malaysia' },
+    { lon: 102.29, lat: 6.17,  code: 'KBR', city: 'Kota Bharu',    country: 'Malaysia' },
+    { lon: 99.73,  lat: 6.33,  code: 'LGK', city: 'Langkawi',      country: 'Malaysia' },
+    { lon: 100.27, lat: 5.30,  code: 'PEN', city: 'Penang',        country: 'Malaysia' },
+    /* East Malaysia — scheduled (cyan) */
+    { lon: 113.99, lat: 4.32,  code: 'MYY', city: 'Miri',          country: 'Malaysia' },
+    { lon: 111.99, lat: 2.26,  code: 'SBW', city: 'Sibu',          country: 'Malaysia' },
+    { lon: 118.13, lat: 4.32,  code: 'TWU', city: 'Tawau',         country: 'Malaysia' },
+    /* East Malaysia gateways — shown red per legend */
+    { lon: 116.05, lat: 5.94,  code: 'BKI', city: 'Kota Kinabalu', country: 'Malaysia', hub: true, red: true },
+    { lon: 110.34, lat: 1.48,  code: 'KCH', city: 'Kuching',       country: 'Malaysia', hub: true, red: true },
+    { lon: 115.25, lat: 5.30,  code: 'LBU', city: 'Labuan',        country: 'Malaysia', red: true },
   ];
 
   const INTL_ROUTES = [
@@ -431,7 +436,7 @@ if (document.getElementById('loader')) {
     const v = lonLatToVec3(r.lon, r.lat, radius * 1.014);
     const isHub = !!r.hub || r.code === 'KUL';
     const dotSize = (r.code === 'KUL' ? 0.10 : (isHub ? 0.07 : 0.055)) * mScale;
-    const dotColor = r.code === 'KUL' ? WHITE : (r.charter ? RED : CYAN);
+    const dotColor = r.code === 'KUL' ? WHITE : ((r.charter || r.red) ? RED : CYAN);
     const mesh = new THREE.Mesh(
       new THREE.SphereGeometry(dotSize, 14, 14),
       new THREE.MeshBasicMaterial({ color: dotColor })
@@ -445,7 +450,7 @@ if (document.getElementById('loader')) {
   /* Pulsing rings around hub cities (color matches route type) */
   allRoutePoints.filter((r) => r.hub).forEach((r) => {
     const pos = lonLatToVec3(r.lon, r.lat, radius * 1.02);
-    const ringColor = r.code === 'KUL' ? WHITE : (r.charter ? RED : CYAN);
+    const ringColor = r.code === 'KUL' ? WHITE : ((r.charter || r.red) ? RED : CYAN);
     const ring = new THREE.Mesh(
       new THREE.RingGeometry(0.07 * mScale, 0.085 * mScale, 32),
       new THREE.MeshBasicMaterial({ color: ringColor, transparent: true, opacity: 0.7, side: THREE.DoubleSide })
@@ -470,7 +475,7 @@ if (document.getElementById('loader')) {
     const curve = new THREE.QuadraticBezierCurve3(start, mid, end);
 
     const isMajor = !!tgt.hub;
-    const arcColor = tgt.charter ? RED : CYAN;
+    const arcColor = (tgt.charter || tgt.red) ? RED : CYAN;
     const baseOpacity = isMajor ? 0.78 : 0.5;
 
     const tubeMat = new THREE.MeshBasicMaterial({
