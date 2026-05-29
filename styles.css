@@ -2748,8 +2748,8 @@ body.cursor-hover .cursor-follower {
 /* ---- Bridge: a single hairline + pulse drops cargo into "Powered by" → CPU ---- */
 .services__bridge {
   position: relative;
-  height: 140px;
-  margin: 28px 0 0;
+  height: 240px;
+  margin: 56px 0 36px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2792,25 +2792,25 @@ body.cursor-hover .cursor-follower {
   z-index: 2;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 14px;
   background: var(--c-dirty-white);
-  padding: 9px 20px;
-  border: 1px solid var(--c-orange);
+  padding: 15px 32px;
+  border: 1.5px solid var(--c-orange);
   border-radius: 999px;
   font-family: var(--mono);
-  font-size: 10.5px;
-  letter-spacing: 0.32em;
+  font-size: 13.5px;
+  letter-spacing: 0.34em;
   text-transform: uppercase;
   color: var(--c-orange);
   font-weight: 600;
-  box-shadow: 0 0 0 6px var(--c-dirty-white);
+  box-shadow: 0 0 0 8px var(--c-dirty-white), 0 12px 30px -12px rgba(222,29,42,0.45);
   pointer-events: auto;
 }
 .services__bridge-dot {
-  width: 6px; height: 6px;
+  width: 8px; height: 8px;
   border-radius: 50%;
   background: var(--c-orange);
-  box-shadow: 0 0 8px rgba(222,29,42,0.7);
+  box-shadow: 0 0 10px rgba(222,29,42,0.8);
   animation: bridgeDot 1.6s ease-in-out infinite;
 }
 @keyframes bridgeDot {
