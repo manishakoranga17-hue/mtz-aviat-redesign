@@ -582,9 +582,15 @@ if (document.getElementById('loader')) {
   }));
   scene.add(stars);
 
-  /* ===== 7. ORIENTATION ===== */
-  globeGroup.rotation.y = 0.6;
-  globeGroup.rotation.x = 0.18;
+  /* ===== 7. ORIENTATION =====
+     Face the centre of the international network (~105°E, over Asia) on first
+     view so all the marked-up routes are visible before auto-rotation begins.
+     Mapping: to bring longitude L to the camera-facing centre, rotate the globe
+     by (-L - 90)° (same relation used by spinTo). This orientation is also
+     captured below as INTL_ROT_Y/X, so toggling back to International re-centres
+     here too. */
+  globeGroup.rotation.y = THREE.MathUtils.degToRad(-105 - 90);
+  globeGroup.rotation.x = 0.22;
 
   function place() {
     const w = canvas.clientWidth || 600;
