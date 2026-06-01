@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rewards — Menteiz Aviation Services</title>
+  <meta name="description" content="The Menteiz membership rewards program — earn redeemable cargo-space vouchers, priority handling and partner privileges on every shipment you move." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=195" />
+</head>
+<body class="page-about">
+
+  <!-- CUSTOM CURSOR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- PROGRESS BAR -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html" class="nav__logo" data-cursor="hover">
+      <img class="nav__logo-img" src="logo-mtz.png" alt="Menteiz Aviation" />
+    </a>
+    <ul class="nav__links">
+      <li><a href="index.html" data-cursor="hover">Home</a></li>
+      <li><a href="about.html" data-cursor="hover">About</a></li>
+      <li class="nav__item nav__item--has-sub">
+        <a data-cursor="hover" class="nav__top" role="button" tabindex="0">
+          Services
+          <svg class="nav__chev" viewBox="0 0 12 12" aria-hidden="true">
+            <path d="M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="nav__submenu" role="menu" aria-label="Service categories">
+          <span class="nav__submenu-eyebrow">Specialised Cargo</span>
+          <ul>
+            <li><a href="general-cargo.html" data-cursor="hover"><span class="nav__sub-num">01</span><span>General Cargo</span></a></li>
+            <li><a href="perishable-cargo.html" data-cursor="hover"><span class="nav__sub-num">02</span><span>Perishable Cargo</span></a></li>
+            <li><a href="dangerous-goods.html" data-cursor="hover"><span class="nav__sub-num">03</span><span>Dangerous Goods</span></a></li>
+            <li><a href="valuable-goods.html" data-cursor="hover"><span class="nav__sub-num">04</span><span>Valuable Goods</span></a></li>
+            <li><a href="medical-equipment.html" data-cursor="hover"><span class="nav__sub-num">05</span><span>Medical Equipment</span></a></li>
+            <li><a href="vulnerable-cargo.html" data-cursor="hover"><span class="nav__sub-num">06</span><span>Vulnerable Cargo</span></a></li>
+            <li><a href="oilwell-equipment.html" data-cursor="hover"><span class="nav__sub-num">07</span><span>Oilwell Equipment</span></a></li>
+            <li><a href="project-cargo.html" data-cursor="hover"><span class="nav__sub-num">08</span><span>Project Cargo</span></a></li>
+            <li><a href="live-animals.html" data-cursor="hover"><span class="nav__sub-num">09</span><span>Live Animals</span></a></li>
+            <li><a href="temperature-control.html" data-cursor="hover"><span class="nav__sub-num">10</span><span>Temperature Control</span></a></li>
+          </ul>
+        </div>
+      </li>
+      <li><a href="rewards.html" class="is-current" data-cursor="hover">Rewards</a></li>
+      <li><a href="contact.html" data-cursor="hover">Contact</a></li>
+    </ul>
+    <a href="#login" class="nav__cta" data-cursor="hover">
+      <span>Login</span>
+    </a>
+    <button class="nav__burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main class="about-page">
+
+    <!-- HERO -->
+    <section class="ap-hero">
+      <div class="ap-hero__inner">
+        <span class="section-label">Menteiz Membership</span>
+        <h1 class="ap-hero__title">
+          Every kilo you ship, <em>earns its way back.</em>
+        </h1>
+        <p class="ap-hero__lede">
+          Our membership rewards program turns routine cargo bookings into redeemable value &mdash; cargo-space
+          vouchers, priority handling, and partner privileges that grow with every shipment you move with us.
+        </p>
+
+        <ul class="ap-hero__meta">
+          <li><span class="ap-hero__meta-num">Up to 12<sup>%</sup></span><span class="ap-hero__meta-lbl">Back in cargo-space vouchers</span></li>
+          <li><span class="ap-hero__meta-num">3</span><span class="ap-hero__meta-lbl">Membership tiers</span></li>
+          <li><span class="ap-hero__meta-num">RM 0</span><span class="ap-hero__meta-lbl">Cost to join</span></li>
+        </ul>
+      </div>
+
+      <div class="ap-hero__media" aria-hidden="true">
+        <span class="ap-hero__corner ap-hero__corner--tl"></span>
+        <span class="ap-hero__corner ap-hero__corner--tr"></span>
+        <span class="ap-hero__corner ap-hero__corner--bl"></span>
+        <span class="ap-hero__corner ap-hero__corner--br"></span>
+        <img src="about-hero.jpg" alt="Cargo being loaded at the airport tarmac" />
+        <span class="ap-hero__pin">Members earn from shipment #1</span>
+      </div>
+    </section>
+
+    <!-- BENEFITS (4) -->
+    <section class="ap-values">
+      <div class="ap-values__inner">
+        <header class="ap-values__head">
+          <span class="section-label">Why join</span>
+          <h2 class="ap-values__title">Four ways membership <em>pays you back.</em></h2>
+        </header>
+
+        <div class="ap-values__grid">
+          <article class="ap-value">
+            <span class="ap-value__num">01</span>
+            <svg class="ap-value__ico" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="4" y="9" width="24" height="15" rx="2"/>
+              <path d="M4 14 H28 M9 19 H15"/>
+            </svg>
+            <h3>Redeemable Vouchers</h3>
+            <p>Earn cargo-space vouchers on every confirmed shipment, redeemable directly against future
+              bookings &mdash; the more you move, the more you save.</p>
+          </article>
+
+          <article class="ap-value">
+            <span class="ap-value__num">02</span>
+            <svg class="ap-value__ico" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 3 L20 12 L29 12 L22 18 L25 27 L16 21 L7 27 L10 18 L3 12 L12 12 Z"/>
+            </svg>
+            <h3>Priority Handling</h3>
+            <p>Members get first call on capacity during peak periods and tight-turnaround lanes, plus
+              priority acceptance at the warehouse.</p>
+          </article>
+
+          <article class="ap-value">
+            <span class="ap-value__num">03</span>
+            <svg class="ap-value__ico" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="16" cy="11" r="5"/>
+              <path d="M6 27 Q6 19 16 19 Q26 19 26 27"/>
+            </svg>
+            <h3>Dedicated Support</h3>
+            <p>A named coordinator and faster response windows on quotes and bookings &mdash; one point of
+              contact who already knows your cargo.</p>
+          </article>
+
+          <article class="ap-value">
+            <span class="ap-value__num">04</span>
+            <svg class="ap-value__ico" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 4 L27 9 V16 C27 22 22 26 16 28 C10 26 5 22 5 16 V9 Z"/>
+              <path d="M11 16 L14.5 19.5 L21 13"/>
+            </svg>
+            <h3>Partner Privileges</h3>
+            <p>Exclusive rates and perks unlocked through our carrier and ground-handling network across the
+              region &mdash; benefits you won&rsquo;t find on the open market.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="ap-timeline">
+      <div class="ap-timeline__inner">
+        <header class="ap-timeline__head">
+          <span class="section-label">How it works</span>
+          <h2 class="ap-timeline__title">Four steps, <em>then it compounds.</em></h2>
+        </header>
+
+        <ol class="ap-timeline__rail">
+          <li class="ap-mile">
+            <span class="ap-mile__year">01</span>
+            <h4 class="ap-mile__title">Join &mdash; free</h4>
+            <p class="ap-mile__sub">Register your business in minutes. No joining fee, no minimum commitment, no annual charge.</p>
+          </li>
+          <li class="ap-mile">
+            <span class="ap-mile__year">02</span>
+            <h4 class="ap-mile__title">Ship &amp; earn</h4>
+            <p class="ap-mile__sub">Earn reward points on every kilogram you move with Menteiz &mdash; automatically, on every confirmed booking.</p>
+          </li>
+          <li class="ap-mile">
+            <span class="ap-mile__year">03</span>
+            <h4 class="ap-mile__title">Redeem</h4>
+            <p class="ap-mile__sub">Convert points into cargo-space vouchers, handling upgrades and priority privileges whenever you need them.</p>
+          </li>
+          <li class="ap-mile">
+            <span class="ap-mile__year">04</span>
+            <h4 class="ap-mile__title">Climb the tiers</h4>
+            <p class="ap-mile__sub">As your volume grows, you unlock higher tiers &mdash; richer earn rates and bigger benefits at every level.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- TIERS -->
+    <section class="certs" id="tiers">
+      <div class="certs__inner">
+        <div class="certs__head">
+          <span class="section-label">Membership Tiers</span>
+          <h2 class="certs__title">
+            <span class="certs__title-row">Three tiers.</span>
+            <em class="certs__title-row">One that fits your volume.</em>
+          </h2>
+          <p class="certs__lede">Every member starts on Silver and climbs automatically as annual volume grows.
+            Higher tiers earn faster, redeem sooner, and unlock priority across the network.</p>
+        </div>
+
+        <ul class="certs__grid">
+          <li class="cert">
+            <span class="cert__icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 4 L20 12 L29 12 L22 18 L25 27 L16 21 L7 27 L10 18 L3 12 L12 12 Z"/>
+              </svg>
+            </span>
+            <h3 class="cert__name">Silver</h3>
+            <p class="cert__desc">The entry tier for every new member. Standard voucher earn rate, member rates,
+              and access to the rewards dashboard.</p>
+          </li>
+
+          <li class="cert">
+            <span class="cert__icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 9 L10 22 H22 L27 9 L20 14 L16 6 L12 14 Z"/>
+                <path d="M10 26 H22"/>
+              </svg>
+            </span>
+            <h3 class="cert__name">Gold</h3>
+            <p class="cert__desc">For regular shippers. Boosted earn rate, priority handling on peak lanes, and a
+              dedicated booking coordinator.</p>
+          </li>
+
+          <li class="cert">
+            <span class="cert__icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 4 L27 9 V16 C27 22 22 26 16 28 C10 26 5 22 5 16 V9 Z"/>
+                <path d="M16 11 V21 M11 16 H21"/>
+              </svg>
+            </span>
+            <h3 class="cert__name">Platinum</h3>
+            <p class="cert__desc">Our highest tier. Top earn rate, guaranteed capacity on key routes, partner
+              privileges, and first-priority support, every time.</p>
+          </li>
+        </ul>
+
+        <aside class="certs__footnote" aria-label="Program terms">
+          <span class="certs__footnote-icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="8" y="6" width="16" height="22" rx="2"/>
+              <rect x="12" y="4" width="8" height="4" rx="1"/>
+              <path d="M12 14 H20 M12 18 H20 M12 22 H17"/>
+            </svg>
+          </span>
+          <div class="certs__footnote-text">
+            <span class="certs__footnote-tag">Program Terms</span>
+            <p class="certs__footnote-body">Earn rates, tier thresholds and voucher validity are confirmed at
+              enrolment. Our team will tailor the program to your shipping profile.</p>
+          </div>
+          <a class="certs__footnote-link" href="mailto:enquiry@mtz-aviat.com" data-cursor="hover">
+            <span>enquiry@mtz-aviat.com</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14M13 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </aside>
+      </div>
+    </section>
+
+    <!-- CLOSING CTA -->
+    <section class="ap-cta">
+      <div class="ap-cta__inner">
+        <span class="ap-cta__eyebrow">Start earning</span>
+        <h2 class="ap-cta__title">
+          Your next shipment <em>could already be earning.</em>
+        </h2>
+        <p class="ap-cta__sub">Join the Menteiz rewards program and start banking value on the cargo you already move.</p>
+        <div class="ap-cta__actions">
+          <a class="btn btn--primary" href="contact.html" data-cursor="hover">
+            <span>Become a member</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="foot" id="foot">
+    <div class="foot__grain" aria-hidden="true"></div>
+
+    <div class="foot__marquee" aria-hidden="true">
+      <div class="foot__marquee-track">
+        <span>One Trusted Solution</span><span class="foot__marquee-dot"></span>
+        <span>For All Your Cargo</span><span class="foot__marquee-dot"></span>
+        <span>Menteiz Aviation</span><span class="foot__marquee-dot"></span>
+        <span>Navigating The Skies</span><span class="foot__marquee-dot"></span>
+        <span>Delivering Excellence</span><span class="foot__marquee-dot"></span>
+        <span>One Trusted Solution</span><span class="foot__marquee-dot"></span>
+        <span>For All Your Cargo</span><span class="foot__marquee-dot"></span>
+        <span>Menteiz Aviation</span><span class="foot__marquee-dot"></span>
+        <span>Navigating The Skies</span><span class="foot__marquee-dot"></span>
+        <span>Delivering Excellence</span><span class="foot__marquee-dot"></span>
+      </div>
+    </div>
+
+    <div class="foot__cta-stripe">
+      <p class="foot__cta-line">Ready when you are.</p>
+      <a class="foot__cta-link" href="mailto:enquiry@mtz-aviat.com" data-cursor="hover">
+        <span>Start a conversation</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="foot__brand-strip">
+      <h3 class="foot__big" id="footBig">
+        <span class="foot__big-row" data-shift="-1">Menteiz</span>
+        <em class="foot__big-row" data-shift="1">Aviation</em>
+      </h3>
+    </div>
+
+    <div class="foot__cols">
+      <div class="foot__col">
+        <span class="foot__label">Visit</span>
+        <p>Menteiz Aviation Services Sdn. Bhd<br/>32, Jalan Sepadu 25/123A,<br/>Seksyen 25, Selangor, Malaysia</p>
+      </div>
+      <div class="foot__col">
+        <span class="foot__label">Reach</span>
+        <ul class="foot__list">
+          <li><a href="tel:+60355259555" data-cursor="hover"><span>+603 5525 9555</span></a></li>
+          <li><a href="tel:+60355259554" data-cursor="hover"><span>+603 5525 9554</span></a></li>
+          <li><a href="mailto:enquiry@mtz-aviat.com" data-cursor="hover"><span>enquiry@mtz-aviat.com</span></a></li>
+        </ul>
+      </div>
+      <div class="foot__col">
+        <span class="foot__label">Sitemap</span>
+        <ul class="foot__list">
+          <li><a href="index.html" data-cursor="hover"><span>Home</span></a></li>
+          <li><a href="about.html" data-cursor="hover"><span>About</span></a></li>
+          <li><a href="rewards.html" data-cursor="hover"><span>Rewards</span></a></li>
+          <li><a href="contact.html" data-cursor="hover"><span>Contact</span></a></li>
+        </ul>
+      </div>
+      <div class="foot__col">
+        <span class="foot__label">Follow</span>
+        <ul class="foot__list">
+          <li><a href="#" data-cursor="hover"><span>LinkedIn</span><i>&uarr;</i></a></li>
+          <li><a href="#" data-cursor="hover"><span>Facebook</span><i>&uarr;</i></a></li>
+          <li><a href="#" data-cursor="hover"><span>Instagram</span><i>&uarr;</i></a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot__bot">
+      <span class="foot__copy">&copy; 2025 Menteiz Aviation Services Sdn. Bhd &middot; All rights reserved.</span>
+      <button class="foot__top-btn" id="footTopBtn" data-cursor="hover" aria-label="Back to top">
+        <span>Back to top</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+      </button>
+    </div>
+  </footer>
+
+  <!-- LIBRARIES -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="main.js?v=174"></script>
+</body>
+</html>
