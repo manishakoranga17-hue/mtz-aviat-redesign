@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=199" />
+  <link rel="stylesheet" href="styles.css?v=200" />
 </head>
 <body class="page-dashboard">
 
@@ -231,10 +231,6 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18M6 12h12M10 19h4"/></svg>
             <span>Search &amp; filter</span>
           </div>
-          <button type="button" class="dash__adv-toggle" id="advToggle" aria-expanded="false">
-            <span>Advanced filters</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
         </div>
 
         <form class="dash__filters-form" onsubmit="event.preventDefault();">
@@ -263,8 +259,6 @@
             <label>To Date</label>
             <div class="dash__control"><input class="dash__input dash__input--date" type="text" placeholder="DD-MM-YYYY" /></div>
           </div>
-          </div>
-          <div class="dash__filters-grid dash__filters-adv" id="advPanel" hidden>
           <div class="dash__field">
             <label>Origin</label>
             <div class="dash__control"><input class="dash__input" type="text" placeholder="e.g. DEL" /></div>
