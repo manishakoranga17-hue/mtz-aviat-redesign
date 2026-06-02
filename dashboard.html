@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=196" />
+  <link rel="stylesheet" href="styles.css?v=197" />
 </head>
 <body class="page-dashboard">
 
@@ -128,208 +128,396 @@
         </button>
       </header>
 
-      <!-- Action tiles -->
-      <div class="dash__actions">
-        <a href="#" class="dash__action">
-          <span class="dash__action-ico">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 8l9-5 9 5v8l-9 5-9-5V8z"/>
-              <path d="M3 8l9 5 9-5"/>
-              <line x1="12" y1="13" x2="12" y2="21"/>
-            </svg>
-          </span>
-          <div class="dash__action-body">
-            <h3>Create Booking</h3>
-            <p>Open a new AWB and book capacity</p>
-          </div>
-          <span class="dash__action-arrow" aria-hidden="true">&rarr;</span>
-        </a>
-        <a href="#" class="dash__action">
-          <span class="dash__action-ico">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="6" width="20" height="13" rx="2"/>
-              <path d="M16 12.5h2"/>
-              <path d="M2 9h20"/>
-            </svg>
-          </span>
-          <div class="dash__action-body">
-            <h3>Add Credit</h3>
-            <p>Topup your wallet balance</p>
-          </div>
-          <span class="dash__action-arrow" aria-hidden="true">&rarr;</span>
-        </a>
+      <!-- Page header -->
+      <div class="dash__head">
+        <div>
+          <h1 class="dash__page-title">Cargo Quotes</h1>
+          <p class="dash__page-sub">Track, filter and action every quote across your network.</p>
+        </div>
+        <button type="button" class="dash__btn-primary dash__btn-new">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+          <span>New Quote</span>
+        </button>
       </div>
 
-      <!-- Wallet + Chart row -->
-      <div class="dash__row">
-        <div class="dash__wallet">
-          <span class="dash__wallet-ico" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="6" width="20" height="13" rx="2"/>
-              <path d="M16 12.5h2"/>
-              <path d="M2 9h20"/>
-            </svg>
-          </span>
-          <p class="dash__wallet-label">Menteiz Total balance</p>
-          <p class="dash__wallet-amount"><span class="dash__wallet-cur">RM</span>240.21</p>
-          <button class="dash__wallet-btn" type="button">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 19V5M5 12l7-7 7 7"/>
-            </svg>
-            <span>Top up</span>
+      <!-- KPI status filter cards -->
+      <div class="dash__kpis" role="tablist" aria-label="Filter quotes by status">
+        <button type="button" class="dash__kpi  is-active" data-status="all" role="tab" aria-selected="true">
+          <span class="dash__kpi-num">18</span>
+          <span class="dash__kpi-label">All Quotes</span>
+        </button>
+        <button type="button" class="dash__kpi dash__kpi--pending" data-status="pending" role="tab" aria-selected="false">
+          <span class="dash__kpi-num">0</span>
+          <span class="dash__kpi-label">Quote Pending</span>
+        </button>
+        <button type="button" class="dash__kpi dash__kpi--quoted" data-status="quoted" role="tab" aria-selected="false">
+          <span class="dash__kpi-num">10</span>
+          <span class="dash__kpi-label">Quoted</span>
+        </button>
+        <button type="button" class="dash__kpi dash__kpi--requested" data-status="requested" role="tab" aria-selected="false">
+          <span class="dash__kpi-num">6</span>
+          <span class="dash__kpi-label">Booking Requested</span>
+        </button>
+        <button type="button" class="dash__kpi dash__kpi--booked" data-status="booked" role="tab" aria-selected="false">
+          <span class="dash__kpi-num">0</span>
+          <span class="dash__kpi-label">Booked</span>
+        </button>
+        <button type="button" class="dash__kpi dash__kpi--expired" data-status="expired" role="tab" aria-selected="false">
+          <span class="dash__kpi-num">0</span>
+          <span class="dash__kpi-label">Expired</span>
+        </button>
+        <button type="button" class="dash__kpi dash__kpi--rejected" data-status="rejected" role="tab" aria-selected="false">
+          <span class="dash__kpi-num">0</span>
+          <span class="dash__kpi-label">Rejected</span>
+        </button>
+        <button type="button" class="dash__kpi dash__kpi--cancelled" data-status="cancelled" role="tab" aria-selected="false">
+          <span class="dash__kpi-num">0</span>
+          <span class="dash__kpi-label">Cancelled</span>
+        </button>
+      </div>
+
+      <!-- Search & filter -->
+      <section class="dash__panel dash__filters">
+        <div class="dash__filters-head">
+          <div class="dash__filters-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18M6 12h12M10 19h4"/></svg>
+            <span>Search &amp; filter</span>
+          </div>
+          <button type="button" class="dash__adv-toggle" id="advToggle" aria-expanded="false">
+            <span>Advanced filters</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
           </button>
         </div>
 
-        <div class="dash__chart">
-          <div class="dash__chart-head">
-            <div class="dash__chart-meta">
-              <span class="dash__chart-label">Total Orders</span>
-              <p class="dash__chart-num"><strong>8000</strong> <span>Orders</span></p>
-            </div>
-            <button class="dash__chart-year" type="button">
-              <span>2026</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        <form class="dash__filters-form" onsubmit="event.preventDefault();">
+          <div class="dash__filters-grid">
+          <div class="dash__field">
+            <label>Quote No.</label>
+            <div class="dash__control"><input class="dash__input" type="text" placeholder="Search quote no." /></div>
+          </div>
+          <div class="dash__field">
+            <label>AWB No.</label>
+            <div class="dash__control"><input class="dash__input" type="text" placeholder="Search AWB no." /></div>
+          </div>
+          <div class="dash__field">
+            <label>Status</label>
+            <div class="dash__control"><select class="dash__select"><option>All</option><option>Quoted</option><option>Quote Pending</option><option>Booking Requested</option><option>Booked</option><option>Expired</option><option>Rejected</option><option>Cancelled</option></select></div>
+          </div>
+          <div class="dash__field">
+            <label>Customer</label>
+            <div class="dash__control"><input class="dash__input" type="text" placeholder="Customer name / code" /></div>
+          </div>
+          <div class="dash__field">
+            <label>From Date</label>
+            <div class="dash__control"><input class="dash__input dash__input--date" type="text" placeholder="DD-MM-YYYY" /></div>
+          </div>
+          <div class="dash__field">
+            <label>To Date</label>
+            <div class="dash__control"><input class="dash__input dash__input--date" type="text" placeholder="DD-MM-YYYY" /></div>
+          </div>
+          </div>
+          <div class="dash__filters-grid dash__filters-adv" id="advPanel" hidden>
+          <div class="dash__field">
+            <label>Origin</label>
+            <div class="dash__control"><input class="dash__input" type="text" placeholder="e.g. DEL" /></div>
+          </div>
+          <div class="dash__field">
+            <label>Destination</label>
+            <div class="dash__control"><input class="dash__input" type="text" placeholder="e.g. BOM" /></div>
+          </div>
+          <div class="dash__field">
+            <label>Product Type</label>
+            <div class="dash__control"><select class="dash__select"><option>All</option><option>General</option><option>Perishable</option><option>Dangerous Goods</option><option>Valuable</option><option>Live Animals</option></select></div>
+          </div>
+          <div class="dash__field">
+            <label>Airline</label>
+            <div class="dash__control"><input class="dash__input" type="text" placeholder="Carrier" /></div>
+          </div>
+          <div class="dash__field">
+            <label>Commodity</label>
+            <div class="dash__control"><input class="dash__input" type="text" placeholder="Commodity" /></div>
+          </div>
+          <div class="dash__field">
+            <label>Service Type</label>
+            <div class="dash__control"><select class="dash__select"><option>All</option><option>Normal</option><option>Express</option><option>Charter</option></select></div>
+          </div>
+          <div class="dash__field">
+            <label>Business Type</label>
+            <div class="dash__control"><select class="dash__select"><option>All</option><option>Scheduled</option><option>Ad-hoc</option></select></div>
+          </div>
+          <div class="dash__field">
+            <label>Operator</label>
+            <div class="dash__control"><select class="dash__select"><option>All</option><option>GZ</option><option>SG</option></select></div>
+          </div>
+          </div>
+          <div class="dash__filters-actions">
+            <button type="submit" class="dash__btn-primary">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>
+              <span>Search</span>
+            </button>
+            <button type="reset" class="dash__btn-ghost">Reset</button>
+            <button type="button" class="dash__btn-ghost dash__btn-icon" aria-label="Export to CSV">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             </button>
           </div>
-          <div class="dash__chart-area">
-            <ul class="dash__chart-y" aria-hidden="true">
-              <li>300</li><li>250</li><li>200</li><li>150</li><li>100</li><li>50</li>
-            </ul>
-            <ul class="dash__chart-bars">
-              <li style="--h:55%"><i></i><span>Jan</span></li>
-              <li style="--h:42%"><i></i><span>Feb</span></li>
-              <li style="--h:88%"><i></i><span>Mar</span></li>
-              <li style="--h:38%"><i></i><span>Apr</span></li>
-              <li style="--h:78%"><i></i><span>May</span></li>
-              <li style="--h:78%"><i></i><span>June</span></li>
-              <li style="--h:50%"><i></i><span>July</span></li>
-              <li style="--h:52%"><i></i><span>Aug</span></li>
-              <li style="--h:67%"><i></i><span>Sep</span></li>
-              <li style="--h:30%"><i></i><span>Oct</span></li>
-              <li style="--h:32%"><i></i><span>Nov</span></li>
-              <li style="--h:95%"><i></i><span>Dec</span></li>
-            </ul>
-          </div>
-        </div>
-      </div>
+        </form>
+      </section>
 
-      <!-- Shipments -->
-      <section class="dash__ships">
-        <header class="dash__ships-head">
-          <h2>This Month Shipments</h2>
-          <button class="dash__ships-dl" type="button">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <polyline points="7 10 12 15 17 10"/>
-              <line x1="12" y1="15" x2="12" y2="3"/>
-            </svg>
-            <span>Download CSV</span>
-          </button>
-        </header>
+      <!-- Quotes table -->
+      <section class="dash__panel dash__quotes">
+        <div class="dash__table-head">
+          <div class="dash__table-title">
+            <h2>Cargo Quotes</h2>
+            <span class="dash__count">16 records</span>
+          </div>
+          <label class="dash__rows">
+            <span>Rows</span>
+            <select class="dash__select dash__select--sm">
+              <option>10</option><option>25</option><option>50</option>
+            </select>
+          </label>
+        </div>
 
         <div class="dash__table-wrap">
-          <table class="dash__table">
+          <table class="dash__table dash__table--quotes">
             <thead>
               <tr>
-                <th>Booking Date</th>
-                <th>AWB</th>
-                <th>Origin</th>
-                <th>Destination</th>
-                <th>Customer Code</th>
+                <th>Operator</th>
+                <th>Quote No.</th>
+                <th>AWB No.</th>
+                <th>Created</th>
                 <th>Status</th>
-                <th>Chargeable Weight</th>
-                <th>Total Pcs</th>
+                <th>Route</th>
+                <th>Commodity</th>
+                <th>Customer</th>
+                <th>Pcs / Wgt</th>
+                <th>Ready To Load</th>
+                <th class="ta-r">Rate</th>
+                <th>Sales</th>
+                <th>CS</th>
+                <th>Service</th>
+                <th>Business</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>20-04-2026</td>
-                <td><a class="dash__awb" href="#">232-42005456</a></td>
-                <td>KUL</td>
-                <td>BKI</td>
-                <td>PETRO&middot;MYY</td>
-                <td><span class="dash__status dash__status--out">Out for Delivery</span></td>
-                <td>214.0 kg</td>
-                <td>3</td>
+                <td><span class="dash__op dash__op--gz">GZ</span></td>
+                <td><a class="dash__awb" href="#">QT-URLRDX5H</a></td>
+                <td class="dash__muted">&mdash;</td>
+                <td>2026-05-29 <span class="dash__muted">07:13</span></td>
+                <td><span class="dash__status dash__status--quoted">Quoted</span></td>
+                <td><span class="dash__route">DEL<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>BOM</span></td>
+                <td>gen</td>
+                <td>DEMCENDO</td>
+                <td class="dash__muted">10 / 10.00kg</td>
+                <td>2026-05-29</td>
+                <td class="ta-r"><span class="dash__rate"><span class="dash__rate-cur">RM</span>25.00</span></td>
+                <td><span class="dash__avatar" title="Sales">RS</span></td>
+                <td><span class="dash__avatar dash__avatar--cs" title="Customer service">AK</span></td>
+                <td><span class="dash__chip">Normal</span></td>
+                <td><span class="dash__chip dash__chip--ok">Scheduled</span></td>
                 <td>
-                  <button class="dash__row-act" type="button" aria-label="Download AWB">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  <button class="dash__row-act" type="button" aria-label="More actions">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>
                   </button>
                 </td>
               </tr>
               <tr>
-                <td>19-04-2026</td>
-                <td><a class="dash__awb" href="#">232-78912344</a></td>
-                <td>KUL</td>
-                <td>KCH</td>
-                <td>AGRI&middot;KCH</td>
-                <td><span class="dash__status dash__status--delivered">Delivered</span></td>
-                <td>86.5 kg</td>
-                <td>12</td>
+                <td><span class="dash__op dash__op--gz">GZ</span></td>
+                <td><a class="dash__awb" href="#">QT-URLRDX5H</a></td>
+                <td class="dash__muted">&mdash;</td>
+                <td>2026-05-29 <span class="dash__muted">07:13</span></td>
+                <td><span class="dash__status dash__status--quoted">Quoted</span></td>
+                <td><span class="dash__route">DEL<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>BOM</span></td>
+                <td>gen</td>
+                <td>DEMCENDO</td>
+                <td class="dash__muted">10 / 10.00kg</td>
+                <td>2026-05-29</td>
+                <td class="ta-r"><span class="dash__rate"><span class="dash__rate-cur">RM</span>25.00</span></td>
+                <td><span class="dash__avatar" title="Sales">RS</span></td>
+                <td><span class="dash__avatar dash__avatar--cs" title="Customer service">AK</span></td>
+                <td><span class="dash__chip">Normal</span></td>
+                <td><span class="dash__chip dash__chip--ok">Scheduled</span></td>
                 <td>
-                  <button class="dash__row-act" type="button" aria-label="Download AWB">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  <button class="dash__row-act" type="button" aria-label="More actions">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>
                   </button>
                 </td>
               </tr>
               <tr>
-                <td>18-04-2026</td>
-                <td><a class="dash__awb" href="#">232-65487732</a></td>
-                <td>KUL</td>
-                <td>MYY</td>
-                <td>OIL&middot;EQUIP</td>
-                <td><span class="dash__status dash__status--out">Out for Delivery</span></td>
-                <td>1,840.0 kg</td>
-                <td>8</td>
+                <td><span class="dash__op dash__op--gz">GZ</span></td>
+                <td><a class="dash__awb" href="#">QT-LT4PECJA</a></td>
+                <td class="dash__muted">&mdash;</td>
+                <td>2026-05-29 <span class="dash__muted">07:13</span></td>
+                <td><span class="dash__status dash__status--quoted">Quoted</span></td>
+                <td><span class="dash__route">DEL<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>BOM</span></td>
+                <td>GEN</td>
+                <td>TESTDELDO</td>
+                <td class="dash__muted">10 / 10.00kg</td>
+                <td>2026-05-29</td>
+                <td class="ta-r"><span class="dash__rate"><span class="dash__rate-cur">RM</span>1600.00</span></td>
+                <td><span class="dash__avatar" title="Sales">MV</span></td>
+                <td><span class="dash__avatar dash__avatar--cs" title="Customer service">NK</span></td>
+                <td><span class="dash__chip">Normal</span></td>
+                <td><span class="dash__chip dash__chip--ok">Scheduled</span></td>
                 <td>
-                  <button class="dash__row-act" type="button" aria-label="Download AWB">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  <button class="dash__row-act" type="button" aria-label="More actions">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>
                   </button>
                 </td>
               </tr>
               <tr>
-                <td>17-04-2026</td>
-                <td><a class="dash__awb" href="#">232-23456789</a></td>
-                <td>KUL</td>
-                <td>TWU</td>
-                <td>PERI&middot;TWU</td>
-                <td><span class="dash__status dash__status--delivered">Delivered</span></td>
-                <td>42.0 kg</td>
-                <td>5</td>
+                <td><span class="dash__op dash__op--gz">GZ</span></td>
+                <td><a class="dash__awb" href="#">QT-LT4PECJA</a></td>
+                <td class="dash__muted">&mdash;</td>
+                <td>2026-05-29 <span class="dash__muted">07:13</span></td>
+                <td><span class="dash__status dash__status--requested">Booking Requested</span></td>
+                <td><span class="dash__route">DEL<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>BOM</span></td>
+                <td>GEN</td>
+                <td>TESTDELDO</td>
+                <td class="dash__muted">10 / 10.00kg</td>
+                <td>2026-05-29</td>
+                <td class="ta-r"><span class="dash__rate"><span class="dash__rate-cur">RM</span>1600.00</span></td>
+                <td><span class="dash__avatar" title="Sales">MV</span></td>
+                <td><span class="dash__avatar dash__avatar--cs" title="Customer service">NK</span></td>
+                <td><span class="dash__chip">Normal</span></td>
+                <td><span class="dash__chip dash__chip--ok">Scheduled</span></td>
                 <td>
-                  <button class="dash__row-act" type="button" aria-label="Download AWB">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  <button class="dash__row-act" type="button" aria-label="More actions">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>
                   </button>
                 </td>
               </tr>
               <tr>
-                <td>16-04-2026</td>
-                <td><a class="dash__awb" href="#">232-12873456</a></td>
-                <td>KUL</td>
-                <td>LBU</td>
-                <td>DGR&middot;CL3</td>
-                <td><span class="dash__status dash__status--dispatched">Dispatched</span></td>
-                <td>320.0 kg</td>
-                <td>14</td>
+                <td><span class="dash__op dash__op--gz">GZ</span></td>
+                <td><a class="dash__awb" href="#">QT-LT4PECJA</a></td>
+                <td class="dash__muted">&mdash;</td>
+                <td>2026-05-29 <span class="dash__muted">07:13</span></td>
+                <td><span class="dash__status dash__status--quoted">Quoted</span></td>
+                <td><span class="dash__route">DEL<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>BOM</span></td>
+                <td>GEN</td>
+                <td>TESTDELDO</td>
+                <td class="dash__muted">10 / 10.00kg</td>
+                <td>2026-05-29</td>
+                <td class="ta-r"><span class="dash__rate"><span class="dash__rate-cur">RM</span>1600.00</span></td>
+                <td><span class="dash__avatar" title="Sales">MV</span></td>
+                <td><span class="dash__avatar dash__avatar--cs" title="Customer service">NK</span></td>
+                <td><span class="dash__chip">Normal</span></td>
+                <td><span class="dash__chip dash__chip--ok">Scheduled</span></td>
                 <td>
-                  <button class="dash__row-act" type="button" aria-label="Download AWB">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  <button class="dash__row-act" type="button" aria-label="More actions">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>
                   </button>
                 </td>
               </tr>
               <tr>
-                <td>15-04-2026</td>
-                <td><a class="dash__awb" href="#">232-99284651</a></td>
-                <td>KUL</td>
-                <td>BTU</td>
-                <td>PROJ&middot;CARGO</td>
-                <td><span class="dash__status dash__status--delivered">Delivered</span></td>
-                <td>6,420.0 kg</td>
-                <td>28</td>
+                <td><span class="dash__op dash__op--gz">GZ</span></td>
+                <td><a class="dash__awb" href="#">QT-LT4PECJA</a></td>
+                <td class="dash__muted">&mdash;</td>
+                <td>2026-05-29 <span class="dash__muted">07:13</span></td>
+                <td><span class="dash__status dash__status--quoted">Quoted</span></td>
+                <td><span class="dash__route">DEL<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>BOM</span></td>
+                <td>GEN</td>
+                <td>TESTDELDO</td>
+                <td class="dash__muted">10 / 10.00kg</td>
+                <td>2026-05-29</td>
+                <td class="ta-r"><span class="dash__rate"><span class="dash__rate-cur">RM</span>1000.00</span></td>
+                <td><span class="dash__avatar" title="Sales">MV</span></td>
+                <td><span class="dash__avatar dash__avatar--cs" title="Customer service">NK</span></td>
+                <td><span class="dash__chip">Normal</span></td>
+                <td><span class="dash__chip dash__chip--ok">Scheduled</span></td>
                 <td>
-                  <button class="dash__row-act" type="button" aria-label="Download AWB">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  <button class="dash__row-act" type="button" aria-label="More actions">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td><span class="dash__op dash__op--gz">GZ</span></td>
+                <td><a class="dash__awb" href="#">QT-NU5KFOSV</a></td>
+                <td class="dash__muted">&mdash;</td>
+                <td>2026-05-29 <span class="dash__muted">07:13</span></td>
+                <td><span class="dash__status dash__status--requested">Booking Requested</span></td>
+                <td><span class="dash__route">DEL<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>BUR</span></td>
+                <td>GEN</td>
+                <td>TESTDELDO</td>
+                <td class="dash__muted">10 / 10.00kg</td>
+                <td>2026-05-29</td>
+                <td class="ta-r"><span class="dash__rate"><span class="dash__rate-cur">RM</span>1600.00</span></td>
+                <td><span class="dash__avatar" title="Sales">RS</span></td>
+                <td><span class="dash__avatar dash__avatar--cs" title="Customer service">AK</span></td>
+                <td><span class="dash__chip">Normal</span></td>
+                <td><span class="dash__chip dash__chip--ok">Scheduled</span></td>
+                <td>
+                  <button class="dash__row-act" type="button" aria-label="More actions">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td><span class="dash__op dash__op--sg">SG</span></td>
+                <td><a class="dash__awb" href="#">QT-NU5KFOSV</a></td>
+                <td class="dash__muted">&mdash;</td>
+                <td>2026-05-29 <span class="dash__muted">07:13</span></td>
+                <td><span class="dash__status dash__status--quoted">Quoted</span></td>
+                <td><span class="dash__route">DEL<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>BUR</span></td>
+                <td>GEN</td>
+                <td>TESTDELDO</td>
+                <td class="dash__muted">10 / 10.00kg</td>
+                <td>2026-05-29</td>
+                <td class="ta-r"><span class="dash__rate"><span class="dash__rate-cur">RM</span>1600.00</span></td>
+                <td><span class="dash__avatar" title="Sales">RS</span></td>
+                <td><span class="dash__avatar dash__avatar--cs" title="Customer service">AK</span></td>
+                <td><span class="dash__chip">Normal</span></td>
+                <td><span class="dash__chip dash__chip--ok">Scheduled</span></td>
+                <td>
+                  <button class="dash__row-act" type="button" aria-label="More actions">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td><span class="dash__op dash__op--sg">SG</span></td>
+                <td><a class="dash__awb" href="#">QT-NU5KFOSV</a></td>
+                <td class="dash__muted">&mdash;</td>
+                <td>2026-05-29 <span class="dash__muted">07:13</span></td>
+                <td><span class="dash__status dash__status--quoted">Quoted</span></td>
+                <td><span class="dash__route">DEL<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>BUR</span></td>
+                <td>GEN</td>
+                <td>TESTDELDO</td>
+                <td class="dash__muted">10 / 10.00kg</td>
+                <td>2026-05-29</td>
+                <td class="ta-r"><span class="dash__rate"><span class="dash__rate-cur">RM</span>1600.00</span></td>
+                <td><span class="dash__avatar" title="Sales">RS</span></td>
+                <td><span class="dash__avatar dash__avatar--cs" title="Customer service">AK</span></td>
+                <td><span class="dash__chip">Normal</span></td>
+                <td><span class="dash__chip dash__chip--ok">Scheduled</span></td>
+                <td>
+                  <button class="dash__row-act" type="button" aria-label="More actions">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td><span class="dash__op dash__op--gz">GZ</span></td>
+                <td><a class="dash__awb" href="#">QT-NU5KFOSV</a></td>
+                <td class="dash__muted">&mdash;</td>
+                <td>2026-05-29 <span class="dash__muted">07:13</span></td>
+                <td><span class="dash__status dash__status--booked">Booked</span></td>
+                <td><span class="dash__route">DEL<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>BUR</span></td>
+                <td>GEN</td>
+                <td>TESTDELDO</td>
+                <td class="dash__muted">10 / 10.00kg</td>
+                <td>2026-05-29</td>
+                <td class="ta-r"><span class="dash__rate"><span class="dash__rate-cur">RM</span>1600.00</span></td>
+                <td><span class="dash__avatar" title="Sales">RS</span></td>
+                <td><span class="dash__avatar dash__avatar--cs" title="Customer service">AK</span></td>
+                <td><span class="dash__chip">Normal</span></td>
+                <td><span class="dash__chip dash__chip--ok">Scheduled</span></td>
+                <td>
+                  <button class="dash__row-act" type="button" aria-label="More actions">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>
                   </button>
                 </td>
               </tr>
@@ -337,22 +525,39 @@
           </table>
         </div>
 
-        <nav class="dash__pager" aria-label="Pagination">
-          <button type="button" aria-label="First">&laquo;</button>
-          <button type="button" aria-label="Previous">&lsaquo;</button>
-          <button type="button" class="is-active" aria-current="page">1</button>
-          <button type="button">2</button>
-          <button type="button">3</button>
-          <button type="button" disabled>&hellip;</button>
-          <button type="button">10</button>
-          <button type="button" aria-label="Next">&rsaquo;</button>
-          <button type="button" aria-label="Last">&raquo;</button>
-        </nav>
+        <div class="dash__table-foot">
+          <span class="dash__foot-total">Total <strong>16</strong> quotes</span>
+          <nav class="dash__pager" aria-label="Pagination">
+            <button type="button" aria-label="Previous" disabled>&lsaquo;</button>
+            <button type="button" class="is-active" aria-current="page">1</button>
+            <button type="button">2</button>
+            <button type="button" aria-label="Next">&rsaquo;</button>
+          </nav>
+        </div>
       </section>
 
     </main>
   </div>
 
+  <script>
+    (function () {
+      document.querySelectorAll('.dash__kpi').forEach(function (b) {
+        b.addEventListener('click', function () {
+          document.querySelectorAll('.dash__kpi').forEach(function (x) {
+            x.classList.remove('is-active'); x.setAttribute('aria-selected', 'false');
+          });
+          b.classList.add('is-active'); b.setAttribute('aria-selected', 'true');
+        });
+      });
+      var t = document.getElementById('advToggle'), p = document.getElementById('advPanel');
+      if (t && p) t.addEventListener('click', function () {
+        var open = !p.hasAttribute('hidden');
+        if (open) { p.setAttribute('hidden', ''); } else { p.removeAttribute('hidden'); }
+        t.setAttribute('aria-expanded', String(!open));
+        t.classList.toggle('is-open', !open);
+      });
+    })();
+  </script>
   <script src="main.js?v=174"></script>
 </body>
 </html>
