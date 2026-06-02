@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Quote — Menteiz Aviation Services</title>
+  <meta name="description" content="Create a new cargo quote and search available flights." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=207" />
+</head>
+<body class="page-dashboard">
+
+  <div class="dash">
+    <!-- ═════════════════════ SIDEBAR ═════════════════════ -->
+    <aside class="dash__side">
+      <a class="dash__logo" href="index.html">
+        <img class="dash__logo-img" src="logo-mtz.png" alt="Menteiz Aviation" />
+      </a>
+
+      <ul class="dash__menu">
+        <li>
+          <a href="dashboard.html" class="is-active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a2 2 0 0 1-2 2h-3v-7H10v7H6a2 2 0 0 1-2-2v-9z"/></svg>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="my-bookings.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/><path d="M8 15l3 3 5-5"/></svg>
+            <span>My Bookings</span>
+          </a>
+        </li>
+        <li>
+          <a href="managing-partners.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2 21c0-3.5 3.13-6 7-6s7 2.5 7 6"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.5c2.7 0 5 1.6 5 4.5"/></svg>
+            <span>Managing Partner</span>
+          </a>
+        </li>
+        <li>
+          <a href="my-wallet.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M16 12.5h2"/><path d="M2 9h20"/></svg>
+            <span>My Wallet</span>
+          </a>
+        </li>
+        <li>
+          <a href="my-invoices.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v5h5"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+            <span>My Invoice</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="dash__side-bot">
+        <a href="profile.html" class="dash__menu-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+          <span>Profile</span>
+        </a>
+        <a href="index.html" class="dash__menu-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          <span>Logout</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- ═════════════════════ MAIN ═════════════════════ -->
+    <main class="dash__main">
+
+      <!-- Page header -->
+      <div class="dash__head">
+        <div>
+          <h1 class="dash__page-title">New Quote</h1>
+          <p class="dash__page-sub">Capture shipment details and search available flights.</p>
+        </div>
+      </div>
+
+      <form class="nq" onsubmit="event.preventDefault();">
+
+        <!-- ───── Customer Information ───── -->
+        <section class="dash__panel nq__sec">
+          <header class="nq__sec-head">
+            <span class="nq__sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></span>
+            <h2>Customer Information</h2>
+          </header>
+
+          <div class="nq__grid nq__grid--3">
+            <div class="dash__field">
+              <label>Customer<span class="req">*</span></label>
+              <div class="dash__control"><input class="dash__input dash__input--search" type="text" value="ASADELDO" /></div>
+            </div>
+            <div class="dash__field">
+              <label>Customer Name<span class="req">*</span></label>
+              <div class="dash__control"><input class="dash__input" type="text" value="Amazon Seller Services Pvt Ltd-Del" /></div>
+            </div>
+            <div class="dash__field">
+              <label>Contact Email<span class="req">*</span></label>
+              <div class="dash__control"><input class="dash__input" type="email" value="rakesh@aeologic.com" /></div>
+            </div>
+          </div>
+
+          <div class="nq__grid nq__grid--2 nq__grid--gap">
+            <div class="dash__field">
+              <label>Additional Email IDs</label>
+              <div class="dash__control"><input class="dash__input" type="text" placeholder="email1@example.com, email2@example.com" /></div>
+              <span class="nq__hint">Comma-separated. All notifications will be sent to these addresses.</span>
+            </div>
+            <div class="dash__field">
+              <label>Notes</label>
+              <div class="dash__control"><textarea class="dash__input nq__textarea" placeholder="Internal notes about this quote..."></textarea></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ───── Shipment Information ───── -->
+        <section class="dash__panel nq__sec">
+          <header class="nq__sec-head">
+            <span class="nq__sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12l20-8-8 20-2.5-9.5L2 12z"/></svg></span>
+            <h2>Shipment Information</h2>
+          </header>
+
+          <div class="dash__field nq__field--inline">
+            <label>Business Type<span class="req">*</span></label>
+            <div class="nq__seg" data-seg>
+              <button type="button" class="is-active">Scheduled</button>
+              <button type="button">Charter</button>
+            </div>
+          </div>
+
+          <div class="nq__grid">
+            <div class="dash__field">
+              <label>Origin<span class="req">*</span></label>
+              <div class="dash__control"><input class="dash__input dash__input--search" type="text" value="KUL" /></div>
+            </div>
+            <div class="dash__field">
+              <label>Destination<span class="req">*</span></label>
+              <div class="dash__control"><input class="dash__input dash__input--search" type="text" value="KCH" /></div>
+            </div>
+            <div class="dash__field">
+              <label>Commodity<span class="req">*</span></label>
+              <div class="dash__control">
+                <select class="dash__select" id="nqCommodity">
+                  <option value="GEN">GEN — General Cargo</option>
+                  <option value="PER">PER — Perishable</option>
+                  <option value="DGR" selected>DGR — Dangerous Goods</option>
+                  <option value="VAL">VAL — Valuable</option>
+                  <option value="AVI">AVI — Live Animals</option>
+                  <option value="PIL">PIL — Pharma</option>
+                </select>
+              </div>
+            </div>
+            <div class="dash__field">
+              <label>Commodity Description<span class="req">*</span></label>
+              <div class="dash__control"><input class="dash__input" type="text" value="Dangerous Goods" /></div>
+            </div>
+            <div class="dash__field">
+              <label>Cargo Description<span class="req">*</span></label>
+              <div class="dash__control"><input class="dash__input" type="text" value="kjwq_kcj" /></div>
+            </div>
+            <div class="dash__field">
+              <label>Ready to Load<span class="req">*</span></label>
+              <div class="dash__control"><input class="dash__input dash__input--date" type="text" value="20-05-2029" /></div>
+            </div>
+            <div class="dash__field">
+              <label>Time<span class="req">*</span></label>
+              <div class="dash__control"><input class="dash__input" type="text" value="12:58 PM" /></div>
+            </div>
+            <div class="dash__field">
+              <label>Total Pieces<span class="req">*</span></label>
+              <div class="dash__control"><input class="dash__input" type="text" value="10.00" /></div>
+            </div>
+            <div class="dash__field">
+              <label>Gross Weight (kg)<span class="req">*</span></label>
+              <div class="dash__control"><input class="dash__input" type="text" value="100.00" /></div>
+            </div>
+            <div class="dash__field">
+              <label>Volume (m³)<span class="req">*</span></label>
+              <div class="dash__control"><input class="dash__input" type="text" value="0.01" /></div>
+            </div>
+            <div class="dash__field">
+              <label>Chargeable Weight<span class="req">*</span></label>
+              <div class="dash__control"><input class="dash__input" type="text" value="200.00" /></div>
+            </div>
+            <div class="dash__field">
+              <label>SHC Codes</label>
+              <div class="dash__control"><input class="dash__input" type="text" placeholder="e.g. obs, cro" /></div>
+            </div>
+          </div>
+
+          <div class="nq__grid nq__grid--2 nq__grid--gap">
+            <div class="dash__field">
+              <label>Handling Information</label>
+              <div class="dash__control"><textarea class="dash__input nq__textarea" placeholder="Special handling notes..."></textarea></div>
+            </div>
+            <div class="dash__field">
+              <label>Upload Documents</label>
+              <label class="nq__upload">
+                <input type="file" multiple hidden />
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M12 3v12"/><path d="M7 8l5-5 5 5"/></svg>
+                <span class="nq__upload-main">Click to upload or drag &amp; drop</span>
+                <span class="nq__upload-sub">PDF, JPG or PNG &middot; up to 10MB each</span>
+              </label>
+            </div>
+          </div>
+        </section>
+
+        <!-- ───── Piece Details ───── -->
+        <section class="dash__panel nq__sec">
+          <header class="nq__sec-head nq__sec-head--split">
+            <div class="nq__sec-headline">
+              <span class="nq__sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96L12 12l8.73-5.04M12 22V12"/></svg></span>
+              <h2>Piece Details</h2>
+            </div>
+            <div class="nq__seg" data-seg>
+              <button type="button" class="is-active">cm</button>
+              <button type="button">inch</button>
+            </div>
+          </header>
+
+          <div class="nq__table-wrap">
+            <table class="nq__table" id="nqPieceTable">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Pieces<span class="req">*</span></th>
+                  <th>Length</th>
+                  <th>Width</th>
+                  <th>Height</th>
+                  <th>Piece Wt (kg)</th>
+                  <th>Gross Wt (kg)</th>
+                  <th class="ta-c">Non-stackable</th>
+                  <th class="ta-c">Non-turnable</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="nq__rownum">1</span></td>
+                  <td><input class="dash__input nq__cell" type="text" value="10.00" /></td>
+                  <td><input class="dash__input nq__cell" type="text" value="10.00" /></td>
+                  <td><input class="dash__input nq__cell" type="text" value="10.00" /></td>
+                  <td><input class="dash__input nq__cell" type="text" value="10.00" /></td>
+                  <td><input class="dash__input nq__cell" type="text" value="10.00" /></td>
+                  <td><input class="dash__input nq__cell" type="text" value="100.00" /></td>
+                  <td class="ta-c"><input type="checkbox" class="nq__check" /></td>
+                  <td class="ta-c"><input type="checkbox" class="nq__check" /></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="nq__row-foot">
+            <button type="button" class="nq__add" data-add="piece">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+              <span>Add Piece</span>
+            </button>
+            <p class="nq__summary">
+              <span>Total pieces: <strong>10.00</strong></span>
+              <span>Total GW: <strong>100.00 Kg</strong></span>
+              <span>Volume: <strong>0 M³</strong></span>
+              <span>Density: <strong>0.00</strong></span>
+              <span>Chargeable Weight: <strong>200.00 Kg</strong></span>
+            </p>
+          </div>
+        </section>
+
+        <!-- ───── Dangerous Goods (only when Commodity = DGR) ───── -->
+        <section class="dash__panel nq__sec nq__dg" id="nqDangerous">
+          <header class="nq__sec-head">
+            <span class="nq__sec-ico nq__sec-ico--dg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg></span>
+            <h2>Dangerous Goods</h2>
+          </header>
+
+          <div class="nq__table-wrap">
+            <table class="nq__table" id="nqDgTable">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>UN ID<span class="req">*</span></th>
+                  <th>Shipping Name</th>
+                  <th>Class (Sub Hazard)</th>
+                  <th>IMF</th>
+                  <th>Packing Group</th>
+                  <th>Packing Instructions</th>
+                  <th>No of Pgs</th>
+                  <th>Net Qty</th>
+                  <th>Unit</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="nq__rownum">1</span></td>
+                  <td><input class="dash__input nq__cell" type="text" placeholder="UN ID" /></td>
+                  <td><input class="dash__input nq__cell" type="text" placeholder="Name" /></td>
+                  <td><select class="dash__select nq__cell"><option>Select</option><option>1 — Explosives</option><option>2 — Gases</option><option>3 — Flammable Liquids</option><option>6 — Toxic</option><option>7 — Radioactive</option></select></td>
+                  <td><input class="dash__input nq__cell" type="text" placeholder="IMF" /></td>
+                  <td><select class="dash__select nq__cell"><option>Select</option><option>I</option><option>II</option><option>III</option></select></td>
+                  <td><input class="dash__input nq__cell" type="text" placeholder="Instructions" /></td>
+                  <td><input class="dash__input nq__cell" type="text" value="0" /></td>
+                  <td><input class="dash__input nq__cell" type="text" value="0.00" /></td>
+                  <td>
+                    <div class="nq__seg nq__seg--sm" data-seg>
+                      <button type="button" class="is-active">kg</button>
+                      <button type="button">lb</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="nq__row-foot">
+            <button type="button" class="nq__add nq__add--dg" data-add="dg">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+              <span>Add Dangerous Good</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- ───── Service Selection ───── -->
+        <section class="dash__panel nq__sec">
+          <header class="nq__sec-head">
+            <span class="nq__sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <h2>Service Selection<span class="req">*</span></h2>
+            <span class="nq__sec-sub">Select the service level for this shipment</span>
+          </header>
+
+          <div class="nq__services" data-services>
+            <button type="button" class="nq__service is-active">
+              <h4>Normal</h4>
+              <p>Standard shipping for all commodities</p>
+              <span class="nq__service-codes">GEN, DGR, CHO, PO, MAIL, S, PRI, WP, VAL, AVI, BLO</span>
+            </button>
+            <button type="button" class="nq__service">
+              <h4>Guarantee Uplift</h4>
+              <p>Confirmed space on flight</p>
+              <span class="nq__service-codes">GEN, DGR, COU</span>
+            </button>
+            <button type="button" class="nq__service">
+              <h4>Express</h4>
+              <p>Priority faster delivery</p>
+              <span class="nq__service-codes">GEN, DGR, COU</span>
+            </button>
+            <button type="button" class="nq__service">
+              <h4>Nonstackable</h4>
+              <p>Cannot place other cargo on top</p>
+              <span class="nq__service-codes">GEN, DGR, COU</span>
+            </button>
+            <button type="button" class="nq__service">
+              <h4>ODD Size Cargo</h4>
+              <p>Cargo exceeds standard dimensions</p>
+              <span class="nq__service-codes">GEN, DGR, COU</span>
+            </button>
+            <button type="button" class="nq__service">
+              <h4>Super Saver</h4>
+              <p>Standby cargo at reduced rate</p>
+              <span class="nq__service-codes">GEN, COU</span>
+            </button>
+            <button type="button" class="nq__service">
+              <h4>Test</h4>
+              <p>product</p>
+              <span class="nq__service-codes">DGR, PO, MAIL, F</span>
+            </button>
+            <button type="button" class="nq__service">
+              <h4>VIC</h4>
+              <p>Test</p>
+              <span class="nq__service-codes">CHECK</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- ───── Footer actions ───── -->
+        <div class="nq__foot">
+          <a href="dashboard.html" class="dash__btn-ghost nq__cancel">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+            <span>Cancel</span>
+          </a>
+          <div class="nq__foot-right">
+            <button type="button" class="dash__btn-ghost">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg>
+              <span>Save as Draft</span>
+            </button>
+            <button type="submit" class="dash__btn-primary">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12l20-8-8 20-2.5-9.5L2 12z"/></svg>
+              <span>Search Flight</span>
+            </button>
+          </div>
+        </div>
+
+      </form>
+
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      /* Generic segmented toggles */
+      document.querySelectorAll('[data-seg]').forEach(function (seg) {
+        seg.addEventListener('click', function (e) {
+          var btn = e.target.closest('button');
+          if (!btn) return;
+          seg.querySelectorAll('button').forEach(function (b) { b.classList.remove('is-active'); });
+          btn.classList.add('is-active');
+        });
+      });
+
+      /* Service card single-select */
+      var services = document.querySelector('[data-services]');
+      if (services) services.addEventListener('click', function (e) {
+        var card = e.target.closest('.nq__service');
+        if (!card) return;
+        services.querySelectorAll('.nq__service').forEach(function (c) { c.classList.remove('is-active'); });
+        card.classList.add('is-active');
+      });
+
+      /* Show Dangerous Goods only when Commodity = DGR */
+      var commodity = document.getElementById('nqCommodity');
+      var dg = document.getElementById('nqDangerous');
+      function syncDg() { dg.hidden = (commodity.value !== 'DGR'); }
+      if (commodity && dg) { commodity.addEventListener('change', syncDg); syncDg(); }
+
+      /* Add row (clone first body row, renumber) */
+      function renumber(table) {
+        table.querySelectorAll('tbody .nq__rownum').forEach(function (n, i) { n.textContent = i + 1; });
+      }
+      document.querySelectorAll('[data-add]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var table = document.getElementById(btn.dataset.add === 'dg' ? 'nqDgTable' : 'nqPieceTable');
+          var body = table.querySelector('tbody');
+          var clone = body.querySelector('tr').cloneNode(true);
+          clone.querySelectorAll('input').forEach(function (inp) {
+            if (inp.type === 'checkbox') inp.checked = false; else inp.value = '';
+          });
+          clone.querySelectorAll('.nq__seg button').forEach(function (b, i) { b.classList.toggle('is-active', i === 0); });
+          body.appendChild(clone);
+          renumber(table);
+        });
+      });
+    })();
+  </script>
+  <script src="main.js?v=174"></script>
+</body>
+</html>
