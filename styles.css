@@ -9533,6 +9533,29 @@ body.cursor-hover .cursor-follower {
 }
 .dash__chip--ok { background: rgba(34, 167, 95, 0.12); color: #1f8a4d; }
 
+/* Business-type cell: chip + track action */
+.dash__biz { display: inline-flex; align-items: center; gap: 8px; }
+.dash__track {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--c-orange);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.16s, border-color 0.16s, transform 0.16s var(--ease-out);
+}
+.dash__track:hover {
+  background: rgba(222, 29, 42, 0.08);
+  border-color: var(--c-orange);
+  transform: scale(1.06);
+}
+.dash__track svg { width: 15px; height: 15px; display: block; }
+
 /* Status chips — quote lifecycle */
 .dash__status--quoted    { background: rgba(34, 167, 95, 0.12); color: #1f8a4d; }
 .dash__status--pending   { background: rgba(217, 154, 0, 0.14); color: #b07c00; }
