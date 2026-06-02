@@ -9271,8 +9271,9 @@ body.cursor-hover .cursor-follower {
   gap: 18px;
   margin: 4px 0 20px;
 }
+.dash__head .dash__page-title { margin: 0; }
 .dash__page-sub {
-  margin: 4px 0 0;
+  margin: 5px 0 0;
   font-size: 13.5px;
   color: var(--ink-faint);
 }
