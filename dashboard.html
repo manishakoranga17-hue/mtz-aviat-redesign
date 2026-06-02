@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=197" />
+  <link rel="stylesheet" href="styles.css?v=198" />
 </head>
 <body class="page-dashboard">
 
@@ -142,37 +142,85 @@
 
       <!-- KPI status filter cards -->
       <div class="dash__kpis" role="tablist" aria-label="Filter quotes by status">
-        <button type="button" class="dash__kpi  is-active" data-status="all" role="tab" aria-selected="true">
-          <span class="dash__kpi-num">18</span>
+        <button type="button" class="dash__kpi is-active" data-status="all" role="tab" aria-selected="true">
+          <span class="dash__kpi-top">
+            <span class="dash__kpi-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+            </span>
+            <span class="dash__kpi-num">18</span>
+          </span>
           <span class="dash__kpi-label">All Quotes</span>
+          <span class="dash__kpi-bar"><i style="--p:100%"></i></span>
         </button>
         <button type="button" class="dash__kpi dash__kpi--pending" data-status="pending" role="tab" aria-selected="false">
-          <span class="dash__kpi-num">0</span>
+          <span class="dash__kpi-top">
+            <span class="dash__kpi-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            </span>
+            <span class="dash__kpi-num">0</span>
+          </span>
           <span class="dash__kpi-label">Quote Pending</span>
+          <span class="dash__kpi-bar"><i style="--p:0%"></i></span>
         </button>
         <button type="button" class="dash__kpi dash__kpi--quoted" data-status="quoted" role="tab" aria-selected="false">
-          <span class="dash__kpi-num">10</span>
+          <span class="dash__kpi-top">
+            <span class="dash__kpi-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0l-7-7V4h9.6l7.4 7.4a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.2"/></svg>
+            </span>
+            <span class="dash__kpi-num">10</span>
+          </span>
           <span class="dash__kpi-label">Quoted</span>
+          <span class="dash__kpi-bar"><i style="--p:56%"></i></span>
         </button>
         <button type="button" class="dash__kpi dash__kpi--requested" data-status="requested" role="tab" aria-selected="false">
-          <span class="dash__kpi-num">6</span>
+          <span class="dash__kpi-top">
+            <span class="dash__kpi-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/></svg>
+            </span>
+            <span class="dash__kpi-num">6</span>
+          </span>
           <span class="dash__kpi-label">Booking Requested</span>
+          <span class="dash__kpi-bar"><i style="--p:33%"></i></span>
         </button>
         <button type="button" class="dash__kpi dash__kpi--booked" data-status="booked" role="tab" aria-selected="false">
-          <span class="dash__kpi-num">0</span>
+          <span class="dash__kpi-top">
+            <span class="dash__kpi-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/><path d="M9 15l2 2 4-4"/></svg>
+            </span>
+            <span class="dash__kpi-num">0</span>
+          </span>
           <span class="dash__kpi-label">Booked</span>
+          <span class="dash__kpi-bar"><i style="--p:0%"></i></span>
         </button>
         <button type="button" class="dash__kpi dash__kpi--expired" data-status="expired" role="tab" aria-selected="false">
-          <span class="dash__kpi-num">0</span>
+          <span class="dash__kpi-top">
+            <span class="dash__kpi-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10M7 21h10"/><path d="M7 3c0 4 5 5 5 9s-5 5-5 9M17 3c0 4-5 5-5 9s5 5 5 9"/></svg>
+            </span>
+            <span class="dash__kpi-num">0</span>
+          </span>
           <span class="dash__kpi-label">Expired</span>
+          <span class="dash__kpi-bar"><i style="--p:0%"></i></span>
         </button>
         <button type="button" class="dash__kpi dash__kpi--rejected" data-status="rejected" role="tab" aria-selected="false">
-          <span class="dash__kpi-num">0</span>
+          <span class="dash__kpi-top">
+            <span class="dash__kpi-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+            </span>
+            <span class="dash__kpi-num">0</span>
+          </span>
           <span class="dash__kpi-label">Rejected</span>
+          <span class="dash__kpi-bar"><i style="--p:0%"></i></span>
         </button>
         <button type="button" class="dash__kpi dash__kpi--cancelled" data-status="cancelled" role="tab" aria-selected="false">
-          <span class="dash__kpi-num">0</span>
+          <span class="dash__kpi-top">
+            <span class="dash__kpi-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>
+            </span>
+            <span class="dash__kpi-num">0</span>
+          </span>
           <span class="dash__kpi-label">Cancelled</span>
+          <span class="dash__kpi-bar"><i style="--p:0%"></i></span>
         </button>
       </div>
 
