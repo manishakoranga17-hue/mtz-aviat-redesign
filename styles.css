@@ -9883,6 +9883,13 @@ body.cursor-hover .cursor-follower {
 }
 .dash__menu a.is-active:hover { color: #fff; background: var(--c-orange); }
 .dash__menu a.is-active i { background: #fff; color: var(--c-orange); }
+/* Active state for bottom drawer items (Profile) */
+.dash__menu-item.is-active {
+  background: var(--c-orange);
+  color: #fff;
+  box-shadow: 0 6px 16px -8px rgba(222, 29, 42, 0.6);
+}
+.dash__menu-item.is-active:hover { color: #fff; background: var(--c-orange); }
 
 /* ─── Page title ─── */
 .dash__page-title {
@@ -10446,6 +10453,79 @@ body.cursor-hover .cursor-follower {
   background: #c8141f;
 }
 .dash__btn-primary svg { width: 16px; height: 16px; }
+
+/* ─── Profile page ─── */
+.dash__panel + .dash__panel { margin-top: 18px; }
+.dash__form-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.dash__btn-ghost {
+  height: 46px;
+  padding: 0 24px;
+  background: #fff;
+  color: var(--c-dark-green);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 14.5px;
+  cursor: pointer;
+  transition: background 0.16s, border-color 0.16s;
+}
+.dash__btn-ghost:hover { background: rgba(10, 31, 61, 0.04); border-color: rgba(10, 31, 61, 0.2); }
+.dash__panel-title {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--c-dark-green);
+  margin: 0 0 18px;
+}
+.dash__profile-head {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.dash__profile-avatar {
+  width: 64px; height: 64px;
+  flex: 0 0 64px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--c-orange);
+  color: #fff;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 26px;
+}
+.dash__profile-id { flex: 1; min-width: 0; }
+.dash__profile-id h2 {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--c-dark-green);
+  margin: 0 0 4px;
+}
+.dash__profile-id p { font-size: 13.5px; color: var(--ink-faint); margin: 0; }
+.dash__profile-id strong { color: var(--c-dark-green); }
+.dash__profile-badge {
+  align-self: flex-start;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(222, 29, 42, 0.10);
+  color: var(--c-orange);
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+@media (max-width: 640px) {
+  .dash__profile-head { flex-wrap: wrap; }
+}
 
 /* ─── PDF download (My Invoices row action) ─── */
 .dash__pdf-btn {
