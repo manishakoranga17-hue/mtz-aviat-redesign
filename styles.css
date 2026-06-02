@@ -9430,11 +9430,13 @@ body.cursor-hover .cursor-follower {
 }
 .dash__btn-icon {
   width: 46px;
+  height: 46px;
   padding: 0;
-  display: inline-grid;
-  place-items: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
-.dash__btn-icon svg { width: 17px; height: 17px; }
+.dash__btn-icon svg { width: 17px; height: 17px; display: block; }
 
 /* Table head / toolbar */
 .dash__quotes { padding: 18px 0 14px; }
