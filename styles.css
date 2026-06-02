@@ -9428,7 +9428,7 @@ body.cursor-hover .cursor-follower {
   gap: 10px;
   margin-top: 18px;
 }
-.dash__btn-icon {
+.dash__btn-ghost.dash__btn-icon {
   width: 46px;
   height: 46px;
   padding: 0;
