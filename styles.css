@@ -9555,6 +9555,8 @@ body.cursor-hover .cursor-follower {
   transform: scale(1.06);
 }
 .dash__track svg { width: 15px; height: 15px; display: block; }
+.dash__files { color: var(--c-dark-green); }
+.dash__files:hover { background: rgba(10, 31, 61, 0.06); border-color: var(--line-strong); }
 
 /* Status chips — quote lifecycle */
 .dash__status--quoted    { background: rgba(34, 167, 95, 0.12); color: #1f8a4d; }
