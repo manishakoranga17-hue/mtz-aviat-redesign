@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=210" />
+  <link rel="stylesheet" href="styles.css?v=211" />
 </head>
 <body class="page-dashboard">
 
@@ -169,7 +169,7 @@
                 <svg class="fs__aq-ico fs__aq-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
                 <span class="fs__aq-label">Add to Quote</span>
               </button>
-              <button type="button" class="dash__btn-primary">Request Booking</button>
+              <button type="button" class="dash__btn-primary" data-book>Request Booking</button>
             </div>
           </footer>
         </article>
@@ -245,7 +245,7 @@
                 <svg class="fs__aq-ico fs__aq-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
                 <span class="fs__aq-label">Add to Quote</span>
               </button>
-              <button type="button" class="dash__btn-primary">Request Booking</button>
+              <button type="button" class="dash__btn-primary" data-book>Request Booking</button>
             </div>
           </footer>
         </article>
@@ -283,7 +283,7 @@
                 <svg class="fs__aq-ico fs__aq-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
                 <span class="fs__aq-label">Add to Quote</span>
               </button>
-              <button type="button" class="dash__btn-primary">Request Booking</button>
+              <button type="button" class="dash__btn-primary" data-book>Request Booking</button>
             </div>
           </footer>
         </article>
@@ -321,7 +321,7 @@
                 <svg class="fs__aq-ico fs__aq-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
                 <span class="fs__aq-label">Add to Quote</span>
               </button>
-              <button type="button" class="dash__btn-primary">Request Booking</button>
+              <button type="button" class="dash__btn-primary" data-book>Request Booking</button>
             </div>
           </footer>
         </article>
@@ -338,6 +338,151 @@
       </div>
 
     </main>
+  </div>
+
+  <!-- ═════════════ REQUEST BOOKING MODAL ═════════════ -->
+  <div class="fs__modal" id="fsModal" hidden>
+    <div class="fs__modal-overlay" data-close></div>
+    <div class="fs__modal-card" role="dialog" aria-modal="true" aria-label="Request Booking">
+
+      <header class="fs__modal-head">
+        <div>
+          <h2>Request Booking</h2>
+          <p>Fill in the details to submit your cargo booking</p>
+        </div>
+        <button type="button" class="fs__modal-close" data-close aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </header>
+
+      <!-- Flight strip -->
+      <div class="fs__modal-flight">
+        <div class="fs__mf-leg">
+          <div class="fs__mf-pt">
+            <strong>DEL</strong>
+            <span class="fs__mf-time">17:00</span>
+            <span class="fs__mf-date">29 May</span>
+          </div>
+          <div class="fs__mf-mid">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+            <span>GJ411 · B737-700</span>
+          </div>
+          <div class="fs__mf-pt fs__mf-pt--arr">
+            <strong>BLR</strong>
+            <span class="fs__mf-time">19:00</span>
+            <span class="fs__mf-date">29 May</span>
+          </div>
+        </div>
+        <div class="fs__mf-rate">
+          <div class="fs__mf-status">
+            <span class="fs__mf-confirm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Space confirmed</span>
+            <button type="button" class="fs__mf-refresh" aria-label="Refresh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36M21 3v6h-6"/></svg></button>
+          </div>
+          <p class="fs__mf-cur">INR/kg</p>
+          <p class="fs__mf-incl">Incl. charges: INR/kg</p>
+          <p class="fs__mf-total">Total: <strong>0.00 INR</strong></p>
+          <a href="#" class="fs__mf-link">Check Space Availability</a>
+        </div>
+      </div>
+
+      <!-- Body -->
+      <div class="fs__modal-body">
+        <!-- Left column -->
+        <div class="fs__modal-col">
+          <span class="fs__ms-label">Shipment Details</span>
+          <div class="fs__mgrid fs__mgrid--3">
+            <div class="dash__field"><label>Pieces</label><div class="dash__control"><input class="dash__input" type="text" value="10" /></div></div>
+            <div class="dash__field"><label>Weight (kg)</label><div class="dash__control"><input class="dash__input" type="text" value="10" /></div></div>
+            <div class="dash__field"><label>Charg. Wt. (kg)</label><div class="dash__control"><input class="dash__input" type="text" value="10" /></div></div>
+          </div>
+
+          <div class="fs__ng-row">
+            <div class="dash__field">
+              <label>Nature of Goods</label>
+              <div class="dash__control"><select class="dash__select"><option>Consol</option><option>General</option><option>Perishable</option><option>Dangerous Goods</option></select></div>
+            </div>
+            <label class="fs__check-inline"><input type="checkbox" class="nq__check" checked /><span>Cargo Screened</span></label>
+          </div>
+
+          <div class="fs__mgrid fs__mgrid--2">
+            <div class="dash__field"><label>Ready to Load</label><div class="dash__control"><input class="dash__input dash__input--date" type="text" value="05/29/2026" /></div></div>
+            <div class="dash__field"><label>Time</label><div class="dash__control"><input class="dash__input" type="text" value="02:05 PM" /></div></div>
+          </div>
+
+          <div class="dash__field">
+            <label>Handling &amp; Customs Instructions</label>
+            <div class="dash__control"><textarea class="dash__input nq__textarea" placeholder="Any special handling or customs notes..."></textarea></div>
+          </div>
+
+          <span class="fs__ms-label">Shipper / Consignee</span>
+          <div class="dash__field">
+            <label>Shipper<span class="req">*</span></label>
+            <div class="dash__control">
+              <input class="dash__input" type="text" placeholder="Select or enter shipper" />
+              <button type="button" class="fs__pick" aria-label="Choose shipper"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+            </div>
+          </div>
+          <div class="dash__field">
+            <label>Consignee<span class="req">*</span></label>
+            <div class="dash__control">
+              <input class="dash__input" type="text" placeholder="Select or enter consignee" />
+              <button type="button" class="fs__pick" aria-label="Choose consignee"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right column -->
+        <div class="fs__modal-col">
+          <span class="fs__ms-label">Customer Information</span>
+          <div class="dash__field"><label>Customer</label><div class="dash__control"><input class="dash__input" type="text" value="Spiceexpress Test Agent" /></div></div>
+          <div class="fs__mgrid fs__mgrid--2">
+            <div class="dash__field"><label>Country</label><div class="dash__control"><input class="dash__input" type="text" value="Malaysia" /></div></div>
+            <div class="dash__field"><label>Contact Person</label><div class="dash__control"><input class="dash__input" type="text" placeholder="Contact person" /></div></div>
+          </div>
+          <div class="dash__field"><label>Contact Email</label><div class="dash__control"><input class="dash__input" type="email" value="baldev.sharma1@spicejet.com" /></div></div>
+
+          <span class="fs__ms-label">AWB Number</span>
+          <div class="nq__seg fs__awb-seg" data-seg>
+            <button type="button">Input AWB Number</button>
+            <button type="button" class="is-active">Airline Assign AWB</button>
+          </div>
+          <div class="fs__note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+            <span>AWB will be assigned by airline or GSA after booking confirmation.</span>
+          </div>
+
+          <span class="fs__ms-label">Documents</span>
+          <label class="fs__drop">
+            <input type="file" multiple hidden />
+            <span class="fs__drop-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3M7 8l5-5 5 5"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></svg></span>
+            <span class="fs__drop-text"><strong>Drag or select file to upload</strong><span>PDF, JPG, PNG — max 10 MB</span></span>
+            <span class="fs__drop-browse">Browse</span>
+          </label>
+
+          <span class="fs__ms-label">Remarks</span>
+          <div class="dash__field"><div class="dash__control"><textarea class="dash__input nq__textarea" placeholder="Add any remarks for this booking..."></textarea></div></div>
+        </div>
+      </div>
+
+      <!-- Warning -->
+      <div class="fs__modal-warn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+        <span>Rates and space are subject to approval. Booking is not confirmed until accepted by the carrier.</span>
+      </div>
+
+      <!-- Footer -->
+      <footer class="fs__modal-foot">
+        <span class="fs__foot-note">Rates and space are subject to approval</span>
+        <div class="fs__foot-btns">
+          <button type="button" class="dash__btn-ghost" data-close>Cancel</button>
+          <button type="button" class="dash__btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12l20-8-8 20-2.5-9.5L2 12z"/></svg>
+            <span>Request Booking</span>
+          </button>
+        </div>
+      </footer>
+
+    </div>
   </div>
 
   <script>
@@ -366,6 +511,30 @@
           btn.querySelector('.fs__aq-label').textContent = added ? 'Added to Quote' : 'Add to Quote';
           update();
         });
+      });
+
+      /* Generic segmented toggles (AWB number type) */
+      document.querySelectorAll('[data-seg]').forEach(function (seg) {
+        seg.addEventListener('click', function (e) {
+          var b = e.target.closest('button');
+          if (!b) return;
+          seg.querySelectorAll('button').forEach(function (x) { x.classList.remove('is-active'); });
+          b.classList.add('is-active');
+        });
+      });
+
+      /* Request Booking modal */
+      var modal = document.getElementById('fsModal');
+      function openModal() { modal.hidden = false; document.body.style.overflow = 'hidden'; }
+      function closeModal() { modal.hidden = true; document.body.style.overflow = ''; }
+      document.querySelectorAll('[data-book]').forEach(function (b) {
+        b.addEventListener('click', openModal);
+      });
+      modal.querySelectorAll('[data-close]').forEach(function (c) {
+        c.addEventListener('click', closeModal);
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !modal.hidden) closeModal();
       });
     })();
   </script>
