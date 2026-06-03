@@ -9957,6 +9957,7 @@ body.cursor-hover .cursor-follower {
   box-shadow: 0 18px 40px -16px rgba(10, 31, 61, 0.5);
   animation: fsSendUp 0.32s var(--ease-out);
 }
+.fs__sendbar[hidden] { display: none; }
 @keyframes fsSendUp {
   from { opacity: 0; transform: translate(-50%, 16px); }
   to   { opacity: 1; transform: translate(-50%, 0); }
@@ -10004,6 +10005,7 @@ body.cursor-hover .cursor-follower {
 
 /* ═══════════════ REQUEST BOOKING MODAL ═══════════════ */
 .fs__modal { position: fixed; inset: 0; z-index: 200; display: flex; align-items: flex-start; justify-content: center; padding: 32px 20px; overflow-y: auto; }
+.fs__modal[hidden] { display: none; }
 .fs__modal-overlay { position: fixed; inset: 0; background: rgba(10, 31, 61, 0.55); backdrop-filter: blur(2px); animation: fsFade 0.2s ease; }
 @keyframes fsFade { from { opacity: 0; } to { opacity: 1; } }
 .fs__modal-card {
