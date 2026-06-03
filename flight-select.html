@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Select Flight — Menteiz Aviation Services</title>
+  <meta name="description" content="Select a flight for your cargo shipment." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=209" />
+</head>
+<body class="page-dashboard">
+
+  <div class="dash">
+    <!-- ═════════════════════ SIDEBAR ═════════════════════ -->
+    <aside class="dash__side">
+      <a class="dash__logo" href="index.html">
+        <img class="dash__logo-img" src="logo-mtz.png" alt="Menteiz Aviation" />
+      </a>
+
+      <ul class="dash__menu">
+        <li>
+          <a href="dashboard.html" class="is-active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a2 2 0 0 1-2 2h-3v-7H10v7H6a2 2 0 0 1-2-2v-9z"/></svg>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="my-bookings.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/><path d="M8 15l3 3 5-5"/></svg>
+            <span>My Bookings</span>
+          </a>
+        </li>
+        <li>
+          <a href="managing-partners.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2 21c0-3.5 3.13-6 7-6s7 2.5 7 6"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.5c2.7 0 5 1.6 5 4.5"/></svg>
+            <span>Managing Partner</span>
+          </a>
+        </li>
+        <li>
+          <a href="my-wallet.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M16 12.5h2"/><path d="M2 9h20"/></svg>
+            <span>My Wallet</span>
+          </a>
+        </li>
+        <li>
+          <a href="my-invoices.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v5h5"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+            <span>My Invoice</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="dash__side-bot">
+        <a href="profile.html" class="dash__menu-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+          <span>Profile</span>
+        </a>
+        <a href="index.html" class="dash__menu-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          <span>Logout</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- ═════════════════════ MAIN ═════════════════════ -->
+    <main class="dash__main">
+
+      <!-- Page header -->
+      <div class="fs__head">
+        <div class="fs__head-left">
+          <a href="new-quote.html" class="fs__back" aria-label="Back to quote">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+          </a>
+          <div>
+            <h1 class="dash__page-title">Cargo Quote Flights</h1>
+            <p class="dash__page-sub">Select a flight for your cargo shipment.</p>
+          </div>
+        </div>
+        <div class="fs__meta">
+          <div class="fs__meta-card">
+            <span>Quote ID</span>
+            <strong>QT-760DRK69</strong>
+          </div>
+          <div class="fs__meta-card">
+            <span>Status</span>
+            <strong class="fs__draft">Draft</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Shipment summary bar -->
+      <div class="fs__summary">
+        <div class="fs__route">
+          <div class="fs__route-pt"><strong>DEL</strong><span>Origin</span></div>
+          <svg class="fs__route-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          <div class="fs__route-pt"><strong>BLR</strong><span>Destination</span></div>
+        </div>
+        <div class="fs__sum-grid">
+          <div class="fs__sum-item"><span>Ready to Load</span><strong>Fri 29 May 2026, 12:57</strong></div>
+          <div class="fs__sum-item"><span>Cargo Details</span><strong>10 PCS, 10 kg</strong></div>
+          <div class="fs__sum-item"><span>Chargeable Wt</span><strong>10 kg</strong></div>
+          <div class="fs__sum-item"><span>Volume</span><strong>0.01 m³</strong></div>
+          <div class="fs__sum-item"><span>Customer</span><strong>Spiceexpress Test Agent</strong></div>
+          <div class="fs__sum-item"><span>Piece Details</span><a href="#" class="fs__sum-link">Show</a></div>
+        </div>
+      </div>
+
+      <!-- Filter bar -->
+      <div class="fs__filter">
+        <div class="fs__filter-field">
+          <span class="fs__filter-label">Flight Date</span>
+          <div class="fs__stepper">
+            <button type="button" aria-label="Previous dates"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+            <span>25 May 26 – 31 May 26</span>
+            <button type="button" aria-label="Next dates"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="fs__filter-field fs__filter-field--grow">
+          <span class="fs__filter-label">Time</span>
+          <div class="fs__time-range">
+            <span class="fs__time-val">00:00</span>
+            <span class="fs__time-track"><i></i></span>
+            <span class="fs__time-val">23:59</span>
+          </div>
+        </div>
+        <button type="button" class="dash__btn-primary fs__apply">Apply Time</button>
+      </div>
+
+      <!-- Direct Flights -->
+      <div class="fs__list-head">
+        <h2>Direct Flights</h2>
+        <span class="fs__count">5 flights</span>
+      </div>
+
+      <div class="fs__flights">
+
+        <!-- Flight 1 — available -->
+        <article class="fs__flight">
+          <div class="fs__flight-main">
+            <div class="fs__airline">
+              <span class="fs__logo">ZL</span>
+              <div class="fs__airline-info">
+                <h3>Zhejiang Loong Airlines Company Ltd</h3>
+                <div class="fs__codes"><span>G2411</span><span>B737-700</span></div>
+              </div>
+            </div>
+            <div class="fs__leg">
+              <div class="fs__time"><strong>17:00</strong><span>Fri 29 May</span><span class="fs__apt">DEL</span></div>
+              <div class="fs__path">
+                <span class="fs__dur">2h 0m · Direct</span>
+                <span class="fs__line"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span>
+              </div>
+              <div class="fs__time fs__time--arr"><strong>19:00</strong><span>Fri 29 May</span><span class="fs__apt">BLR</span></div>
+            </div>
+            <div class="fs__rate">
+              <p class="fs__rate-main">1,600.00 <span>INR/kg</span></p>
+              <p class="fs__rate-sub">Incl. charges + INR/kg</p>
+              <p class="fs__rate-total">Total charges <strong>1,600.00 INR</strong></p>
+              <button type="button" class="fs__breakdown">View Rate Breakdown</button>
+            </div>
+          </div>
+          <footer class="fs__flight-foot">
+            <span class="fs__avail fs__avail--ok"><i></i>Space available · Fri 29 May 17:00 – 19:00</span>
+            <div class="fs__foot-actions">
+              <button type="button" class="dash__btn-ghost">Request Quote</button>
+              <button type="button" class="dash__btn-primary">Request Booking</button>
+            </div>
+          </footer>
+        </article>
+
+        <!-- Flight 2 — no space -->
+        <article class="fs__flight">
+          <div class="fs__flight-main">
+            <div class="fs__airline">
+              <span class="fs__logo fs__logo--alt">SG</span>
+              <div class="fs__airline-info">
+                <h3>Sun Aviation Pvt Ltd</h3>
+                <div class="fs__codes"><span>SG199</span><span>737-800</span></div>
+              </div>
+            </div>
+            <div class="fs__leg">
+              <div class="fs__time"><strong>11:55</strong><span>Fri 29 May</span><span class="fs__apt">DEL</span></div>
+              <div class="fs__path">
+                <span class="fs__dur">3h 5m · Direct</span>
+                <span class="fs__line"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span>
+              </div>
+              <div class="fs__time fs__time--arr"><strong>15:00</strong><span>Fri 29 May</span><span class="fs__apt">BLR</span></div>
+            </div>
+            <div class="fs__rate">
+              <p class="fs__rate-main">1,600.00 <span>INR/kg</span></p>
+              <p class="fs__rate-sub">Incl. charges + INR/kg</p>
+              <p class="fs__rate-total">Total charges <strong>1,600.00 INR</strong></p>
+              <button type="button" class="fs__breakdown">View Rate Breakdown</button>
+            </div>
+          </div>
+          <footer class="fs__flight-foot">
+            <span class="fs__avail fs__avail--no"><i></i>No space available · Fri 29 May 11:55 – 15:00</span>
+            <div class="fs__foot-actions">
+              <button type="button" class="dash__btn-ghost">Request Quote</button>
+              <button type="button" class="dash__btn-primary" disabled>Request Booking</button>
+            </div>
+          </footer>
+        </article>
+
+        <!-- Flight 3 — available -->
+        <article class="fs__flight">
+          <div class="fs__flight-main">
+            <div class="fs__airline">
+              <span class="fs__logo fs__logo--alt">SG</span>
+              <div class="fs__airline-info">
+                <h3>Sun Aviation Pvt Ltd</h3>
+                <div class="fs__codes"><span>SG152</span><span>737-800</span></div>
+              </div>
+            </div>
+            <div class="fs__leg">
+              <div class="fs__time"><strong>19:20</strong><span>Fri 29 May</span><span class="fs__apt">DEL</span></div>
+              <div class="fs__path">
+                <span class="fs__dur">2h 55m · Direct</span>
+                <span class="fs__line"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span>
+              </div>
+              <div class="fs__time fs__time--arr"><strong>22:15</strong><span>Fri 29 May</span><span class="fs__apt">BLR</span></div>
+            </div>
+            <div class="fs__rate">
+              <p class="fs__rate-main">1,750.00 <span>INR/kg</span></p>
+              <p class="fs__rate-sub">Incl. charges + INR/kg</p>
+              <p class="fs__rate-total">Total charges <strong>1,750.00 INR</strong></p>
+              <button type="button" class="fs__breakdown">View Rate Breakdown</button>
+            </div>
+          </div>
+          <footer class="fs__flight-foot">
+            <span class="fs__avail fs__avail--ok"><i></i>Space available · Fri 29 May 19:20 – 22:15</span>
+            <div class="fs__foot-actions">
+              <button type="button" class="dash__btn-ghost">Request Quote</button>
+              <button type="button" class="dash__btn-primary">Request Booking</button>
+            </div>
+          </footer>
+        </article>
+
+        <!-- Flight 4 — available -->
+        <article class="fs__flight">
+          <div class="fs__flight-main">
+            <div class="fs__airline">
+              <span class="fs__logo">ZL</span>
+              <div class="fs__airline-info">
+                <h3>Zhejiang Loong Airlines Company Ltd</h3>
+                <div class="fs__codes"><span>G2407</span><span>B737-700</span></div>
+              </div>
+            </div>
+            <div class="fs__leg">
+              <div class="fs__time"><strong>06:40</strong><span>Sat 30 May</span><span class="fs__apt">DEL</span></div>
+              <div class="fs__path">
+                <span class="fs__dur">2h 10m · Direct</span>
+                <span class="fs__line"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span>
+              </div>
+              <div class="fs__time fs__time--arr"><strong>08:50</strong><span>Sat 30 May</span><span class="fs__apt">BLR</span></div>
+            </div>
+            <div class="fs__rate">
+              <p class="fs__rate-main">1,480.00 <span>INR/kg</span></p>
+              <p class="fs__rate-sub">Incl. charges + INR/kg</p>
+              <p class="fs__rate-total">Total charges <strong>1,480.00 INR</strong></p>
+              <button type="button" class="fs__breakdown">View Rate Breakdown</button>
+            </div>
+          </div>
+          <footer class="fs__flight-foot">
+            <span class="fs__avail fs__avail--ok"><i></i>Space available · Sat 30 May 06:40 – 08:50</span>
+            <div class="fs__foot-actions">
+              <button type="button" class="dash__btn-ghost">Request Quote</button>
+              <button type="button" class="dash__btn-primary">Request Booking</button>
+            </div>
+          </footer>
+        </article>
+
+        <!-- Flight 5 — available -->
+        <article class="fs__flight">
+          <div class="fs__flight-main">
+            <div class="fs__airline">
+              <span class="fs__logo fs__logo--alt">SG</span>
+              <div class="fs__airline-info">
+                <h3>Sun Aviation Pvt Ltd</h3>
+                <div class="fs__codes"><span>SG310</span><span>A320</span></div>
+              </div>
+            </div>
+            <div class="fs__leg">
+              <div class="fs__time"><strong>21:05</strong><span>Sat 30 May</span><span class="fs__apt">DEL</span></div>
+              <div class="fs__path">
+                <span class="fs__dur">2h 40m · Direct</span>
+                <span class="fs__line"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span>
+              </div>
+              <div class="fs__time fs__time--arr"><strong>23:45</strong><span>Sat 30 May</span><span class="fs__apt">BLR</span></div>
+            </div>
+            <div class="fs__rate">
+              <p class="fs__rate-main">1,600.00 <span>INR/kg</span></p>
+              <p class="fs__rate-sub">Incl. charges + INR/kg</p>
+              <p class="fs__rate-total">Total charges <strong>1,600.00 INR</strong></p>
+              <button type="button" class="fs__breakdown">View Rate Breakdown</button>
+            </div>
+          </div>
+          <footer class="fs__flight-foot">
+            <span class="fs__avail fs__avail--ok"><i></i>Space available · Sat 30 May 21:05 – 23:45</span>
+            <div class="fs__foot-actions">
+              <button type="button" class="dash__btn-ghost">Request Quote</button>
+              <button type="button" class="dash__btn-primary">Request Booking</button>
+            </div>
+          </footer>
+        </article>
+
+      </div>
+
+    </main>
+  </div>
+
+  <script src="main.js?v=174"></script>
+</body>
+</html>
