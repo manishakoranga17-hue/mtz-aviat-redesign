@@ -9474,15 +9474,31 @@ body.cursor-hover .cursor-follower {
 
 .nq__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 16px 18px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px 20px;
+  align-items: start;
 }
 .nq__grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.nq__grid--2 { grid-template-columns: 1fr 1fr; }
-.nq__grid--gap { margin-top: 16px; }
-.nq__hint { font-size: 11.5px; color: var(--ink-faint); margin-top: 2px; }
-.nq__textarea { min-height: 72px; padding: 10px 14px; resize: vertical; line-height: 1.5; height: auto; }
-.nq__field--inline { margin-bottom: 18px; }
+.nq__grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.nq__grid--gap { margin-top: 18px; }
+.nq__hint { font-size: 11.5px; color: var(--ink-faint); margin-top: 6px; line-height: 1.4; }
+
+/* Uniform field rhythm so every control lines up to the same baseline */
+.nq .dash__field { gap: 7px; }
+.nq .dash__field > label {
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--c-dark-green);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.nq .dash__input,
+.nq .dash__select { height: 44px; }
+.nq__textarea { min-height: 96px; padding: 11px 14px; resize: vertical; line-height: 1.5; height: auto; }
+.nq__upload { min-height: 96px; }
+.nq__field--inline { margin-bottom: 20px; }
 
 /* Segmented control */
 .nq__seg {
@@ -9667,8 +9683,12 @@ body.cursor-hover .cursor-follower {
 }
 .nq__cancel svg, .nq__foot .dash__btn-ghost svg, .nq__foot .dash__btn-primary svg { width: 16px; height: 16px; }
 
+@media (max-width: 1180px) {
+  .nq__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
 @media (max-width: 920px) {
-  .nq__grid--3, .nq__grid--2 { grid-template-columns: 1fr 1fr; }
+  .nq__grid, .nq__grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .nq__grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .nq__foot { flex-direction: column; align-items: stretch; }
   .nq__foot-right { justify-content: flex-end; }
 }
