@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=209" />
+  <link rel="stylesheet" href="styles.css?v=210" />
 </head>
 <body class="page-dashboard">
 
@@ -164,7 +164,11 @@
           <footer class="fs__flight-foot">
             <span class="fs__avail fs__avail--ok"><i></i>Space available · Fri 29 May 17:00 – 19:00</span>
             <div class="fs__foot-actions">
-              <button type="button" class="dash__btn-ghost">Request Quote</button>
+              <button type="button" class="fs__addquote" data-add-quote>
+                <svg class="fs__aq-ico fs__aq-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+                <svg class="fs__aq-ico fs__aq-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                <span class="fs__aq-label">Add to Quote</span>
+              </button>
               <button type="button" class="dash__btn-primary">Request Booking</button>
             </div>
           </footer>
@@ -198,7 +202,11 @@
           <footer class="fs__flight-foot">
             <span class="fs__avail fs__avail--no"><i></i>No space available · Fri 29 May 11:55 – 15:00</span>
             <div class="fs__foot-actions">
-              <button type="button" class="dash__btn-ghost">Request Quote</button>
+              <button type="button" class="fs__addquote" data-add-quote>
+                <svg class="fs__aq-ico fs__aq-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+                <svg class="fs__aq-ico fs__aq-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                <span class="fs__aq-label">Add to Quote</span>
+              </button>
               <button type="button" class="dash__btn-primary" disabled>Request Booking</button>
             </div>
           </footer>
@@ -232,7 +240,11 @@
           <footer class="fs__flight-foot">
             <span class="fs__avail fs__avail--ok"><i></i>Space available · Fri 29 May 19:20 – 22:15</span>
             <div class="fs__foot-actions">
-              <button type="button" class="dash__btn-ghost">Request Quote</button>
+              <button type="button" class="fs__addquote" data-add-quote>
+                <svg class="fs__aq-ico fs__aq-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+                <svg class="fs__aq-ico fs__aq-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                <span class="fs__aq-label">Add to Quote</span>
+              </button>
               <button type="button" class="dash__btn-primary">Request Booking</button>
             </div>
           </footer>
@@ -266,7 +278,11 @@
           <footer class="fs__flight-foot">
             <span class="fs__avail fs__avail--ok"><i></i>Space available · Sat 30 May 06:40 – 08:50</span>
             <div class="fs__foot-actions">
-              <button type="button" class="dash__btn-ghost">Request Quote</button>
+              <button type="button" class="fs__addquote" data-add-quote>
+                <svg class="fs__aq-ico fs__aq-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+                <svg class="fs__aq-ico fs__aq-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                <span class="fs__aq-label">Add to Quote</span>
+              </button>
               <button type="button" class="dash__btn-primary">Request Booking</button>
             </div>
           </footer>
@@ -300,7 +316,11 @@
           <footer class="fs__flight-foot">
             <span class="fs__avail fs__avail--ok"><i></i>Space available · Sat 30 May 21:05 – 23:45</span>
             <div class="fs__foot-actions">
-              <button type="button" class="dash__btn-ghost">Request Quote</button>
+              <button type="button" class="fs__addquote" data-add-quote>
+                <svg class="fs__aq-ico fs__aq-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+                <svg class="fs__aq-ico fs__aq-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                <span class="fs__aq-label">Add to Quote</span>
+              </button>
               <button type="button" class="dash__btn-primary">Request Booking</button>
             </div>
           </footer>
@@ -308,9 +328,47 @@
 
       </div>
 
+      <!-- Floating multi-request bar -->
+      <div class="fs__sendbar" id="fsSendbar" hidden>
+        <span class="fs__sendbar-count"><strong id="fsSendCount">0</strong> flights added</span>
+        <button type="button" class="fs__sendbar-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12l20-8-8 20-2.5-9.5L2 12z"/></svg>
+          <span>Send Requests · <strong id="fsSendAirlines">0</strong> Airlines</span>
+        </button>
+      </div>
+
     </main>
   </div>
 
+  <script>
+    (function () {
+      var bar = document.getElementById('fsSendbar');
+      var countEl = document.getElementById('fsSendCount');
+      var airlinesEl = document.getElementById('fsSendAirlines');
+      var buttons = document.querySelectorAll('[data-add-quote]');
+
+      function update() {
+        var added = document.querySelectorAll('[data-add-quote].is-added');
+        var airlines = new Set();
+        added.forEach(function (b) {
+          var card = b.closest('.fs__flight');
+          var name = card && card.querySelector('.fs__airline-info h3');
+          if (name) airlines.add(name.textContent.trim());
+        });
+        countEl.textContent = added.length;
+        airlinesEl.textContent = airlines.size;
+        bar.hidden = added.length === 0;
+      }
+
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var added = btn.classList.toggle('is-added');
+          btn.querySelector('.fs__aq-label').textContent = added ? 'Added to Quote' : 'Add to Quote';
+          update();
+        });
+      });
+    })();
+  </script>
   <script src="main.js?v=174"></script>
 </body>
 </html>
