@@ -10907,6 +10907,44 @@ body.cursor-hover .cursor-follower {
 }
 .dash__row-act svg { width: 14px; height: 14px; }
 
+/* Row action menu (View / Edit) */
+.dash__rowmenu { position: relative; display: inline-block; }
+.dash__rowmenu.is-open .dash__row-act { border-color: var(--c-orange); color: var(--c-orange); background: rgba(222, 29, 42, 0.05); }
+.dash__rowmenu-pop {
+  position: fixed;
+  z-index: 120;
+  min-width: 140px;
+  padding: 6px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 16px 32px -12px rgba(10, 31, 61, 0.4);
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+}
+.dash__rowmenu.is-open .dash__rowmenu-pop { display: flex; animation: rowmenuIn 0.14s var(--ease-out); }
+@keyframes rowmenuIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+.dash__rowmenu-pop button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 12px;
+  border: 0;
+  border-radius: 7px;
+  background: none;
+  color: var(--c-dark-green);
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.14s, color 0.14s;
+}
+.dash__rowmenu-pop button:hover { background: rgba(10, 31, 61, 0.05); color: var(--c-orange); }
+.dash__rowmenu-pop button svg { width: 16px; height: 16px; flex: 0 0 16px; }
+
 /* ─── PAGINATION ─── */
 .dash__pager {
   display: flex;
