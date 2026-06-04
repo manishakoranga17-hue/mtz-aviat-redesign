@@ -572,17 +572,14 @@
       /* Request Booking modal */
       var modal = document.getElementById('fsModal');
       function openModal() { modal.hidden = false; document.body.style.overflow = 'hidden'; }
-      function closeModal() { modal.hidden = true; document.body.style.overflow = ''; }
+      function closeModal() { modal.hidden = true; if (rateModal.hidden) document.body.style.overflow = ''; }
       document.querySelectorAll('[data-book]').forEach(function (b) {
         b.addEventListener('click', openModal);
-      });
-      modal.querySelectorAll('[data-close]').forEach(function (c) {
-        c.addEventListener('click', closeModal);
       });
 
       /* Rate Breakdown modal */
       var rateModal = document.getElementById('fsRateModal');
-      function closeRate() { rateModal.hidden = true; document.body.style.overflow = ''; }
+      function closeRate() { rateModal.hidden = true; if (modal.hidden) document.body.style.overflow = ''; }
       function openRate(card) {
         var nameEl = card.querySelector('.fs__airline-info h3');
         var codes = card.querySelectorAll('.fs__codes span');
@@ -613,8 +610,11 @@
       document.querySelectorAll('.fs__breakdown').forEach(function (b) {
         b.addEventListener('click', function () { openRate(b.closest('.fs__flight')); });
       });
-      rateModal.querySelectorAll('[data-rate-close]').forEach(function (c) {
-        c.addEventListener('click', closeRate);
+
+      /* Delegated close: works for both modals (X buttons, overlays, Cancel) */
+      document.addEventListener('click', function (e) {
+        if (e.target.closest('[data-close]')) closeModal();
+        if (e.target.closest('[data-rate-close]')) closeRate();
       });
 
       document.addEventListener('keydown', function (e) {
