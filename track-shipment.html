@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Track your Shipment — Menteiz Aviation Services</title>
+  <meta name="description" content="Track your cargo shipment by AWB number — live status, scan history and delivery details." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=217" />
+</head>
+<body class="page-flsch">
+  <main class="trk">
+
+    <!-- Top: breadcrumb + AWB search -->
+    <div class="trk__top">
+      <nav class="flsch__crumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        <a href="track-shipment.html">Track your Shipment</a>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        <span>AWB 775-20516576</span>
+      </nav>
+
+      <form class="trk__search" onsubmit="event.preventDefault();">
+        <div class="trk__brand">
+          <svg class="dash__brand-mark" viewBox="0 0 48 32" aria-hidden="true">
+            <g fill="#DE1D2A">
+              <path d="M14 16 L24 6 L34 16 L24 26 Z"/>
+              <path d="M0 16 Q10 12 14 16 Q10 20 0 16 Z" opacity="0.85"/>
+              <path d="M48 16 Q38 12 34 16 Q38 20 48 16 Z" opacity="0.85"/>
+            </g>
+            <rect x="20" y="12" width="8" height="8" rx="1" fill="#fff" stroke="#0a1f3d" stroke-width="0.6"/>
+          </svg>
+          <span class="trk__brand-name">MTZ <em>Track</em></span>
+        </div>
+        <div class="trk__search-field">
+          <span class="trk__prefix">775-</span>
+          <input type="text" placeholder="Enter AWBs (e.g. 775-12345678, 23456789)" />
+        </div>
+        <button type="submit" class="trk__submit">Submit</button>
+      </form>
+    </div>
+
+    <!-- AWB tabs -->
+    <div class="trk__tabs" role="tablist" aria-label="Tracked AWBs">
+      <button type="button" class="trk__tab is-active" role="tab" aria-selected="true">AWB 775-20516576</button>
+      <button type="button" class="trk__tab" role="tab" aria-selected="false">AWB 775-20516577</button>
+      <button type="button" class="trk__tab" role="tab" aria-selected="false">AWB 775-20516578</button>
+    </div>
+
+    <!-- Status banner -->
+    <section class="trk__banner">
+      <h1 class="trk__awb">#775-20503055</h1>
+      <span class="trk__pill">Order Placed Successfully</span>
+
+      <ol class="trk__steps">
+        <li class="trk__step is-done">
+          <span class="trk__step-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96L12 12l8.73-5.04M12 22V12"/></svg>
+          </span>
+          <span class="trk__step-label">Order Placed Successfully</span>
+        </li>
+        <li class="trk__step">
+          <span class="trk__step-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </span>
+          <span class="trk__step-label">The Order is Shipped</span>
+        </li>
+        <li class="trk__step">
+          <span class="trk__step-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12l20-8-8 20-2.5-9.5L2 12z"/></svg>
+          </span>
+          <span class="trk__step-label">In Transit</span>
+        </li>
+        <li class="trk__step">
+          <span class="trk__step-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M9 12l2 2 4-4"/></svg>
+          </span>
+          <span class="trk__step-label">Delivered</span>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Shipment Details -->
+    <section class="trk__details">
+      <div class="trk__details-head">
+        <h2>Shipment Details</h2>
+        <div class="trk__details-actions">
+          <button type="button" class="trk__chip-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <span>Provide Feedback</span>
+          </button>
+          <button type="button" class="trk__chip-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4-6.3-4.6L7.7 21.4 10 14 4 9.4h7.6z"/></svg>
+            <span>Provide Appreciation</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="trk__grid">
+        <div class="trk__cell"><span>Waybill No.</span><strong>123456</strong></div>
+        <div class="trk__cell"><span>Consignee City</span><strong>Gurgaon</strong></div>
+        <div class="trk__cell"><span>Shipper City</span><strong>Bengaluru</strong></div>
+        <div class="trk__cell"><span>Charged Weight</span><strong>172.00</strong></div>
+
+        <div class="trk__cell"><span>Status</span><strong class="trk__status">Request Initiated</strong></div>
+        <div class="trk__cell"><span>Consignee Postal Code</span><strong>122505</strong></div>
+        <div class="trk__cell"><span>Booking Date</span><strong>2025-01-17 09:30:34</strong></div>
+        <div class="trk__cell"><span>Delivered Date</span><strong>2025-01-17 09:30:34</strong></div>
+      </div>
+    </section>
+
+    <!-- Status & Scan -->
+    <section class="trk__scan">
+      <h2>Status &amp; Scan</h2>
+      <div class="trk__scan-wrap">
+        <table class="trk__scan-table">
+          <thead>
+            <tr><th>Location</th><th>Status</th><th>Date</th><th>Time</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Bengaluru</td><td>REQUEST INITIATED</td><td>2025-01-17</td><td>09:30:34</td></tr>
+            <tr><td>Bengaluru</td><td>PICKUP WAREHOUSE REACHED - KA52A8051T, SG136, DL1LW8311T</td><td>2025-01-17</td><td>09:30:34</td></tr>
+            <tr><td>BL1</td><td>IN TRANSIT - KA52A8051T</td><td>2025-01-17</td><td>09:30:34</td></tr>
+            <tr><td>DL1</td><td>IN TRANSIT - KA52A8051T</td><td>2025-01-17</td><td>09:30:34</td></tr>
+            <tr><td>DL1</td><td>DESTINATION WAREHOUSE REACHED</td><td>2025-01-17</td><td>09:30:34</td></tr>
+            <tr><td>Delhi</td><td>OUT FOR DELIVERY</td><td>2025-01-17</td><td>09:30:34</td></tr>
+            <tr><td>Gurgaon</td><td>DELIVERED</td><td>2025-01-17</td><td>09:30:34</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    (function () {
+      document.querySelectorAll('.trk__tab').forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          document.querySelectorAll('.trk__tab').forEach(function (t) { t.classList.remove('is-active'); t.setAttribute('aria-selected', 'false'); });
+          tab.classList.add('is-active'); tab.setAttribute('aria-selected', 'true');
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
