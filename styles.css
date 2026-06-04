@@ -7865,18 +7865,36 @@ body.cursor-hover .cursor-follower {
 .page-contact .nav:not(.is-scrolled) .nav__burger span { background: var(--c-dark-green); }
 .page-contact .nav:not(.is-scrolled) .nav__links a.is-current { color: var(--c-orange); opacity: 1; }
 
-/* Public utility pages (flight schedule / track shipment) — dark nav on light bg */
-.page-flsch .nav:not(.is-scrolled) .nav__logo,
-.page-flsch .nav:not(.is-scrolled) .nav__logo-text,
-.page-flsch .nav:not(.is-scrolled) .nav__links,
-.page-flsch .nav:not(.is-scrolled) .nav__links a { color: var(--c-dark-green); }
-.page-flsch .nav:not(.is-scrolled) .nav__links a { opacity: 0.78; }
-.page-flsch .nav:not(.is-scrolled) .nav__links a:hover { opacity: 1; color: var(--c-dark-green); }
-.page-flsch .nav:not(.is-scrolled) .nav__burger span { background: var(--c-dark-green); }
-.page-flsch .nav:not(.is-scrolled) .nav__links a.is-current { color: var(--c-orange); opacity: 1; }
+/* Public utility pages (flight schedule / track shipment) —
+   solid white full-width nav in BOTH states so content never shows through. */
+.page-flsch .nav,
+.page-flsch .nav.is-scrolled {
+  top: 0;
+  max-width: 100%;
+  border-radius: 0;
+  padding: 16px 32px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 8px 24px -18px rgba(10, 31, 61, 0.5);
+}
+.page-flsch .nav .nav__logo-img { filter: brightness(0); }
+.page-flsch .nav .nav__logo,
+.page-flsch .nav .nav__logo-text,
+.page-flsch .nav .nav__links,
+.page-flsch .nav .nav__links a { color: var(--c-dark-green); }
+.page-flsch .nav .nav__links a { opacity: 0.82; }
+.page-flsch .nav .nav__links a:hover { opacity: 1; color: var(--c-dark-green); }
+.page-flsch .nav .nav__burger span { background: var(--c-dark-green); }
+.page-flsch .nav .nav__links a.is-current { color: var(--c-orange); opacity: 1; }
 /* Clear the fixed nav */
 .page-flsch .flsch,
 .page-flsch .trk { padding-top: 104px; }
+@media (max-width: 1024px) {
+  .page-flsch .nav, .page-flsch .nav.is-scrolled { padding: 14px 24px; }
+}
 
 .contact-page {
   padding-top: 92px;
