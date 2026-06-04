@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flight Schedule — Menteiz Aviation Services</title>
+  <meta name="description" content="Search scheduled domestic and international cargo flights and view weekly frequency." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=216" />
+</head>
+<body class="page-flsch">
+  <main class="flsch">
+
+    <nav class="flsch__crumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      <span>Flight Schedule</span>
+    </nav>
+
+    <!-- Mode toggle + download -->
+    <div class="flsch__card flsch__modecard">
+      <div class="flsch__modes" role="radiogroup" aria-label="Schedule type">
+        <label class="flsch__radio">
+          <input type="radio" name="flmode" value="domestic" checked />
+          <span class="flsch__dot"></span>
+          <span>Domestic</span>
+        </label>
+        <label class="flsch__radio">
+          <input type="radio" name="flmode" value="international" />
+          <span class="flsch__dot"></span>
+          <span>International</span>
+        </label>
+      </div>
+      <button type="button" class="flsch__download">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Download Schedule</span>
+      </button>
+    </div>
+
+    <!-- Search -->
+    <div class="flsch__card flsch__searchcard">
+      <form class="flsch__search" onsubmit="event.preventDefault();">
+        <div class="flsch__field">
+          <label>From<span class="req">*</span></label>
+          <input type="text" placeholder="Origin" />
+        </div>
+        <button type="button" class="flsch__swap" aria-label="Swap origin and destination">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16V4M7 4L3 8M7 4l4 4M17 8v12M17 20l4-4M17 20l-4-4"/></svg>
+        </button>
+        <div class="flsch__field">
+          <label>To<span class="req">*</span></label>
+          <input type="text" placeholder="Destination" />
+        </div>
+        <div class="flsch__field">
+          <label>From Date<span class="req">*</span></label>
+          <div class="flsch__datewrap">
+            <input type="text" value="07 Nov 2024" />
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/></svg>
+          </div>
+        </div>
+        <div class="flsch__field">
+          <label>To Date<span class="req">*</span></label>
+          <div class="flsch__datewrap">
+            <input type="text" value="10 Nov 2024" />
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/></svg>
+          </div>
+        </div>
+        <button type="submit" class="flsch__searchbtn" aria-label="Search flights">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>
+        </button>
+      </form>
+    </div>
+
+    <h1 class="flsch__title">Flight Schedule</h1>
+
+    <div class="flsch__tablewrap">
+      <table class="flsch__table">
+        <thead>
+          <tr>
+            <th>Origin</th>
+            <th>Destination</th>
+            <th>Frequency</th>
+            <th>Flight Number</th>
+            <th>Departure</th>
+            <th>Arrival</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>DEL</td>
+            <td>BOM</td>
+            <td><div class="flsch__freq"><span class="flsch__day"><b>Mon</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Tue</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Wed</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Thu</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Fri</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Sat</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Sun</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span></div></td>
+            <td class="flsch__fno">SG456</td>
+            <td class="flsch__dt">2025-01-23 05:25:00</td>
+            <td class="flsch__dt">2025-01-23 05:25:00</td>
+          </tr>
+          <tr>
+            <td>DEL</td>
+            <td>BOM</td>
+            <td><div class="flsch__freq"><span class="flsch__day"><b>Mon</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Tue</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Wed</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Thu</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Fri</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Sat</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Sun</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span></div></td>
+            <td class="flsch__fno">SG456</td>
+            <td class="flsch__dt">2025-01-23 05:25:00</td>
+            <td class="flsch__dt">2025-01-23 05:25:00</td>
+          </tr>
+          <tr>
+            <td>DEL</td>
+            <td>BOM</td>
+            <td><div class="flsch__freq"><span class="flsch__day"><b>Mon</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Tue</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Wed</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Thu</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span><span class="flsch__day"><b>Fri</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span><span class="flsch__day"><b>Sat</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span><span class="flsch__day"><b>Sun</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span></div></td>
+            <td class="flsch__fno">SG456</td>
+            <td class="flsch__dt">2025-01-23 05:25:00</td>
+            <td class="flsch__dt">2025-01-23 05:25:00</td>
+          </tr>
+          <tr>
+            <td>DEL</td>
+            <td>BOM</td>
+            <td><div class="flsch__freq"><span class="flsch__day"><b>Mon</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Tue</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Wed</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Thu</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span><span class="flsch__day"><b>Fri</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span><span class="flsch__day"><b>Sat</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span><span class="flsch__day"><b>Sun</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span></div></td>
+            <td class="flsch__fno">SG456</td>
+            <td class="flsch__dt">2025-01-23 05:25:00</td>
+            <td class="flsch__dt">2025-01-23 05:25:00</td>
+          </tr>
+          <tr>
+            <td>DEL</td>
+            <td>BOM</td>
+            <td><div class="flsch__freq"><span class="flsch__day"><b>Mon</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Tue</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Wed</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Thu</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Fri</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Sat</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Sun</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span></div></td>
+            <td class="flsch__fno">SG456</td>
+            <td class="flsch__dt">2025-01-23 05:25:00</td>
+            <td class="flsch__dt">2025-01-23 05:25:00</td>
+          </tr>
+          <tr>
+            <td>DEL</td>
+            <td>BOM</td>
+            <td><div class="flsch__freq"><span class="flsch__day"><b>Mon</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Tue</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Wed</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Thu</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Fri</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Sat</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Sun</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span></div></td>
+            <td class="flsch__fno">SG456</td>
+            <td class="flsch__dt">2025-01-23 05:25:00</td>
+            <td class="flsch__dt">2025-01-23 05:25:00</td>
+          </tr>
+          <tr>
+            <td>DEL</td>
+            <td>BOM</td>
+            <td><div class="flsch__freq"><span class="flsch__day"><b>Mon</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Tue</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Wed</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Thu</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Fri</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Sat</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Sun</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span></div></td>
+            <td class="flsch__fno">SG456</td>
+            <td class="flsch__dt">2025-01-23 05:25:00</td>
+            <td class="flsch__dt">2025-01-23 05:25:00</td>
+          </tr>
+          <tr>
+            <td>DEL</td>
+            <td>BOM</td>
+            <td><div class="flsch__freq"><span class="flsch__day"><b>Mon</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Tue</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Wed</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Thu</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span><span class="flsch__day"><b>Fri</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span><span class="flsch__day"><b>Sat</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span><span class="flsch__day"><b>Sun</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span></div></td>
+            <td class="flsch__fno">SG456</td>
+            <td class="flsch__dt">2025-01-23 05:25:00</td>
+            <td class="flsch__dt">2025-01-23 05:25:00</td>
+          </tr>
+          <tr>
+            <td>DEL</td>
+            <td>BOM</td>
+            <td><div class="flsch__freq"><span class="flsch__day"><b>Mon</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Tue</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Wed</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Thu</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Fri</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Sat</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Sun</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span></div></td>
+            <td class="flsch__fno">SG456</td>
+            <td class="flsch__dt">2025-01-23 05:25:00</td>
+            <td class="flsch__dt">2025-01-23 05:25:00</td>
+          </tr>
+          <tr>
+            <td>DEL</td>
+            <td>BOM</td>
+            <td><div class="flsch__freq"><span class="flsch__day"><b>Mon</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Tue</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Wed</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Thu</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Fri</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Sat</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Sun</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span></div></td>
+            <td class="flsch__fno">SG456</td>
+            <td class="flsch__dt">2025-01-23 05:25:00</td>
+            <td class="flsch__dt">2025-01-23 05:25:00</td>
+          </tr>
+          <tr>
+            <td>DEL</td>
+            <td>BOM</td>
+            <td><div class="flsch__freq"><span class="flsch__day"><b>Mon</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Tue</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Wed</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Thu</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span><span class="flsch__day"><b>Fri</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span><span class="flsch__day"><b>Sat</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span><span class="flsch__day"><b>Sun</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span></div></td>
+            <td class="flsch__fno">SG456</td>
+            <td class="flsch__dt">2025-01-23 05:25:00</td>
+            <td class="flsch__dt">2025-01-23 05:25:00</td>
+          </tr>
+          <tr>
+            <td>DEL</td>
+            <td>BOM</td>
+            <td><div class="flsch__freq"><span class="flsch__day"><b>Mon</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Tue</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Wed</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span><span class="flsch__day"><b>Thu</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span><span class="flsch__day"><b>Fri</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span><span class="flsch__day"><b>Sat</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span><span class="flsch__day"><b>Sun</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span></div></td>
+            <td class="flsch__fno">SG456</td>
+            <td class="flsch__dt">2025-01-23 05:25:00</td>
+            <td class="flsch__dt">2025-01-23 05:25:00</td>
+          </tr>
+          <tr>
+            <td>DEL</td>
+            <td>BOM</td>
+            <td><div class="flsch__freq"><span class="flsch__day"><b>Mon</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span><span class="flsch__day"><b>Tue</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span><span class="flsch__day"><b>Wed</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span><span class="flsch__day"><b>Thu</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Fri</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Sat</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Sun</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span></div></td>
+            <td class="flsch__fno">SG456</td>
+            <td class="flsch__dt">2025-01-23 05:25:00</td>
+            <td class="flsch__dt">2025-01-23 05:25:00</td>
+          </tr>
+          <tr>
+            <td>DEL</td>
+            <td>BOM</td>
+            <td><div class="flsch__freq"><span class="flsch__day"><b>Mon</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Tue</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Wed</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Thu</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Fri</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Sat</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Sun</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span></div></td>
+            <td class="flsch__fno">SG456</td>
+            <td class="flsch__dt">2025-01-23 05:25:00</td>
+            <td class="flsch__dt">2025-01-23 05:25:00</td>
+          </tr>
+          <tr>
+            <td>DEL</td>
+            <td>BOM</td>
+            <td><div class="flsch__freq"><span class="flsch__day"><b>Mon</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Tue</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Wed</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Thu</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Fri</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Sat</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Sun</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span></div></td>
+            <td class="flsch__fno">SG456</td>
+            <td class="flsch__dt">2025-01-23 05:25:00</td>
+            <td class="flsch__dt">2025-01-23 05:25:00</td>
+          </tr>
+          <tr>
+            <td>DEL</td>
+            <td>BOM</td>
+            <td><div class="flsch__freq"><span class="flsch__day"><b>Mon</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Tue</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Wed</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Thu</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Fri</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Sat</b><i class="flsch__off">---</i></span><span class="flsch__day"><b>Sun</b><svg class="flsch__on" viewBox="0 0 24 24" fill="currentColor" aria-label="Operates"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span></div></td>
+            <td class="flsch__fno">SG456</td>
+            <td class="flsch__dt">2025-01-23 05:25:00</td>
+            <td class="flsch__dt">2025-01-23 05:25:00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <nav class="flsch__pager" aria-label="Pagination">
+      <button type="button" aria-label="First">&laquo;</button>
+      <button type="button" aria-label="Previous">&lsaquo;</button>
+      <button type="button" class="is-active" aria-current="page">1</button>
+      <button type="button">2</button>
+      <button type="button">3</button>
+      <button type="button" disabled>&hellip;</button>
+      <button type="button">10</button>
+      <button type="button" aria-label="Next">&rsaquo;</button>
+      <button type="button" aria-label="Last">&raquo;</button>
+    </nav>
+
+  </main>
+
+  <script>
+    (function () {
+      var swap = document.querySelector('.flsch__swap');
+      if (swap) swap.addEventListener('click', function () {
+        var inputs = document.querySelectorAll('.flsch__search .flsch__field input');
+        if (inputs.length >= 2) { var t = inputs[0].value; inputs[0].value = inputs[1].value; inputs[1].value = t; }
+      });
+    })();
+  </script>
+</body>
+</html>
