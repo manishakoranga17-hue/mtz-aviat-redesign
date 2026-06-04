@@ -67,6 +67,15 @@ body {
   cursor: none;
   position: relative;
 }
+/* Functional app/utility screens use the native cursor (no custom cursor JS) */
+body.page-dashboard,
+body.page-flsch {
+  cursor: auto;
+}
+body.page-dashboard .cursor,
+body.page-dashboard .cursor-follower,
+body.page-flsch .cursor,
+body.page-flsch .cursor-follower { display: none; }
 
 @media (max-width: 900px) {
   body { cursor: auto; }
