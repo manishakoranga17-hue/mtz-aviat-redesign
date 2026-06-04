@@ -2255,3 +2255,49 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
     trash.closest('.dash__route-row')?.remove();
   });
 })();
+
+/* ───────────────────────────────────────────────
+   Hidden credit easter-egg — an invisible button in the
+   bottom-left corner reveals the designer/developer credit.
+   ─────────────────────────────────────────────── */
+(function () {
+  function init() {
+    if (!document.body || document.getElementById('mtzCredit')) return;
+    var btn = document.createElement('button');
+    btn.id = 'mtzCredit';
+    btn.type = 'button';
+    btn.setAttribute('aria-label', 'Site credit');
+    btn.style.cssText =
+      'position:fixed;left:0;bottom:0;width:46px;height:46px;padding:0;margin:0;' +
+      'opacity:0;border:0;background:transparent;cursor:default;z-index:99998;';
+    btn.addEventListener('click', function () {
+      var existing = document.getElementById('mtzCreditToast');
+      if (existing) existing.remove();
+      var t = document.createElement('div');
+      t.id = 'mtzCreditToast';
+      t.textContent = 'Designed & developed by Manisha Koranga';
+      t.style.cssText =
+        'position:fixed;left:50%;bottom:34px;transform:translateX(-50%) translateY(8px);' +
+        "font-family:'Inter Tight',system-ui,sans-serif;font-size:14px;font-weight:600;letter-spacing:0.01em;" +
+        'color:#fff;background:#0a1f3d;padding:13px 24px;border-radius:999px;' +
+        'box-shadow:0 18px 40px -14px rgba(10,31,61,0.65);z-index:99999;' +
+        'opacity:0;transition:opacity .3s ease, transform .3s cubic-bezier(0.16,1,0.3,1);pointer-events:none;';
+      document.body.appendChild(t);
+      requestAnimationFrame(function () {
+        t.style.opacity = '1';
+        t.style.transform = 'translateX(-50%) translateY(0)';
+      });
+      setTimeout(function () {
+        t.style.opacity = '0';
+        t.style.transform = 'translateX(-50%) translateY(8px)';
+        setTimeout(function () { t.remove(); }, 320);
+      }, 2800);
+    });
+    document.body.appendChild(btn);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
