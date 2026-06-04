@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Quote — Menteiz Aviation Services</title>
+  <meta name="description" content="Review your cargo quote and choose a flight to book." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=215" />
+</head>
+<body class="page-dashboard">
+
+  <div class="dash">
+    <!-- ═════════════════════ SIDEBAR ═════════════════════ -->
+    <aside class="dash__side">
+      <a class="dash__logo" href="index.html">
+        <img class="dash__logo-img" src="logo-mtz.png" alt="Menteiz Aviation" />
+      </a>
+
+      <ul class="dash__menu">
+        <li>
+          <a href="dashboard.html" class="is-active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a2 2 0 0 1-2 2h-3v-7H10v7H6a2 2 0 0 1-2-2v-9z"/></svg>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="my-bookings.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/><path d="M8 15l3 3 5-5"/></svg>
+            <span>My Bookings</span>
+          </a>
+        </li>
+        <li>
+          <a href="managing-partners.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2 21c0-3.5 3.13-6 7-6s7 2.5 7 6"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.5c2.7 0 5 1.6 5 4.5"/></svg>
+            <span>Managing Partner</span>
+          </a>
+        </li>
+        <li>
+          <a href="my-wallet.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M16 12.5h2"/><path d="M2 9h20"/></svg>
+            <span>My Wallet</span>
+          </a>
+        </li>
+        <li>
+          <a href="my-invoices.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v5h5"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+            <span>My Invoice</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="dash__side-bot">
+        <a href="profile.html" class="dash__menu-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+          <span>Profile</span>
+        </a>
+        <a href="index.html" class="dash__menu-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          <span>Logout</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- ═════════════════════ MAIN ═════════════════════ -->
+    <main class="dash__main">
+
+      <!-- Page header -->
+      <div class="fs__head">
+        <div class="fs__head-left">
+          <a href="dashboard.html" class="fs__back" aria-label="Back to quotes">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+          </a>
+          <div>
+            <h1 class="dash__page-title">Your Quote</h1>
+            <p class="dash__page-sub">Review your cargo quote and choose a flight to book.</p>
+          </div>
+        </div>
+        <div class="fs__meta">
+          <div class="fs__meta-card"><span>Quote ID</span><strong>QT-760DRK69</strong></div>
+          <div class="fs__meta-card"><span>Status</span><strong class="qv__badge">Booking Request</strong></div>
+          <div class="fs__meta-card"><span>Validity</span><strong>05-06-2026</strong></div>
+        </div>
+      </div>
+
+      <!-- Info panel -->
+      <section class="dash__panel qv__panel">
+        <div class="qv__grid">
+          <!-- Customer Information -->
+          <div class="qv__col">
+            <span class="qv__col-head">Customer Information</span>
+            <div class="qv__rows">
+              <div class="qv__row"><span>Customer</span><strong>TESTDELDO</strong></div>
+              <div class="qv__row"><span>Contact Name</span><strong>Spiceexpress Test Agent</strong></div>
+              <div class="qv__row"><span>Contact Email</span><strong>baldev.sharma1@spicejet.com</strong></div>
+              <div class="qv__row"><span>Shipper</span><strong>Acme Industries Pvt Ltd</strong></div>
+              <div class="qv__row"><span>Consignee</span><strong>DXB Dist. Partners LLC</strong></div>
+              <div class="qv__row"><span>Additional Emails</span><strong class="qv__empty">—</strong></div>
+              <div class="qv__row"><span>Notes</span><strong class="qv__empty">—</strong></div>
+            </div>
+          </div>
+
+          <!-- Shipment Details -->
+          <div class="qv__col">
+            <span class="qv__col-head">Shipment Details</span>
+            <div class="qv__rows qv__ship">
+              <div class="qv__row"><span>Business Type</span><strong>Scheduled</strong></div>
+              <div class="qv__row"><span>Service</span><strong>Normal</strong></div>
+              <div class="qv__row"><span>Origin</span><strong>DEL</strong></div>
+              <div class="qv__row"><span>Destination</span><strong>BLR</strong></div>
+              <div class="qv__row"><span>Commodity</span><strong>GEN</strong></div>
+              <div class="qv__row"><span>Commodity Desc.</span><strong>General</strong></div>
+              <div class="qv__row qv__row--full"><span>Cargo Description</span><strong class="qv__empty">—</strong></div>
+              <div class="qv__row"><span>Total Pieces</span><strong>10</strong></div>
+              <div class="qv__row"><span>Gross Weight</span><strong>10 kg</strong></div>
+              <div class="qv__row"><span>Volume</span><strong>0.01 m³</strong></div>
+              <div class="qv__row"><span>Charged Weight</span><strong>10 kg</strong></div>
+              <div class="qv__row"><span>Ready to Load</span><strong>29-05-2026</strong></div>
+              <div class="qv__row"><span>Time</span><strong>14:05</strong></div>
+              <div class="qv__row qv__row--full"><span>SHC Codes</span><strong class="qv__empty">—</strong></div>
+              <div class="qv__row qv__row--full"><span>Handling Info</span><strong class="qv__empty">—</strong></div>
+            </div>
+          </div>
+
+          <!-- Quote Information -->
+          <div class="qv__col">
+            <span class="qv__col-head">Quote Information</span>
+            <div class="qv__rows">
+              <div class="qv__row"><span>Quote ID</span><strong>QT-760DRK69</strong></div>
+              <div class="qv__row"><span>Status</span><strong>Booking Request</strong></div>
+              <div class="qv__row"><span>Valid Until</span><strong>28 May 2026</strong></div>
+              <div class="qv__row"><span>Currency</span><strong>MYR</strong></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Flight Options -->
+      <section class="dash__panel qv__flights">
+        <div class="qv__flights-head">
+          <span class="qv__col-head">Flight Options</span>
+          <span class="fs__count">1 flight available</span>
+        </div>
+
+        <article class="qv__flight">
+          <div class="qv__flight-top">
+            <div class="qv__airline">
+              <h3>Zhejiang Loong Airlines Company Ltd</h3>
+              <span>GJ</span>
+            </div>
+            <div class="qv__perkg">
+              <strong>0 <em>/kg</em></strong>
+              <span>Rate per kg</span>
+            </div>
+          </div>
+
+          <div class="qv__route">
+            <div class="qv__rpt">
+              <strong>DEL</strong>
+              <span>Delhi</span>
+              <span class="qv__rtime">29 May · 17:00</span>
+            </div>
+            <div class="qv__rmid">
+              <span class="qv__rmeta">GJ411 · B737-700 · 2h 0m</span>
+              <span class="qv__rline"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span>
+            </div>
+            <div class="qv__rpt qv__rpt--arr">
+              <strong>BLR</strong>
+              <span>Bengaluru</span>
+              <span class="qv__rtime">29 May · 19:00</span>
+            </div>
+          </div>
+
+          <div class="qv__costtabs">
+            <span>Incl. charges</span>
+            <span>Total shipment cost</span>
+            <span>Currency</span>
+          </div>
+
+          <button type="button" class="qv__breakdown-toggle" data-breakdown aria-expanded="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            <span>Charges Breakdown</span>
+          </button>
+
+          <div class="qv__breakdown" data-breakdown-panel>
+            <table class="qv__charges">
+              <thead>
+                <tr><th>Charge Type</th><th class="ta-c">Qty</th><th class="ta-r">Rate</th><th class="ta-r">Line Total</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Air Freight</td><td class="ta-c">10 kg</td><td class="ta-r">0</td><td class="ta-r">0.00</td></tr>
+                <tr><td>XRay Charges</td><td class="ta-c">10 kg</td><td class="ta-r">12.00</td><td class="ta-r">300.00</td></tr>
+              </tbody>
+              <tfoot>
+                <tr><td>Grand Total</td><td></td><td></td><td class="ta-r">300</td></tr>
+              </tfoot>
+            </table>
+          </div>
+
+          <footer class="qv__flight-foot">
+            <span class="fs__avail fs__avail--ok"><i></i>Space available · 29 May 17:00 – 29 May 19:00</span>
+            <span class="qv__pending">Pending</span>
+          </footer>
+        </article>
+      </section>
+
+      <!-- Remarks -->
+      <section class="dash__panel qv__remarks">
+        <div class="qv__remarks-head">
+          <span class="qv__col-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Remarks</span>
+          <span class="qv__required">Required for all actions</span>
+        </div>
+        <div class="dash__field">
+          <label>Add Remark<span class="req">*</span></label>
+          <div class="dash__control"><textarea class="dash__input nq__textarea" placeholder="Enter remarks before performing any action..."></textarea></div>
+        </div>
+        <div class="qv__actions">
+          <a href="dashboard.html" class="dash__btn-ghost">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            <span>Cancel</span>
+          </a>
+          <button type="button" class="dash__btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            <span>Book Now</span>
+          </button>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      var t = document.querySelector('[data-breakdown]');
+      var p = document.querySelector('[data-breakdown-panel]');
+      if (t && p) t.addEventListener('click', function () {
+        var open = !p.hasAttribute('hidden');
+        if (open) { p.setAttribute('hidden', ''); } else { p.removeAttribute('hidden'); }
+        t.setAttribute('aria-expanded', String(!open));
+        t.classList.toggle('is-collapsed', open);
+      });
+    })();
+  </script>
+  <script src="main.js?v=174"></script>
+</body>
+</html>
