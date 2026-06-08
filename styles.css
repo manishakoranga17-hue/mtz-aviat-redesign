@@ -103,7 +103,9 @@ img { max-width: 100%; display: block; }
   height: 50%;
   background: var(--c-dark-green);
   z-index: 1;
-  transition: transform 1.05s cubic-bezier(0.76, 0, 0.24, 1);
+  /* Delay the split so the red track/glow fade out fully before the home
+     page is revealed — otherwise the red line lingers over the home screen. */
+  transition: transform 1.05s cubic-bezier(0.76, 0, 0.24, 1) 0.24s;
   will-change: transform;
 }
 .loader__panel--top { top: 0; }
@@ -123,7 +125,7 @@ img { max-width: 100%; display: block; }
   -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 90%);
   opacity: 0.7;
   pointer-events: none;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.2s ease;
 }
 .loader__glow {
   position: absolute;
@@ -134,7 +136,7 @@ img { max-width: 100%; display: block; }
   background: radial-gradient(ellipse at center, rgba(222,29,42,0.30), transparent 60%);
   pointer-events: none;
   filter: blur(20px);
-  transition: opacity 0.4s ease;
+  transition: opacity 0.2s ease;
 }
 .loader.is-done .loader__grid,
 .loader.is-done .loader__glow { opacity: 0; }
@@ -145,7 +147,7 @@ img { max-width: 100%; display: block; }
 .loader__foot {
   position: absolute;
   z-index: 3;
-  transition: opacity 0.4s ease, transform 0.55s var(--ease-out);
+  transition: opacity 0.22s ease, transform 0.55s var(--ease-out);
 }
 .loader.is-done .loader__corner,
 .loader.is-done .loader__center,

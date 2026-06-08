@@ -48,7 +48,7 @@ function dismissLoader() {
     setTimeout(() => {
       loader.style.display = 'none';
       if (window.ScrollTrigger) ScrollTrigger.refresh();
-    }, 1200);
+    }, 1400);
   }
   document.body.style.overflow = '';
   playHeroIntro();
