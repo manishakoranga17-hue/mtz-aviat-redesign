@@ -9347,12 +9347,12 @@ body.cursor-hover .cursor-follower {
   font-weight: 600;
   font-size: 14.5px;
   margin-bottom: 14px;
-  box-shadow: 0 6px 16px -8px rgba(222, 29, 42, 0.6);
+  box-shadow: 0 6px 16px -8px color-mix(in srgb, var(--c-orange) 60%, transparent);
   transition: transform 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out);
 }
 .dash__primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 10px 22px -8px rgba(222, 29, 42, 0.7);
+  box-shadow: 0 10px 22px -8px color-mix(in srgb, var(--c-orange) 70%, transparent);
 }
 .dash__primary svg { width: 20px; height: 20px; }
 .dash__section {
@@ -9707,7 +9707,7 @@ body.cursor-hover .cursor-follower {
   cursor: pointer;
   transition: border-color 0.16s, background 0.16s;
 }
-.nq__upload:hover { border-color: var(--c-orange); background: rgba(222, 29, 42, 0.03); }
+.nq__upload:hover { border-color: var(--c-orange); background: color-mix(in srgb, var(--c-orange) 3%, transparent); }
 .nq__upload svg { width: 22px; height: 22px; color: var(--c-orange); }
 .nq__upload-main { font-family: var(--display); font-weight: 600; font-size: 13px; color: var(--c-dark-green); }
 .nq__upload-sub { font-size: 11px; }
@@ -9765,7 +9765,7 @@ body.cursor-hover .cursor-follower {
   transition: border-color 0.16s, color 0.16s, background 0.16s;
 }
 .nq__add svg { width: 15px; height: 15px; }
-.nq__add:hover { border-color: var(--c-orange); color: var(--c-orange); background: rgba(222, 29, 42, 0.04); }
+.nq__add:hover { border-color: var(--c-orange); color: var(--c-orange); background: color-mix(in srgb, var(--c-orange) 4%, transparent); }
 .nq__add--dg:hover { border-color: var(--c-orange); }
 .nq__summary {
   display: flex;
@@ -9802,7 +9802,7 @@ body.cursor-hover .cursor-follower {
 .nq__service.is-active {
   border-color: var(--c-orange);
   box-shadow: inset 0 0 0 1px var(--c-orange);
-  background: rgba(222, 29, 42, 0.03);
+  background: color-mix(in srgb, var(--c-orange) 3%, transparent);
 }
 .nq__service h4 {
   font-family: var(--display);
@@ -9879,7 +9879,7 @@ body.cursor-hover .cursor-follower {
   color: var(--c-dark-green);
   transition: border-color 0.16s, color 0.16s, background 0.16s;
 }
-.fs__back:hover { border-color: var(--c-orange); color: var(--c-orange); background: rgba(222, 29, 42, 0.05); }
+.fs__back:hover { border-color: var(--c-orange); color: var(--c-orange); background: color-mix(in srgb, var(--c-orange) 5%, transparent); }
 .fs__back svg { width: 18px; height: 18px; }
 .fs__meta { display: flex; gap: 12px; }
 .fs__meta-card {
@@ -10140,10 +10140,10 @@ body.cursor-hover .cursor-follower {
   font-weight: 700;
   font-size: 14px;
   cursor: pointer;
-  box-shadow: 0 8px 18px -8px rgba(222, 29, 42, 0.6);
+  box-shadow: 0 8px 18px -8px color-mix(in srgb, var(--c-orange) 60%, transparent);
   transition: transform 0.16s var(--ease-out), background 0.16s;
 }
-.fs__sendbar-btn:hover { transform: translateY(-1px); background: #c8141f; }
+.fs__sendbar-btn:hover { transform: translateY(-1px); background: var(--navy-700); }
 .fs__sendbar-btn svg { width: 17px; height: 17px; }
 .fs__sendbar-btn strong { font-weight: 800; }
 @media (max-width: 560px) {
@@ -10194,7 +10194,7 @@ body.cursor-hover .cursor-follower {
   color: var(--ink-faint); cursor: pointer;
   transition: border-color 0.16s, color 0.16s, background 0.16s;
 }
-.fs__modal-close:hover { border-color: var(--c-orange); color: var(--c-orange); background: rgba(222, 29, 42, 0.05); }
+.fs__modal-close:hover { border-color: var(--c-orange); color: var(--c-orange); background: color-mix(in srgb, var(--c-orange) 5%, transparent); }
 .fs__modal-close svg { width: 17px; height: 17px; }
 
 /* Flight strip */
@@ -10278,8 +10278,8 @@ body.cursor-hover .cursor-follower {
   background: rgba(10, 31, 61, 0.015); cursor: pointer;
   transition: border-color 0.16s, background 0.16s;
 }
-.fs__drop:hover { border-color: var(--c-orange); background: rgba(222, 29, 42, 0.03); }
-.fs__drop-ico { width: 38px; height: 38px; flex: 0 0 38px; display: grid; place-items: center; border-radius: 10px; background: rgba(222, 29, 42, 0.10); color: var(--c-orange); }
+.fs__drop:hover { border-color: var(--c-orange); background: color-mix(in srgb, var(--c-orange) 3%, transparent); }
+.fs__drop-ico { width: 38px; height: 38px; flex: 0 0 38px; display: grid; place-items: center; border-radius: 10px; background: color-mix(in srgb, var(--c-orange) 10%, transparent); color: var(--c-orange); }
 .fs__drop-ico svg { width: 18px; height: 18px; }
 .fs__drop-text { flex: 1; display: flex; flex-direction: column; }
 .fs__drop-text strong { font-family: var(--display); font-weight: 600; font-size: 13px; color: var(--c-dark-green); }
@@ -10896,7 +10896,7 @@ body.cursor-hover .cursor-follower {
   transition: background 0.16s, border-color 0.16s, transform 0.16s var(--ease-out);
 }
 .dash__track:hover {
-  background: rgba(222, 29, 42, 0.08);
+  background: color-mix(in srgb, var(--c-orange) 8%, transparent);
   border-color: var(--c-orange);
   transform: scale(1.06);
 }
@@ -10977,7 +10977,7 @@ body.cursor-hover .cursor-follower {
 }
 .dash__search:focus-within {
   border-color: var(--c-orange);
-  box-shadow: 0 0 0 4px rgba(222, 29, 42, 0.12);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--c-orange) 12%, transparent);
 }
 .dash__search-prefix {
   font-family: var(--mono);
@@ -11011,7 +11011,7 @@ body.cursor-hover .cursor-follower {
   cursor: pointer;
   transition: transform 0.16s var(--ease-out), background 0.16s;
 }
-.dash__search-btn:hover { background: #c8141f; transform: scale(1.04); }
+.dash__search-btn:hover { background: var(--navy-700); transform: scale(1.04); }
 .dash__search-btn svg { width: 16px; height: 16px; }
 
 .dash__user {
@@ -11064,7 +11064,7 @@ body.cursor-hover .cursor-follower {
 .dash__action:hover {
   transform: translateY(-2px);
   box-shadow: 0 18px 30px -22px rgba(10, 31, 61, 0.25);
-  border-color: rgba(222, 29, 42, 0.4);
+  border-color: color-mix(in srgb, var(--c-orange) 40%, transparent);
 }
 .dash__action-ico {
   display: grid;
@@ -11072,7 +11072,7 @@ body.cursor-hover .cursor-follower {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: rgba(222, 29, 42, 0.1);
+  background: color-mix(in srgb, var(--c-orange) 10%, transparent);
   color: var(--c-orange);
   flex: 0 0 48px;
 }
@@ -11115,7 +11115,7 @@ body.cursor-hover .cursor-follower {
 }
 .dash__wallet {
   position: relative;
-  background: linear-gradient(135deg, #DE1D2A, #b51422);
+  background: linear-gradient(135deg, var(--c-orange), var(--navy-600));
   color: #fff;
   border-radius: 18px;
   padding: 22px 22px 24px;
@@ -11123,7 +11123,7 @@ body.cursor-hover .cursor-follower {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  box-shadow: 0 18px 32px -18px rgba(222, 29, 42, 0.6);
+  box-shadow: 0 18px 32px -18px color-mix(in srgb, var(--c-orange) 60%, transparent);
 }
 .dash__wallet::before {
   content: '';
@@ -11292,7 +11292,7 @@ body.cursor-hover .cursor-follower {
   width: 18px;
   max-width: 60%;
   height: var(--h);
-  background: linear-gradient(to top, #DE1D2A, #ff5560);
+  background: linear-gradient(to top, var(--c-orange), var(--navy-500));
   border-radius: 6px 6px 2px 2px;
   transform-origin: bottom;
   animation: dashBarGrow 0.8s var(--ease-out) both;
@@ -11455,13 +11455,13 @@ body.cursor-hover .cursor-follower {
 .dash__row-act:hover {
   border-color: var(--c-orange);
   color: var(--c-orange);
-  background: rgba(222, 29, 42, 0.05);
+  background: color-mix(in srgb, var(--c-orange) 5%, transparent);
 }
 .dash__row-act svg { width: 14px; height: 14px; }
 
 /* Row action menu (View / Edit) */
 .dash__rowmenu { position: relative; display: inline-block; }
-.dash__rowmenu.is-open .dash__row-act { border-color: var(--c-orange); color: var(--c-orange); background: rgba(222, 29, 42, 0.05); }
+.dash__rowmenu.is-open .dash__row-act { border-color: var(--c-orange); color: var(--c-orange); background: color-mix(in srgb, var(--c-orange) 5%, transparent); }
 .dash__rowmenu-pop {
   position: fixed;
   z-index: 120;
@@ -11593,7 +11593,7 @@ body.cursor-hover .cursor-follower {
 .dash__menu a.is-active {
   background: var(--c-orange);
   color: #fff;
-  box-shadow: 0 6px 16px -8px rgba(222, 29, 42, 0.6);
+  box-shadow: 0 6px 16px -8px color-mix(in srgb, var(--c-orange) 60%, transparent);
 }
 .dash__menu a.is-active:hover { color: #fff; background: var(--c-orange); }
 .dash__menu a.is-active i { background: #fff; color: var(--c-orange); }
@@ -11601,7 +11601,7 @@ body.cursor-hover .cursor-follower {
 .dash__menu-item.is-active {
   background: var(--c-orange);
   color: #fff;
-  box-shadow: 0 6px 16px -8px rgba(222, 29, 42, 0.6);
+  box-shadow: 0 6px 16px -8px color-mix(in srgb, var(--c-orange) 60%, transparent);
 }
 .dash__menu-item.is-active:hover { color: #fff; background: var(--c-orange); }
 
@@ -11662,7 +11662,7 @@ body.cursor-hover .cursor-follower {
 .dash__input:focus,
 .dash__select:focus {
   border-color: var(--c-orange);
-  box-shadow: 0 0 0 4px rgba(222, 29, 42, 0.10);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--c-orange) 10%, transparent);
 }
 .dash__select {
   appearance: none;
@@ -11699,7 +11699,7 @@ body.cursor-hover .cursor-follower {
   border-radius: 10px;
   transition: background 0.16s;
 }
-.dash__list-btn:hover { background: rgba(222, 29, 42, 0.08); }
+.dash__list-btn:hover { background: color-mix(in srgb, var(--c-orange) 8%, transparent); }
 .dash__list-btn svg { width: 22px; height: 22px; }
 .dash__trash-btn {
   flex: 0 0 44px;
@@ -11737,7 +11737,7 @@ body.cursor-hover .cursor-follower {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(222, 29, 42, 0.08);
+  background: color-mix(in srgb, var(--c-orange) 8%, transparent);
   color: var(--c-orange);
   border: 0;
   border-radius: 10px;
@@ -11749,7 +11749,7 @@ body.cursor-hover .cursor-follower {
   text-decoration: none;
   transition: background 0.16s;
 }
-.dash__add-link:hover { background: rgba(222, 29, 42, 0.16); }
+.dash__add-link:hover { background: color-mix(in srgb, var(--c-orange) 16%, transparent); }
 .dash__add-link svg { width: 16px; height: 16px; }
 
 .dash__route-row {
@@ -11774,13 +11774,13 @@ body.cursor-hover .cursor-follower {
   font-size: 14.5px;
   cursor: pointer;
   margin-top: 10px;
-  box-shadow: 0 8px 18px -10px rgba(222, 29, 42, 0.65);
+  box-shadow: 0 8px 18px -10px color-mix(in srgb, var(--c-orange) 65%, transparent);
   transition: transform 0.16s var(--ease-out), box-shadow 0.16s, background 0.16s;
 }
 .dash__btn-submit:hover {
   transform: translateY(-1px);
-  box-shadow: 0 12px 22px -10px rgba(222, 29, 42, 0.75);
-  background: #c8141f;
+  box-shadow: 0 12px 22px -10px color-mix(in srgb, var(--c-orange) 75%, transparent);
+  background: var(--navy-700);
 }
 
 /* ─── MY BOOKINGS view bar ─── */
@@ -11876,7 +11876,7 @@ body.cursor-hover .cursor-follower {
 }
 .dash__track-eye:hover {
   border-color: var(--c-orange);
-  background: rgba(222, 29, 42, 0.05);
+  background: color-mix(in srgb, var(--c-orange) 5%, transparent);
 }
 .dash__track-eye svg { width: 18px; height: 18px; }
 
@@ -11946,7 +11946,7 @@ body.cursor-hover .cursor-follower {
   margin-top: auto;
   transition: background 0.16s;
 }
-.dash__card-cta:hover { background: #c8141f; }
+.dash__card-cta:hover { background: var(--navy-700); }
 
 /* Responsive */
 @media (max-width: 1180px) {
@@ -11973,7 +11973,7 @@ body.cursor-hover .cursor-follower {
   padding: 8px 28px;
   margin-bottom: 24px;
   max-width: 560px;
-  box-shadow: 0 18px 32px -22px rgba(222, 29, 42, 0.6);
+  box-shadow: 0 18px 32px -22px color-mix(in srgb, var(--c-orange) 60%, transparent);
 }
 @media (max-width: 620px) { .dash__wallet-panel { max-width: 100%; } }
 .dash__wallet-row {
@@ -12161,12 +12161,12 @@ body.cursor-hover .cursor-follower {
   align-items: center;
   gap: 8px;
   white-space: nowrap;
-  box-shadow: 0 8px 18px -10px rgba(222, 29, 42, 0.6);
+  box-shadow: 0 8px 18px -10px color-mix(in srgb, var(--c-orange) 60%, transparent);
   transition: transform 0.16s var(--ease-out), background 0.16s;
 }
 .dash__btn-primary:hover {
   transform: translateY(-1px);
-  background: #c8141f;
+  background: var(--navy-700);
 }
 .dash__btn-primary svg { width: 16px; height: 16px; }
 
@@ -12230,7 +12230,7 @@ body.cursor-hover .cursor-follower {
   align-self: flex-start;
   padding: 6px 14px;
   border-radius: 999px;
-  background: rgba(222, 29, 42, 0.10);
+  background: color-mix(in srgb, var(--c-orange) 10%, transparent);
   color: var(--c-orange);
   font-family: var(--mono);
   font-size: 11px;
@@ -12258,7 +12258,7 @@ body.cursor-hover .cursor-follower {
 }
 .dash__pdf-btn:hover {
   border-color: var(--c-orange);
-  background: rgba(222, 29, 42, 0.05);
+  background: color-mix(in srgb, var(--c-orange) 5%, transparent);
 }
 .dash__pdf-btn svg { width: 18px; height: 18px; }
 
@@ -12278,7 +12278,7 @@ body.cursor-hover .cursor-follower {
 .dash__action-3dot:hover {
   color: var(--c-orange);
   border-color: var(--c-orange);
-  background: rgba(222, 29, 42, 0.05);
+  background: color-mix(in srgb, var(--c-orange) 5%, transparent);
 }
 .dash__action-3dot svg { width: 16px; height: 16px; }
 
@@ -12314,7 +12314,7 @@ body.cursor-hover .cursor-follower {
   color: var(--c-orange);
   border-top: 1px solid var(--c-orange);
 }
-.dash__card-edit:hover { background: rgba(222, 29, 42, 0.05); }
+.dash__card-edit:hover { background: color-mix(in srgb, var(--c-orange) 5%, transparent); }
 .dash__card-delete {
   background: var(--c-orange);
   color: #fff;
@@ -12374,12 +12374,12 @@ body.cursor-hover .cursor-follower {
   justify-content: center;
   gap: 8px;
   text-decoration: none;
-  box-shadow: 0 8px 18px -10px rgba(222, 29, 42, 0.6);
+  box-shadow: 0 8px 18px -10px color-mix(in srgb, var(--c-orange) 60%, transparent);
   transition: transform 0.16s, background 0.16s;
 }
 .dash__upload-tile-btn:hover {
   transform: translateY(-1px);
-  background: #c8141f;
+  background: var(--navy-700);
 }
 .dash__upload-tile-btn--ghost {
   background: rgba(10, 31, 61, 0.04);
@@ -12387,7 +12387,7 @@ body.cursor-hover .cursor-follower {
   box-shadow: none;
 }
 .dash__upload-tile-btn--ghost:hover {
-  background: rgba(222, 29, 42, 0.08);
+  background: color-mix(in srgb, var(--c-orange) 8%, transparent);
 }
 .dash__upload-tile-btn svg { width: 16px; height: 16px; }
 
@@ -12861,3 +12861,21 @@ body.cursor-hover .cursor-follower {
   .sd-faq__q { grid-template-columns: 36px 1fr 26px; gap: 14px; }
   .sd-faq__a p { margin-left: 50px; }
 }
+
+/* ============================================================
+   Logged-in portal — navy-blue primary theme
+   Re-maps the brand red (--c-orange / --c-lime) to brand navy
+   on dashboard pages only. The marketing site keeps red.
+   Semantic reds (rejected, dangerous-goods, no-availability,
+   trash/delete) are intentionally preserved above.
+   ============================================================ */
+.page-dashboard {
+  --c-orange: #0a1f3d;
+  --c-lime:   #0a1f3d;
+  --accent:   #0a1f3d;
+  --accent-2: #0a1f3d;
+  --orange:   #0a1f3d;
+  --gold:     #0a1f3d;
+}
+.page-dashboard ::selection { background: #0a1f3d; color: #fff; }
+.page-dashboard .dash__brand-mark g { fill: var(--c-orange); }
