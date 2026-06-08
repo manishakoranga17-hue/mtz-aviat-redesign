@@ -152,6 +152,10 @@ img { max-width: 100%; display: block; }
 .loader.is-done .loader__corner,
 .loader.is-done .loader__center,
 .loader.is-done .loader__foot {
+  /* Cancel the loaderFade intro animation — its `forwards` fill-mode pins
+     opacity:1 and would otherwise override the fade-out below, leaving the
+     red track visible over the home page during the exit. */
+  animation: none;
   opacity: 0;
   transform: translateY(-12px);
 }
