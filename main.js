@@ -53,10 +53,10 @@ function dismissLoader() {
   document.body.style.overflow = '';
   playHeroIntro();
 }
-window.addEventListener('load', () => {
-  setTimeout(dismissLoader, 1800);
-});
-/* Safety net: dismiss after max 3.5s no matter what */
+/* The loader is dismissed when the progress bar finishes filling to 100%
+   (see loaderCounter below), so the bar always completes before it exits.
+   Safety net: dismiss after max 3.5s no matter what — e.g. if
+   requestAnimationFrame is throttled while the tab is in the background. */
 setTimeout(dismissLoader, 3500);
 /* Only lock scrolling when a loader actually exists on the page */
 if (document.getElementById('loader')) {
@@ -89,9 +89,14 @@ if (document.getElementById('loader')) {
       setProgress(1);
       return;
     }
-    const t = Math.min((now - start) / duration, 0.99);
+    const t = Math.min((now - start) / duration, 1);
     const eased = 1 - Math.pow(1 - t, 2);
     setProgress(eased);
+    if (t >= 1) {
+      /* Bar reached 100% — hold briefly on the full bar, then exit. */
+      setTimeout(dismissLoader, 300);
+      return;
+    }
     requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);
