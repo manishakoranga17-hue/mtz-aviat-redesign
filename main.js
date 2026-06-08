@@ -1933,7 +1933,7 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
                 <p class="lm__step-sub">Signing in as <span class="lm__email-tag" id="lm-email-display">you@company.com</span></p>
                 <form class="lm__form" data-lm-form="password" novalidate>
                   <div class="lm-field">
-                    <label for="lm-pass">Password <a href="#" class="lm-field__link">Forgot?</a></label>
+                    <label for="lm-pass">Password <a href="#" class="lm-field__link" data-lm-forgot>Forgot?</a></label>
                     <input id="lm-pass" type="password" name="password" placeholder="Your password" autocomplete="current-password" required />
                     <span class="lm-field__err" data-err="lm-pass"></span>
                   </div>
@@ -1946,6 +1946,75 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
                   </button>
                 </form>
+              </div>
+
+              <!-- Step 2b: forgot password — request reset code -->
+              <div class="lm__step" data-lm-step="forgot">
+                <button class="lm__back" data-lm-back-to="password" type="button">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                  <span>Back to sign in</span>
+                </button>
+                <h3 class="lm__step-title">Reset your password</h3>
+                <p class="lm__step-sub">Enter your login ID and we&rsquo;ll email you a code to reset your password.</p>
+                <form class="lm__form" data-lm-form="forgot" novalidate>
+                  <div class="lm-field">
+                    <label for="lm-forgot-email">Login ID (email)</label>
+                    <input id="lm-forgot-email" type="email" name="forgotEmail" placeholder="you@company.com" autocomplete="username" required />
+                    <span class="lm-field__err" data-err="lm-forgot-email"></span>
+                  </div>
+                  <button type="submit" class="lm__submit">
+                    <span>Send reset code</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                  </button>
+                </form>
+              </div>
+
+              <!-- Step 2c: forgot password — enter code + new password -->
+              <div class="lm__step" data-lm-step="reset">
+                <button class="lm__back" data-lm-back-to="forgot" type="button">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                  <span>Use another email</span>
+                </button>
+                <h3 class="lm__step-title">Enter code &amp; new password</h3>
+                <p class="lm__step-sub">We sent a 6-digit code to <span class="lm__email-tag" id="lm-reset-email-display">you@company.com</span></p>
+                <form class="lm__form" data-lm-form="reset" novalidate>
+                  <div class="lm-field">
+                    <label for="lm-reset-code">Reset code</label>
+                    <input id="lm-reset-code" type="text" inputmode="numeric" maxlength="6" name="code" placeholder="6-digit code" autocomplete="one-time-code" required />
+                    <span class="lm-field__err" data-err="lm-reset-code"></span>
+                  </div>
+                  <div class="lm-field">
+                    <label for="lm-reset-pass">New password</label>
+                    <input id="lm-reset-pass" type="password" name="newpass" placeholder="At least 8 characters" autocomplete="new-password" required />
+                    <span class="lm-field__err" data-err="lm-reset-pass"></span>
+                  </div>
+                  <div class="lm-field">
+                    <label for="lm-reset-pass2">Confirm new password</label>
+                    <input id="lm-reset-pass2" type="password" name="newpass2" placeholder="Re-enter new password" autocomplete="new-password" required />
+                    <span class="lm-field__err" data-err="lm-reset-pass2"></span>
+                  </div>
+                  <button type="submit" class="lm__submit">
+                    <span>Reset password</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                  </button>
+                </form>
+                <div class="lm__alt"><a href="#" data-lm-resend>Didn&rsquo;t get a code? Resend &rarr;</a></div>
+              </div>
+
+              <!-- Step 2d: password reset done -->
+              <div class="lm__step lm__step--center" data-lm-step="reset-done">
+                <div class="lm__check" aria-hidden="true">
+                  <svg viewBox="0 0 32 32">
+                    <circle cx="16" cy="16" r="14" class="lm__check-ring"/>
+                    <path d="M 9 16 L 14 21 L 23 12" class="lm__check-tick"/>
+                  </svg>
+                </div>
+                <h3 class="lm__step-title">Password updated</h3>
+                <p class="lm__step-sub">Your password has been reset. Sign in with your new password.</p>
+                <button type="button" class="lm__submit" data-lm-back-to="password">
+                  <span>Back to sign in</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                </button>
               </div>
 
               <!-- Step 3: verifying -->
@@ -2099,6 +2168,77 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
           goStep('signin', 'success');
         }, 2300);
       });
+
+      // FORGOT PASSWORD: open reset flow (prefill the email already entered)
+      modal.querySelector('[data-lm-forgot]')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        const known = modal.querySelector('#lm-email').value.trim();
+        if (known) modal.querySelector('#lm-forgot-email').value = known;
+        goStep('signin', 'forgot');
+        setTimeout(() => modal.querySelector('#lm-forgot-email')?.focus(), 320);
+      });
+
+      // FORGOT → send code → RESET
+      const forgotForm = modal.querySelector('[data-lm-form="forgot"]');
+      forgotForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const input = forgotForm.querySelector('input');
+        const val = input.value.trim();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+          showErr(input, 'Enter a valid email address.');
+          return;
+        }
+        clearErr(input);
+        modal.querySelector('#lm-reset-email-display').textContent = val;
+        goStep('signin', 'reset');
+        setTimeout(() => modal.querySelector('#lm-reset-code')?.focus(), 320);
+      });
+
+      // RESET: verify code + set new password → DONE
+      const resetForm = modal.querySelector('[data-lm-form="reset"]');
+      resetForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const code = modal.querySelector('#lm-reset-code');
+        const p1 = modal.querySelector('#lm-reset-pass');
+        const p2 = modal.querySelector('#lm-reset-pass2');
+        let ok = true;
+        if (!/^\d{6}$/.test(code.value.trim())) {
+          showErr(code, 'Enter the 6-digit code from your email.');
+          ok = false;
+        } else clearErr(code);
+        if (!p1.value || p1.value.length < 8) {
+          showErr(p1, 'Use at least 8 characters.');
+          ok = false;
+        } else clearErr(p1);
+        if (p2.value !== p1.value) {
+          showErr(p2, 'Passwords do not match.');
+          ok = false;
+        } else clearErr(p2);
+        if (!ok) return;
+        goStep('signin', 'reset-done');
+      });
+
+      // RESEND code (demo: brief confirmation)
+      const resend = modal.querySelector('[data-lm-resend]');
+      resend?.addEventListener('click', (e) => {
+        e.preventDefault();
+        const original = resend.textContent;
+        resend.textContent = 'Code re-sent ✓';
+        setTimeout(() => { resend.textContent = original; }, 2200);
+      });
+
+      // BACK-TO buttons inside the reset flow (explicit target step)
+      modal.querySelectorAll('[data-lm-back-to]').forEach((b) =>
+        b.addEventListener('click', () => {
+          const step = b.dataset.lmBackTo;
+          goStep('signin', step);
+          const focusMap = {
+            email: '#lm-email', password: '#lm-pass',
+            forgot: '#lm-forgot-email', reset: '#lm-reset-code',
+          };
+          setTimeout(() => modal.querySelector(focusMap[step])?.focus(), 320);
+        })
+      );
 
       // BACK BUTTONS
       modal.querySelectorAll('[data-lm-back]').forEach((b) =>
