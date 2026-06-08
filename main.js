@@ -157,7 +157,17 @@ if (document.getElementById('loader')) {
   const hintEl = document.getElementById('networkHint');
   if (!canvas || typeof THREE === 'undefined') return;
 
-  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  // Creating the WebGL context throws if WebGL is unavailable (e.g. hardware
+  // acceleration disabled). Catch it so the globe degrades gracefully instead
+  // of halting the rest of the page script (tech-stack, scroll FX, etc.).
+  let renderer;
+  try {
+    renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  } catch (err) {
+    console.warn('Interactive globe disabled — WebGL unavailable in this browser.', err);
+    if (stageEl) stageEl.classList.add('network__stage--no-webgl');
+    return;
+  }
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
   const scene = new THREE.Scene();
