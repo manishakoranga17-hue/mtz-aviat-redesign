@@ -64,7 +64,7 @@ html, body {
 ::selection { background: var(--accent); color: var(--c-dark-green); }
 
 body {
-  cursor: none;
+  cursor: auto;
   position: relative;
 }
 /* Functional app/utility screens use the native cursor (no custom cursor JS) */
@@ -366,6 +366,8 @@ img { max-width: 100%; display: block; }
 
 /* ============== CURSOR ============== */
 .cursor, .cursor-follower {
+  /* Custom cursor removed — native browser cursor is used everywhere */
+  display: none;
   position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9990;
   border-radius: 50%;
   mix-blend-mode: difference;
