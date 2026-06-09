@@ -1933,7 +1933,7 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
                 <p class="lm__step-sub">Signing in as <span class="lm__email-tag" id="lm-email-display">you@company.com</span></p>
                 <form class="lm__form" data-lm-form="password" novalidate>
                   <div class="lm-field">
-                    <label for="lm-pass">Password <a href="#" class="lm-field__link" data-lm-forgot>Forgot?</a></label>
+                    <label for="lm-pass">Password <a href="#" class="lm-field__link" data-lm-forgot>Forgot password?</a></label>
                     <input id="lm-pass" type="password" name="password" placeholder="Your password" autocomplete="current-password" required />
                     <span class="lm-field__err" data-err="lm-pass"></span>
                   </div>
