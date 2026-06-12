@@ -400,6 +400,9 @@ if (document.getElementById('loader')) {
 
     /* Thailand — scheduled */
     { lon: 100.78, lat: 13.70, code: 'BKK', city: 'Bangkok',      country: 'Thailand' },
+
+    /* Philippines — scheduled */
+    { lon: 121.02, lat: 14.51, code: 'MNL', city: 'Manila',       country: 'Philippines' },
   ];
 
   /* Ambient secondary cities — show as small dots, no arcs, no tooltips */
