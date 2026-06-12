@@ -342,6 +342,7 @@ if (document.getElementById('loader')) {
     { lon: 113.99, lat: 4.32,  code: 'MYY', city: 'Miri',          country: 'Malaysia' },
     { lon: 111.99, lat: 2.26,  code: 'SBW', city: 'Sibu',          country: 'Malaysia' },
     { lon: 118.13, lat: 4.32,  code: 'TWU', city: 'Tawau',         country: 'Malaysia' },
+    { lon: 118.06, lat: 5.90,  code: 'SDK', city: 'Sandakan',      country: 'Malaysia' },
     /* East Malaysia gateways — shown red per legend */
     { lon: 116.05, lat: 5.94,  code: 'BKI', city: 'Kota Kinabalu', country: 'Malaysia', hub: true, red: true },
     { lon: 110.34, lat: 1.48,  code: 'KCH', city: 'Kuching',       country: 'Malaysia', hub: true, red: true },
